@@ -25,7 +25,7 @@ class random_access_iterator: public itrator< std::random_access_iterator_tag, T
 		//constaractors and destractor
 		random_access_iterator(){}
 		random_access_iterator(T *value): it(value){}
-		random_access_iterator(const random_access_iterator& cp): it(cp.it){}
+		//random_access_iterator(const random_access_iterator& cp): it(cp.it){}
 		~random_access_iterator(){}
 
 		// start overload obertator
@@ -59,6 +59,11 @@ class random_access_iterator: public itrator< std::random_access_iterator_tag, T
 		{
 			return *it;
 		}
+		T* operator->()
+		{
+			return *it;
+		}
+
 	
 };
 template < class T, class _Allocator = std::allocator<T> >

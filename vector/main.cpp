@@ -27,12 +27,11 @@ int main()
 
     // std::cout << ++(*tt) << std::endl;
 
-    std::vector<int>::iterator it1 = tt.begin();
-    // *it1;
-    std::cout << *it1 << std::endl;
-    
-    
-    ft::vector<int>::iterator my;
+    std::vector<int>::iterator it1(tt.begin());
+    // *it1 = 5;
+    // std::cout << *it1 << std::endl;
+    ft::vector<int>::iterator my(tt.begin());
+    *my = 5;
     std::cout << *my << std::endl;
     // }
     // catch(const std::exception& e)
