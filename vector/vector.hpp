@@ -263,11 +263,61 @@ public:
 		_size += 1;
 		dy_arr[_size - 1] = val;
 	}
-	void pop_back()
+
+	void pop_back() // delete element at the end
 	{
 		alloc.destroy(dy_arr + (_size - 1));
 		_size -= 1;
 	}
+
+	iterator insert (iterator position, const value_type& val) // - single element -
+	{
+
+		pointer tmp = alloc.allocate(_capacity * 2);
+		int index = 0;
+		for(iterator _it = begin(); _it != end(); _it++)
+		{
+			if (_it == position)
+					break;
+			index++;
+		}
+		int i_arr_org = 0;
+		for(int i = 0; i < (_capacity +1); i++)
+		{
+			if (i != index)
+			{
+				alloc.construct(tmp + i, dy_arr[i_arr_org]);
+				i_arr_org++;
+			}
+			else
+			{
+				alloc.construct(tmp + i, val);
+			}
+		}
+		//destrot all elment and deallocat
+		for(int i = 0; i < _capacity; i++)
+			alloc.destroy(dy_arr + i);
+		alloc.deallocate(dy_arr, _capacity);
+		if (empty() == true)
+			_capacity = _size;
+		else
+			_capacity = _size * 2;
+		_size += 1;
+		dy_arr = tmp;
+		return iterator(dy_arr + index);
+	}
+
+	void insert (iterator position, size_type n, const value_type& val) // -fill-
+	{
+		
+	}
+	
+	template <class InputIterator>
+    void insert (iterator position, InputIterator first, InputIterator last) // insertse range
+	{
+
+	}
+
 
 };
 
