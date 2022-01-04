@@ -124,12 +124,43 @@ int main ()
 
     //test insert sng(1)
   
+    // {
+    //   std::vector<int> test(5, 90);
+    //   std::vector<int>::iterator it = test.begin() + 2;
+    //   std::cout << "pos iterator org " << *it << std::endl;
+    //   std::vector<int>::iterator pos = test.insert(it, 5500);
+    //   std::cout << "check return insert org vector ==> " << *pos << std::endl;
+    //   std::cout << "org vector ==> " << test[0] << std::endl;
+    //   std::cout << "vector org size ==> " << test.size() << " " << "vector org capasity ==> " << test.capacity() << std::endl;
+    //   //show element
+    //   for(it = test.begin(); it != test.end(); it++)
+    //   {
+    //     std::cout << *it << std::endl;
+    //   }
+    // }
+    // {
+    //   ft::vector<int> test11(5, 90);
+    //   ft::vector<int>::iterator it = test11.begin() + 2;
+    //   std::cout << "pos iterator my  " << *it << std::endl;
+    //   ft::vector<int>::iterator pos = test11.insert(it, 5500);
+    //   std::cout << "check return insert my vector ==> " << *pos << std::endl;
+    //   std::cout << "my vector ==> " << test11[0] << std::endl;
+    //   std::cout << "vector my size ==> " << test11.size() << " " << "vector my capasity ==> " << test11.capacity() << std::endl;
+    //   //show element
+    //   for(it = test11.begin(); it != test11.end(); it++)
+    //   {
+    //     std::cout << *it << std::endl;
+    //   }
+    // }
+
+              //test test fill(2)
+            
+    
     {
-      std::vector<int> test(5, 90);
+      std::vector<int> test(10, 9000);
       std::vector<int>::iterator it = test.begin() + 2;
       std::cout << "pos iterator org " << *it << std::endl;
-      std::vector<int>::iterator pos = test.insert(it, 5500);
-      std::cout << "check return insert org vector ==> " << *pos << std::endl;
+      test.insert(it, 3 ,  5500);
       std::cout << "org vector ==> " << test[0] << std::endl;
       std::cout << "vector org size ==> " << test.size() << " " << "vector org capasity ==> " << test.capacity() << std::endl;
       //show element
@@ -139,11 +170,10 @@ int main ()
       }
     }
     {
-      ft::vector<int> test11(5, 90);
+      ft::vector<int> test11(10, 9000);
       ft::vector<int>::iterator it = test11.begin() + 2;
       std::cout << "pos iterator my  " << *it << std::endl;
-      ft::vector<int>::iterator pos = test11.insert(it, 5500);
-      std::cout << "check return insert my vector ==> " << *pos << std::endl;
+      test11.insert(it, 3, 5500);
       std::cout << "my vector ==> " << test11[0] << std::endl;
       std::cout << "vector my size ==> " << test11.size() << " " << "vector my capasity ==> " << test11.capacity() << std::endl;
       //show element

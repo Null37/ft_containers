@@ -282,7 +282,8 @@ public:
 			index++;
 		}
 		int i_arr_org = 0;
-		for(int i = 0; i < (_capacity +1); i++)
+		
+		for(int i = 0; i <= (_capacity +1); i++)
 		{
 			if (i != index)
 			{
@@ -309,14 +310,50 @@ public:
 
 	void insert (iterator position, size_type n, const value_type& val) // -fill-
 	{
+		pointer tmp = alloc.allocate(_capacity * 2);
+		int index = 0;
+		for(iterator _it = begin(); _it != end(); _it++)
+		{
+			if (_it == position)
+					break;
+			index++;
+		}
+		int i_arr_org = 0;
 		
+		for(int i = 0; i <= (_capacity + n); i++)
+		{
+			if (i != index)
+			{
+				alloc.construct(tmp + i, dy_arr[i_arr_org]);
+				i_arr_org++;
+			}
+			else
+			{	
+				for(int j = 0; j < n; j++)
+				{
+					alloc.construct(tmp + i, val);
+					i++;
+				}
+				i--;
+			}
+		}
+		//destrot all elment and deallocat
+		for(int i = 0; i < _capacity; i++)
+			alloc.destroy(dy_arr + i);
+		alloc.deallocate(dy_arr, _capacity);
+		if (empty() == true)
+			_capacity = _size;
+		else
+			_capacity = _size * 2;
+		_size += n;
+		dy_arr = tmp;
 	}
 	
-	template <class InputIterator>
-    void insert (iterator position, InputIterator first, InputIterator last) // insertse range
-	{
+	// template <class InputIterator>
+    // void insert (iterator position, InputIterator first, InputIterator last) // insertse range
+	// {
 
-	}
+	// }
 
 
 };
