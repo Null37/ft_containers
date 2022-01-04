@@ -4,8 +4,7 @@
 #include <iostream>
 
 
-namespace ft 
-{
+namespace ft {
 	template <class Iterator>
 	struct iterator_traits {
 			typedef typename Iterator::difference_type		difference_type;

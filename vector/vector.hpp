@@ -3,6 +3,7 @@
 
 #include "vector_iterator.hpp"
 #include <iostream>
+#include <stdexcept>  // out of range header
 #include "../type_trais/type_traits.hpp"
 
 
@@ -158,19 +159,116 @@ public:
 		if (n > _capacity)
 		{
 			if (n > max_size())
-				throw std::bad_alloc();
-			
+				throw std::length_error("allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size");
+			pointer tmp = alloc.allocate(_capacity);
+			for(int i = 0; i < _size; i++)
+				alloc.construct(tmp + i, dy_arr[i]);
+			//destrot all elment and deallocat
+			for(int i = 0; i < _capacity; i++)
+				alloc.destroy(dy_arr + i);
+			alloc.deallocate(dy_arr, _capacity);
+			dy_arr = tmp;
+			_capacity = n;
 		}
-
 	}
 
-
-
-
+	//Element access:
 	reference operator[](size_type n)
 	{
 		return dy_arr[n];
 	}
+	const_reference operator[] (size_type n) const
+	{
+		return dy_arr[n];
+	}
+	reference at (size_type n)
+	{
+		std::string str = "out of range";
+		if (n >= _size)
+			throw std::out_of_range(str);
+		return dy_arr[n];
+	}
+	const_reference at (size_type n) const
+	{
+		std::string str = "out of range";
+		if (n >= _size)
+			throw std::out_of_range(str);
+		return dy_arr[n];
+	}
+	reference front()
+	{
+		return dy_arr[0];
+	}
+	const_reference front() const
+	{
+		return dy_arr[0];
+	}
+	reference back()
+	{
+		return dy_arr[_size - 1];
+	}
+	const_reference back() const
+	{
+		return dy_arr[_size - 1];
+	}
+
+	//Modifiers:
+	void assign (size_type n, const value_type& val) // fill
+	{
+		if(empty() == true)
+		{
+			dy_arr = this->alloc.allocate(n);
+			_size  = n;
+			_capacity = _size;
+			for(difference_type i = 0; i < n; i++)
+				this->alloc.construct((dy_arr + i), val);
+		}
+		else if (n > _size)
+		{
+			pointer tmp = alloc.allocate(_capacity);
+			//destrot all elment and deallocat
+			for(int i = 0; i < _capacity; i++)
+				alloc.destroy(dy_arr + i);
+			alloc.deallocate(dy_arr, _capacity);
+			for(int i = 0; i < _size; i++)
+				alloc.construct(tmp + i, val);
+			dy_arr = tmp;
+			_size = n;
+			_capacity = _size;
+		}
+		else
+		{
+			for(int i = 0; i < _capacity; i++)
+				alloc.destroy(dy_arr + i);
+			for(int i = 0; i < n; i++)
+				alloc.construct(dy_arr + i, val);
+			_capacity = _size;
+			_size = n;
+		}
+		
+	}
+	template <class InputIterator>
+  	void assign (InputIterator first, InputIterator last, typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type = InputIterator()) //range
+	{
+		
+	}
+
+	void push_back (const value_type& val) // Add element at the end
+	{
+		reserve(_size + 1);
+		if (empty() == true)
+			_capacity = 1;
+		else
+			_capacity = _size * 2;
+		_size += 1;
+		dy_arr[_size - 1] = val;
+	}
+	void pop_back()
+	{
+		alloc.destroy(dy_arr + (_size - 1));
+		_size -= 1;
+	}
+
 };
 
 
