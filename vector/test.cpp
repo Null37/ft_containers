@@ -156,31 +156,205 @@ int main ()
               //test test fill(2)
             
     
+    // {
+    //   std::vector<int> test(10, 9000);
+    //   std::vector<int>::iterator it = test.begin() + 2;
+    //   std::cout << "pos iterator org " << *it << std::endl;
+    //   test.insert(it, 3 ,  5500);
+    //   std::cout << "org vector ==> " << test[0] << std::endl;
+    //   std::cout << "vector org size ==> " << test.size() << " " << "vector org capasity ==> " << test.capacity() << std::endl;
+    //   //show element
+    //   for(it = test.begin(); it != test.end(); it++)
+    //   {
+    //     std::cout << *it << std::endl;
+    //   }
+    // }
+    // {
+    //   ft::vector<int> test11(10, 9000);
+    //   ft::vector<int>::iterator it = test11.begin() + 2;
+    //   std::cout << "pos iterator my  " << *it << std::endl;
+    //   test11.insert(it, 3, 5500);
+    //   std::cout << "my vector ==> " << test11[0] << std::endl;
+    //   std::cout << "vector my size ==> " << test11.size() << " " << "vector my capasity ==> " << test11.capacity() << std::endl;
+    //   //show element
+    //   for(it = test11.begin(); it != test11.end(); it++)
+    //   {
+    //     std::cout << *it << std::endl;
+    //   }
+    // }
+
+        //test insert range(3)
+      std::vector<int> big(30, 3050);
+      std::vector<int>::iterator first =  big.begin();
+      std::vector<int>::iterator last =  big.end();
+
     {
-      std::vector<int> test(10, 9000);
-      std::vector<int>::iterator it = test.begin() + 2;
-      std::cout << "pos iterator org " << *it << std::endl;
-      test.insert(it, 3 ,  5500);
-      std::cout << "org vector ==> " << test[0] << std::endl;
-      std::cout << "vector org size ==> " << test.size() << " " << "vector org capasity ==> " << test.capacity() << std::endl;
-      //show element
-      for(it = test.begin(); it != test.end(); it++)
-      {
-        std::cout << *it << std::endl;
-      }
+      // std::vector<int> test(20, 9000);
+      // std::vector<int>::iterator it = test.begin() + 2;
+      // std::cout << "pos iterator org " << *it << std::endl;
+      // test.insert(it, first , last);
+      // std::cout << "org vector ==> " << test[0] << std::endl;
+      // std::cout << "vector org size ==> " << test.size() << " " << "vector org capasity ==> " << test.capacity() << std::endl;
+      // //show element
+      // for(it = test.begin(); it != test.end(); it++)
+      // {
+      //   std::cout << *it << std::endl;
+      // }
     }
     {
-      ft::vector<int> test11(10, 9000);
-      ft::vector<int>::iterator it = test11.begin() + 2;
-      std::cout << "pos iterator my  " << *it << std::endl;
-      test11.insert(it, 3, 5500);
-      std::cout << "my vector ==> " << test11[0] << std::endl;
-      std::cout << "vector my size ==> " << test11.size() << " " << "vector my capasity ==> " << test11.capacity() << std::endl;
-      //show element
-      for(it = test11.begin(); it != test11.end(); it++)
-      {
-        std::cout << *it << std::endl;
-      }
+      // ft::vector<int> test11(20, 9000);
+      // ft::vector<int>::iterator it = test11.begin() + 2;
+      // std::cout << "pos iterator my  " << *it << std::endl;
+      // test11.insert(it, first, last);
+      // std::cout << "my vector ==> " << test11[0] << std::endl;
+      // std::cout << "vector my size ==> " << test11.size() << " " << "vector my capasity ==> " << test11.capacity() << std::endl;
+      // //show element
+      // for(it = test11.begin(); it != test11.end(); it++)
+      // {
+      //   std::cout << *it << std::endl;
+      // }
     }
+
+
+              // test erase  // test return
+//   std::cout << "---------------------------------------------------------------------------------------" << std::endl;
+
+//   {
+//     std::vector<int> a;
+//     a.push_back(5);
+//  // std::cout << " BEFOR size org ==>  " << a.size() << "    " << " BEFOR capasity ==> " << a.capacity() << std::endl;
+//     a.push_back(9);
+//  // std::cout << " BEFOR size org ==>  " << a.size() << "    " << " BEFOR capasity ==> " << a.capacity() << std::endl;
+//     a.push_back(8);
+//     a.push_back(1);
+//  // std::cout << " BEFOR size org ==>  " << a.size() << "    " << " BEFOR capasity ==> " << a.capacity() << std::endl;
+
+//     a.push_back(7);
+//     // a.push_back(10);
+//     // a.push_back(90);
+//     // a.reserve(a.size() + 1);
+//     // a.reserve(5);
+//     std::cout << " BEFOR size org ==>  " << a.size() << "    " << " BEFOR capasity ==> " << a.capacity() << std::endl;
+//     std::vector<int>::iterator it = a.begin();
+//     std::vector<int>::iterator  rt =   a.erase(it + 2  , a.end()-2);
+//     std::cout << "test return ==> " <<  *rt  << std::endl; 
+//     std::cout << " AFTER size org ==>  " << a.size() << "    " << " AFTER capasity ==> " << a.capacity() << std::endl;
+//     for (it = a.begin(); it != a.end(); it++)
+//     {
+//       std::cout << " element==> " << *it << std::endl;
+//     }
+//      std::cout << "test return ==> " <<  *rt  << std::endl; 
+//   }
+//   std::cout << "---------------------------------------------------------------------------------------" << std::endl;
+//    {
+//     ft::vector<int> a;
+//     a.push_back(5);
+//    // std::cout << " my BEFOR size org ==>  " << a.size() << "    " << " BEFOR capasity ==> " << a.capacity() << std::endl;
+//    a.push_back(9);
+//    //std::cout << " my BEFOR size org ==>  " << a.size() << "    " << " BEFOR capasity ==> " << a.capacity() << std::endl;
+//    a.push_back(8);
+//     a.push_back(1);
+//    //std::cout << " my BEFOR size org ==>  " << a.size() << "    " << " BEFOR capasity ==> " << a.capacity() << std::endl;
+//     a.push_back(7);
+//     // a.push_back(10);
+//     // a.push_back(90);
+//     // a.reserve(a.size() + 1);
+//     // a.reserve(5);
+//     std::cout << " my v BEFOR size  ==>  " << a.size() << "    " << " BEFOR capasity ==> " << a.capacity() << std::endl;
+//     //std::cout << " BEFOR size my v ==>  " << a.size() << "    " << " BEFOR capasity my v ==> " << a.capacity() << std::endl;
+//     ft::vector<int>::iterator it =   a.begin();
+//     ft::vector<int>::iterator  rt =   a.erase(it  + 2, a.end()-2);
+//     std::cout << "test return ==> " <<  *rt  << std::endl; 
+//     std::cout << " AFTER size my v  ==>  " << a.size() << "    " << " AFTER capasity my v==> " << a.capacity() << std::endl;
+//     for (it = a.begin(); it != a.end(); it++)
+//     {
+//       std::cout << "element my v ==> " << *it << std::endl;
+//     }
+//      std::cout << "test return ==> " <<  *rt  << std::endl; 
+//   }
+
+
+    // test swap
+
+  // {
+  //     std::vector<int> test2(20, 50);
+  //     std::vector<int> test(5, 7);
+  //     test.push_back(4);
+  //     test.push_back(10);
+  //     test.swap(test2);
+  //     std::cout << "size ==> " << test.size() << " capacity==> "  << test.capacity() << std::endl;
+  //     std::vector<int>::iterator it;
+  //     for (it = test.begin(); it != test.end(); it++)
+  //     {
+  //       std::cout << "test element ===> " <<  *it << std::endl;
+  //     }
+  //     std::cout << "size ==> " << test2.size() << " capacity==> "  << test2.capacity() << std::endl;
+  //     std::vector<int>::iterator it2;
+  //     for (it2 = test2.begin(); it2 != test2.end(); it2++)
+  //     {
+  //       std::cout << "test element ===> " <<  *it2 << std::endl;
+  //     }
+  // }
+  //  {
+  //     ft::vector<int> test2(20, 50);
+  //     ft::vector<int> test(5, 7);
+  //     test.push_back(4);
+  //     test.push_back(10);
+  //     test.swap(test2);
+  //     std::cout << "size ==> " << test.size() << " capacity==> "  << test.capacity() << std::endl;
+  //     ft::vector<int>::iterator it;
+  //     for (it = test.begin(); it != test.end(); it++)
+  //     {
+  //       std::cout << "test element ===> " <<  *it << std::endl;
+  //     }
+  //     std::cout << "size ==> " << test2.size() << " capacity==> "  << test2.capacity() << std::endl;
+  //     ft::vector<int>::iterator it2;
+  //     for (it2 = test2.begin(); it2 != test2.end(); it2++)
+  //     {
+  //       std::cout << "test element ===> " <<  *it2 << std::endl;
+  //     }
+  // }
+
+
+
+
+    //clear 
+  
+  {
+    std::vector<int> test;
+    test.push_back(8);
+    test.push_back(9);
+    test.push_back(11);
+    test.push_back(150);
+    test.push_back(400);
+    test.push_back(500);
+    test.clear();
+    std::cout << "org size ==> " << test.size() << " org capacity==> "  << test.capacity() << std::endl;
+
+    std::vector<int>::iterator it;
+    for (it = test.begin(); it != test.end(); it++)
+    {
+     std::cout << "test element ===> " <<  *it << std::endl;
+    }
+
+  }
+  {
+    ft::vector<int> test;
+    test.push_back(8);
+    test.push_back(9);
+    test.push_back(11);
+    test.push_back(150);
+    test.push_back(400);
+    test.push_back(500);
+    test.clear();
+    std::cout << "my size ==>  " << test.size() << " my capacity==>  "  << test.capacity() << std::endl;
+
+    ft::vector<int>::iterator it;
+    for (it = test.begin(); it != test.end(); it++)
+    {
+     std::cout << "test element ===> " <<  *it << std::endl;
+    }
+
+  }
   return 0;
 }

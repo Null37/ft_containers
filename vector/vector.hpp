@@ -255,11 +255,19 @@ public:
 
 	void push_back (const value_type& val) // Add element at the end
 	{
-		reserve(_size + 1);
+		//std::cout << " p size === >  " <<  _size << " p capacity ==>   " <<  _capacity << std::endl;
 		if (empty() == true)
-			_capacity = 1;
-		else
-			_capacity = _size * 2;
+			_capacity += 1;
+		else if (_size >= _capacity)
+			_capacity = _capacity * 2;
+		pointer tmp = alloc.allocate(_capacity);
+		for(int i = 0; i < _size; i++)
+			alloc.construct(tmp + i, dy_arr[i]);
+		//destrot all elment and deallocat
+		for(int i = 0; i < _capacity; i++)
+			alloc.destroy(dy_arr + i);
+		alloc.deallocate(dy_arr, _capacity);
+		dy_arr = tmp;
 		_size += 1;
 		dy_arr[_size - 1] = val;
 	}
@@ -346,15 +354,168 @@ public:
 		else
 			_capacity = _size * 2;
 		_size += n;
+		if (_size > _capacity)
+			_capacity = _size; 
 		dy_arr = tmp;
 	}
 	
-	// template <class InputIterator>
-    // void insert (iterator position, InputIterator first, InputIterator last) // insertse range
-	// {
+	template <class InputIterator>
+    void insert (iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type = InputIterator()) // insertse range
+	{
+		pointer tmp = alloc.allocate(_capacity * 2);
+		int index = 0;
+		for(iterator _it = begin(); _it != end(); _it++)
+		{
+			if (_it == position)
+					break;
+			index++;
+		}
+		int i_arr_org = 0;
+		//count range
+		InputIterator cp_f =  first;
+		InputIterator cp_l =  last;
+		int  n = 0;
+		for(; cp_f != cp_l; cp_f++)
+			n++;
+		for(int i = 0; i <= (_capacity + n); i++)
+		{
+			if (i != index)
+			{
+				alloc.construct(tmp + i, dy_arr[i_arr_org]);
+				i_arr_org++;
+			}
+			else
+			{	
+				for(; first != last; first++)
+				{
+					alloc.construct(tmp + i, *first);
+					i++;
+				}
+				i--;
+			}
+		}
+		//destrot all elment and deallocat
+		for(int i = 0; i < _capacity; i++)
+			alloc.destroy(dy_arr + i);
+		alloc.deallocate(dy_arr, _capacity);
+		if (empty() == true)
+			_capacity = _size;
+		else
+			_capacity = _size * 2;
+		_size += n;
+		if (_size > _capacity)
+			_capacity = _size;
+		dy_arr = tmp;
+	}
 
-	// }
+	iterator erase (iterator position) // change the size and remove one elemant
+	{
+		pointer tmp = alloc.allocate(_capacity);
+		int index = 0;
+		for(iterator _it = begin(); _it != end(); _it++)
+		{
+			if (_it == position)
+					break;
+			index++;
+		}
+		int i  = 0;
+		int j = 0;
+		while (i < _size)
+		{
+			if (j != index)
+			{
+				alloc.construct(tmp + i, dy_arr[j]);
+				i++;
+				j++;
+			}
+			else
+				j++;
+		}
+			//destrot all elment and deallocat
+		for(int i = 0; i < _capacity; i++)
+			alloc.destroy(dy_arr + i);
+		alloc.deallocate(dy_arr, _capacity);
+		_size -= 1;
+		dy_arr =  tmp;
+		if (index == _size)
+			return position;
+		return iterator(dy_arr + index);
+	}
 
+	iterator erase (iterator first, iterator last) // remove range from first to last  
+	{
+		iterator cp_f =  first;
+		iterator cp_l =  last;
+		int  n = 0;
+		for(; cp_f != cp_l; cp_f++)
+			n++;
+		if (n == 0)
+			return first;
+		pointer tmp = alloc.allocate(_capacity);
+		// std::cout << "nnnnn====.>>>> " << n << std::endl;
+		int index = 0;
+		for(iterator _it = begin(); _it != end(); _it++)
+		{
+			if (_it == first)
+					break;
+			index++;
+		}
+		int ret_last = 0;
+		for(iterator _it = begin(); _it != end(); _it++)
+		{
+			if (_it == last)
+					break;
+			ret_last++;
+		}
+		int i  = 0;
+		int j = 0;
+		while (i < _size)
+		{
+			if (j != index)
+			{
+				alloc.construct(tmp + i, dy_arr[j]);
+				i++;
+				j++;
+			}
+			else
+			{
+				for(; first != last; first++)
+					j++;
+			}
+		}
+			//destrot all elment and deallocat
+		for(int i = 0; i < _capacity; i++)
+			alloc.destroy(dy_arr + i);
+		alloc.deallocate(dy_arr, _capacity);
+		_size -= n;
+		dy_arr =  tmp;
+		// std::cout << "n===> " << n << std::endl;
+		// std::cout << "test lllllllllllll ===>  " << ret_last  << " n " <<  n << std::endl;
+		return iterator(dy_arr + (ret_last  - n));
+	}
+
+	void swap (vector& x)
+	{
+		pointer tmp = this->dy_arr;
+		size_type _size_tmp = this->_size;
+		size_type _capacity_tmp = this->_capacity;
+		this->dy_arr = x.dy_arr;
+		this->_size = x._size;
+		this->_capacity = x._capacity;
+		x.dy_arr =  tmp;
+		x._size = _size_tmp;
+		x._capacity = _capacity_tmp;
+	}
+
+	void clear()
+	{
+		//destrot all elment and deallocat
+		for(int i = 0; i < _capacity; i++)
+			alloc.destroy(dy_arr + i);
+		alloc.deallocate(dy_arr, _capacity);
+		dy_arr = nullptr;
+		_size = 0;
+	}
 
 };
 
