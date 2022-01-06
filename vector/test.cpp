@@ -320,41 +320,48 @@ int main ()
 
     //clear 
   
-  {
-    std::vector<int> test;
-    test.push_back(8);
-    test.push_back(9);
-    test.push_back(11);
-    test.push_back(150);
-    test.push_back(400);
-    test.push_back(500);
-    test.clear();
-    std::cout << "org size ==> " << test.size() << " org capacity==> "  << test.capacity() << std::endl;
+  // {
+  //   std::vector<int> test;
+  //   test.push_back(8);
+  //   test.push_back(9);
+  //   test.push_back(11);
+  //   test.push_back(150);
+  //   test.push_back(400);
+  //   test.push_back(500);
+  //   test.clear();
+  //   std::cout << "org size ==> " << test.size() << " org capacity==> "  << test.capacity() << std::endl;
 
-    std::vector<int>::iterator it;
-    for (it = test.begin(); it != test.end(); it++)
-    {
-     std::cout << "test element ===> " <<  *it << std::endl;
-    }
+  //   std::vector<int>::iterator it;
+  //   for (it = test.begin(); it != test.end(); it++)
+  //   {
+  //    std::cout << "test element ===> " <<  *it << std::endl;
+  //   }
 
-  }
-  {
-    ft::vector<int> test;
-    test.push_back(8);
-    test.push_back(9);
-    test.push_back(11);
-    test.push_back(150);
-    test.push_back(400);
-    test.push_back(500);
-    test.clear();
-    std::cout << "my size ==>  " << test.size() << " my capacity==>  "  << test.capacity() << std::endl;
+  // }
+  // {
+  //   ft::vector<int> test;
+  //   test.push_back(8);
+  //   test.push_back(9);
+  //   test.push_back(11);
+  //   test.push_back(150);
+  //   test.push_back(400);
+  //   test.push_back(500);
+  //   test.clear();
+  //   std::cout << "my size ==>  " << test.size() << " my capacity==>  "  << test.capacity() << std::endl;
 
-    ft::vector<int>::iterator it;
-    for (it = test.begin(); it != test.end(); it++)
-    {
-     std::cout << "test element ===> " <<  *it << std::endl;
-    }
+  //   ft::vector<int>::iterator it;
+  //   for (it = test.begin(); it != test.end(); it++)
+  //   {
+  //    std::cout << "test element ===> " <<  *it << std::endl;
+  //   }
 
-  }
+
+          //test allocator
+    
+
+
+
+  
+  	//ft::vector<int> data((std::istream_iterator<int>(std::cin)),std::istream_iterator<int>());
   return 0;
 }

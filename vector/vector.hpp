@@ -478,10 +478,8 @@ public:
 				j++;
 			}
 			else
-			{
 				for(; first != last; first++)
 					j++;
-			}
 		}
 			//destrot all elment and deallocat
 		for(int i = 0; i < _capacity; i++)
@@ -515,6 +513,10 @@ public:
 		alloc.deallocate(dy_arr, _capacity);
 		dy_arr = nullptr;
 		_size = 0;
+	}
+	allocator_type get_allocator() const
+	{
+		return (this->alloc);
 	}
 
 };
