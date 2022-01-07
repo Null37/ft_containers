@@ -358,7 +358,10 @@ int main ()
 
           //test allocator
     
-
+    {
+      std::vector<int> a(5);
+      a
+    }
 
 
   
