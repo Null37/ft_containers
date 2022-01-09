@@ -1,5 +1,6 @@
 // resizing vector
 #include <iostream>
+#include <iterator>
 #include <vector>
 #include "vector.hpp"
 #define max_s 42949672999599
@@ -184,9 +185,9 @@ int main ()
     // }
 
         //test insert range(3)
-      std::vector<int> big(30, 3050);
-      std::vector<int>::iterator first =  big.begin();
-      std::vector<int>::iterator last =  big.end();
+      // std::vector<int> big(30, 3050);
+      // std::vector<int>::iterator first =  big.begin();
+      // std::vector<int>::iterator last =  big.end();
 
     {
       // std::vector<int> test(20, 9000);
@@ -358,12 +359,43 @@ int main ()
 
           //test allocator
     
+    // {
+    //   std::vector<int> a(5);
+    //   a
+    // }
+
+    // test contrators and destractur 
+    // {
+    //   std::vector<int> test(5,500);
+    //   std::cout << "org vector1 size: " << test.size() << " org vrctor1 capacity: " << test.capacity() << std::endl;
+    //   ft::vector<int> test3(test.begin(), test.end());
+    //   std::cout << "my  vector2 size: " << test3.size() << "  my vrctor2 capacity: " << test3.capacity() << std::endl;
+    // }
+    //  {
+    //   ft::vector<int> test(5,500);
+    //   std::cout << "org vector1 size: " << test.size() << " org vrctor1 capacity: " << test.capacity() << std::endl;
+    //   ft::vector<int> test3(test);
+    //   std::cout << "my  vector2 size: " << test3.size() << "  my vrctor2 capacity: " << test3.capacity() << std::endl;
+    // }
+    //test relational operators
     {
-      std::vector<int> a(5);
-      a
+      // std::distance(_InputIterator __first, _InputIterator __last)
     }
+      {
+         std::vector<int> test(5);
+         std::vector<int>::reverse_iterator it = test.rbegin();
+         std::vector<int>::reverse_iterator it2 = test.rend();
+         int l = it < it2;
+         std::cout << "dyalom: " << l << std::endl;
 
-
+      }
+      {
+         ft::vector<int> test(5);
+         ft::vector<int>::reverse_iterator it = test.rbegin();
+         ft::vector<int>::reverse_iterator it2 = test.rend();
+         int l = it < it2;
+         std::cout << "dyali: " << l << std::endl;
+      }
   
   	//ft::vector<int> data((std::istream_iterator<int>(std::cin)),std::istream_iterator<int>());
   return 0;
