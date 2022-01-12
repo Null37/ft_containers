@@ -1,4 +1,5 @@
 // resizing vector
+#include <ios>
 #include <iostream>
 #include <iterator>
 #include <vector>
@@ -381,22 +382,282 @@ int main ()
     {
       // std::distance(_InputIterator __first, _InputIterator __last)
     }
-      {
-         std::vector<int> test(5);
-         std::vector<int>::reverse_iterator it = test.rbegin();
-         std::vector<int>::reverse_iterator it2 = test.rend();
-         int l = it < it2;
-         std::cout << "dyalom: " << l << std::endl;
+      // {
+      //    std::vector<int> test(5);
+      //    std::vector<int>::reverse_iterator it = test.rbegin();
+      //    std::vector<int>::reverse_iterator it2 = test.rend();
+      //    int l = it < it2;
+      //    std::cout << "dyalom: " << l << std::endl;
 
+      // }
+      // {
+      //    ft::vector<int> test(5);
+      //    ft::vector<int>::reverse_iterator it = test.rbegin();
+      //    ft::vector<int>::reverse_iterator it2 = test.rend();
+      //    int l = it < it2;
+      //    std::cout << "dyali: " << l << std::endl;
+      // }
+      // test copy construct
+
+     {
+    //     std::vector<int> test(5,10);
+    //     std::vector<int> test1(test);
+    //     std::cout << "---org normal copy --- " << "vector org size: " << test1.size() << " test capacity: " << test1.capacity() << std::endl;
+    //     std::vector<int> test3;
+    //     std::vector<int> test4(test3);
+    //     std::cout << "---org empty  copy --- " << "vector org size: " << test4.size() << " test capacity: " << test4.capacity() << std::endl;
+    //     std::vector<int> test5;
+    //     test5.push_back(50);
+    //     std::vector<int> test6(test5);
+    //     std::cout << "---org push   copy --- " << "vector org size: " << test6.size() << " test capacity: " << test6.capacity() << std::endl;
+        // std::vector<int> test7;
+        // std::vector<int> test8(80, 90);
+        // test8 = test7;
+        // std::cout << "---org ==  copy --- " << "vector org size: " << test8.size() << " test capacity: " << test8.capacity() << std::endl;
       }
       {
-         ft::vector<int> test(5);
-         ft::vector<int>::reverse_iterator it = test.rbegin();
-         ft::vector<int>::reverse_iterator it2 = test.rend();
-         int l = it < it2;
-         std::cout << "dyali: " << l << std::endl;
+        // ft::vector<int> test(5,10);
+        // ft::vector<int> test1(test);
+        // std::cout << "---my normal  copy --- " << "vector org size: " << test1.size() << " test capacity: " << test1.capacity() << std::endl;
+        // ft::vector<int> test3;
+        // ft::vector<int> test4(test3);
+        // std::cout << "---my empty   copy --- " << "vector org size: " << test4.size() << " test capacity: " << test4.capacity() << std::endl;
+        // ft::vector<char> v1(1e7, 'a');
+        // ft::vector<char> copy_v(v1);
+        // ft::vector<int> test7;
+        // ft::vector<int> test8(80, 90);
+        // test8 = test7;
+        // std::cout << "---my ==   copy --- " << "vector org size: " << test8.size() << " test capacity: " << test8.capacity() << std::endl;
+        // std::vector<std::string> v1(10, "string2");
+        // v1.resize(1e6);
+        // std::cout << "test1 org --- " << "vector org size: " << v1.size() << " test capacity: " << v1.capacity() << std::endl;
+      // }
       }
-  
-  	//ft::vector<int> data((std::istream_iterator<int>(std::cin)),std::istream_iterator<int>());
+    // {
+    //         std::vector<std::string> v1(10, "string2");
+    //         v1.resize(1e6);
+    //         std::cout << "test1 org --- " << "vector org size: " << v1.size() << " test capacity: " << v1.capacity() << std::endl;
+
+    //         /*------------------ ft::vectors ---------------------*/
+    //         ft::vector<std::string> ft_v1(10, "string2");
+    //         ft_v1.resize(1e6);
+    //         std::cout << "test1 my --- " << "vector org size: " << ft_v1.size() << " test capacity: " << ft_v1.capacity() << std::endl;
+    //         /*----------------------------------------------------*/
+    //         /*
+    //          *	test with n lesser than capacity and greater than size
+    //          */
+    //         /*------------------ std::vectors ---------------------*/
+
+    //         v1.resize(20);
+    //         std::cout << "test2 org --- " << "vector org size: " << v1.size() << " test capacity: " << v1.capacity() << std::endl;
+
+    //         v1.resize(1e5);
+    //         std::cout << "test2 my --- " << "vector org size: " << ft_v1.size() << " test capacity: " << ft_v1.capacity() << std::endl;
+
+    //         /*------------------ ft::vectors ---------------------*/
+    //         ft_v1.resize(20);
+    //         std::cout << "test3 org --- " << "vector org size: " << v1.size() << " test capacity: " << v1.capacity() << std::endl;
+
+    //         ft_v1.resize(1e5);
+    //         std::cout << "test3 my --- " << "vector org size: " << ft_v1.size() << " test capacity: " << ft_v1.capacity() << std::endl;
+    // }
+            /*----------------------------------------------------*/
+            /*
+             * test with n lesser than capacity and lesser an size
+             */
+            /*------------------ std::vectors ---------------------*/
+            // v1.resize(100);
+            // std::cout << "test4 org --- " << "vector org size: " << v1.size() << " test capacity: " << v1.capacity() << std::endl;
+
+            // v1.resize(50);
+            // end = get_time();
+            // diff = end - start;
+            // diff = (diff) ? (diff * TIME_FAC) : TIME_FAC;
+            // /*------------------ ft::vectors ---------------------*/
+            // ft_v1.resize(100);
+            // ualarm(diff * 1e3, 0);
+            // ft_v1.resize(50);
+            // ualarm(0, 0);
+    // }
+    // {
+
+    // }
+    // {
+    //     std::vector<std::string> v1(10, "string2");
+    //     std::vector<int> const v2(10, 9);
+    //     /*------------------ std::vectors ---------------------*/
+    //     ft::vector<std::string> ft_v1(10, "string2");
+    //     ft::vector<int> const ft_v2(10, 9);
+
+    //     v1.back() = "LEET";
+    //     std::cout << "org ==> " << v1.back() << "  my  " << ft_v1.back() << std::endl;
+    //     ft_v1.back() = "LEET";
+    //     std::cout << "my  ==> " << ft_v1.back() << std::endl;
+    //      std::cout << "check  v2 "  << v2.back()  <<  " test " << ft_v2.back()<< std::endl;
+
+    // }
+
+    //test assign
+
+// {
+//             /*------------------ std::vectors ---------------------*/
+//  std::vector<std::string> v1(1e6, "string2");
+//   v1.assign(1e6 + 1, "assign");
+//   std::cout << "org vector size " << v1.size() << " capacity " << v1.capacity() << std::endl; 
+//             /*------------------ ft::vectors ---------------------*/
+//   ft::vector<std::string> ft_v1(1e6, "string2");
+//   ft_v1.assign(1e6 + 1, "assign");
+//   std::cout << "my vector size  " << ft_v1.size() << " capacity " << ft_v1.capacity() << std::endl; 
+
+// }
+
+// {
+//     std::vector<int> test1(200, 150);
+//     std::vector<int> test2(1, 100);
+//     std::vector<int>::iterator it = test2.begin();
+//     std::vector<int>::iterator it2 = test2.end();
+//     std::cout << "test distance ==>  " << std::distance(it, it2-1) << std::endl;
+//     test1.assign(it, it2-1);
+//     std::vector<int>::iterator it3 = test1.begin();
+//     std::vector<int>::iterator it4 = test1.end();
+//     std::cout << "org vector size " << test1.size() << " capacity " << test1.capacity() << std::endl; 
+//     for (; it3 != it4; it3++) {
+//       std::cout << *it3 << std::endl;
+//     }
+//     std::cout << " l ==> " << test1[1] << std::endl;
+// }
+
+//   {
+//     ft::vector<int> test1(200, 150);
+//     ft::vector<int> test2(1, 100);
+//     ft::vector<int>::iterator it = test2.begin();
+//     ft::vector<int>::iterator it2 = test2.end();
+//     std::cout << "test distance ==>  " << std::distance(it, it2-1) << std::endl;
+//     test1.assign(it, it2-1);
+//     ft::vector<int>::iterator it3 = test1.begin();
+//     ft::vector<int>::iterator it4 = test1.end();
+//     std::cout << "my vector size " << test1.size() << " capacity " << test1.capacity() << std::endl; 
+//     for (; it3 != it4; it3++) {
+//       std::cout << *it3 << std::endl; 
+//     }
+//   std::cout << " l ==> " << test1[1] << std::endl;
+//   }
+
+// test push back
+//reseve 
+
+// {
+//   std::vector<int> test1(50);
+//   std::cout << "org vector size " << test1.size() << " capacity " << test1.capacity() << std::endl;
+//   test1.reserve(50);
+//   std::cout << "org vector size " << test1.size() << " capacity " << test1.capacity() << std::endl;
+
+
+// }
+
+
+//  {
+//     std::vector<std::string> v1(1e6, "string2");
+//     v1.reserve(1e6 + 1);
+//     v1.insert(v1.begin() + 1e5, "string1");
+//    std::cout << "org vector size " << v1.size() << " capacity " << v1.capacity() << " destance "  << std::distance(v1.begin(), v1.begin() + 1e5)<< std::endl;
+
+//                 /*------------------ ft::vectors ---------------------*/
+//     ft::vector<std::string> ft_v1(1e6, "string2");
+//     ft_v1.reserve(1e6 + 1);
+//     ft_v1.insert(ft_v1.begin() + 1e5, "string1");
+//    std::cout << "my  vector size " << ft_v1.size() << " capacity " << ft_v1.capacity() << std::endl;
+
+// }
+   {
+     
+   std::string str, ft_str;
+        /*
+         * var to store the size and the capacity
+         */
+        ft::vector<std::string>::size_type s, ft_s;
+        ft::vector<std::string>::size_type c, ft_c;
+        ft::vector<std::string>::iterator ft_it;
+        std::vector<std::string>::iterator it;
+        /*
+         * bool to store the comparison
+         */
+        bool cond;
+
+        /*------------------------------- test 1: empty vector ----------------------------------------*/
+        // insert at the begin
+        {
+            std::vector<std::string> v;
+            ft::vector<std::string> ft_v;
+            it = v.insert(v.begin(), "hello");
+           //std::cout << "org  vector size " << v.size() << " capacity " << v.capacity() << std::endl;
+
+            ft_it = ft_v.insert(ft_v.begin(), "hello");
+            ft_it->length();
+
+        //   std::cout << "my  vector size " << ft_v.size() << " capacity " << ft_v.capacity() << std::endl;
+            s = v.size();
+            ft_s = ft_v.size();
+            c = v.capacity();
+            ft_c = ft_v.capacity();
+            for (size_t i = 0; i < v.size(); ++i)
+                str += v[i];
+            for (size_t i = 0; i < ft_v.size(); ++i)
+                ft_str += ft_v[i];
+            cond = ((str == ft_str) && (s == ft_s) && (c == ft_c) && (*ft_it == *it));
+            std::cout << std::boolalpha;
+            std::cout << "bool " << cond << std::endl;
+            }
+             {
+            std::vector<std::string> v;
+            ft::vector<std::string> ft_v;
+
+            it = v.insert(v.end(), "hello");
+            ft_it = ft_v.insert(ft_v.end(), "hello");
+            ft_it->length();
+
+            str.clear();
+            ft_str.clear();
+
+            s = v.size();
+            ft_s = ft_v.size();
+            c = v.capacity();
+            ft_c = ft_v.capacity();
+            for (size_t i = 0; i < v.size(); ++i)
+                str += v[i];
+            for (size_t i = 0; i < ft_v.size(); ++i)
+                ft_str += ft_v[i];
+            cond = (cond && (str == ft_str) && (s == ft_s) && (c == ft_c) && (*it == *ft_it));
+            std::cout << "bool " << cond << std::endl;
+        }
+         std::vector<std::string> v(20, "string");
+            ft::vector<std::string> ft_v(20, "string");
+            ft::vector<std::string>::iterator valid_it;
+
+            v.reserve(30);
+            ft_v.reserve(30);
+            valid_it = ft_v.begin();
+            it = v.insert(v.begin() + 10, "hello");
+            std::cout << "org  vector size " << v.size() << " capacity " << v.capacity() << " ret "  << *it << std::endl;
+            ft_it = ft_v.insert(ft_v.begin() + 10, "hello");
+            std::cout << "my  vector size " << ft_v.size() << " capacity " << ft_v.capacity() << " ret "  << *ft_it << std::endl;
+
+            ft_it->length();
+
+            str.clear();
+            ft_str.clear();
+            s = v.size();
+            ft_s = ft_v.size();
+            c = v.capacity();
+            ft_c = ft_v.capacity();
+            for (size_t i = 0; i < v.size(); ++i)
+                str += v[i];
+            for (size_t i = 0; i < ft_v.size(); ++i)
+                ft_str += ft_v[i];
+            cond = (cond && (str == ft_str) && (s == ft_s) && (c == ft_c) && (*it == *ft_it) && (&(*valid_it) == &(*ft_v.begin())));
+            std::cout << "bool " <<  cond << std::endl;
+            std::cout << " test " << &(*valid_it) << " my |" << *ft_v.begin() << "|" << std::endl;
+
+    }
   return 0;
 }

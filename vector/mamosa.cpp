@@ -27,7 +27,7 @@
 #define RESET "\e[0m"
 
 #define EQUAL(x) ((x) ? (std::cout << "\033[1;32mAC\033[0m\n") : (std::cout << "\033[1;31mWA\033[0m\n"))
-#define TIME_FAC 3 // the ft::vector methods can be slower up to std::vector methods * TIME_FAC (MAX 20)
+#define TIME_FAC 19 // the ft::vector methods can be slower up to std::vector methods * TIME_FAC (MAX 20)
 
 time_t get_time(void)
 {
@@ -1495,14 +1495,18 @@ void vector_tests(void)
             ft::vector<std::string> ft_v1(1e6, "string2");
             ualarm(diff * 1e3, 0);
             ft_v1.assign(1e6 + 1, "assign");
+            // std::cout << "my vector size " << ft_v1.size() << " capacity " << ft_v1.capacity() << std::endl;
             ualarm(0, 0);
+           
         }
+        
         /*------------------ std::vectors ---------------------*/
         std::vector<std::string> v1(10, "string2");
         std::vector<char> v2;
         /*------------------ std::vectors ---------------------*/
         ft::vector<std::string> ft_v1(10, "string2");
         ft::vector<char> ft_v2;
+        
         /*
          * Strings to store the results
          */
@@ -1515,7 +1519,7 @@ void vector_tests(void)
         // test for n greater than the vector capactiy
         v1.assign(20, "assign");
         ft_v1.assign(20, "assign");
-
+        
         z1 = v1.size();
         ft_z1 = ft_v1.size();
         c1 = v1.capacity();
@@ -1524,7 +1528,10 @@ void vector_tests(void)
             s1 += v1.at(i);
 
         for (size_t i = 0; i < ft_v1.size(); ++i)
+        {
             ft_s1 += ft_v1.at(i);
+        }
+        
         // test for n lesser than the vector capactiy
         v1.assign(10, "less");
         ft_v1.assign(10, "less");
@@ -1541,7 +1548,7 @@ void vector_tests(void)
         // test for empty vectors
         v2.assign(20, 'h');
         ft_v2.assign(20, 'h');
-
+            
         z3 = v2.size();
         ft_z3 = ft_v2.size();
         c3 = v2.capacity();
@@ -1648,14 +1655,20 @@ void vector_tests(void)
                 v1.reserve(1e6 + 1);
                 start = get_time();
                 v1.push_back("string1");
+               // std::cout << "org vector size " << v1.size() << " capacity " << v1.capacity() << std::endl;
                 end = get_time();
                 diff = end - start;
                 diff = (diff) ? (diff * TIME_FAC) : TIME_FAC;
                 /*------------------ ft::vectors ---------------------*/
                 ft::vector<std::string> ft_v1(1e6, "string2");
                 ft_v1.reserve(1e6 + 1);
-                ualarm(diff * 1e3, 0);
-                ft_v1.push_back("string1");
+                // 
+                //std::cout << "my vector size " << ft_v1.size() << " capacity " << ft_v1.capacity() << std::endl;
+                
+               // std::cout << "my vector size " << ft_v1.size() << " capacity " << ft_v1.capacity() << std::endl;
+               ualarm(diff * 1e3, 0);
+              ft_v1.push_back("string1");
+
                 ualarm(0, 0);
             }
             /*--------------------------------------------------------------------------------------*/
