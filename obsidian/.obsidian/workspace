@@ -4,7 +4,7 @@
     "type": "split",
     "children": [
       {
-        "id": "cd54ed90fec5ee61",
+        "id": "3912c8790778d73e",
         "type": "leaf",
         "state": {
           "type": "graph",
@@ -49,8 +49,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "4ea28c4c721f3efe",
@@ -80,11 +79,15 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
-  "active": "cd54ed90fec5ee61",
+  "active": "3912c8790778d73e",
   "lastOpenFiles": [
+    "Tree Data Structure.md",
+    "map.md",
+    "AVL TREE.md",
+    "pair.md",
+    "RED BLACK TREE.md",
     "vector.md"
   ]
 }
