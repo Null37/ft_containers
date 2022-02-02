@@ -4,6 +4,7 @@
 
 
 namespace ft{
+
 template <class T1, class T2>
 struct pair
 {
@@ -22,20 +23,14 @@ struct pair
             second = T2();
         } 
         template<class U, class V> 
-        pair (const pair<U,V>& pr) // copy constructs
-        {
-            pr.first = new U;
-            pr.first = first;
-            pr.second = new V;
-            pr.second =  second;
-        }
+        pair ( pair<U,V> const &pr): first(pr.first), second(pr.second) {}// copy constructs
         pair (const first_type& a, const second_type& b) //initialization constructs
         {
             first = a;
             second = b;
         }
         ~pair(){} // dest
-        pair& operator= (const pair& pr) // Assign operator
+        pair& operator= ( pair const &pr) // Assign operator
         {
             this->first =  pr.first;
             this->second = pr.second;
@@ -76,9 +71,9 @@ template <class T1, class T2>
 }
 
 template <class T1, class T2>
-pair<T1,T2> make_pair (T1 x, T2 y)
+ft::pair<T1, T2> make_pair (T1 x, T2 y)
 {
-    return ( pair<T1,T2>(x,y) );
+    return (ft::pair<T1, T2>(x, y));
 }
 
 
