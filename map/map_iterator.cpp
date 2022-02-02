@@ -6,7 +6,10 @@
 
 namespace ft
 {
-    
+    class map_iterator
+    {
+        
+    };
 }
 
 
