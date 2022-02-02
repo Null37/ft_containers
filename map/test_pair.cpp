@@ -4,6 +4,14 @@
 #include <iostream>     // std::cout
 #include "my_ utility.hpp"
 
+template<class T, class U>
+void compare(T one , U two)
+{
+  if (one == two)
+    std::cout << "OK" << std::endl;
+  else
+    std::cout << "KO" << std::endl;
+}
 int main () {
   std::pair <std::string,double> product1;                     // default constructor
   std::pair <std::string,double> product2 ("tomatoes",2.30);   // value init
@@ -47,6 +55,29 @@ std::cout << "------------------------------------------------------------------
     std::cout << "ft::pair Home planet: " << homeplanet.first << '\n';
     std::cout << "ft::pair Planet size: " << homeplanet.second << '\n';
     std::cout << "-----------------------------------------------------" << std::endl;
+}
+{
+
+  std::pair<int,char> foo (10,'z');
+  std::pair<int,char> bar (90,'a');
+
+  if (foo==bar) std::cout <<  "foo and bar are equal\n";
+  if (foo!=bar) std::cout << "foo and bar are not equal\n";
+  if (foo< bar) std::cout << "foo is less than bar\n";
+  if (foo> bar) std::cout << "foo is greater than bar\n";
+  if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+  if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
+  {
+    ft::pair<int,char> foo (10,'z');
+    ft::pair<int,char> bar (90,'a');
+
+    if (foo==bar) std::cout <<  "my foo and bar are equal\n";
+    if (foo!=bar) std::cout << "my foo and bar are not equal\n";
+    if (foo< bar) std::cout << "my foo is less than bar\n";
+    if (foo> bar) std::cout << "my foo is greater than bar\n";
+    if (foo<=bar) std::cout << "my foo is less than or equal to bar\n";
+    if (foo>=bar) std::cout << "my foo is greater than or equal to bar\n";
+  }
 }
 
 
