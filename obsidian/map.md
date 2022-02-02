@@ -1,5 +1,4 @@
 
-[[Tree Data Structure]]
 ## [[pair]]
 
 what is avl:
