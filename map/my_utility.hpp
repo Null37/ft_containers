@@ -23,7 +23,7 @@ struct pair
             second = T2();
         } 
         template<class U, class V> 
-        pair ( pair<U,V> const &pr): first(pr.first), second(pr.second) {}// copy constructs
+        pair (pair<U, V> const &pr): first(pr.first), second(pr.second) {}// copy constructs
         pair (const first_type& a, const second_type& b) //initialization constructs
         {
             first = a;

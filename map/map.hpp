@@ -17,11 +17,26 @@ template < class Key,                                     // map::key_type
 	{
 		public:
 			//Member types
-			typedef key                                 key_type;
+			typedef Key                                 key_type;
 			typedef T                                   mapped_type;
 			typedef pair<const key_type,mapped_type>    value_type;
 			typedef Compare                             key_compare;
-			// create funcion value_compare .......... 
+			class value_compare
+			{
+				  friend class map;
+				protected:
+				Compare comp;
+				value_compare (Compare c) : comp(c) {}  // constructed with map's comparison object
+				public:
+				typedef bool result_type;
+				typedef value_type first_argument_type;
+				typedef value_type second_argument_type;
+				result_type operator() (const first_argument_type& x, const second_argument_type& y) const
+				{
+					return comp(x.first, y.first);
+				}
+			};
+			typedef value_compare value_comp;
 			typedef Alloc								allocator_type;
 			typedef	value_type&							reference;
 			typedef const value_type&					const_reference;

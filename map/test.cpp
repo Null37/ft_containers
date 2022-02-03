@@ -4,5 +4,5 @@
 
 int main()
 {
-    std::map<int, int> a(5, 9);
+    std::map<int, int> a;
 }
