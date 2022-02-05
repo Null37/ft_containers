@@ -11,6 +11,7 @@ struct node
 	public:
 	T key;
 	U value;
+	// add hight
 	struct node    *right;
 	struct node    *left;
 
@@ -66,6 +67,7 @@ public:
 
 	bool insert (value_type& val)
 	{
+									//add balance
 		// 	add_new(root, val);
 		// //    if (val.first == root->key)
 		// //    		return false;
@@ -74,6 +76,7 @@ public:
 		// 	// else
 		// 	//  	add_new(root->left, val);
 		add_new(root ,val);
+
 		return false;
 	}
 };
