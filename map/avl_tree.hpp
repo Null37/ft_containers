@@ -26,7 +26,7 @@ class avl_tree
 public:
 	typedef size_t                      size_type;
 	typedef ft::pair<key, value>        value_type;
-// private:
+private:
 	struct node<key, value> *root; // underline containre
 public:
 	avl_tree()
@@ -38,6 +38,10 @@ public:
 		root = NULL;
 	}
 	~avl_tree(){}
+	struct node<key, value> *get()
+	{
+		return root;
+	}
 	void add_new(node<key, value> *&r, value_type& val)
 	{
 		r = new struct node<key, value>;
@@ -45,27 +49,29 @@ public:
 		r->value =  val.second;
 		r->right = NULL;
 		r->left =  NULL;
-		// return r;
 	}
+
 	bool insert (value_type& val)
 	{
 	   if (root == NULL)
 	   {
 			add_new(root, val);
-			std::cout << "key is " << root->key << std::endl;
+			// std::cout << "key is " << root->key << std::endl;
 		   return true; 
 	   }
 	   else
 	   {
+		   if (val.first == root->key)
+		   		return false;
 		   if (val.first > root->key)
 		   {
 		   		// insert (val, root->right);
 				// root = 
 				add_new(root->right, val);
-				std::cout << "key is " << root->right->key << std::endl;
+				// std::cout << "key is " << root->right->key << std::endl;
 		   }
-			// else
-			// 	insert (val, root->left);
+			else
+			 	add_new(root->left, val);
 	   }
 		return false;
 	}

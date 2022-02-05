@@ -105,6 +105,7 @@ int main()
         test1.insert(a);
         test1.insert(a2);
         std::cout << "key is " << test1.root->key << std::endl;
+        std::cout << "key is " << test1.root->right->key << std::endl;
         //  std::cout << test1->root->key << std::endl;
         // std::cout << test1->right->key << std::endl;
     }
