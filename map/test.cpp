@@ -69,10 +69,43 @@ int main()
     //     std::cout <<  std::boolalpha << bl << std::endl;
     // }
     
-    //test my avl
-    {
-        std::pair<int, int> a(5, 5);
-        ft::avl_tree<int, int> tree(a);
-    }
+    // //test my avl
+    // {
+    //     std::pair<int, int> a(5, 5);
+    //     ft::avl_tree<int, int> tree(a);
+    // }
 
+
+
+    {
+        // test return 
+        // std::map<int, int> a;
+        // std::pair<std::map<int, int>::iterator, bool> s =  a.insert(std::pair<int, int>(50, 90));
+        // std::cout << std::boolalpha << s.second <<  std::endl;
+    }
+    // {
+    //     //test my avl algo
+    //     ft::avl_tree<int, int> test;
+    //     ft::pair<int, int> l(5,5);
+    //     ft::pair<int, int> l2(3,5);
+    //     bool ss = test.insert(l);
+    //     // std::cout <<  ss << std::endl;
+    //     ss = test.insert(l2);
+    //     // std::cout <<  ss << std::endl;
+    //     ft::pair<int, int> l3(1,5);
+    //     ss = test.insert(l3);
+    //     // std::cout <<  ss << std::endl;
+    // }
+    // test tree data structre
+
+    {
+        ft::avl_tree<int, int> test1;
+        ft::pair<int, int> a(1,1);
+        ft::pair<int, int> a2(2,1);
+        test1.insert(a);
+        test1.insert(a2);
+        std::cout << "key is " << test1.root->key << std::endl;
+        //  std::cout << test1->root->key << std::endl;
+        // std::cout << test1->right->key << std::endl;
+    }
 }

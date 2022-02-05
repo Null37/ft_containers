@@ -17,3 +17,6 @@ after read more u can see vedio
 https://www.youtube.com/watch?v=vRwi_UcZGjU&t=517s
 ### for test 
 https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
+
+## test insert data struc..
+https://www.delftstack.com/howto/cpp/binary-tree-insert-in-cpp/https://www.delftstack.com/howto/cpp/binary-tree-insert-in-cpp/
