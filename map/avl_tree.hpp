@@ -42,7 +42,7 @@ public:
 	{
 		return root;
 	}
-	void add_new(node<key, value> *&r, value_type& val)
+	int  add_new(node<key, value> *&r, value_type& val)
 	{
 		if (r == NULL)
 	   {
@@ -54,9 +54,14 @@ public:
 	   }
 	   else
 	   {
-		   if (val.first > r->key)
-		   	add_new(r->right, val);
+		  if(val.first == r->key)
+		  		return false; 
+			else if  (val.first > r->key)
+				add_new(r->right, val);
+			else
+				add_new(r->left, val);
 	   }
+	   return true;
 	}
 
 	bool insert (value_type& val)
