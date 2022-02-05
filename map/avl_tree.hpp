@@ -44,35 +44,31 @@ public:
 	}
 	void add_new(node<key, value> *&r, value_type& val)
 	{
-		r = new struct node<key, value>;
-		r->key = val.first;
-		r->value =  val.second;
-		r->right = NULL;
-		r->left =  NULL;
+		if (r == NULL)
+	   {
+			r = new node<key, value>;
+			r->key = val.first;
+			r->value =  val.second;
+			r->right = NULL;
+			r->left =  NULL;
+	   }
+	   else
+	   {
+		   if (val.first > r->key)
+		   	add_new(r->right, val);
+	   }
 	}
 
 	bool insert (value_type& val)
 	{
-	   if (root == NULL)
-	   {
-			add_new(root, val);
-			// std::cout << "key is " << root->key << std::endl;
-		   return true; 
-	   }
-	   else
-	   {
-		   if (val.first == root->key)
-		   		return false;
-		   if (val.first > root->key)
-		   {
-		   		// insert (val, root->right);
-				// root = 
-				add_new(root->right, val);
-				// std::cout << "key is " << root->right->key << std::endl;
-		   }
-			else
-			 	add_new(root->left, val);
-	   }
+		// 	add_new(root, val);
+		// //    if (val.first == root->key)
+		// //    		return false;
+		//    if (val.first > root->key)
+		// 		add_new(root->right, val);
+		// 	// else
+		// 	//  	add_new(root->left, val);
+		add_new(root ,val);
 		return false;
 	}
 };

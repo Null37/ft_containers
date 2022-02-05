@@ -102,10 +102,14 @@ int main()
         ft::avl_tree<int, int> test1;
         ft::pair<int, int> a(1,1);
         ft::pair<int, int> a2(2,1);
+        ft::pair<int, int> a3(3,1);
         test1.insert(a);
         test1.insert(a2);
-        std::cout << "key is " << test1.root->key << std::endl;
-        std::cout << "key is " << test1.root->right->key << std::endl;
+        test1.insert(a3);
+        std::cout << "key is " << test1.get()->key << std::endl;
+        std::cout << "key is " << test1.get()->right->key << std::endl;
+        std::cout << "key is " << test1.get()->right->right->key << std::endl;
+
         //  std::cout << test1->root->key << std::endl;
         // std::cout << test1->right->key << std::endl;
     }

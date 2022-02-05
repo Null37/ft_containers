@@ -8,8 +8,7 @@ struct node
     struct node *left;
     struct node *right;
 };
-struct node *test1;
-bool add(int value, node *&r =  test1)
+bool add(int value, node *&r)
 {
     if (r == NULL)
     {
@@ -37,8 +36,12 @@ int main()
     struct node *u =  nullptr;
     add(7, u);
     add(90, u);
+    add(900, u);
+
     std::cout << u->key << std::endl;
     std::cout << u->right->key << std::endl;
+    std::cout << u->right->right->key << std::endl;
+
 
 
 }
