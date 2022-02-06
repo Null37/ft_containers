@@ -11,11 +11,9 @@ struct node
 	public:
 	T key;
 	U value;
-	// add hight
+	int hight; // hight evry node
 	struct node    *right;
 	struct node    *left;
-
-	
 };
 
 
@@ -32,10 +30,6 @@ private:
 public:
 	avl_tree()
 	{
-		// root.key = 0;
-		// root.value = 0;
-		// root.right = NULL;
-		// root.left = NULL;
 		root = NULL;
 	}
 	~avl_tree(){}
@@ -50,22 +44,33 @@ public:
 			r = new node<key, value>;
 			r->key = val.first;
 			r->value =  val.second;
+			r->hight = 0;
 			r->right = NULL;
 			r->left =  NULL;
+			return true;
 	   }
 	   else
 	   {
 		  if(val.first == r->key)
 		  		return false; 
 			else if  (val.first > r->key)
-				add_new(r->right, val);
+				return (add_new(r->right, val));
 			else
-				add_new(r->left, val);
+				return (add_new(r->left, val));
 	   }
-	   return true;
+	   return false;
 	}
+	// int cal_hight(node<key, value> *r)
+	// {
+	// 	if (r->right && r->left)
+	// 	{
+	// 		if (r->right->hight < r->left->hight)
+	// 			return r
+	// 	}
+	// 	return 0;
+	// }
 
-	bool insert (value_type& val)
+	bool insert (value_type& val) // add deletion
 	{
 									//add balance
 		// 	add_new(root, val);
@@ -75,8 +80,10 @@ public:
 		// 		add_new(root->right, val);
 		// 	// else
 		// 	//  	add_new(root->left, val);
-		add_new(root ,val);
+		add_new(root, val);
 
+
+		
 		return false;
 	}
 };
