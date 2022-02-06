@@ -33,18 +33,31 @@ public:
 		root = NULL;
 	}
 	~avl_tree(){}
+	//getter
 	struct node<key, value> *get()
 	{
 		return root;
 	}
+
+	int bf(node<key, value> *&n)
+	{
+		if (n->right && n->left)
+			return n->left->hight - n->right->hight;
+		else if (n->right == NULL && n->left)
+			return n->left->hight;
+		else if (n->right && n->left == NULL)
+			return -n->right->hight;
+	}
+
 	int  add_new(node<key, value> *&r, value_type& val)
 	{
+		int ret;
 		if (r == NULL)
 	   {
 			r = new node<key, value>;
 			r->key = val.first;
 			r->value =  val.second;
-			r->hight = 0;
+			r->hight = 1;
 			r->right = NULL;
 			r->left =  NULL;
 			return true;
@@ -54,37 +67,41 @@ public:
 		  if(val.first == r->key)
 		  		return false; 
 			else if  (val.first > r->key)
-				return (add_new(r->right, val));
+				ret = add_new(r->right, val);
 			else
-				return (add_new(r->left, val));
+				ret = add_new(r->left, val);
 	   }
-	   return false;
+	   r->hight = cal_hight(r);
+	   if (bf(r) == 2 && bf(r->left) == 1)
+	   		// left-left rotetion
+		
+	   return ret;
 	}
-	// int cal_hight(node<key, value> *r)
-	// {
-	// 	if (r->right && r->left)
-	// 	{
-	// 		if (r->right->hight < r->left->hight)
-	// 			return r
-	// 	}
-	// 	return 0;
-	// }
+
+	int cal_hight(node<key, value> *r)
+	{
+		if (r->right && r->left)
+		{
+			if (r->right->hight < r->left->hight)
+				return r->left->hight  + 1;
+			else
+				return r->right->hight + 1;
+		}
+		else if(r->right && r->left == NULL)
+		{
+				return r->right->hight + 1;
+		}
+		else if (r->right == NULL && r->left)
+			return r->left->hight + 1;
+		return 0;
+	}
 
 	bool insert (value_type& val) // add deletion
 	{
-									//add balance
-		// 	add_new(root, val);
-		// //    if (val.first == root->key)
-		// //    		return false;
-		//    if (val.first > root->key)
-		// 		add_new(root->right, val);
-		// 	// else
-		// 	//  	add_new(root->left, val);
-		add_new(root, val);
 
-
+		int ret = add_new(root, val);
 		
-		return false;
+		return ret;
 	}
 };
 
