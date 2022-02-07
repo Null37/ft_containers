@@ -60,8 +60,10 @@ public:
 		tm_p = p->left;
 		p->left = tm_p->right;
 		tm_p->right = p;
+		std::cout << "left - left rotation" << std::endl;
 		return tm_p;
 	}
+
 	struct node<key, value> *RRrotation(node<key, value> *n)
 	{
 		struct node<key, value> *p;
@@ -72,7 +74,28 @@ public:
 		tm_p = p->right;
 		p->right = tm_p->left;
 		tm_p->left = p;
+
+		std::cout << "right - right rotation" << std::endl;
 		return tm_p;
+	}
+	struct node<key, value> *RLrotation(node<key, value> *n)
+	{
+		struct node<key, value> *p;
+		struct node<key, value> *tm_p;
+		struct node<key, value> *tm_p2;
+
+		p = n; // first copy from n node
+		tm_p = p->right;
+		tm_p2 = tm_p->left;
+
+		p->right = tm_p2->left;
+		tm_p->left = tm_p2->right;
+		tm_p2->left = p;
+		tm_p2->right = tm_p;
+
+		std::cout << "right-left rotation" << std::endl;
+		return tm_p2;
+
 	}
 	
 
@@ -99,11 +122,16 @@ public:
 				ret = add_new(r->left, val);
 	   }
 	   r->hight = cal_hight(r);
-	   if (bf(r) == 2 && bf(r->left) == 1)
+	   	if (bf(r) == 2 && bf(r->left) == 1)
 			r = LLrotation(r); // left-left rotation
 		else if (bf(r) == -2 && bf(r->right) == -1)
 			r = RRrotation(r);//  right-right rotation
-		//else if (bf(r) == )
+		else if (bf(r) == -2 && bf(r->right) == 1)
+		{
+			std::cout << "here" << std::endl;
+			r = RLrotation(r);// right-left rotation
+		}
+		// std::cout << "bf(r) == "  << bf(r) << "   bf(r->right) " << bf(r->right) << std::endl;
 	   return ret;
 	}
 

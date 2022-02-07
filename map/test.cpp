@@ -125,22 +125,57 @@ int main()
 // 		std::cout << a.size() << std::endl;
 // 	}
 
+// {
+// 	// test rrrotation
+
+// 	ft::avl_tree<int, int> test1;
+// 	ft::pair<int, int> a(3,450);
+// 	ft::pair<int, int> a2(5,300);
+// 	ft::pair<int, int> a3(6,100);
+// 	ft::pair<int, int> a4(4,1);
+// 	test1.insert(a);
+// 	test1.insert(a2);
+// 	test1.insert(a3);
+// 	test1.insert(a4);
+// 	std::cout << "key is " << test1.get()->key << " hight  " << test1.get()->hight << std::endl;
+// 	std::cout << "key is " << test1.get()->right->key << " hight  " << test1.get()->right->hight << std::endl;
+// 	std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
+// 	std::cout << "key is " << test1.get()->left->right->key << " hight  " << test1.get()->left->right->hight << std::endl;
+// 	//std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
+// }
+
 {
-	// test rrrotation
+		// test right-left rotation
 
 	ft::avl_tree<int, int> test1;
-	ft::pair<int, int> a(3,450);
-	ft::pair<int, int> a2(5,300);
-	ft::pair<int, int> a3(6,100);
-	ft::pair<int, int> a4(4,1);
+	ft::pair<int, int> a(20,450);
+	ft::pair<int, int> a2(50,300);
+	ft::pair<int, int> a3(12,100);
+	ft::pair<int, int> a4(40,1);
+	ft::pair<int, int> a5(100,155);
+	ft::pair<int, int> a6(30,155);
+
 	test1.insert(a);
 	test1.insert(a2);
 	test1.insert(a3);
 	test1.insert(a4);
-	std::cout << "key is " << test1.get()->key << " hight  " << test1.get()->hight << std::endl;
-	std::cout << "key is " << test1.get()->right->key << " hight  " << test1.get()->right->hight << std::endl;
-	std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
-	std::cout << "key is " << test1.get()->left->right->key << " hight  " << test1.get()->left->right->hight << std::endl;
-	//std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
+	test1.insert(a5);
+	test1.insert(a6);
+
+
+ 	// std::cout << "key is " << test1.get()->key << std::endl;
+	// std::cout << "key is " << test1.get()->right->key << std::endl;
+	// std::cout << "key is " << test1.get()->left->key << std::endl;
+	// std::cout << "key is " << test1.get()->left->right->key <<  std::endl;
+	// std::cout << "key is " << test1.get()->right->right->key << std::endl;
+	// std::cout << "key is " << test1.get()->right->left->key << std::endl;
+
+
+
+
+
+
 }
+
+
 }
