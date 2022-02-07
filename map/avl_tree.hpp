@@ -127,11 +127,7 @@ public:
 		else if (bf(r) == -2 && bf(r->right) == -1)
 			r = RRrotation(r);//  right-right rotation
 		else if (bf(r) == -2 && bf(r->right) == 1)
-		{
-			std::cout << "here" << std::endl;
 			r = RLrotation(r);// right-left rotation
-		}
-		// std::cout << "bf(r) == "  << bf(r) << "   bf(r->right) " << bf(r->right) << std::endl;
 	   return ret;
 	}
 
@@ -139,7 +135,7 @@ public:
 	{
 		if (r->right && r->left)
 		{
-			if (r->right->hight < r->left->hight)
+			if (r->left->hight < r->right->hight)
 				return r->right->hight  + 1;
 			else
 				return r->left->hight + 1;
