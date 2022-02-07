@@ -47,7 +47,34 @@ public:
 			return n->left->hight;
 		else if (n->right && n->left == NULL)
 			return -n->right->hight;
+		return 1;
 	}
+
+	struct node<key, value> *LLrotation(node<key, value> *n)
+	{
+		struct node<key, value> *p;
+		struct node<key, value> *tm_p;
+
+		p = n; //copy from our struct
+
+		tm_p = p->left;
+		p->left = tm_p->right;
+		tm_p->right = p;
+		return tm_p;
+	}
+	struct node<key, value> *RRrotation(node<key, value> *n)
+	{
+		struct node<key, value> *p;
+		struct node<key, value> *tm_p;
+
+		p = n; // copy of out node
+
+		tm_p = p->right;
+		p->right = tm_p->left;
+		tm_p->left = p;
+		return tm_p;
+	}
+	
 
 	int  add_new(node<key, value> *&r, value_type& val)
 	{
@@ -73,9 +100,10 @@ public:
 	   }
 	   r->hight = cal_hight(r);
 	   if (bf(r) == 2 && bf(r->left) == 1)
-	   		// left-left rotetion
-		
-		
+			r = LLrotation(r); // left-left rotation
+		else if (bf(r) == -2 && bf(r->right) == -1)
+			r = RRrotation(r);//  right-right rotation
+		//else if (bf(r) == )
 	   return ret;
 	}
 
@@ -84,9 +112,9 @@ public:
 		if (r->right && r->left)
 		{
 			if (r->right->hight < r->left->hight)
-				return r->left->hight  + 1;
+				return r->right->hight  + 1;
 			else
-				return r->right->hight + 1;
+				return r->left->hight + 1;
 		}
 		else if(r->right && r->left == NULL)
 		{

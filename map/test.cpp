@@ -99,19 +99,20 @@ int main()
 	// test tree data structre
 
 	{
-		ft::avl_tree<int, int> test1;
-		ft::pair<int, int> a(1,1);
-		ft::pair<int, int> a2(2,1);
-		ft::pair<int, int> a3(3,1);
-		ft::pair<int, int> a4(0,1);
-		test1.insert(a);
-		test1.insert(a2);
-		test1.insert(a3);
-		 test1.insert(a4);
-		std::cout << "key is " << test1.get()->key << " hight  " << test1.get()->hight << std::endl;
-		std::cout << "key is " << test1.get()->right->key << " hight  " << test1.get()->right->hight << std::endl;
-		std::cout << "key is " << test1.get()->right->right->key << " hight  " << test1.get()->right->right->hight << std::endl;
-		std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
+		// ft::avl_tree<int, int> test1;
+		// ft::pair<int, int> a(3,450);
+		// ft::pair<int, int> a2(2,300);
+		// ft::pair<int, int> a3(1,100);
+		// ft::pair<int, int> a4(5,1);
+		// test1.insert(a);
+		// test1.insert(a2);
+		// test1.insert(a3);
+		//  test1.insert(a4);
+		// std::cout << "key is " << test1.get()->key << " hight  " << test1.get()->hight << std::endl;
+		// std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
+		// std::cout << "key is " << test1.get()->right->key << " hight  " << test1.get()->right->hight<< std::endl;
+		// std::cout << "key is " << test1.get()->right->right->key << " hight  " << test1.get()->right->right->hight << std::endl;
+		// std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
 
 		//  std::cout << test1->root->key << std::endl;
 		// std::cout << test1->right->key << std::endl;
@@ -123,4 +124,23 @@ int main()
 // 		a.insert(std::pair<int, int>(9,5));
 // 		std::cout << a.size() << std::endl;
 // 	}
+
+{
+	// test rrrotation
+
+	ft::avl_tree<int, int> test1;
+	ft::pair<int, int> a(3,450);
+	ft::pair<int, int> a2(5,300);
+	ft::pair<int, int> a3(6,100);
+	ft::pair<int, int> a4(4,1);
+	test1.insert(a);
+	test1.insert(a2);
+	test1.insert(a3);
+	test1.insert(a4);
+	std::cout << "key is " << test1.get()->key << " hight  " << test1.get()->hight << std::endl;
+	std::cout << "key is " << test1.get()->right->key << " hight  " << test1.get()->right->hight << std::endl;
+	std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
+	std::cout << "key is " << test1.get()->left->right->key << " hight  " << test1.get()->left->right->hight << std::endl;
+	//std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
+}
 }
