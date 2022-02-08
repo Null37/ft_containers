@@ -25,6 +25,7 @@ class avl_tree
 public:
 	typedef size_t                      size_type;
 	typedef ft::pair<key, value>        value_type;
+	typedef key							key_type;
 private:
 	struct node<key, value> *root; // underline containre
 public:
@@ -182,6 +183,31 @@ public:
 		int ret = add_new(root, val);
 		
 		return ret;
+	}
+
+
+
+	bool deleteNode(key_type K)
+	{
+		if (root->right == NULL && root->left == NULL)
+		{
+			if(K == root->key)
+				delete root;
+			return true;
+		}
+		else
+		{
+			if (root->left != NULL)
+			{
+
+			}
+			else if (root->right != NULL)
+			{
+				
+			}
+		}
+
+		return false;
 	}
 };
 

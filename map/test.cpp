@@ -177,41 +177,49 @@ int main()
 
 // }
 
+// {
+// 	//test left-right rotation 
+
+// 	ft::avl_tree<int, int> test1;
+// 	ft::pair<int, int> a(30,450);
+// 	ft::pair<int, int> a2(10,300);
+// 	ft::pair<int, int> a3(90,100);
+// 	ft::pair<int, int> a4(20,1);
+// 	ft::pair<int, int> a5(5,155);
+// 	ft::pair<int, int> a6(21,155); // add new to blance
+
+// 	test1.insert(a);
+// 	test1.insert(a2);
+// 	test1.insert(a3);
+// 	test1.insert(a4);
+// 	test1.insert(a5);
+// 	test1.insert(a6);
+
+
+
+// 	std::cout << "root key " << test1.get()->key << std::endl;
+// 	std::cout << "right subtree key " << test1.get()->right->key << std::endl;
+// 	std::cout << "left subtree key " << test1.get()->left->key << std::endl;
+
+// 	std::cout << "left left key " << test1.get()->left->left->key << std::endl;
+// 	std::cout << "right right key " << test1.get()->right->right->key << std::endl;
+// 	std::cout << "right left key " << test1.get()->right->left->key << std::endl;
+
+// }
+
 {
-	//test left-right rotation 
+	//test erase map
+	std::map<int, int> test1;
+	std::pair<int, int> a(3,450);
+	std::pair<int, int> a2(2,300);
+	std::pair<int, int> a3(1,100);
+	 test1.insert(a);
+	 test1.insert(a2);
+	 test1.insert(a3);
 
-	ft::avl_tree<int, int> test1;
-	ft::pair<int, int> a(30,450);
-	ft::pair<int, int> a2(10,300);
-	ft::pair<int, int> a3(90,100);
-	ft::pair<int, int> a4(20,1);
-	ft::pair<int, int> a5(5,155);
-	ft::pair<int, int> a6(21,155); // add new to blance
-
-	test1.insert(a);
-	test1.insert(a2);
-	test1.insert(a3);
-	test1.insert(a4);
-	test1.insert(a5);
-	test1.insert(a6);
-
-
-
-	std::cout << "root key " << test1.get()->key << std::endl;
-	std::cout << "right subtree key " << test1.get()->right->key << std::endl;
-	std::cout << "left subtree key " << test1.get()->left->key << std::endl;
-
-	std::cout << "left left key " << test1.get()->left->left->key << std::endl;
-	std::cout << "right right key " << test1.get()->right->right->key << std::endl;
-	std::cout << "right left key " << test1.get()->right->left->key << std::endl;
-
-
-
-
-
-
-	
-
+	std::cout << "return erase " << test1.erase(3) << std::endl;
+	std::map<int, int>::iterator it = test1.begin();
+	std::cout << "root " << it->first << std::endl;
 }
 
 
