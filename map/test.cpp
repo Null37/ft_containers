@@ -207,20 +207,84 @@ int main()
 
 // }
 
+// {
+// 	//test erase map
+// 	std::map<int, int> test1;
+// 	std::pair<int, int> a(3,450);
+// 	std::pair<int, int> a2(2,300);
+// 	std::pair<int, int> a3(1,100);
+// 	 test1.insert(a);
+// 	 test1.insert(a2);
+// 	 test1.insert(a3);
+
+// 	std::cout << "return erase " << test1.erase(3) << std::endl;
+// 	std::map<int, int>::iterator it = test1.begin();
+// 	std::cout << "root " << it->first << std::endl;
+// }
+
+// {
+
+
+// 	//tst one node 
+// 	// ft::avl_tree<int, int> test1;
+// 	// ft::pair<int, int> a(30,450);
+
+// 	// test1.insert(a);
+// 	// std::cout << "key of root " << test1.get()->key << std::endl;
+// 	// test1.dele(a.first);
+// 	// std::cout << "addr of root " << test1.get() << std::endl;
+
+// 	//test  2 childern
+// 	// {
+// 	// 		ft::avl_tree<int, int> test1;
+// 	// 		ft::pair<int, int> a(3,450);
+// 	// 		ft::pair<int, int> a2(2,40);
+// 	// 		ft::pair<int, int> a3(1,50);
+
+// 	// 		test1.insert(a);
+// 	// 		test1.insert(a2);
+// 	// 		test1.insert(a3);
+
+// 	// 		std::cout << "key of left " << test1.get()->left->key << std::endl;
+// 	// 		test1.dele(a3.first);
+// 	// 		std::cout << "addr of left " <<  test1.get()->left << std::endl;
+// 	// }
+
+
+
+
+
+// }
+
+
 {
-	//test erase map
-	std::map<int, int> test1;
-	std::pair<int, int> a(3,450);
-	std::pair<int, int> a2(2,300);
-	std::pair<int, int> a3(1,100);
-	 test1.insert(a);
-	 test1.insert(a2);
-	 test1.insert(a3);
+	//test more node 
 
-	std::cout << "return erase " << test1.erase(3) << std::endl;
-	std::map<int, int>::iterator it = test1.begin();
-	std::cout << "root " << it->first << std::endl;
+	ft::avl_tree<int, int> test1;
+	ft::pair<int, int> a(90,450);
+	ft::pair<int, int> a2(100,300);
+	ft::pair<int, int> a3(80,100);
+	ft::pair<int, int> a4(81,1);
+	ft::pair<int, int> a5(70,155);
+	// ft::pair<int, int> a6(21,155); // add new to blance
+
+	test1.insert(a);
+	test1.insert(a2);
+	test1.insert(a3);
+	test1.insert(a4);
+	test1.insert(a5);
+	// test1.insert(a6);
+
+
+	std::cout << "root befor= " << test1.get()->key << std::endl;
+	std::cout << "addres left right befor= " << test1.get()->left->right << std::endl;
+	test1.dele(90);
+	std::cout << "root after= " << test1.get()->key << std::endl;
+	std::cout << "addres left right after= " << test1.get()->left->right << std::endl;
+
+
+
+
 }
-
 
 }

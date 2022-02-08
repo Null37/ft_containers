@@ -185,29 +185,82 @@ public:
 		return ret;
 	}
 
-
-
-	bool deleteNode(key_type K)
+	struct node<key_type, value> *inorder_predecessor(struct node<key_type, value> *t)
 	{
-		if (root->right == NULL && root->left == NULL)
+		//the largest element of the left sub tree.
+		while(t->right != NULL)
+			t = t->right;
+		return t;
+	}
+
+	struct node<key_type, value> *inorder_successor(struct node<key_type, value> *t)
+	{
+		//the smallest element of the right sub tree
+		while(t->left != NULL)
+			t = t->left;
+		return t;
+	}
+
+	struct node<key_type, value> *deleteNode(node<key_type, value> *r, key_type k)
+	{
+		if (r->right == NULL && r->left == NULL)
 		{
-			if(K == root->key)
-				delete root;
-			return true;
+			if(k == r->key)
+			{
+				std::cout << "here" << std::endl;
+				delete r;
+			}
+			return NULL;
+		}
+		struct node<key_type, value> *tmp;
+		if (k < r->key)
+		{
+			std::cout << "left test" << std::endl;
+			r->left = deleteNode(r->left, k);
+		}
+		else if (k > r->key)
+		{
+			std::cout << "right test" << std::endl;
+			r->right = deleteNode(r->right, k);
 		}
 		else
 		{
-			if (root->left != NULL)
+			if (r->left != NULL)
 			{
-
+				tmp = inorder_predecessor(r->left);
+				r->key = tmp->key;
+				r->value = tmp->value;
+				r->left = deleteNode(r->left, tmp->key);
 			}
-			else if (root->right != NULL)
+			else if (r->right != NULL)
 			{
-				
+				tmp = inorder_successor(r->right);
+				r->key = tmp->key;
+				r->value = tmp->value;
+				r->right = deleteNode(r->right, tmp->key);
 			}
 		}
+		//balance cases
+		if(bf(r) == 2 && bf(r->left) == 1)
+			r = LLrotation(r); // left-left rotation;
+		else if (bf(r) == 2 && bf(r->left) == -1))
+			r = LRrotation(r); // left-right rotation;
+		else if(bf(r) == 2 && bf(r->left) == 0)
+			r = LLrotation(r); // left-left rotation;
+		else if (bf(r) == -2 && bf(r->right) == -1)
+			r = RRrotation(r); // right-right rotation;
+		else if(bf(r) == -2 && bf(r->right) == 1)
+			r = RLrotation(r); // right-left rotation
+		else if(bf(r) == -2 && bf(r->right) == 0)
+			r = RRrotation(r); // right-right rotation
+		return r;
+	}
 
-		return false;
+
+	int dele(int data) // return size
+	{
+		root = deleteNode(root, data);
+		return 0;
 	}
 };
 
