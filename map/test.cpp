@@ -163,12 +163,12 @@ int main()
 	test1.insert(a6);
 
 
- 	// std::cout << "key is " << test1.get()->key << std::endl;
-	// std::cout << "key is " << test1.get()->right->key << std::endl;
-	// std::cout << "key is " << test1.get()->left->key << std::endl;
-	// std::cout << "key is " << test1.get()->left->right->key <<  std::endl;
-	// std::cout << "key is " << test1.get()->right->right->key << std::endl;
-	// std::cout << "key is " << test1.get()->right->left->key << std::endl;
+ 	std::cout << "key is " << test1.get()->key << std::endl;
+	std::cout << "key is " << test1.get()->right->key << std::endl;
+	std::cout << "key is " << test1.get()->left->key << std::endl;
+	std::cout << "key is " << test1.get()->left->right->key <<  std::endl;
+	std::cout << "key is " << test1.get()->right->right->key << std::endl;
+	std::cout << "key is " << test1.get()->left->left->key << std::endl;
 
 
 
