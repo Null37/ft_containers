@@ -144,16 +144,49 @@ int main()
 // 	//std::cout << "key is " << test1.get()->left->key << " hight  " << test1.get()->left->hight << std::endl;
 // }
 
+// {
+// 		// test right-left rotation
+
+// 	ft::avl_tree<int, int> test1;
+// 	ft::pair<int, int> a(20,450);
+// 	ft::pair<int, int> a2(50,300);
+// 	ft::pair<int, int> a3(12,100);
+// 	ft::pair<int, int> a4(40,1);
+// 	ft::pair<int, int> a5(100,155);
+// 	ft::pair<int, int> a6(30,155);
+
+// 	test1.insert(a);
+// 	test1.insert(a2);
+// 	test1.insert(a3);
+// 	test1.insert(a4);
+// 	test1.insert(a5);
+// 	test1.insert(a6);
+
+
+//  	std::cout << "key is " << test1.get()->key << std::endl;
+// 	std::cout << "key is " << test1.get()->right->key << std::endl;
+// 	std::cout << "key is " << test1.get()->left->key << std::endl;
+// 	std::cout << "key is " << test1.get()->left->right->key <<  std::endl;
+// 	std::cout << "key is " << test1.get()->right->right->key << std::endl;
+// 	std::cout << "key is " << test1.get()->left->left->key << std::endl;
+
+
+
+
+
+
+// }
+
 {
-		// test right-left rotation
+	//test left-right rotation 
 
 	ft::avl_tree<int, int> test1;
-	ft::pair<int, int> a(20,450);
-	ft::pair<int, int> a2(50,300);
-	ft::pair<int, int> a3(12,100);
-	ft::pair<int, int> a4(40,1);
-	ft::pair<int, int> a5(100,155);
-	ft::pair<int, int> a6(30,155);
+	ft::pair<int, int> a(30,450);
+	ft::pair<int, int> a2(10,300);
+	ft::pair<int, int> a3(90,100);
+	ft::pair<int, int> a4(20,1);
+	ft::pair<int, int> a5(5,155);
+	ft::pair<int, int> a6(21,155); // add new to blance
 
 	test1.insert(a);
 	test1.insert(a2);
@@ -163,17 +196,21 @@ int main()
 	test1.insert(a6);
 
 
- 	std::cout << "key is " << test1.get()->key << std::endl;
-	std::cout << "key is " << test1.get()->right->key << std::endl;
-	std::cout << "key is " << test1.get()->left->key << std::endl;
-	std::cout << "key is " << test1.get()->left->right->key <<  std::endl;
-	std::cout << "key is " << test1.get()->right->right->key << std::endl;
-	std::cout << "key is " << test1.get()->left->left->key << std::endl;
+
+	std::cout << "root key " << test1.get()->key << std::endl;
+	std::cout << "right subtree key " << test1.get()->right->key << std::endl;
+	std::cout << "left subtree key " << test1.get()->left->key << std::endl;
+
+	std::cout << "left left key " << test1.get()->left->left->key << std::endl;
+	std::cout << "right right key " << test1.get()->right->right->key << std::endl;
+	std::cout << "right left key " << test1.get()->right->left->key << std::endl;
 
 
 
 
 
+
+	
 
 }
 

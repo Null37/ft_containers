@@ -72,7 +72,7 @@ public:
 
 		p = n; // copy of out node
 		tm_p = p->right;
-		
+
 		p->right = tm_p->left;
 
 		tm_p->left = p;
@@ -80,6 +80,7 @@ public:
 		std::cout << "right - right rotation" << std::endl;
 		return tm_p;
 	}
+
 	struct node<key, value> *RLrotation(node<key, value> *n)
 	{
 		struct node<key, value> *p;
@@ -152,8 +153,8 @@ public:
 			r = RRrotation(r);//  right-right rotation
 		else if (bf(r) == -2 && bf(r->right) == 1)
 			r = RLrotation(r);// right-left rotation
-		else if (bf(r) == 2 && bf(r) == -1)
-			r = LRrotation(r) // left-right rotation
+		else if (bf(r) == 2 && bf(r->left) == -1)
+			r = LRrotation(r); // left-right rotation
 	   return ret;
 	}
 
