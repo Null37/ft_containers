@@ -243,7 +243,7 @@ public:
 		//balance cases
 		if(bf(r) == 2 && bf(r->left) == 1)
 			r = LLrotation(r); // left-left rotation;
-		else if (bf(r) == 2 && bf(r->left) == -1))
+		else if (bf(r) == 2 && bf(r->left) == -1)
 			r = LRrotation(r); // left-right rotation;
 		else if(bf(r) == 2 && bf(r->left) == 0)
 			r = LLrotation(r); // left-left rotation;
