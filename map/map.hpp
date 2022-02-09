@@ -2,7 +2,7 @@
 #define MAP_HPP
 #include "../vector/vector.hpp"
 #include "my_utility.hpp"
-
+#include "avl_tree.hpp"
 
 
 namespace ft
@@ -35,12 +35,14 @@ template < class Key,                                     // map::key_type
 				}
 			};
 			// typedef value_compare value_comp; 
-			typedef Alloc								allocator_type;
-			typedef	value_type&							reference;
-			typedef const value_type&					const_reference;
-			typedef value_type*							pointer;
-			typedef	const value_type* 					const_pointer;	
-			typedef  ft::map_iterator<value_type>                      iterator;	//a bidirectional iterator to value_type		
+			typedef Alloc													allocator_type;
+			typedef	value_type&												reference;
+			typedef const value_type&										const_reference;
+			typedef value_type*												pointer;
+			typedef	const value_type* 										const_pointer;	
+			typedef  ft::avl_tree<key_type, mapped_type>                    iterator;	//a bidirectional iterator to value_type
+			
+
 	};
 
 }
