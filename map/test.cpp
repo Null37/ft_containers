@@ -1,6 +1,38 @@
 #include <map>
 #include <iostream>
 #include "avl_tree.hpp"
+#include "map_iterator.hpp"
+#include "map.hpp"
+
+struct ft::node<int, int> *getbigpp(struct ft::node<int, int> *root)
+{
+	if (root->right)
+	{
+		std::cout << " here   " << std::endl;
+		root = root->right;
+		std::cout << "--------------- " << root->key << std::endl;
+		if (root->left)
+		{
+			while(root->left)
+				root = root->left;
+			std::cout << "true = ";
+			return (root);
+
+			
+		}
+		else
+		{
+			std::cout << "bruh = ";
+			return (root);
+		}
+	}
+	else
+	{
+		std::cout << "first " << std::endl;
+		root = root->parent;
+	}
+	return (root);
+}
 
 int main()
 {
@@ -260,50 +292,158 @@ int main()
 // 	//test more node 
 
 // 	ft::avl_tree<int, int> test1;
+// 	struct ft::node<int, int> *root; 
 // 	ft::pair<int, int> a(90,450);
 // 	ft::pair<int, int> a2(100,300);
-// 	ft::pair<int, int> a3(80,100);
-// 	ft::pair<int, int> a4(81,1);
-// 	ft::pair<int, int> a5(70,155);
-// 	// ft::pair<int, int> a6(21,155); // add new to blance
+// 	ft::pair<int, int> a8(80,300);
+// 	ft::pair<int, int> a3(70,100);
+// 	ft::pair<int, int> a4(82,400);
+// 	ft::pair<int, int> a5(92,1);
+// 	ft::pair<int, int> a6(101,155);
+// 	ft::pair<int, int> a7(81,155); // add new to blance
+
+// 	test1.insert(a);
+// 	test1.insert(a2);
+// 	test1.insert(a8);
+// 	test1.insert(a3);
+// 	test1.insert(a4);
+// 	test1.insert(a5);
+// 	test1.insert(a6);
+// 	test1.insert(a7);
+
+// 	test1.test_plus_plus_1(test1.get()->left);
+// 	test1.test_plus_plus_1(test1.get()->left->left);
+// 	// std::cout << "root befor= " << test1.get()->key << std::endl;
+// 	// std::cout << "addres left right befor= " << test1.get()->left->right << " lol = "<< test1.get()->left->right->parent->key << std::endl;
+// 	// test1.dele(90);
+// 	// std::cout << "root after= " << test1.get()->key << std::endl;
+// 	// std::cout << "addres left right after= " << test1.get()->left->right << std::endl;
+// 	// root = test1.get();
+// 	// while (root->left)
+// 	// {
+// 	// 	root = root->left;
+// 	// }
+
+// 	// std::cout << "smallest: " << root->key << "\n";
+
+// 	// for(int i = 0; i <= 6; i++)
+// 	// {
+// 	// 	if(root != NULL)
+// 	// 		std::cout << "key == " << root->key << "\n";
+// 	// 	root = getbigpp(root);
+// 	// }
+	
+// 	// while (root)
+// 	// {
+// 	// 	std::cout << "key == " << root->key << "\n";
+// 	// 	root = getbigpp(root);
+// 	// }
+// 	// {
+// 	// 	std::map<int, int> a;
+// 	// 	a.insert(std::pair<int, int>(75, 7775));
+// 	// 	std::map<int, int>::iterator it = a.end();
+// 	// 	std::pair<int, int> s=*it;
+// 	// 	std::cout << "test = f= " << s.first << std::endl;
+// 	// }
+
+// }
+
+// {
+// 	// //test iterator
+
+// 	// std::map<int, int> test1;
+// 	// test1.insert(std::pair<int, int>(90, 300));
+// 	// test1.insert(std::pair<int, int>(80, 5999));
+// 	// test1.insert(std::pair<int, int>(70, 9999));
+// 	// test1.insert(std::pair<int, int>(71, 9959));
+// 	// test1.insert(std::pair<int, int>(60, 8999));
+
+
+
+
+// 	// // std::cout << "map "
+
+// 	// std::map<int, int>::iterator  it1 = test1.begin();
+// 	//  std::map<int, int>::iterator  it(it1);
+// 	// //  std::cout << "f = " << it->first << " s= "  << it->second << std::endl;
+// 	// ft::map<int, int> test_map;
+// 	// // ft::map<int, int>::iterator my_it;
+// 	// // std::pair<int,int>a = it;
+	
+
+// 	// for(; it != test1.end(); it++)
+// 	// {
+// 	// 	std::cout << "it.first = " << it->first << " it.second=  " << it->second << std::endl;
+// 	// }
+
+// }
+// {
+// 	// test my logic
+
+
+// 	ft::avl_tree<int, int> test1;
+// 	ft::pair<int, int> a(3,450);
+// 	ft::pair<int, int> a2(2,300);
+// 	ft::pair<int, int> a3(1,100);
+// 	// ft::pair<int, int> a4(81,1);
+// // 	ft::pair<int, int> a5(70,155);
+// // 	// ft::pair<int, int> a6(21,155); // add new to blance
 
 // 	test1.insert(a);
 // 	test1.insert(a2);
 // 	test1.insert(a3);
+// // 	test1.insert(a4);
+// // 	test1.insert(a5);
+
+
+// 	ft::avl_tree<int, int> test2(test1);
+	
+// }
+
+// {
+// 	std::map<int, int> p;
+
+// 	std::map<int, int>::iterator it = p.begin();
+// 	it++;
+// }
+
+// {
+// 	/// copy constructre
+// 	ft::avl_tree<int, int> test1;
+// 	struct ft::node<int, int> *root; 
+// 	ft::pair<int, int> a(90,450);
+// 	ft::pair<int, int> a2(100,300);
+// 	ft::pair<int, int> a8(80,300);
+// 	ft::pair<int, int> a3(70,100);
+// 	ft::pair<int, int> a4(82,400);
+// 	ft::pair<int, int> a5(92,1);
+// 	ft::pair<int, int> a6(101,155);
+// 	ft::pair<int, int> a7(81,155); // add new to blance
+
+// 	test1.insert(a);
+// 	test1.insert(a2);
+// 	test1.insert(a8);
+// 	test1.insert(a3);
 // 	test1.insert(a4);
 // 	test1.insert(a5);
-// 	// test1.insert(a6);
+// 	test1.insert(a6);
+// 	test1.insert(a7);
 
+// 	ft::avl_tree<int, int> test(test1);
+// 	std::cout << "key of root " << test.get()->key << std::endl;
+// 	std::cout << "key of left " << test.get()->left->key << std::endl;
+// 	std::cout << "key of right " << test.get()->right->key << std::endl;
 
-// 	std::cout << "root befor= " << test1.get()->key << std::endl;
-// 	std::cout << "addres left right befor= " << test1.get()->left->right << std::endl;
-// 	test1.dele(90);
-// 	std::cout << "root after= " << test1.get()->key << std::endl;
-// 	std::cout << "addres left right after= " << test1.get()->left->right << std::endl;
 
 // }
 
+
 {
-	//test iterator
-
-	std::map<int, int> test1;
-	test1.insert(std::pair<int, int>(3, 300));
-	test1.insert(std::pair<int, int>(2, 5999));
-	test1.insert(std::pair<int, int>(1, 9999));
+	// test iterator
 
 
-	// std::cout << "map "
-
-	std::map<int, int>::iterator  it = test1.begin();
-	it->
-	// std::pair<int,int>a = it;
 	
-
-	// for(std::map<int, int>::iterator it = test1.begin(); it != test1.end(); it++)
-	// {
-	// 	std::cout << "it.first = " << it->first << " it.second=  " << it->second << std::endl;
-	// }
-
 }
+
 
 }

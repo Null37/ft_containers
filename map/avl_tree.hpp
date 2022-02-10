@@ -11,9 +11,11 @@ struct node
 	public:
 	T key;
 	U value;
+	struct node    *parent;
 	int hight; // hight evry node
 	struct node    *right;
 	struct node    *left;
+	node(): key(0), value(0), parent(0), right(0), left(0) {}
 };
 
 
@@ -29,9 +31,18 @@ public:
 private:
 	struct node<key, value> *root; // underline containre
 public:
-	avl_tree()
+	avl_tree() : root(NULL)
 	{
-		root = NULL;
+		std::cout << "default " << std::endl;
+	}
+	avl_tree(const avl_tree &at)
+	{
+		std::cout << "copy const" << std::endl;
+		*this = at;
+	}
+	void operator=(const avl_tree &at)
+	{
+		this->root = copy_helper(at.root);
 	}
 	~avl_tree(){}
 	//getter
@@ -40,6 +51,20 @@ public:
 		return root;
 	}
 
+	struct node<key, value> * copy_helper(node<key, value> *cp)
+	{
+		if (cp == NULL)
+			return NULL;
+		struct node<key, value> *copy = new node<key, value>;
+		copy->key = cp->key;
+		copy->value = cp->value;
+		copy->hight = cp->hight;
+		copy->parent = cp->parent;
+		copy->left = copy_helper(cp->left);
+		copy->right = copy_helper(cp->right);
+		return copy;
+		
+	}
 	int bf(node<key, value> *&n)
 	{
 		if (n->right && n->left)
@@ -125,7 +150,7 @@ public:
 		return tm_p2;
 	}
 
-	int  add_new(node<key, value> *&r, value_type& val)
+	int  add_new(node<key, value> *&r, value_type& val, struct node<key, value>   *parent)
 	{
 		int ret;
 		if (r == NULL)
@@ -134,6 +159,7 @@ public:
 			r->key = val.first;
 			r->value =  val.second;
 			r->hight = 1;
+			r->parent = parent;
 			r->right = NULL;
 			r->left =  NULL;
 			return true;
@@ -143,9 +169,9 @@ public:
 		  if(val.first == r->key)
 		  		return false; 
 			else if  (val.first > r->key)
-				ret = add_new(r->right, val);
+				ret = add_new(r->right, val, r);
 			else
-				ret = add_new(r->left, val);
+				ret = add_new(r->left, val, r);
 	   }
 	   r->hight = cal_hight(r);
 	   	if (bf(r) == 2 && bf(r->left) == 1)
@@ -180,7 +206,7 @@ public:
 	bool insert (value_type& val) // add deletion
 	{
 
-		int ret = add_new(root, val);
+		int ret = add_new(root, val, NULL);
 		
 		return ret;
 	}
@@ -261,6 +287,43 @@ public:
 	{
 		root = deleteNode(root, data);
 		return 0;
+	}
+
+	void print(node<key, value> * ptr)
+	{
+		if(ptr->parent != NULL)
+		{
+			if (ptr->left != NULL)
+			{
+				print(ptr->left);
+			}
+			std::cout << " value = " << ptr->key << std::endl;
+			if(ptr->right != NULL)
+			{
+					print(ptr->right);
+			}
+
+		}
+	}
+	void test_plus_plus_1(node<key, value> * pr)
+	{
+		if(pr->left == NULL && pr->right == NULL)
+		{
+			if (pr->key < pr->parent->key)
+			{
+				pr= pr->parent;
+				std::cout << "pr = " << pr->key << std::endl; 
+			}
+		}
+		else if (pr->left != NULL)
+		{
+			pr = inorder_successor(pr);
+			std::cout << "pr = " << pr->key << std::endl; 
+		}
+		else if(pr->right != NULL)
+		{
+
+		}
 	}
 };
 
