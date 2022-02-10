@@ -8,30 +8,51 @@
 namespace ft
 {
 
-template<class avl_base>
+template<class avl_base, class compare_mithod>
 class map_iterator
 {
 private:
-    avl_base tree;
+	avl_base tree;
 public:
-    
-    map_iterator() // default
-    {
+	typedef typename avl_base::key_type         				key_type;
+	typedef typename avl_base::mapped_type						mapped_type;
+	typedef typename ft::pair<key_type, mapped_type>::first 	first;
+	typedef typename ft::pair<key_type, mapped_type>::second 	second;
+	typedef ft::pair<key_type, mapped_type>						value_type;
 
-    }
+	map_iterator(){} // default
 
-    map_iterator(const map_iterator &cp_it) // copy constructor
-    {
-        this->tree(cp_it.tree);    
-    }
-    void operator=(const map_iterator &cp_it) //
-    {
-        this->tree = cp_it.tree;
-    }
-    ~map_iterator(){}
+	map_iterator(const map_iterator &cp_it) // copy constructor
+	{
+		this->tree(cp_it.tree);    
+	}
+	void operator=(const map_iterator &cp_it) //
+	{
+		this->tree = cp_it.tree;
+	}
+	~map_iterator(){}
 
 
-    
+	//overload operator
+	bool operator==(const map_iterator& it)
+	{
+		return (tree == it.tree);
+	}
+	bool operator!=(const map_iterator& it)
+	{
+		return !(tree == it.tree);
+	}
+
+	// value_type& operator*()
+	// {
+
+	// }
+
+	
+	
+
+
+	
 
 };
 

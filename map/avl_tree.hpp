@@ -25,9 +25,10 @@ class avl_tree
 {
 
 public:
-	typedef size_t                      size_type;
-	typedef ft::pair<key, value>        value_type;
-	typedef key							key_type;
+	typedef size_t                      		size_type;
+	typedef ft::pair<key, value>        		value_type;
+	typedef key									key_type;
+	typedef value								mapped_value;
 private:
 	struct node<key, value> *root; // underline containre
 public:
@@ -324,6 +325,18 @@ public:
 		{
 
 		}
+	}
+
+
+	bool operator==(const avl_tree& cp)
+	{
+		return (root == cp.root);
+	}
+
+	value_type& operator*() const
+	{
+		std::cout << "heree" << std::endl;
+		return (ft::make_pair(root->key, root->value));
 	}
 };
 

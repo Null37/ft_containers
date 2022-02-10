@@ -18,10 +18,10 @@ template < class Key,                                     // map::key_type
 	{
 		public:
 			//Member types
-			typedef Key                                 	key_type;
-			typedef T                                   	mapped_type;
-			typedef pair<const key_type, mapped_type>    	value_type;
-			typedef Compare                             	key_compare;
+			typedef Key                                 		key_type;
+			typedef T                                   		mapped_type;
+			typedef ft::pair<const key_type, mapped_type>    	value_type;
+			typedef Compare                             		key_compare;
 			//member class value_compare
 			class value_compare
 			{
@@ -41,7 +41,7 @@ template < class Key,                                     // map::key_type
 			typedef const value_type&											const_reference;
 			typedef value_type*													pointer;
 			typedef	const value_type* 											const_pointer;	
-			typedef  ft::map_iterator<ft::avl_tree<key_type, mapped_type> > 	iterator;	//a bidirectional iterator to value_type
+			typedef  ft::map_iterator<ft::avl_tree<key_type, mapped_type>, key_compare > 	iterator;	//a bidirectional iterator to value_type
 
 
 	};

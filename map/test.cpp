@@ -4,35 +4,35 @@
 #include "map_iterator.hpp"
 #include "map.hpp"
 
-struct ft::node<int, int> *getbigpp(struct ft::node<int, int> *root)
-{
-	if (root->right)
-	{
-		std::cout << " here   " << std::endl;
-		root = root->right;
-		std::cout << "--------------- " << root->key << std::endl;
-		if (root->left)
-		{
-			while(root->left)
-				root = root->left;
-			std::cout << "true = ";
-			return (root);
+// struct ft::node<int, int> *getbigpp(struct ft::node<int, int> *root)
+// {
+// 	if (root->right)
+// 	{
+// 		std::cout << " here   " << std::endl;
+// 		root = root->right;
+// 		std::cout << "--------------- " << root->key << std::endl;
+// 		if (root->left)
+// 		{
+// 			while(root->left)
+// 				root = root->left;
+// 			std::cout << "true = ";
+// 			return (root);
 
 			
-		}
-		else
-		{
-			std::cout << "bruh = ";
-			return (root);
-		}
-	}
-	else
-	{
-		std::cout << "first " << std::endl;
-		root = root->parent;
-	}
-	return (root);
-}
+// 		}
+// 		else
+// 		{
+// 			std::cout << "bruh = ";
+// 			return (root);
+// 		}
+// 	}
+// 	else
+// 	{
+// 		std::cout << "first " << std::endl;
+// 		root = root->parent;
+// 	}
+// 	return (root);
+// }
 
 int main()
 {
@@ -439,10 +439,81 @@ int main()
 
 
 {
-	// test iterator
+	// // test iterator
+	// std::map<int, int> a;
+	// a.insert(std::pair<int, int>(90, 900));
 
+	// a.insert(std::pair<int, int>(80, 900));
 
+	// std::map<int, int >::iterator it =  a.begin();
 	
+	// // b.insert(std::pair<int, int>(90, 900));
+
+
+	// std::map<int, int>::iterator it2  =  a.begin()++;
+
+	// // std::cout << std::boolalpha << (it == it2) << "\n";
+	// std::pair<int, int> lol =  *it;
+
+	// a.insert(std::pair<int, int>(100, 155));
+	// a.insert(std::pair<int, int>(80, 5454));
+	// a.insert(std::pair<int, int>(101, 885));
+	// a.insert(std::pair<int, int>(91, 11195));
+	// a.insert(std::pair<int, int>(70, 775));
+	// a.insert(std::pair<int, int>(82, 8285));
+	// a.insert(std::pair<int, int>(81, 8125));
+
+	// std::map<int, int>::iterator it = a.begin();
+	// std::cout << "begin= "  << it->first << std::endl;
+	// std::cout << "value= "  << it->second << std::endl;
+
+	// std::map<int, int> a;
+	// a.insert();
+	// std::map<int, int>::iterator it;
+	// bool dsfn = it  == it2;
+	// std::map<int, int> a;
+	// std::cout << it->first << " " << it2->first << std::endl;
+	// std::cout << std::boolalpha << (it  == it) << std::endl;
+
+	// ft::avl_tree<int, int> test1;
+	// ft::pair<int, int> l(90, 90);
+	// test1.insert(l);
+
+
+
+	// std::cout << std::boolalpha << (test1  == test1) << std::endl;
+	// std::cout << "test = " << it->first  << it->second << std::endl;
+
+
+
+	{
+		ft::avl_tree<int, int> a;
+		ft::pair<int, int> p(5,5);
+		a.insert(p);
+
+		ft::pair<int, int> it = *a;
+
+		// std::map<int, int>::iterator it_test = a.begin();
+		// std::map<int, int>::iterator it_test;
+
+			std::pair<int, int> p2(15,5);
+		// *it_test =  p2;
+		// *it = p2;
+	}
+
+	// std::map<int, int> test2;
+
+	// test2.insert(std::pair<int, int>(5,999));
+	// std::pair<int, int> a;
+	// std::map<int, int>::iterator it = test2.begin();
+
+
+	// a = *it ;
+	// *it = it;
+	// std::cout << a.first << " " << a.second;
+
+
+
 }
 
 
