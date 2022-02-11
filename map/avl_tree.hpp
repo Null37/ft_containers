@@ -9,8 +9,9 @@ template<class T, class U>
 struct node
 {
 	public:
-	T key;
-	U value;
+	// T key;
+	// U value;
+	ft::pair<T, U> a;
 	struct node    *parent;
 	int hight; // hight evry node
 	struct node    *right;
@@ -333,7 +334,7 @@ public:
 		return (root == cp.root);
 	}
 
-	value_type& operator*() const
+	value_type operator*() const
 	{
 		std::cout << "heree" << std::endl;
 		return (ft::make_pair(root->key, root->value));

@@ -4,6 +4,7 @@
 #include "map_iterator.hpp"
 #include "map.hpp"
 
+#include <iterator>
 // struct ft::node<int, int> *getbigpp(struct ft::node<int, int> *root)
 // {
 // 	if (root->right)
@@ -486,31 +487,36 @@ int main()
 
 
 
-	{
-		ft::avl_tree<int, int> a;
-		ft::pair<int, int> p(5,5);
-		a.insert(p);
+	// {
+	// 	ft::avl_tree<int, int> a;
+	// 	ft::pair<int, int> p(5,5);
+	// 	a.insert(p);
 
-		ft::pair<int, int> it = *a;
+	// 	ft::pair<int, int> it = *a;
 
-		// std::map<int, int>::iterator it_test = a.begin();
-		// std::map<int, int>::iterator it_test;
+	// 	// std::map<int, int>::iterator it_test = a.begin();
+	// 	// std::map<int, int>::iterator it_test;
 
-			std::pair<int, int> p2(15,5);
-		// *it_test =  p2;
-		// *it = p2;
-	}
+	// 		std::pair<int, int> p2(15,5);
+	// 	// *it_test =  p2;
+	// 	// *it = p2;
+	// }
 
-	// std::map<int, int> test2;
+	std::map<int, int> test2;
 
-	// test2.insert(std::pair<int, int>(5,999));
-	// std::pair<int, int> a;
-	// std::map<int, int>::iterator it = test2.begin();
+	test2.insert(std::pair<int, int>(9,999));
+	test2.insert(std::pair<int, int>(6,6999));
 
-
-	// a = *it ;
-	// *it = it;
-	// std::cout << a.first << " " << a.second;
+	std::pair<const int, int> a(5,9);
+	std::map<int, int>::iterator it;
+	std::map<int, int>::iterator it_;
+	// std::iterator<std::bidirectional_iterator_tag, int> it;
+	// std::iterator<std::bidirectional_iterator_tag, int> it_2;
+	(*it).second = 1;
+	// *it = 22;
+	// *it = *it_;
+	// *it++;
+	// std::cout << it->first << " " << it->second;
 
 
 
