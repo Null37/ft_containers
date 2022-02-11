@@ -11,12 +11,12 @@ struct node
 	public:
 	// T key;
 	// U value;
-	ft::pair<T, U> a;
+	ft::pair<T, U> pt;
 	struct node    *parent;
 	int hight; // hight evry node
 	struct node    *right;
 	struct node    *left;
-	node(): key(0), value(0), parent(0), right(0), left(0) {}
+	node(): parent(0), right(0), left(0) {}
 };
 
 
@@ -26,10 +26,10 @@ class avl_tree
 {
 
 public:
-	typedef size_t                      		size_type;
-	typedef ft::pair<key, value>        		value_type;
-	typedef key									key_type;
-	typedef value								mapped_value;
+	typedef size_t                      			size_type;
+	typedef ft::pair<const key, value>        		value_type;
+	typedef key										key_type;
+	typedef value									mapped_value;
 private:
 	struct node<key, value> *root; // underline containre
 public:
@@ -58,8 +58,9 @@ public:
 		if (cp == NULL)
 			return NULL;
 		struct node<key, value> *copy = new node<key, value>;
-		copy->key = cp->key;
-		copy->value = cp->value;
+		copy->pt.first = cp->pt.first;
+		copy->pt.second = cp->pt.second;
+		// copy->pt(cp->pt.first, cp->pt.second);
 		copy->hight = cp->hight;
 		copy->parent = cp->parent;
 		copy->left = copy_helper(cp->left);
@@ -152,14 +153,15 @@ public:
 		return tm_p2;
 	}
 
-	int  add_new(node<key, value> *&r, value_type& val, struct node<key, value>   *parent)
+	int  add_new(node<key, value> *&r, const value_type& val, struct node<key, value>   *parent)
 	{
 		int ret;
 		if (r == NULL)
 	   {
 			r = new node<key, value>;
-			r->key = val.first;
-			r->value =  val.second;
+			r->pt.first = val.first;
+			r->pt.second =  val.second;
+			// r->pt(val.first, val.second);
 			r->hight = 1;
 			r->parent = parent;
 			r->right = NULL;
@@ -168,9 +170,9 @@ public:
 	   }
 	   else
 	   {
-		  if(val.first == r->key)
+		  if(val.first == r->pt.first)
 		  		return false; 
-			else if  (val.first > r->key)
+			else if  (val.first > r->pt.first)
 				ret = add_new(r->right, val, r);
 			else
 				ret = add_new(r->left, val, r);
@@ -205,7 +207,7 @@ public:
 		return 0;
 	}
 
-	bool insert (value_type& val) // add deletion
+	bool insert (const value_type& val) // add deletion
 	{
 
 		int ret = add_new(root, val, NULL);
@@ -233,7 +235,7 @@ public:
 	{
 		if (r->right == NULL && r->left == NULL)
 		{
-			if(k == r->key)
+			if(k == r->pt.first)
 			{
 				std::cout << "here" << std::endl;
 				delete r;
@@ -241,12 +243,12 @@ public:
 			return NULL;
 		}
 		struct node<key_type, value> *tmp;
-		if (k < r->key)
+		if (k < r->pt.first)
 		{
 			std::cout << "left test" << std::endl;
 			r->left = deleteNode(r->left, k);
 		}
-		else if (k > r->key)
+		else if (k > r->pt.first)
 		{
 			std::cout << "right test" << std::endl;
 			r->right = deleteNode(r->right, k);
@@ -256,16 +258,16 @@ public:
 			if (r->left != NULL)
 			{
 				tmp = inorder_predecessor(r->left);
-				r->key = tmp->key;
-				r->value = tmp->value;
-				r->left = deleteNode(r->left, tmp->key);
+				r->pt.first = tmp->pt.first;
+				r->pt.second = tmp->pt.second;
+				r->left = deleteNode(r->left, tmp->pt.first);
 			}
 			else if (r->right != NULL)
 			{
 				tmp = inorder_successor(r->right);
-				r->key = tmp->key;
-				r->value = tmp->value;
-				r->right = deleteNode(r->right, tmp->key);
+				r->pt.first = tmp->pt.first;
+				r->pt.second = tmp->pt.second;
+				r->right = deleteNode(r->right, tmp->pt.second);
 			}
 		}
 		//balance cases
@@ -299,7 +301,7 @@ public:
 			{
 				print(ptr->left);
 			}
-			std::cout << " value = " << ptr->key << std::endl;
+			std::cout << " value = " << ptr->pt.first << std::endl;
 			if(ptr->right != NULL)
 			{
 					print(ptr->right);
@@ -307,26 +309,26 @@ public:
 
 		}
 	}
-	void test_plus_plus_1(node<key, value> * pr)
-	{
-		if(pr->left == NULL && pr->right == NULL)
-		{
-			if (pr->key < pr->parent->key)
-			{
-				pr= pr->parent;
-				std::cout << "pr = " << pr->key << std::endl; 
-			}
-		}
-		else if (pr->left != NULL)
-		{
-			pr = inorder_successor(pr);
-			std::cout << "pr = " << pr->key << std::endl; 
-		}
-		else if(pr->right != NULL)
-		{
+	// void test_plus_plus_1(node<key, value> * pr)
+	// {
+	// 	if(pr->left == NULL && pr->right == NULL)
+	// 	{
+	// 		if (pr->key < pr->parent->key)
+	// 		{
+	// 			pr= pr->parent;
+	// 			std::cout << "pr = " << pr->key << std::endl; 
+	// 		}
+	// 	}
+	// 	else if (pr->left != NULL)
+	// 	{
+	// 		pr = inorder_successor(pr);
+	// 		std::cout << "pr = " << pr->key << std::endl; 
+	// 	}
+	// 	else if(pr->right != NULL)
+	// 	{
 
-		}
-	}
+	// 	}
+	// }
 
 
 	bool operator==(const avl_tree& cp)
@@ -334,10 +336,10 @@ public:
 		return (root == cp.root);
 	}
 
-	value_type operator*() const
+	value_type& operator*() const
 	{
 		std::cout << "heree" << std::endl;
-		return (ft::make_pair(root->key, root->value));
+		return (root->pt.second);
 	}
 };
 

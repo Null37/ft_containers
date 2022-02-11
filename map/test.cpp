@@ -411,7 +411,7 @@ int main()
 // {
 // 	/// copy constructre
 // 	ft::avl_tree<int, int> test1;
-// 	struct ft::node<int, int> *root; 
+// 	// struct ft::node<int, int> *root; 
 // 	ft::pair<int, int> a(90,450);
 // 	ft::pair<int, int> a2(100,300);
 // 	ft::pair<int, int> a8(80,300);
@@ -431,9 +431,11 @@ int main()
 // 	test1.insert(a7);
 
 // 	ft::avl_tree<int, int> test(test1);
-// 	std::cout << "key of root " << test.get()->key << std::endl;
-// 	std::cout << "key of left " << test.get()->left->key << std::endl;
-// 	std::cout << "key of right " << test.get()->right->key << std::endl;
+// 	std::cout << "key of root " << test.get()->pt.first << std::endl;
+// 	std::cout << "key of left " << test.get()->left->pt.first << std::endl;
+// 	std::cout << "key of right " << test.get()->right->pt.first << std::endl;
+// 	std::cout << "key of right " << test.get()->right->right->pt.first << std::endl;
+
 
 
 // }
@@ -487,32 +489,34 @@ int main()
 
 
 
-	// {
-	// 	ft::avl_tree<int, int> a;
-	// 	ft::pair<int, int> p(5,5);
-	// 	a.insert(p);
+	{
+		ft::avl_tree<int, int> a;
+		ft::pair< int, int> p(5,5);
+		a.insert(p);
 
-	// 	ft::pair<int, int> it = *a;
+	 	// ft::pair<int, int> it = *a;
+		// std::cout << "key-> " << a.get()->pt.first;
+		// std::map<int, int> a;
+		// a.insert(std::pair<const int, int>(5, 10));
+		// std::map<int, int>::iterator it_test = a.begin();
+		// std::map<int, int>::iterator it_test;
 
-	// 	// std::map<int, int>::iterator it_test = a.begin();
-	// 	// std::map<int, int>::iterator it_test;
+			// std::pair<int, int> p2(15,5);
+		// *it_test =  p2;
+		// *it = p2;
+	}
 
-	// 		std::pair<int, int> p2(15,5);
-	// 	// *it_test =  p2;
-	// 	// *it = p2;
-	// }
+	// std::map<int, int> test2;
 
-	std::map<int, int> test2;
+	// test2.insert(std::pair<int, int>(9,999));
+	// test2.insert(std::pair<int, int>(6,6999));
 
-	test2.insert(std::pair<int, int>(9,999));
-	test2.insert(std::pair<int, int>(6,6999));
-
-	std::pair<const int, int> a(5,9);
-	std::map<int, int>::iterator it;
-	std::map<int, int>::iterator it_;
-	// std::iterator<std::bidirectional_iterator_tag, int> it;
-	// std::iterator<std::bidirectional_iterator_tag, int> it_2;
-	(*it).second = 1;
+	// std::pair<const int, int> a(5,9);
+	// std::map<int, int>::iterator it;
+	// std::map<int, int>::iterator it_;
+	// // std::iterator<std::bidirectional_iterator_tag, int> it;
+	// // std::iterator<std::bidirectional_iterator_tag, int> it_2;
+	// (*it).second = 1;
 	// *it = 22;
 	// *it = *it_;
 	// *it++;
