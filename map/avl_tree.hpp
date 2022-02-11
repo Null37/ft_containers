@@ -9,14 +9,16 @@ template<class T, class U>
 struct node
 {
 	public:
-	// T key;
-	// U value;
-	ft::pair<T, U> pt;
+	T key;
+	U value;
+	typedef ft::pair<const T, U>        			value_type;
+	value_type		pt;
 	struct node    *parent;
 	int hight; // hight evry node
 	struct node    *right;
 	struct node    *left;
 	node(): parent(0), right(0), left(0) {}
+	node(value_type p): pt(p), parent(0), right(0), left(0) {}
 };
 
 
@@ -26,14 +28,18 @@ class avl_tree
 {
 
 public:
-	typedef size_t                      			size_type;
-	typedef ft::pair<const key, value>        		value_type;
-	typedef key										key_type;
-	typedef value									mapped_value;
+	typedef size_t                      							size_type;
+	typedef typename ft::node<key, value>::value_type        		value_type;
+	typedef key														key_type;
+	typedef value													mapped_value;
 private:
 	struct node<key, value> *root; // underline containre
 public:
 	avl_tree() : root(NULL)
+	{
+		std::cout << "default " << std::endl;
+	}
+	avl_tree(value_type s) : root(NULL)
 	{
 		std::cout << "default " << std::endl;
 	}
@@ -48,7 +54,7 @@ public:
 	}
 	~avl_tree(){}
 	//getter
-	struct node<key, value> *get()
+	struct node<key, value> *get() const 
 	{
 		return root;
 	}
@@ -60,7 +66,6 @@ public:
 		struct node<key, value> *copy = new node<key, value>;
 		copy->pt.first = cp->pt.first;
 		copy->pt.second = cp->pt.second;
-		// copy->pt(cp->pt.first, cp->pt.second);
 		copy->hight = cp->hight;
 		copy->parent = cp->parent;
 		copy->left = copy_helper(cp->left);
@@ -158,10 +163,12 @@ public:
 		int ret;
 		if (r == NULL)
 	   {
-			r = new node<key, value>;
-			r->pt.first = val.first;
-			r->pt.second =  val.second;
-			// r->pt(val.first, val.second);
+
+			r = new node<key, value>(ft::make_pair(val.first, val.second));
+			// r->pt.first = val.first;
+			// r->pt.second =  val.second;
+			// r->pt = ;
+
 			r->hight = 1;
 			r->parent = parent;
 			r->right = NULL;
@@ -336,11 +343,15 @@ public:
 		return (root == cp.root);
 	}
 
-	value_type& operator*() const
+	const value_type& operator*() const
 	{
 		std::cout << "heree" << std::endl;
-		return (root->pt.second);
+		
+		return (root->pt);
 	}
+
+
+
 };
 
 

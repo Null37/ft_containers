@@ -41,7 +41,7 @@ template < class Key,                                     // map::key_type
 			typedef const value_type&											const_reference;
 			typedef value_type*													pointer;
 			typedef	const value_type* 											const_pointer;	
-			typedef  ft::map_iterator<ft::avl_tree<key_type, mapped_type>, key_compare > 	iterator;	//a bidirectional iterator to value_type
+			typedef  ft::map_iterator<ft::avl_tree<key_type, mapped_type> > 	iterator;	//a bidirectional iterator to value_type
 
 
 	};

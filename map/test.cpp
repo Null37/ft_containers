@@ -490,11 +490,11 @@ int main()
 
 
 	{
-		ft::avl_tree<int, int> a;
-		ft::pair< int, int> p(5,5);
-		a.insert(p);
+		// ft::avl_tree<int, int> a;
+		// ft::pair<int, int> p(5,5);
+		// a.insert(p);
 
-	 	// ft::pair<int, int> it = *a;
+	 	// ft::pair<const int, int> it = *a;
 		// std::cout << "key-> " << a.get()->pt.first;
 		// std::map<int, int> a;
 		// a.insert(std::pair<const int, int>(5, 10));
@@ -508,14 +508,52 @@ int main()
 
 	// std::map<int, int> test2;
 
+
+
+
 	// test2.insert(std::pair<int, int>(9,999));
-	// test2.insert(std::pair<int, int>(6,6999));
+	// test2.insert(std::pair<int, int>(5,6999));
 
 	// std::pair<const int, int> a(5,9);
-	// std::map<int, int>::iterator it;
+	// std::map<int, int>::iterator it = test2.begin();
 	// std::map<int, int>::iterator it_;
-	// // std::iterator<std::bidirectional_iterator_tag, int> it;
-	// // std::iterator<std::bidirectional_iterator_tag, int> it_2;
+	// //std::cout << "it->  " << it->first << " " << it->second << std::endl;
+	// std::pair<const int, int> y = *it;
+	// std::cout << "pair 1 " << &y<<"\n";
+	// std::pair<int, int> r = *it;
+	// std::cout << "pair 1 " << &r <<"\n";
+	// std::cout << "pair 1 " << &(*it) <<"\n";
+	// std::cout << "pair 1 " << &(*it) <<"\n";
+	// std::cout << "pair 1 " << &(*it) <<"\n";
+	// std::cout << "pair 1 " << &(*it) <<"\n";
+	// std::cout << "pair 1 " << &(*it) <<"\n";
+	// std::cout << "pair 1 " << &(*it) <<"\n";
+	
+	ft::avl_tree<int, int> my_map;
+	// ft::map_iterator<ft::avl_tree<int, int> > k;
+
+	my_map.insert(ft::pair<int, int>(1,99));
+	my_map.insert(ft::pair<int, int>(2,10));
+	my_map.insert(ft::pair<int, int>(3,20));
+	my_map.insert(ft::pair<int, int>(4,30));
+	my_map.insert(ft::pair<int, int>(5,40));
+	my_map.insert(ft::pair<int, int>(6,50));
+	my_map.insert(ft::pair<int, int>(7,60));
+	my_map.insert(ft::pair<int, int>(8,70));
+	my_map.insert(ft::pair<int, int>(9,80));
+
+
+	ft::pair<int, int> t_p = *my_map; 
+	// std::pair<int, int> testtt;
+	// testtt = *it;
+	std::cout << "first : " << t_p.first << " second " << t_p.second << "\n";
+	// (*it).first = 5;
+	
+	// std::cout << testtt.first << " my = " << t_p.first << std::endl;
+
+
+	// std::iterator<std::bidirectional_iterator_tag, int> it;
+	// std::iterator<std::bidirectional_iterator_tag, int> it_2;
 	// (*it).second = 1;
 	// *it = 22;
 	// *it = *it_;

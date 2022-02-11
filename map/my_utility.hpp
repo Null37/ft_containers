@@ -17,18 +17,14 @@ struct pair
         T2 second;
         //Member functions
                 //Constructs
-        pair()//default 
+        pair(): first(T1()), second(T2())//default 
         {
-            first = T1();
-            second = T2();
+            // first = T1();
+            // second = T2();
         } 
         template<class U, class V> 
-        pair (pair<U, V> const &pr): first(pr.first), second(pr.second) {}// copy constructs
-        pair (const first_type& a, const second_type& b) //initialization constructs
-        {
-            first = a;
-            second = b;
-        }
+        pair (const pair<U, V>  &pr): first(pr.first), second(pr.second) {}// copy constructs
+        pair (const first_type& a, const second_type& b) : first(a), second(b){} //initialization constructs
         ~pair(){} // dest
         pair& operator= ( pair const &pr) // Assign operator
         {

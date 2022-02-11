@@ -8,17 +8,17 @@
 namespace ft
 {
 
-template<class avl_base, class compare_mithod>
+template<class avl_base>
 class map_iterator
 {
 private:
 	avl_base tree;
 public:
 	typedef typename avl_base::key_type         				key_type;
-	typedef typename avl_base::mapped_type						mapped_type;
-	typedef typename ft::pair<key_type, mapped_type>::first 	first;
-	typedef typename ft::pair<key_type, mapped_type>::second 	second;
-	typedef ft::pair<key_type, mapped_type>						value_type;
+	typedef typename avl_base::mapped_value						mapped_type;
+	// typedef typename ft::pair<key_type, mapped_type>::first 	first;
+	// typedef typename ft::pair<key_type, mapped_type>::second 	second;
+	typedef ft::pair<const key_type, mapped_type>						value_type;
 
 	map_iterator(){} // default
 
@@ -43,9 +43,9 @@ public:
 		return !(tree == it.tree);
 	}
 
-	// value_type& operator*()
+	// value_type& operator*() const
 	// {
-
+	// 	return (tree.operator*());
 	// }
 
 	
