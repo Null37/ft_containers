@@ -32,6 +32,7 @@ public:
 	typedef typename ft::node<key, value>::value_type        		value_type;
 	typedef key														key_type;
 	typedef value													mapped_value;
+	
 private:
 	struct node<key, value> *root; // underline containre
 public:
@@ -63,9 +64,9 @@ public:
 	{
 		if (cp == NULL)
 			return NULL;
-		struct node<key, value> *copy = new node<key, value>;
-		copy->pt.first = cp->pt.first;
-		copy->pt.second = cp->pt.second;
+		struct node<key, value> *copy = new node<key, value>(cp->pt.first, cp->pt.second);
+		// copy->pt.first = cp->pt.first;
+		// copy->pt.second = cp->pt.second;
 		copy->hight = cp->hight;
 		copy->parent = cp->parent;
 		copy->left = copy_helper(cp->left);
@@ -300,22 +301,22 @@ public:
 		return 0;
 	}
 
-	void print(node<key, value> * ptr)
-	{
-		if(ptr->parent != NULL)
-		{
-			if (ptr->left != NULL)
-			{
-				print(ptr->left);
-			}
-			std::cout << " value = " << ptr->pt.first << std::endl;
-			if(ptr->right != NULL)
-			{
-					print(ptr->right);
-			}
+	// void print(node<key, value> * ptr)
+	// {
+	// 	if(ptr->parent != NULL)
+	// 	{
+	// 		if (ptr->left != NULL)
+	// 		{
+	// 			print(ptr->left);
+	// 		}
+	// 		std::cout << " value = " << ptr->pt.first << std::endl;
+	// 		if(ptr->right != NULL)
+	// 		{
+	// 				print(ptr->right);
+	// 		}
 
-		}
-	}
+	// 	}
+	// }
 	// void test_plus_plus_1(node<key, value> * pr)
 	// {
 	// 	if(pr->left == NULL && pr->right == NULL)
@@ -343,14 +344,28 @@ public:
 		return (root == cp.root);
 	}
 
-	const value_type& operator*() const
+
+	value_type& operator*() const
 	{
 		std::cout << "heree" << std::endl;
 		
 		return (root->pt);
 	}
 
+	struct node<key, value> *operator->() const
+	{
+		return (&operator*());
+	}
 
+	//prefix oprator ++ mean ++a;
+	avl_tree &operator++()
+	{
+
+	}
+	avl_tree &operator++(int)
+	{
+		// add logic from ++ avl
+	}
 
 };
 
