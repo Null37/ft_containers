@@ -425,7 +425,9 @@ public:
 
 	avl_tree operator--(int)
 	{
-
+		avl_tree _tmp(*this);
+		--(*this);
+		return _tmp;
 	}
 
 	
