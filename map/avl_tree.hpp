@@ -400,12 +400,12 @@ public:
 	avl_tree &operator--() // pre-operator -- 
 	{
 				struct node<key, value> *tmp;
-		//first check if node has right or not
+		//check left to return most left one
 		if(root->left != NULL)
 		{
 			// if has right go to most left
 			root = root->left;
-			root = inorder_predecessor(root);
+			root = inorder_predecessor(root); // get most-right
 		}
 		else
 		{
