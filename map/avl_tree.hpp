@@ -9,8 +9,8 @@ template<class T, class U>
 struct node
 {
 	public:
-	T key;
-	U value;
+	// T key;
+	// U value;
 	typedef ft::pair<const T, U>        			value_type;
 	value_type		pt;
 	struct node    *parent;
@@ -19,6 +19,7 @@ struct node
 	struct node    *left;
 	node(): parent(0), right(0), left(0) {}
 	node(value_type p): pt(p), parent(0), right(0), left(0) {}
+	node(const T &first, const U &second): pt(first, second), parent(0), right(0), left(0) {}
 };
 
 
@@ -38,11 +39,7 @@ private:
 public:
 	avl_tree() : root(NULL)
 	{
-		std::cout << "default " << std::endl;
-	}
-	avl_tree(value_type s) : root(NULL)
-	{
-		std::cout << "default " << std::endl;
+		std::cout << "default here" << std::endl;
 	}
 	avl_tree(const avl_tree &at)
 	{
@@ -357,16 +354,49 @@ public:
 		return (&operator*());
 	}
 
-	//prefix oprator ++ mean ++a;
+	//preoprator ++ mean ++a;
+	avl_tree begin()
+	{
+		root = inorder_successor(root);
+		return *this;
+	}
+
+	avl_tree end()
+	{
+		return (avl_tree());
+	}
 	avl_tree &operator++()
 	{
-
+		struct node<key, value> *tmp;
+		//first check if node has right or not
+		if(root->right != NULL)
+		{
+			// if has right go to most left
+			root = root->right;
+			root = inorder_successor(root);
+		}
+		else
+		{
+			//if not, return to parent
+			tmp = root->parent;
+			while (tmp != NULL && root == tmp->right)
+			{
+				root = tmp;
+				tmp = tmp->parent;
+			}
+			// if right-most
+			root = tmp;
+		}
+		return *this;
 	}
-	avl_tree &operator++(int)
+	avl_tree operator++(int) // post-operator ++ mean a++
 	{
 		// add logic from ++ avl
 	}
 
+
+
+	
 };
 
 

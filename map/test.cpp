@@ -430,11 +430,135 @@ int main()
 // 	test1.insert(a6);
 // 	test1.insert(a7);
 
-// 	ft::avl_tree<int, int> test(test1);
-// 	std::cout << "key of root " << test.get()->pt.first << std::endl;
-// 	std::cout << "key of left " << test.get()->left->pt.first << std::endl;
-// 	std::cout << "key of right " << test.get()->right->pt.first << std::endl;
-// 	std::cout << "key of right " << test.get()->right->right->pt.first << std::endl;
+// // 	ft::avl_tree<int, int> test(test1);
+// // 	std::cout << "key of root " << test.get()->pt.first << std::endl;
+// // 	std::cout << "key of left " << test.get()->left->pt.first << std::endl;
+// // 	std::cout << "key of right " << test.get()->right->pt.first << std::endl;
+// // 	std::cout << "key of right " << test.get()->right->right->pt.first << std::endl;
+
+
+
+// // }
+
+
+// {
+// 	// // test iterator
+// 	// std::map<int, int> a;
+// 	// a.insert(std::pair<int, int>(90, 900));
+
+// 	// a.insert(std::pair<int, int>(80, 900));
+
+// 	// std::map<int, int >::iterator it =  a.begin();
+	
+// 	// // b.insert(std::pair<int, int>(90, 900));
+
+
+// 	// std::map<int, int>::iterator it2  =  a.begin()++;
+
+// 	// // std::cout << std::boolalpha << (it == it2) << "\n";
+// 	// std::pair<int, int> lol =  *it;
+
+// 	// a.insert(std::pair<int, int>(100, 155));
+// 	// a.insert(std::pair<int, int>(80, 5454));
+// 	// a.insert(std::pair<int, int>(101, 885));
+// 	// a.insert(std::pair<int, int>(91, 11195));
+// 	// a.insert(std::pair<int, int>(70, 775));
+// 	// a.insert(std::pair<int, int>(82, 8285));
+// 	// a.insert(std::pair<int, int>(81, 8125));
+
+// 	// std::map<int, int>::iterator it = a.begin();
+// 	// std::cout << "begin= "  << it->first << std::endl;
+// 	// std::cout << "value= "  << it->second << std::endl;
+
+// 	// std::map<int, int> a;
+// 	// a.insert();
+// 	// std::map<int, int>::iterator it;
+// 	// bool dsfn = it  == it2;
+// 	// std::map<int, int> a;
+// 	// std::cout << it->first << " " << it2->first << std::endl;
+// 	// std::cout << std::boolalpha << (it  == it) << std::endl;
+
+// 	// ft::avl_tree<int, int> test1;
+// 	// ft::pair<int, int> l(90, 90);
+// 	// test1.insert(l);
+
+
+
+// 	// std::cout << std::boolalpha << (test1  == test1) << std::endl;
+// 	// std::cout << "test = " << it->first  << it->second << std::endl;
+
+
+
+// 	{
+// 		// ft::avl_tree<int, int> a;
+// 		// ft::pair<int, int> p(5,5);
+// 		// a.insert(p);
+
+// 	 	// ft::pair<const int, int> it = *a;
+// 		// std::cout << "key-> " << a.get()->pt.first;
+// 		// std::map<int, int> a;
+// 		// a.insert(std::pair<const int, int>(5, 10));
+// 		// std::map<int, int>::iterator it_test = a.begin();
+// 		// std::map<int, int>::iterator it_test;
+
+// 			// std::pair<int, int> p2(15,5);
+// 		// *it_test =  p2;
+// 		// *it = p2;
+// 	}
+
+// 	// std::map<int, int> test2;
+
+
+
+
+// 	// test2.insert(std::pair<int, int>(9,999));
+// 	// test2.insert(std::pair<int, int>(5,6999));
+
+// 	// std::pair<const int, int> a(5,9);
+// 	// std::map<int, int>::iterator it = test2.begin();
+// 	// std::map<int, int>::iterator it_;
+// 	// //std::cout << "it->  " << it->first << " " << it->second << std::endl;
+// 	// std::pair<const int, int> y = *it;
+// 	// std::cout << "pair 1 " << &y<<"\n";
+// 	// std::pair<int, int> r = *it;
+// 	// std::cout << "pair 1 " << &r <<"\n";
+// 	// std::cout << "pair 1 " << &(*it) <<"\n";
+// 	// std::cout << "pair 1 " << &(*it) <<"\n";
+// 	// std::cout << "pair 1 " << &(*it) <<"\n";
+// 	// std::cout << "pair 1 " << &(*it) <<"\n";
+// 	// std::cout << "pair 1 " << &(*it) <<"\n";
+// 	// std::cout << "pair 1 " << &(*it) <<"\n";
+	
+// 	ft::avl_tree<int, int> my_map;
+// 	// ft::map_iterator<ft::avl_tree<int, int> > k;
+
+// 	my_map.insert(ft::pair<int, int>(1,99));
+// 	my_map.insert(ft::pair<int, int>(2,10));
+// 	my_map.insert(ft::pair<int, int>(3,20));
+// 	my_map.insert(ft::pair<int, int>(4,30));
+// 	my_map.insert(ft::pair<int, int>(5,40));
+// 	my_map.insert(ft::pair<int, int>(6,50));
+// 	my_map.insert(ft::pair<int, int>(7,60));
+// 	my_map.insert(ft::pair<int, int>(8,70));
+// 	my_map.insert(ft::pair<int, int>(9,80));
+
+
+// 	ft::pair<int, int> t_p = *my_map; 
+// 	// std::pair<int, int> testtt;
+// 	// testtt = *it;
+// 	std::cout << "first : " << t_p.first << " second " << t_p.second << "\n";
+// 	// (*it).first = 5;
+	
+// 	// std::cout << testtt.first << " my = " << t_p.first << std::endl;
+
+
+// 	// std::iterator<std::bidirectional_iterator_tag, int> it;
+// 	// std::iterator<std::bidirectional_iterator_tag, int> it_2;
+// 	// (*it).second = 1;
+// 	// *it = 22;
+// 	// *it = *it_;
+// 	// *it++;
+// 	// std::cout << it->first << " " << it->second;
 
 
 
@@ -442,127 +566,35 @@ int main()
 
 
 {
-	// // test iterator
-	// std::map<int, int> a;
-	// a.insert(std::pair<int, int>(90, 900));
-
-	// a.insert(std::pair<int, int>(80, 900));
-
-	// std::map<int, int >::iterator it =  a.begin();
-	
-	// // b.insert(std::pair<int, int>(90, 900));
-
-
-	// std::map<int, int>::iterator it2  =  a.begin()++;
-
-	// // std::cout << std::boolalpha << (it == it2) << "\n";
-	// std::pair<int, int> lol =  *it;
-
-	// a.insert(std::pair<int, int>(100, 155));
-	// a.insert(std::pair<int, int>(80, 5454));
-	// a.insert(std::pair<int, int>(101, 885));
-	// a.insert(std::pair<int, int>(91, 11195));
-	// a.insert(std::pair<int, int>(70, 775));
-	// a.insert(std::pair<int, int>(82, 8285));
-	// a.insert(std::pair<int, int>(81, 8125));
-
-	// std::map<int, int>::iterator it = a.begin();
-	// std::cout << "begin= "  << it->first << std::endl;
-	// std::cout << "value= "  << it->second << std::endl;
+	// test operaror
 
 	// std::map<int, int> a;
-	// a.insert();
-	// std::map<int, int>::iterator it;
-	// bool dsfn = it  == it2;
-	// std::map<int, int> a;
-	// std::cout << it->first << " " << it2->first << std::endl;
-	// std::cout << std::boolalpha << (it  == it) << std::endl;
-
-	// ft::avl_tree<int, int> test1;
-	// ft::pair<int, int> l(90, 90);
-	// test1.insert(l);
-
-
-
-	// std::cout << std::boolalpha << (test1  == test1) << std::endl;
-	// std::cout << "test = " << it->first  << it->second << std::endl;
-
-
-
-	{
-		// ft::avl_tree<int, int> a;
-		// ft::pair<int, int> p(5,5);
-		// a.insert(p);
-
-	 	// ft::pair<const int, int> it = *a;
-		// std::cout << "key-> " << a.get()->pt.first;
-		// std::map<int, int> a;
-		// a.insert(std::pair<const int, int>(5, 10));
-		// std::map<int, int>::iterator it_test = a.begin();
-		// std::map<int, int>::iterator it_test;
-
-			// std::pair<int, int> p2(15,5);
-		// *it_test =  p2;
-		// *it = p2;
-	}
-
-	// std::map<int, int> test2;
-
-
-
-
-	// test2.insert(std::pair<int, int>(9,999));
-	// test2.insert(std::pair<int, int>(5,6999));
-
-	// std::pair<const int, int> a(5,9);
-	// std::map<int, int>::iterator it = test2.begin();
-	// std::map<int, int>::iterator it_;
-	// //std::cout << "it->  " << it->first << " " << it->second << std::endl;
-	// std::pair<const int, int> y = *it;
-	// std::cout << "pair 1 " << &y<<"\n";
-	// std::pair<int, int> r = *it;
-	// std::cout << "pair 1 " << &r <<"\n";
-	// std::cout << "pair 1 " << &(*it) <<"\n";
-	// std::cout << "pair 1 " << &(*it) <<"\n";
-	// std::cout << "pair 1 " << &(*it) <<"\n";
-	// std::cout << "pair 1 " << &(*it) <<"\n";
-	// std::cout << "pair 1 " << &(*it) <<"\n";
-	// std::cout << "pair 1 " << &(*it) <<"\n";
+	// a.insert(std::pair<int, int>(5,9));
+	// std::map<int, int>::iterator it = a.end();
+	// it++;
 	
-	ft::avl_tree<int, int> my_map;
-	// ft::map_iterator<ft::avl_tree<int, int> > k;
-
-	my_map.insert(ft::pair<int, int>(1,99));
-	my_map.insert(ft::pair<int, int>(2,10));
-	my_map.insert(ft::pair<int, int>(3,20));
-	my_map.insert(ft::pair<int, int>(4,30));
-	my_map.insert(ft::pair<int, int>(5,40));
-	my_map.insert(ft::pair<int, int>(6,50));
-	my_map.insert(ft::pair<int, int>(7,60));
-	my_map.insert(ft::pair<int, int>(8,70));
-	my_map.insert(ft::pair<int, int>(9,80));
+	// std::cout << it->first << std::endl;
+	//   test my operator
+	ft::avl_tree<int, int> test;
+	test.insert(ft::pair<int, int>(90,2));
+	test.insert(ft::pair<int, int>(100,2));
+	test.insert(ft::pair<int, int>(80,2));
+	test.insert(ft::pair<int, int>(101,2));
+	test.insert(ft::pair<int, int>(70,2));
+	test.insert(ft::pair<int, int>(85,2));
+	test.insert(ft::pair<int, int>(95,2));
 
 
-	ft::pair<int, int> t_p = *my_map; 
-	// std::pair<int, int> testtt;
-	// testtt = *it;
-	std::cout << "first : " << t_p.first << " second " << t_p.second << "\n";
-	// (*it).first = 5;
+	test = test.end();
+ 
+	std::cout << "befor == " << test.get()->pt.first << std::endl;;
+	++test;
+	std::cout << "after == " << test.get()->pt.first << std::endl;
+
+
+
+
 	
-	// std::cout << testtt.first << " my = " << t_p.first << std::endl;
-
-
-	// std::iterator<std::bidirectional_iterator_tag, int> it;
-	// std::iterator<std::bidirectional_iterator_tag, int> it_2;
-	// (*it).second = 1;
-	// *it = 22;
-	// *it = *it_;
-	// *it++;
-	// std::cout << it->first << " " << it->second;
-
-
-
 }
-
 
 }
