@@ -392,7 +392,43 @@ public:
 	avl_tree operator++(int) // post-operator ++ mean a++
 	{
 		// add logic from ++ avl
+		avl_tree _tmp(*this);
+		++(*this);
+		return _tmp;
 	}
+
+	avl_tree &operator--() // pre-operator -- 
+	{
+				struct node<key, value> *tmp;
+		//first check if node has right or not
+		if(root->left != NULL)
+		{
+			// if has right go to most left
+			root = root->left;
+			root = inorder_predecessor(root);
+		}
+		else
+		{
+			//if not, return to parent
+			tmp = root->parent;
+			while (tmp != NULL && root == tmp->left)
+			{
+				root = tmp;
+				tmp = tmp->parent;
+			}
+			// if right-most
+			root = tmp;
+		}
+		return *this;
+	}
+
+
+	avl_tree operator--(int)
+	{
+
+	}
+
+	
 
 
 

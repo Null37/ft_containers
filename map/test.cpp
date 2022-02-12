@@ -566,15 +566,35 @@ int main()
 
 
 {
-	// test operaror
+	// // test operaror
 
-	// std::map<int, int> a;
-	// a.insert(std::pair<int, int>(5,9));
-	// std::map<int, int>::iterator it = a.end();
-	// it++;
-	
-	// std::cout << it->first << std::endl;
-	//   test my operator
+	{
+		std::map<int, int> test;
+		test.insert(std::pair<int, int>(90,2));
+		test.insert(std::pair<int, int>(100,2));
+		test.insert(std::pair<int, int>(80,2));
+		test.insert(std::pair<int, int>(101,2));
+		test.insert(std::pair<int, int>(70,2));
+		test.insert(std::pair<int, int>(85,2));
+		test.insert(std::pair<int, int>(95,2));
+
+
+		std::map<int, int>::iterator it = test.begin();
+		it++;
+		it++;
+		it++;
+		std::cout << "org befor ==> " << it->first << std::endl;
+		--it;
+		std::cout << "org after == >   " <<  it->first << std::endl;
+			it--;
+		std::cout << "org after2 == >   " <<  it->first << std::endl;
+		it--;
+		std::cout << "after3 == >   " <<  it->first << std::endl;
+		
+		
+
+	}
+	//   // test my operator
 	ft::avl_tree<int, int> test;
 	test.insert(ft::pair<int, int>(90,2));
 	test.insert(ft::pair<int, int>(100,2));
@@ -585,11 +605,27 @@ int main()
 	test.insert(ft::pair<int, int>(95,2));
 
 
-	test = test.end();
- 
+	test = test.begin();
+	test++;
+	test++;
+	test++;
+	// std::cout << "test = " <<  test.get()->pt.first << std::endl;
 	std::cout << "befor == " << test.get()->pt.first << std::endl;;
-	++test;
-	std::cout << "after == " << test.get()->pt.first << std::endl;
+	--test;
+	std::cout << "my   after == " << test.get()->pt.first << std::endl;
+	--test;
+	std::cout << "my   after2 == " << test.get()->pt.first << std::endl;
+	--test;
+	std::cout << "my   after3 == " << test.get()->pt.first << std::endl;
+	// ++test;
+	// std::cout << "after3 == " << test.get()->pt.first << std::endl;
+	// ++test;
+	// std::cout << "after4 == " << test.get()->pt.first << std::endl;
+	// ++test;
+	// std::cout << "after6 == " << test.get()->pt.first << std::endl;
+	// ++test;
+	// std::cout << "after7 == " << test.get()->pt.first << std::endl;
+	
 
 
 
