@@ -46,6 +46,7 @@ public:
 	
 private:
 	pointer_node root; // underline containre
+	bool is_del;
 public:
 	size_t size;
 	avl_tree() : root(NULL)
@@ -228,7 +229,8 @@ public:
 	{
 
 		int ret = add_new(root, val, NULL);
-		
+		// if (ret == true )
+		// size++;
 		return ret;
 	}
 
@@ -254,9 +256,12 @@ public:
 		{
 			if(k == r->pt.first)
 			{
+				is_del = true;
 				std::cout << "here" << std::endl;
 				delete r;
 			}
+			else
+				is_del = false;
 			return NULL;
 		}
 		struct node<value_type> *tmp;

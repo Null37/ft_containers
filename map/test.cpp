@@ -661,7 +661,9 @@ int main()
 	// ft::map<int, int> test1;
 	// ft::map<int, int>::iterator it = test1.begin();
 	
-	
+	std::map<int, int> m;
+
+	std::map<int, int>::iterator it = m.begin();
 
 
 
