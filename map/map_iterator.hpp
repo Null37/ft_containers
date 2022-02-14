@@ -1,8 +1,7 @@
 #ifndef MAP_ITERATOR_HPP
 #define MAP_ITERATOR_HPP
 
-
-
+#include <iterator>
 
 
 namespace ft
@@ -11,15 +10,16 @@ namespace ft
 template<class avl_base>
 class map_iterator
 {
-private:
-	avl_base tree;
+
 public:
+	typedef	avl_base											iterator_type;
 	typedef typename avl_base::key_type         				key_type;
 	typedef typename avl_base::mapped_value						mapped_type;
-	// typedef typename ft::pair<key_type, mapped_type>::first 	first;
-	// typedef typename ft::pair<key_type, mapped_type>::second 	second;
-	typedef ft::pair<const key_type, mapped_type>						value_type;
+	typedef ft::pair<const key_type, mapped_type>				value_type;
+	typedef std::bidirectional_iterator_tag						iterator_category;
 
+private:
+	iterator_type tree;
 	map_iterator(){} // default
 
 	map_iterator(const map_iterator &cp_it) // copy constructor
