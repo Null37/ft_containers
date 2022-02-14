@@ -3,8 +3,17 @@
 #include "avl_tree.hpp"
 #include "map_iterator.hpp"
 #include "map.hpp"
+#include <vector>
 
 #include <iterator>
+struct abc
+{
+	public:
+	int k ;
+	int b;
+	abc(){k = 10;}
+	~abc(){}
+};
 // struct ft::node<int, int> *getbigpp(struct ft::node<int, int> *root)
 // {
 // 	if (root->right)
@@ -568,55 +577,55 @@ int main()
 {
 	// // test operaror
 
-	{
-		std::map<int, int> test;
-		test.insert(std::pair<int, int>(90,2));
-		test.insert(std::pair<int, int>(100,2));
-		test.insert(std::pair<int, int>(80,2));
-		test.insert(std::pair<int, int>(101,2));
-		test.insert(std::pair<int, int>(70,2));
-		test.insert(std::pair<int, int>(85,2));
-		test.insert(std::pair<int, int>(95,2));
+	// {
+	// 	std::map<int, int> test;
+	// 	test.insert(std::pair<int, int>(90,2));
+	// 	test.insert(std::pair<int, int>(100,2));
+	// 	test.insert(std::pair<int, int>(80,2));
+	// 	test.insert(std::pair<int, int>(101,2));
+	// 	test.insert(std::pair<int, int>(70,2));
+	// 	test.insert(std::pair<int, int>(85,2));
+	// 	test.insert(std::pair<int, int>(95,2));
 
 
-		std::map<int, int>::iterator it = test.begin();
-		it++;
-		it++;
-		it++;
-		std::cout << "org befor ==> " << it->first << std::endl;
-		--it;
-		std::cout << "org after == >   " <<  it->first << std::endl;
-			it--;
-		std::cout << "org after2 == >   " <<  it->first << std::endl;
-		it--;
-		std::cout << "after3 == >   " <<  it->first << std::endl;
+	// 	std::map<int, int>::iterator it = test.begin();
+	// 	it++;
+	// 	it++;
+	// 	it++;
+	// 	std::cout << "org befor ==> " << it->first << std::endl;
+	// 	--it;
+	// 	std::cout << "org after == >   " <<  it->first << std::endl;
+	// 		it--;
+	// 	std::cout << "org after2 == >   " <<  it->first << std::endl;
+	// 	it--;
+	// 	std::cout << "after3 == >   " <<  it->first << std::endl;
 		
 		
 
-	}
+	// }
 	//   // test my operator
-	ft::avl_tree<int, int> test;
-	test.insert(ft::pair<int, int>(90,2));
-	test.insert(ft::pair<int, int>(100,2));
-	test.insert(ft::pair<int, int>(80,2));
-	test.insert(ft::pair<int, int>(101,2));
-	test.insert(ft::pair<int, int>(70,2));
-	test.insert(ft::pair<int, int>(85,2));
-	test.insert(ft::pair<int, int>(95,2));
+	// ft::avl_tree<int, int> test;
+	// test.insert(ft::pair<int, int>(90,2));
+	// test.insert(ft::pair<int, int>(100,2));
+	// test.insert(ft::pair<int, int>(80,2));
+	// test.insert(ft::pair<int, int>(101,2));
+	// test.insert(ft::pair<int, int>(70,2));
+	// test.insert(ft::pair<int, int>(85,2));
+	// test.insert(ft::pair<int, int>(95,2));
 
 
-	test = test.begin();
-	test++;
-	test++;
-	test++;
+	// test = test.begin();
+	// test++;
+	// test++;
+	// test++;
 	// std::cout << "test = " <<  test.get()->pt.first << std::endl;
-	std::cout << "befor == " << test.get()->pt.first << std::endl;;
-	--test;
-	std::cout << "my   after == " << test.get()->pt.first << std::endl;
-	--test;
-	std::cout << "my   after2 == " << test.get()->pt.first << std::endl;
-	--test;
-	std::cout << "my   after3 == " << test.get()->pt.first << std::endl;
+	// std::cout << "befor == " <<	 << std::endl;;
+	// --test;
+	// std::cout << "my   after == " << test.get()->pt.first << std::endl;
+	// --test;
+	// std::cout << "my   after2 == " << test.get()->pt.first << std::endl;
+	// --test;
+	// std::cout << "my   after3 == " << test.get()->pt.first << std::endl;
 	// ++test;
 	// std::cout << "after3 == " << test.get()->pt.first << std::endl;
 	// ++test;
@@ -626,9 +635,38 @@ int main()
 	// ++test;
 	// std::cout << "after7 == " << test.get()->pt.first << std::endl;
 	
+	//test ->
+
+
+{
+	// ft::pair<int, int> test9;
+	// ft::avl_tree<ft::pair<const int, int> > a;
+	// a.insert(ft::pair<int, int>(9,90));
+	// ft::map_iterator<ft::avl_tree<ft::pair<const int, int> > > test = a.begin();
+	// std::map<int, int> 	x13;
+	// std::map<int, int>::iterator it =  x13.begin();
+	
+	// std::pair<const int, int> aaaa(5, 5);
+		//test->first;
+	// ft::value_type_test<ft::pair<int, int> t_t;
+	// std::cout << test->first << std::endl;
+	// it->swap(aaaa);
+	
+
+
+}
+
+{
+	//test operator
+	// ft::map<int, int> test1;
+	// ft::map<int, int>::iterator it = test1.begin();
+	
+	
 
 
 
+
+}
 
 	
 }

@@ -5,13 +5,18 @@
 
 namespace ft
 {
-template<class T, class U>
+template<class value_type>
 struct node
 {
 	public:
 	// T key;
 	// U value;
-	typedef ft::pair<const T, U>        			value_type;
+	// typedef ft::pair<const T, U>        			value_type;
+	// typedef T1  first_type;
+    //     typedef T2  second_type;
+	typedef typename value_type::first_type first_type;
+	typedef typename value_type::second_type second_type;
+
 	value_type		pt;
 	struct node    *parent;
 	int hight; // hight evry node
@@ -19,24 +24,30 @@ struct node
 	struct node    *left;
 	node(): parent(0), right(0), left(0) {}
 	node(value_type p): pt(p), parent(0), right(0), left(0) {}
-	node(const T &first, const U &second): pt(first, second), parent(0), right(0), left(0) {}
+	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0) {}
 };
 
 
 
-template<class key, class value>
+template<class value_type>
 class avl_tree
 {
 
 public:
 	typedef size_t                      							size_type;
-	typedef typename ft::node<key, value>::value_type        		value_type;
-	typedef key														key_type;
-	typedef value													mapped_value;
+	// typedef typename ft::node<value_type>::value_type        		value_type;
+	typedef typename node<value_type>::first_type							key_type;
+	typedef typename node<value_type>::second_type							mapped_value;
+	typedef	node<value_type>*										pointer_node;
+	typedef value_type* 											pointer;
+	// typedef typename pointer_node::first							first;
+	// typedef typename pointer_node::second							second;		
+
 	
 private:
-	struct node<key, value> *root; // underline containre
+	pointer_node root; // underline containre
 public:
+	size_t size;
 	avl_tree() : root(NULL)
 	{
 		std::cout << "default here" << std::endl;
@@ -52,16 +63,17 @@ public:
 	}
 	~avl_tree(){}
 	//getter
-	struct node<key, value> *get() const 
+	struct node<value_type> *get() const 
 	{
 		return root;
 	}
-
-	struct node<key, value> * copy_helper(node<key, value> *cp)
+	// const int get()->pt.first;
+	// #define a b
+	struct node<value_type> * copy_helper(node<value_type> *cp)
 	{
 		if (cp == NULL)
 			return NULL;
-		struct node<key, value> *copy = new node<key, value>(cp->pt.first, cp->pt.second);
+		struct node<value_type> *copy = new node<value_type>(cp->pt.first, cp->pt.second);
 		// copy->pt.first = cp->pt.first;
 		// copy->pt.second = cp->pt.second;
 		copy->hight = cp->hight;
@@ -71,7 +83,7 @@ public:
 		return copy;
 		
 	}
-	int bf(node<key, value> *&n)
+	int bf(node<value_type> *&n)
 	{
 		if (n->right && n->left)
 			return n->left->hight - n->right->hight;
@@ -82,10 +94,10 @@ public:
 		return 1;
 	}
 
-	struct node<key, value> *LLrotation(node<key, value> *n)
+	struct node<value_type> *LLrotation(node<value_type> *n)
 	{
-		struct node<key, value> *p;
-		struct node<key, value> *tm_p;
+		struct node<value_type> *p;
+		struct node<value_type> *tm_p;
 
 		p = n; //copy from our struct
 
@@ -97,10 +109,10 @@ public:
 		return tm_p;
 	}
 
-	struct node<key, value> *RRrotation(node<key, value> *n)
+	struct node<value_type> *RRrotation(node<value_type> *n)
 	{
-		struct node<key, value> *p;
-		struct node<key, value> *tm_p;
+		struct node<value_type> *p;
+		struct node<value_type> *tm_p;
 
 		p = n; // copy of out node
 		tm_p = p->right;
@@ -113,11 +125,11 @@ public:
 		return tm_p;
 	}
 
-	struct node<key, value> *RLrotation(node<key, value> *n)
+	struct node<value_type> *RLrotation(node<value_type> *n)
 	{
-		struct node<key, value> *p;
-		struct node<key, value> *tm_p;
-		struct node<key, value> *tm_p2;
+		struct node<value_type> *p;
+		struct node<value_type> *tm_p;
+		struct node<value_type> *tm_p2;
 
 		p = n; // first copy from n node
 		tm_p = p->right;
@@ -136,11 +148,11 @@ public:
 	}
 	
 
-	struct node<key, value> *LRrotation(node<key, value> *n)
+	struct node<value_type> *LRrotation(node<value_type> *n)
 	{
-		struct node<key, value> *p;
-		struct node<key, value> *tm_p;
-		struct node<key, value> *tm_p2;
+		struct node<value_type> *p;
+		struct node<value_type> *tm_p;
+		struct node<value_type> *tm_p2;
 
 		p = n;
 		tm_p = p->left;
@@ -156,13 +168,13 @@ public:
 		return tm_p2;
 	}
 
-	int  add_new(node<key, value> *&r, const value_type& val, struct node<key, value>   *parent)
+	int  add_new(node<value_type> *&r, const value_type& val, struct node<value_type>   *parent)
 	{
 		int ret;
 		if (r == NULL)
 	   {
 
-			r = new node<key, value>(ft::make_pair(val.first, val.second));
+			r = new node<value_type>(ft::make_pair(val.first, val.second));
 			// r->pt.first = val.first;
 			// r->pt.second =  val.second;
 			// r->pt = ;
@@ -194,7 +206,7 @@ public:
 	   return ret;
 	}
 
-	int cal_hight(node<key, value> *r)
+	int cal_hight(node<value_type> *r)
 	{
 		if (r->right && r->left)
 		{
@@ -220,7 +232,7 @@ public:
 		return ret;
 	}
 
-	struct node<key_type, value> *inorder_predecessor(struct node<key_type, value> *t)
+	struct node<value_type> *inorder_predecessor(struct node<value_type> *t)
 	{
 		//the largest element of the left sub tree.
 		while(t->right != NULL)
@@ -228,7 +240,7 @@ public:
 		return t;
 	}
 
-	struct node<key_type, value> *inorder_successor(struct node<key_type, value> *t)
+	struct node<value_type> *inorder_successor(struct node<value_type> *t)
 	{
 		//the smallest element of the right sub tree
 		while(t->left != NULL)
@@ -236,7 +248,7 @@ public:
 		return t;
 	}
 
-	struct node<key_type, value> *deleteNode(node<key_type, value> *r, key_type k)
+	struct node<value_type> *deleteNode(node<value_type> *r, key_type k)
 	{
 		if (r->right == NULL && r->left == NULL)
 		{
@@ -247,7 +259,7 @@ public:
 			}
 			return NULL;
 		}
-		struct node<key_type, value> *tmp;
+		struct node<value_type> *tmp;
 		if (k < r->pt.first)
 		{
 			std::cout << "left test" << std::endl;
@@ -298,7 +310,7 @@ public:
 		return 0;
 	}
 
-	// void print(node<key, value> * ptr)
+	// void print(node<value_type> * ptr)
 	// {
 	// 	if(ptr->parent != NULL)
 	// 	{
@@ -314,7 +326,7 @@ public:
 
 	// 	}
 	// }
-	// void test_plus_plus_1(node<key, value> * pr)
+	// void test_plus_plus_1(node<value_type> * pr)
 	// {
 	// 	if(pr->left == NULL && pr->right == NULL)
 	// 	{
@@ -349,7 +361,7 @@ public:
 		return (root->pt);
 	}
 
-	struct node<key, value> *operator->() const
+	pointer operator->()
 	{
 		return (&operator*());
 	}
@@ -367,7 +379,7 @@ public:
 	}
 	avl_tree &operator++()
 	{
-		struct node<key, value> *tmp;
+		struct node<value_type> *tmp;
 		//first check if node has right or not
 		if(root->right != NULL)
 		{
@@ -399,7 +411,7 @@ public:
 
 	avl_tree &operator--() // pre-operator -- 
 	{
-				struct node<key, value> *tmp;
+				struct node<value_type> *tmp;
 		//check left to return most left one
 		if(root->left != NULL)
 		{
@@ -429,7 +441,7 @@ public:
 		--(*this);
 		return _tmp;
 	}
-
+	
 	
 
 

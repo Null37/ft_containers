@@ -19,7 +19,7 @@ class my_iterator
 		typedef typename ft::iterator_traits<T>::difference_type	difference_type;
 		typedef typename ft::iterator_traits<T>::iterator_category 	iterator_category;
 	private:
-			iterator_type it;
+			iterator_type it; 
 	public:
 		//constaractors and destractor
 		my_iterator(){it = NULL;}

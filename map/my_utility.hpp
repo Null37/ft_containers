@@ -26,7 +26,9 @@ struct pair
         template<class U, class V> 
         pair (const pair<U, V>  &pr): first(pr.first), second(pr.second) {}// copy constructs
         pair (const first_type& a, const second_type& b) : first(a), second(b){} //initialization constructs
+        // private:
         ~pair(){} // dest
+        public:
         pair& operator= ( pair const &pr) // Assign operator
         {
             this->first =  pr.first;
