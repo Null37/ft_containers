@@ -658,32 +658,71 @@ int main()
 
 }
 
-{
-	//test operator
-	// ft::map<int, int> test1;
-	// ft::map<int, int>::iterator it = test1.begin();
+// {
+// 	//test operator
+// 	// ft::map<int, int> test1;
+// 	// ft::map<int, int>::iterator it = test1.begin();
 	
-	std::map<int, int> m;
+// 	std::map<long, int> m;
+// 	ft::map<long, int> test1;
 
-	std::cout << "size ==> " << m.size() << std::endl;
-	std::cout << std::boolalpha << m.empty() << std::endl;
-	std::cout << m.max_size() << std::endl;
-	size_t a = std::numeric_limits<int>::max();
-	size_t b = std::numeric_limits<int>::max();
-	unsigned long  c = a * b;
-	// size_t d = pow(2,64);
-	std::allocator<int> alloc;
-	std::cout << alloc.max_size() << std::endl;
-	// std::cout << std::numeric_limits<int>::max() << std::endl;
-	// std::cout << std::numeric_limits<int>::max() << std::endl;
-	// std::map<int, int>::iterator it = m.begin();
+// 	// // std::cout << "size ==> " << m.size() << std::endl;
+// 	// // std::cout << std::boolalpha << m.empty() << std::endl;
+// 	// std::cout << m.max_size() << std::endl;
+// 	// // size_t a = std::numeric_limits<int>::max();
+// 	// // size_t b = std::numeric_limits<int>::max();
+// 	// // unsigned long  c = a * b;
+// 	// // size_t d = pow(2,64);
+// 	// // std::allocator<std::pair<const int, int> > alloc;
+// 	// // std::cout << alloc.max_size() << std::endl;
+// 	// std::cout << test1.max_size() << std::endl;
+// 	// // std::cout << std::numeric_limits<int>::max() << std::endl;
+// 	// // std::cout << std::numeric_limits<int>::max() << std::endl;
+// 	// // std::map<int, int>::iterator it = m.begin();
+
+// 	// ft::vector<int> a(abc, abc, std::allocator<int>(), abc);
 
 
+// }
 
+{
+	// test operator
+	std::map<int, int> a;
+	a.insert(std::pair<int, int>(5, 90000));
+	// a.insert(std::pair<int, int>(5, 8888));
+
+	std::cout << a.size() << std::endl;
+	a[99] = 7;
+	std::map<int, int>::iterator  it =  a.begin();
+	it++;
+	std::cout <<  it->second << std::endl;
+	std::cout << a.size() << std::endl;
 
 }
-
 	
+	{
+		// ft::avl_tree<ft::pair<int, int> > test1;
+		// test1.insert(ft::pair<int, int>(9, 99990));
+		// test1.insert(ft::pair<int, int>(10, 90));
+		// test1.insert(ft::pair<int, int>(7, 90));
+		// try
+		// {
+		// 		test1.search(9, test1.get()) = 66;
+		// 		std::cout << test1.get()->pt.second << std::endl;
+		// }
+		// catch(...)
+		// {
+		// 	std::cerr << "lol" << '\n';
+		// }
+		// ft::map<int, int> a;
+		// a.insert(ft::pair<int, int>(9, 9996));
+		// a.insert(ft::pair<int, int>(10, 899010));
+		// a.insert(ft::pair<int, int>(7, 87777));
+		// a[999] = 5;
+
+
+
+	}
 }
 
 }

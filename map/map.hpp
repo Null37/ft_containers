@@ -51,14 +51,16 @@ template < class Key,                                     // map::key_type
 			private:
 				ft::avl_tree<value_type> 	tree_base;
 				size_type 					map_size;
+				allocator_type				alloc;
 			public:
 			// //Iterators function
 
 			// Constructs
 			explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 			{
-				tree_base = NULL;
+				// tree_base = NULL;
 				map_size = 0;
+				this->alloc = alloc;
 			}
 
 			template <class InputIterator>
@@ -120,7 +122,29 @@ template < class Key,                                     // map::key_type
 
 			size_type max_size() const
 			{
+				return alloc.max_size();
+			}
+
+			// Element access
+			mapped_type& operator[] (const key_type& k)
+			{
+				// find the element
+				try
+				{
+					return(tree_base.search(k, tree_base.get()));
+				}
+				catch(...) // else not found insert
+				{
+					tree_base.insert(ft::make_pair(k,mapped_type()));
+					std::cout << "key is  == > " << k << " value is == " << mapped_type() << std::endl;
+				}
+				return tree_base.root->pt.second;
 				
+			}
+
+			void insert(const value_type& val)
+			{
+				tree_base.insert(val);	
 			}
 
 

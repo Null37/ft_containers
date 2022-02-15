@@ -44,7 +44,6 @@ public:
 	// typedef typename pointer_node::second							second;		
 
 	
-private:
 	pointer_node root; // underline containre
 	bool is_del;
 public:
@@ -439,7 +438,7 @@ public:
 		return *this;
 	}
 
-
+	
 	avl_tree operator--(int)
 	{
 		avl_tree _tmp(*this);
@@ -447,8 +446,33 @@ public:
 		return _tmp;
 	}
 	
-	
-
+	mapped_value &search(const key_type& k, node<value_type> *r)
+	{
+		try
+		{
+			if(r && k == r->pt.first)
+			{
+				std::cout << "find" << std::endl;
+				return r->pt.second;
+			}
+			if (r && k < r->pt.first)
+			{
+				// std::cout << "lef" << std::endl;
+				return( search(k, r->left));
+			}
+			else if (r && k > r->pt.first)
+			{
+				return(search(k, r->right));
+			}
+			throw "Error";
+		}
+		catch(const char *s)
+		{
+			throw s;
+		}
+		// return r->pt;
+		
+	}
 
 
 	
