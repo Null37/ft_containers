@@ -4,6 +4,8 @@
 #include "map_iterator.hpp"
 #include "map.hpp"
 #include <vector>
+#include <math.h>
+#include <limits>
 
 #include <iterator>
 struct abc
@@ -663,7 +665,18 @@ int main()
 	
 	std::map<int, int> m;
 
-	std::map<int, int>::iterator it = m.begin();
+	std::cout << "size ==> " << m.size() << std::endl;
+	std::cout << std::boolalpha << m.empty() << std::endl;
+	std::cout << m.max_size() << std::endl;
+	size_t a = std::numeric_limits<int>::max();
+	size_t b = std::numeric_limits<int>::max();
+	unsigned long  c = a * b;
+	// size_t d = pow(2,64);
+	std::allocator<int> alloc;
+	std::cout << alloc.max_size() << std::endl;
+	// std::cout << std::numeric_limits<int>::max() << std::endl;
+	// std::cout << std::numeric_limits<int>::max() << std::endl;
+	// std::map<int, int>::iterator it = m.begin();
 
 
 

@@ -42,16 +42,35 @@ template < class Key,                                     // map::key_type
 			typedef const value_type&											const_reference;
 			typedef value_type*													pointer;
 			typedef	const value_type* 											const_pointer;	
-			typedef  ft::map_iterator<ft::avl_tree<value_type> > 				iterator;	//a bidirectional iterator to value_type
+			typedef ft::map_iterator<ft::avl_tree<value_type> > 				iterator;	//a bidirectional iterator to value_type
 			typedef ft::map_iterator<ft::avl_tree<const value_type> > 			const_iterator;	//a bidirectional iterator to value_type
 			typedef ft::reverse_iterator<iterator>								reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 			typedef typename iterator_traits<iterator>::difference_type			difference_type;
 			typedef size_t														size_type;
 			private:
-				ft::avl_tree<value_type> tree_base;
+				ft::avl_tree<value_type> 	tree_base;
+				size_type 					map_size;
 			public:
 			// //Iterators function
+
+			// Constructs
+			explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
+			{
+				tree_base = NULL;
+				map_size = 0;
+			}
+
+			template <class InputIterator>
+			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
+				const allocator_type& alloc = allocator_type())
+			{
+
+			}
+			map (const map& x)
+			{
+
+			}
 			iterator begin()
 			{
 				return (iterator(tree_base.begin()));
@@ -89,9 +108,20 @@ template < class Key,                                     // map::key_type
 			//Capacity function
 			bool empty() const
 			{
-				
+				if (tree_base.get() == NULL)
+					return true;
+				return false;
 			}
 
+			size_type size() const
+			{
+				return (this->map_size);
+			}
+
+			size_type max_size() const
+			{
+				
+			}
 
 
 	};
