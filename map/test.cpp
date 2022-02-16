@@ -751,8 +751,8 @@ int main()
 	test1.insert(ft::pair<int, int>(1, 90));
 	std::cout << test1.tree_base.root->pt.first << std::endl;
 	ft::pair<ft::map<int, int>::iterator, bool>  it = test1.insert(ft::pair<int, int>(3, 90));
-	// std::cout << "dyali === > " << it.first->first << std::endl;
-	// std::cout << "my==> "<<  std::boolalpha << it.second << std::endl;
+	std::cout << "dyali === > " << it.first->first << std::endl;
+	std::cout << "my==> "<<  std::boolalpha << it.second << std::endl;
 
 }
 
