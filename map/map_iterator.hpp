@@ -27,10 +27,7 @@ public:
 	// const int ft::pair<const int, int>::first;
 	map_iterator(){} // default
 	map_iterator(iterator_type cp): tree(cp){}
-	map_iterator(const map_iterator &cp_it) // copy constructor
-	{
-		this->tree(cp_it.tree);    
-	}
+	map_iterator(const map_iterator &cp_it):tree(cp_it.tree){} // copy constructor
 	void operator=(const map_iterator &cp_it) //
 	{
 		this->tree = cp_it.tree;

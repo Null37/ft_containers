@@ -458,11 +458,39 @@ public:
 			if (r && k < r->pt.first)
 			{
 				// std::cout << "lef" << std::endl;
-				return( search(k, r->left));
+				return(search(k, r->left));
 			}
 			else if (r && k > r->pt.first)
 			{
 				return(search(k, r->right));
+			}
+			throw "Error";
+		}
+		catch(const char *s)
+		{
+			throw s;
+		}
+		// return r->pt;
+	}
+
+	avl_tree search_uniq(const key_type& k, node<value_type> *r)
+	{
+		try
+		{
+			if(r && k == r->pt.first)
+			{
+				// std::cout << "find" << std::endl;
+				root = r;
+				return *this;
+			}
+			if (r && k < r->pt.first)
+			{
+				// std::cout << "lef" << std::endl;
+				return(search_uniq(k, r->left));
+			}
+			else if (r && k > r->pt.first)
+			{
+				return(search_uniq(k, r->right));
 			}
 			throw "Error";
 		}

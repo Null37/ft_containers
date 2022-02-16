@@ -128,7 +128,7 @@ template < class Key,                                     // map::key_type
 			// Element access
 			mapped_type& operator[] (const key_type& k)
 			{
-				// find the element
+				map_size++;
 				try
 				{
 					return(tree_base.search(k, tree_base.get()));
@@ -142,9 +142,37 @@ template < class Key,                                     // map::key_type
 				
 			}
 
-			void insert(const value_type& val)
+
+
+			ft::pair<iterator,bool> insert (const value_type& val)// single element (1)
 			{
-				tree_base.insert(val);	
+				bool ret = tree_base.insert(val);
+				iterator it = find(val.first);
+				return(ft::make_pair(it, ret));
+			}
+
+			iterator insert (iterator position, const value_type& val) //with hint (2)	
+			{
+				
+			}
+
+			// Operations functoion
+
+			iterator find (const key_type& k)
+			{
+				if(tree_base.root != NULL)
+				{
+					try
+					{
+						return (iterator(tree_base.search_uniq(k, tree_base.root)));
+					}
+					catch(const char *s)
+					{
+						return end();
+					}
+				}
+				else
+					return end();
 			}
 
 

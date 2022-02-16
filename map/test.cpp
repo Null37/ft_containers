@@ -6,6 +6,7 @@
 #include <vector>
 #include <math.h>
 #include <limits>
+#include "../vector/vector.hpp"
 
 #include <iterator>
 struct abc
@@ -576,7 +577,7 @@ int main()
 // }
 
 
-{
+// {
 	// // test operaror
 
 	// {
@@ -685,44 +686,86 @@ int main()
 
 // }
 
-{
-	// test operator
-	std::map<int, int> a;
-	a.insert(std::pair<int, int>(5, 90000));
-	// a.insert(std::pair<int, int>(5, 8888));
+// {
+// 	// test operator
+// 	std::map<int, int> a;
+// 	a.insert(std::pair<int, int>(5, 90000));
+// 	// a.insert(std::pair<int, int>(5, 8888));
 
-	std::cout << a.size() << std::endl;
-	a[99] = 7;
-	std::map<int, int>::iterator  it =  a.begin();
-	it++;
-	std::cout <<  it->second << std::endl;
-	std::cout << a.size() << std::endl;
+// 	std::cout << a.size() << std::endl;
+// 	a[99] = 7;
+// 	std::map<int, int>::iterator  it =  a.begin();
+// 	it++;
+// 	std::cout <<  it->second << std::endl;
+// 	std::cout << a.size() << std::endl;
 
-}
+// }
 	
-	{
-		// ft::avl_tree<ft::pair<int, int> > test1;
-		// test1.insert(ft::pair<int, int>(9, 99990));
-		// test1.insert(ft::pair<int, int>(10, 90));
-		// test1.insert(ft::pair<int, int>(7, 90));
-		// try
-		// {
-		// 		test1.search(9, test1.get()) = 66;
-		// 		std::cout << test1.get()->pt.second << std::endl;
-		// }
-		// catch(...)
-		// {
-		// 	std::cerr << "lol" << '\n';
-		// }
-		// ft::map<int, int> a;
-		// a.insert(ft::pair<int, int>(9, 9996));
-		// a.insert(ft::pair<int, int>(10, 899010));
-		// a.insert(ft::pair<int, int>(7, 87777));
-		// a[999] = 5;
+// 	{
+// 		// ft::avl_tree<ft::pair<int, int> > test1;
+// 		// test1.insert(ft::pair<int, int>(9, 99990));
+// 		// test1.insert(ft::pair<int, int>(10, 90));
+// 		// test1.insert(ft::pair<int, int>(7, 90));
+// 		// try
+// 		// {
+// 		// 		test1.search(9, test1.get()) = 66;
+// 		// 		std::cout << test1.get()->pt.second << std::endl;
+// 		// }
+// 		// catch(...)
+// 		// {
+// 		// 	std::cerr << "lol" << '\n';
+// 		// }
+// 		// ft::map<int, int> a;
+// 		// a.insert(ft::pair<int, int>(9, 9996));
+// 		// a.insert(ft::pair<int, int>(10, 899010));
+// 		// a.insert(ft::pair<int, int>(7, 87777));
+// 		// a[999] = 5;
 
 
 
-	}
+// 	}
+// }
+
+// test insert
+
+
+// {
+// 	std::map<int, int> test;
+
+
+// 	std::pair<std::map<int, int>::iterator, bool> ret = test.insert(std::pair<int, int>(9, 60));
+// 	std::pair<std::map<int, int>::iterator, bool> ret2 = test.insert(std::pair<int, int>(6, 60));
+
+// 	std::cout <<  ret.first->first << std::endl;
+// 	std::cout << ret2.first->first << std::endl;
+
+
+
+// }
+
+
+{
+	// ft::map<int, int> test1;
+	// test1.insert(ft::pair<int, int>(6, 90));
+	// test1.insert(ft::pair<int, int>(9, 90));
+	// test1.insert(ft::pair<int, int>(19, 90));
+
+	// ft::map<int, int>::iterator it = test1.find(9);
+	// std::cout << it->first << std::endl;
+
 }
+
+{
+	std::map<int, int> test1;
+	test1.insert(std::pair<int, int>(6, 90));
+	test1.insert(std::pair<int, int>(9, 90));
+	test1.insert(std::pair<int, int>(19, 90));
+
+	std::pair<std::map<int, int>::iterator, bool>  it = test1.insert(std::pair<int, int>(9, 80));
+	std::cout << it.first->first << std::endl;
+	std::cout << std::boolalpha << it.second << std::endl;
+
+}
+
 
 }
