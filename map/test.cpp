@@ -745,27 +745,28 @@ int main()
 
 
 {
-	// ft::map<int, int> test1;
-	// test1.insert(ft::pair<int, int>(6, 90));
-	// test1.insert(ft::pair<int, int>(9, 90));
-	// test1.insert(ft::pair<int, int>(19, 90));
-
-	// ft::map<int, int>::iterator it = test1.find(9);
-	// std::cout << it->first << std::endl;
-
-}
-
-{
-	std::map<int, int> test1;
-	test1.insert(std::pair<int, int>(6, 90));
-	test1.insert(std::pair<int, int>(9, 90));
-	test1.insert(std::pair<int, int>(19, 90));
-
-	std::pair<std::map<int, int>::iterator, bool>  it = test1.insert(std::pair<int, int>(9, 80));
-	std::cout << it.first->first << std::endl;
-	std::cout << std::boolalpha << it.second << std::endl;
+	ft::map<int, int> test1;
+	test1.insert(ft::pair<int, int>(3, 90));
+	test1.insert(ft::pair<int, int>(2, 90));
+	test1.insert(ft::pair<int, int>(1, 90));
+	std::cout << test1.tree_base.root->pt.first << std::endl;
+	ft::pair<ft::map<int, int>::iterator, bool>  it = test1.insert(ft::pair<int, int>(3, 90));
+	// std::cout << "dyali === > " << it.first->first << std::endl;
+	// std::cout << "my==> "<<  std::boolalpha << it.second << std::endl;
 
 }
+
+// {
+// 	std::map<int, int> test1;
+// 	test1.insert(std::pair<int, int>(6, 90));
+// 	test1.insert(std::pair<int, int>(9, 90));
+// 	test1.insert(std::pair<int, int>(19, 90));
+
+// 	std::pair<std::map<int, int>::iterator, bool>  it = test1.insert(std::pair<int, int>(9, 80));
+// 	std::cout << it.first->first << std::endl;
+// 	std::cout << std::boolalpha << it.second << std::endl;
+
+// }
 
 
 }

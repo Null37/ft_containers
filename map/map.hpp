@@ -48,7 +48,7 @@ template < class Key,                                     // map::key_type
 			typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 			typedef typename iterator_traits<iterator>::difference_type			difference_type;
 			typedef size_t														size_type;
-			private:
+			public:
 				ft::avl_tree<value_type> 	tree_base;
 				size_type 					map_size;
 				allocator_type				alloc;
@@ -147,14 +147,15 @@ template < class Key,                                     // map::key_type
 			ft::pair<iterator,bool> insert (const value_type& val)// single element (1)
 			{
 				bool ret = tree_base.insert(val);
+				std::cout << std::boolalpha <<  "insert ==>  " <<  ret << std::endl;
 				iterator it = find(val.first);
-				return(ft::make_pair(it, ret));
+				 return(ft::make_pair(it, ret));
 			}
 
-			iterator insert (iterator position, const value_type& val) //with hint (2)	
-			{
-				
-			}
+			// iterator insert (iterator position, const value_type& val) //with hint (2)	
+			// {
+
+			// }
 
 			// Operations functoion
 

@@ -25,6 +25,13 @@ struct node
 	node(): parent(0), right(0), left(0) {}
 	node(value_type p): pt(p), parent(0), right(0), left(0) {}
 	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0) {}
+	void operator==(const node cp)
+	{
+		this->pt = cp.pt;
+		right = cp.right;
+		parent = cp.parent;
+		left = cp.left;
+	}
 };
 
 
@@ -50,11 +57,11 @@ public:
 	size_t size;
 	avl_tree() : root(NULL)
 	{
-		std::cout << "default here" << std::endl;
+		// std::cout << "default here" << std::endl;
 	}
 	avl_tree(const avl_tree &at)
 	{
-		std::cout << "copy const" << std::endl;
+		// std::cout << "copy const" << std::endl;
 		*this = at;
 	}
 	void operator=(const avl_tree &at)
@@ -105,7 +112,7 @@ public:
 		p->left = tm_p->right;
 
 		tm_p->right = p;
-		std::cout << "left - left rotation" << std::endl;
+		// std::cout << "left - left rotation" << std::endl;
 		return tm_p;
 	}
 
@@ -121,7 +128,7 @@ public:
 
 		tm_p->left = p;
 
-		std::cout << "right - right rotation" << std::endl;
+		// std::cout << "right - right rotation" << std::endl;
 		return tm_p;
 	}
 
@@ -142,7 +149,7 @@ public:
 		tm_p2->left = p;
 		tm_p2->right = tm_p;
 
-		std::cout << "right-left rotation" << std::endl;
+		// std::cout << "right-left rotation" << std::endl;
 		return tm_p2;
 
 	}
@@ -164,21 +171,18 @@ public:
 		tm_p2->right =  p;
 		tm_p2->left  = tm_p;
 
-		std::cout << "left-right rotation" << std::endl;
+		// std::cout << "left-right rotation" << std::endl;
 		return tm_p2;
 	}
 
-	int  add_new(node<value_type> *&r, const value_type& val, struct node<value_type>   *parent)
+	bool  add_new(node<value_type> *&r, const value_type& val, struct node<value_type>   *parent)
 	{
-		int ret;
+		bool ret = false;
+		
 		if (r == NULL)
 	   {
 
 			r = new node<value_type>(ft::make_pair(val.first, val.second));
-			// r->pt.first = val.first;
-			// r->pt.second =  val.second;
-			// r->pt = ;
-
 			r->hight = 1;
 			r->parent = parent;
 			r->right = NULL;
@@ -188,13 +192,18 @@ public:
 	   else
 	   {
 		  if(val.first == r->pt.first)
+		  {
+			 	std::cout << "why not here" << std::endl;
 		  		return false; 
+		  }
 			else if  (val.first > r->pt.first)
 				ret = add_new(r->right, val, r);
-			else
+			else if (val.first < r->pt.first)
 				ret = add_new(r->left, val, r);
 	   }
-	   r->hight = cal_hight(r);
+	   if(ret == false)
+	   		return ret;
+	   	r->hight = cal_hight(r);
 	   	if (bf(r) == 2 && bf(r->left) == 1)
 			r = LLrotation(r); // left-left rotation
 		else if (bf(r) == -2 && bf(r->right) == -1)
@@ -227,7 +236,7 @@ public:
 	bool insert (const value_type& val) // add deletion
 	{
 
-		int ret = add_new(root, val, NULL);
+		bool ret = add_new(root, val, NULL);
 		// if (ret == true )
 		// size++;
 		return ret;
@@ -480,8 +489,9 @@ public:
 			if(r && k == r->pt.first)
 			{
 				// std::cout << "find" << std::endl;
-				root = r;
-				return *this;
+				avl_tree tmp;
+				tmp.root  = r;
+				return tmp;
 			}
 			if (r && k < r->pt.first)
 			{
