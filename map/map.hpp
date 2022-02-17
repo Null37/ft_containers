@@ -63,16 +63,16 @@ template < class Key,                                     // map::key_type
 				this->alloc = alloc;
 			}
 
-			template <class InputIterator>
-			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
-				const allocator_type& alloc = allocator_type())
-			{
+			// template <class InputIterator>
+			// map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
+			// 	const allocator_type& alloc = allocator_type())
+			// {
 
-			}
-			map (const map& x)
-			{
+			// }
+			// map (const map& x)
+			// {
 
-			}
+			// }
 			iterator begin()
 			{
 				return (iterator(tree_base.begin()));
@@ -141,6 +141,7 @@ template < class Key,                                     // map::key_type
 				return tree_base.root->pt.second;
 				
 			}
+			// Modifiers:
 
 			ft::pair<iterator,bool> insert (const value_type& val) // single element (1)
 			{
@@ -156,9 +157,16 @@ template < class Key,                                     // map::key_type
 				tree_base.insert(val);
 				return (find(val.first));
 			}
-
+			template <class InputIterator>
+  			void insert (InputIterator first, InputIterator last)
+			{
+				for(; first != last; first++)
+				{
+					tree_base.insert(*first);
+				}
+				
+			}
 			// Operations functoion
-
 			iterator find (const key_type& k)
 			{
 				if(tree_base.root != NULL)

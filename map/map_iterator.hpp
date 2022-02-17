@@ -21,7 +21,7 @@ public:
 	typedef ptrdiff_t											difference_type;
 	typedef	avl_base&											reference;
 
-private:
+public:
 	iterator_type tree;
 public:
 	// const int ft::pair<const int, int>::first;
@@ -57,12 +57,14 @@ public:
 	map_iterator &operator++()		//prefix oprator ++ mean ++a;
 	{
 		++tree;
+		// tree.operator++();
 		return(*this);
 	}
 	map_iterator operator++(int) // // post-operator ++ mean a++
 	{
 		map_iterator	_tmp(*this);
 		++(*this);
+		// std::cout << "tmp ==> " << _tmp.tree.root->pt.first << std::endl;
 		return _tmp;
 	}
 

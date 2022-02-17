@@ -773,38 +773,104 @@ int main()
 
 // test type 2 inser hint
 
+// {
+// 	std::map<int, int> test;
+// 	test.insert(std::pair<int, int>(3, 70));
+// 	test.insert(std::pair<int, int>(2, 70));
+// 	test.insert(std::pair<int, int>(1, 70));
+
+
+// 	// std::cout << test.begin()->first << std::endl; 
+// 	std::map<int, int>::iterator a =  test.insert(test.begin(), std::pair<int, int>(3, 70));
+// 	std::cout << "org ==== > " << a->first << std::endl;
+// 	// test.insert(test.begin(), std::pair<int, int>(4, 70));
+// 	// std::cout <<  << std::endl; 
+// 	// test.insert(test.begin(), std::pair<int, int>(9, 70));
+// 	// std::cout << "test    " <<  test.begin()->first << std::endl;
+
+// }
+
+// {
+// 	ft::map<int, int> test;
+// 	test.insert(ft::pair<int, int>(3, 70));
+// 	test.insert(ft::pair<int, int>(2, 70));
+// 	test.insert(ft::pair<int, int>(1, 70));
+
+
+// 	// ft::cout << test.begin()->first << ft::endl; 
+// 	ft::map<int, int>::iterator a =  test.insert(test.begin(), ft::pair<int, int>(3, 70));
+// 	std::cout << "my ==== > " << a->first << std::endl;
+// 	// test.insert(test.begin(), std::pair<int, int>(4, 70));
+// 	// std::cout <<  << std::endl; 
+// 	// test.insert(test.begin(), std::pair<int, int>(9, 70));
+// 	// std::cout << "test    " <<  test.begin()->first << std::endl;
+// }
+
+
+// test insert 3
 {
-	std::map<int, int> test;
-	test.insert(std::pair<int, int>(3, 70));
-	test.insert(std::pair<int, int>(2, 70));
-	test.insert(std::pair<int, int>(1, 70));
+	// std::map<int, int> test;
+	// std::map<int, int> test2;
+	// test.insert(std::pair<int, int>(3, 22));
+	// test.insert(std::pair<int, int>(2, 22));
+	// test.insert(std::pair<int, int>(1, 22));
+	// test.insert(std::pair<int, int>(4, 22));
 
+	// std::map<int, int>::iterator it  = test.begin();
+	// test2.insert(it, test.end());
+	// std::map<int, int>::iterator it2  = test2.begin();
 
-	// std::cout << test.begin()->first << std::endl; 
-	std::map<int, int>::iterator a =  test.insert(test.begin(), std::pair<int, int>(3, 70));
-	std::cout << "org ==== > " << a->first << std::endl;
-	// test.insert(test.begin(), std::pair<int, int>(4, 70));
-	// std::cout <<  << std::endl; 
-	// test.insert(test.begin(), std::pair<int, int>(9, 70));
-	// std::cout << "test    " <<  test.begin()->first << std::endl;
+	// // test 
+	// for(; it2 != test2.end(); it2++)
+	// {
+	// 	std::cout << "org => " << it2->first <<  std::endl;
+	// }
+	// std::map<int, int> test;
+	// std::map<int, int> test2;
+	// test.insert(std::pair<int, int>(3, 22));
+	// test.insert(std::pair<int, int>(2, 22));
+	// test.insert(std::pair<int, int>(1, 22));
+	// test.insert(std::pair<int, int>(4, 22));
 
+	// std::map<int, int>::iterator it  = test.begin();
+	// test2.insert(test.begin(), test.end());
+	// std::map<int, int>::iterator it2  = test2.begin();
+	// for(; it2 != test2.end(); it2++)
+	// {
+	// 	// std::cout << "Null> " << it2.tree.root << std::endl;
+	// 	std::cout << "org ===> " << it2->first  << std::endl;
+	// }
 }
-
 {
 	ft::map<int, int> test;
-	test.insert(ft::pair<int, int>(3, 70));
-	test.insert(ft::pair<int, int>(2, 70));
-	test.insert(ft::pair<int, int>(1, 70));
+	ft::map<int, int> test2;
+	test.insert(ft::pair<int, int>(3, 22));
+	test.insert(ft::pair<int, int>(2, 22));
+	test.insert(ft::pair<int, int>(1, 22));
+	test.insert(ft::pair<int, int>(4, 22));
 
-
-	// ft::cout << test.begin()->first << ft::endl; 
-	ft::map<int, int>::iterator a =  test.insert(test.begin(), ft::pair<int, int>(3, 70));
-	std::cout << "my ==== > " << a->first << std::endl;
-	// test.insert(test.begin(), std::pair<int, int>(4, 70));
-	// std::cout <<  << std::endl; 
-	// test.insert(test.begin(), std::pair<int, int>(9, 70));
-	// std::cout << "test    " <<  test.begin()->first << std::endl;
+	ft::map<int, int>::iterator it  = test.begin();
+	std::cout << "lol ==> " << it->first << std::endl;
+	test2.insert(it, test.end());
+	ft::map<int, int>::iterator it2  = test2.begin();
+	std::cout << it2->first << std::endl;
+	for(; it2 != test2.end(); it2++)
+	{
+		// std::cout << "Null> " << it2.tree.root << std::endl;
+		std::cout << "my ===> " << it2->first  << std::endl;
+	}
+	// 	std::cout << "Null> " << it2.tree.root << std::endl;
+	// test 
+	// ft::map<int, int>::iterator it2  = test2.begin();
+	// std::cout << "my ==>"  << it2->first <<  std::endl;
+	// it2++;
+	// std::cout << "my ==>"  << it2->first <<  std::endl;
+// 	for( it2 != test2.end(); it2++)
+// 	{
+		
+// 	}
 }
+
 
 
 }

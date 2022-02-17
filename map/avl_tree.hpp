@@ -64,6 +64,9 @@ public:
 		// std::cout << "copy const" << std::endl;
 		*this = at;
 	}
+	avl_tree(const pointer_node &at): root(at)
+	{
+	}
 	void operator=(const avl_tree &at)
 	{
 		this->root = copy_helper(at.root);
@@ -178,7 +181,6 @@ public:
 	bool  add_new(node<value_type> *&r, const value_type& val, struct node<value_type>   *parent)
 	{
 		bool ret = false;
-		
 		if (r == NULL)
 	   {
 
@@ -235,7 +237,7 @@ public:
 
 	bool insert (const value_type& val) // add deletion
 	{
-
+		// std::cout << "dkhal ==> " << val.first << std::endl;
 		bool ret = add_new(root, val, NULL);
 		// if (ret == true )
 		// size++;
@@ -382,8 +384,9 @@ public:
 	//preoprator ++ mean ++a;
 	avl_tree begin()
 	{
-		root = inorder_successor(root);
-		return *this;
+		pointer_node _tmp = root;
+		_tmp = inorder_successor(_tmp);
+		return avl_tree(_tmp);
 	}
 
 	avl_tree end()
