@@ -817,6 +817,10 @@ int main()
 	// test.insert(std::pair<int, int>(4, 22));
 
 	// std::map<int, int>::iterator it  = test.begin();
+
+	// std::cout << "add1: " << &it << std::endl;
+	// it  = test.begin();
+	// std::cout << "add1: " << &it << std::endl;
 	// test2.insert(it, test.end());
 	// std::map<int, int>::iterator it2  = test2.begin();
 
@@ -850,15 +854,37 @@ int main()
 	test.insert(ft::pair<int, int>(4, 22));
 
 	ft::map<int, int>::iterator it  = test.begin();
-	std::cout << "lol ==> " << it->first << std::endl;
-	test2.insert(it, test.end());
-	ft::map<int, int>::iterator it2  = test2.begin();
-	std::cout << it2->first << std::endl;
-	for(; it2 != test2.end(); it2++)
-	{
-		// std::cout << "Null> " << it2.tree.root << std::endl;
-		std::cout << "my ===> " << it2->first  << std::endl;
-	}
+	// // while (it != test.end())
+	// // {
+	// // 	std::cout << it->first << "\n";
+	// // 	it++;
+	// // }
+	
+	// std::cout << &it << "\n";
+	// it  = test.begin();
+	// std::cout << &it << "\n";
+	// std::cout << "lol ==> " << it->first << std::endl;
+	// test2.insert(it, test.end());
+	// // test2.insert(ft::pair<int, int>(3, 22));
+	// // test2.insert(ft::pair<int, int>(2, 22));
+	// // test2.insert(ft::pair<int, int>(1, 22));
+	// // test2.insert(ft::pair<int, int>(4, 22));
+	// ft::map<int, int>::iterator it2  = test2.begin();
+
+	// while (it2 != test2.end())
+	// {
+	// 	std::cout << it2->first << "\n";
+	// 	it2++;
+	// }
+	// ft::map<int, int>::iterator it2  = test2.begin();
+	// std::cout << "lol ==> " << it2->first << std::endl;
+
+	// // std::cout << it2->first << std::endl;
+	// for(; it2 != test2.end(); it2++)
+	// {
+	// 	// std::cout << "Null> " << it2.tree.root << std::endl;
+	// 	std::cout << "my ===> " << it2->first  << std::endl;
+	// }
 	// 	std::cout << "Null> " << it2.tree.root << std::endl;
 	// test 
 	// ft::map<int, int>::iterator it2  = test2.begin();

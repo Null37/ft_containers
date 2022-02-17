@@ -16,6 +16,8 @@ struct node
     //     typedef T2  second_type;
 	typedef typename value_type::first_type first_type;
 	typedef typename value_type::second_type second_type;
+	typedef	node<value_type>*										pointer_node;
+
 
 	value_type		pt;
 	struct node    *parent;
@@ -23,8 +25,16 @@ struct node
 	struct node    *right;
 	struct node    *left;
 	node(): parent(0), right(0), left(0) {}
+	node(const m &at)
+	{
+		std::cout << "loooooooool" << "\n";
+	}
 	node(value_type p): pt(p), parent(0), right(0), left(0) {}
 	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0) {}
+	// node(const node)
+	// {
+	// 	std::cout << "here 123" << std::endl'
+	// }
 	void operator==(const node cp)
 	{
 		this->pt = cp.pt;
@@ -50,7 +60,7 @@ public:
 	// typedef typename pointer_node::first							first;
 	// typedef typename pointer_node::second							second;		
 
-	
+public:
 	pointer_node root; // underline containre
 	bool is_del;
 public:
@@ -66,6 +76,7 @@ public:
 	}
 	avl_tree(const pointer_node &at): root(at)
 	{
+		// std::cout << "fuck" << "\n";
 	}
 	void operator=(const avl_tree &at)
 	{
@@ -252,9 +263,11 @@ public:
 		return t;
 	}
 
-	struct node<value_type> *inorder_successor(struct node<value_type> *t)
+	struct node<value_type> *inorder_successor(struct node<value_type> *tc)
 	{
 		//the smallest element of the right sub tree
+		struct node<value_type> *t = tc;
+
 		while(t->left != NULL)
 			t = t->left;
 		return t;
@@ -384,9 +397,7 @@ public:
 	//preoprator ++ mean ++a;
 	avl_tree begin()
 	{
-		pointer_node _tmp = root;
-		_tmp = inorder_successor(_tmp);
-		return avl_tree(_tmp);
+		return avl_tree(inorder_successor(root));
 	}
 
 	avl_tree end()

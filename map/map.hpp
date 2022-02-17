@@ -77,10 +77,10 @@ template < class Key,                                     // map::key_type
 			{
 				return (iterator(tree_base.begin()));
 			}
-			const_iterator begin() const
-			{
-				return (const_iterator(tree_base.begin()));
-			}
+			// const_iterator begin() const
+			// {
+			// 	return (const_iterator(tree_base.begin()));
+			// }
 			iterator end()
 			{
 				return (iterator(tree_base.end()));
@@ -160,9 +160,10 @@ template < class Key,                                     // map::key_type
 			template <class InputIterator>
   			void insert (InputIterator first, InputIterator last)
 			{
-				for(; first != last; first++)
+				while(first != last)
 				{
-					tree_base.insert(*first);
+					tree_base.insert(ft::make_pair(first->first, first->second));
+					first++;
 				}
 				
 			}
