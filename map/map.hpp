@@ -142,8 +142,6 @@ template < class Key,                                     // map::key_type
 				
 			}
 
-
-
 			ft::pair<iterator,bool> insert (const value_type& val) // single element (1)
 			{
 				bool ret = tree_base.insert(val);
@@ -154,8 +152,9 @@ template < class Key,                                     // map::key_type
 
 			iterator insert (iterator position, const value_type& val) //with hint (2)	
 			{
-				// first check if hint is correct
-				
+				static_cast<void>(position);
+				tree_base.insert(val);
+				return (find(val.first));
 			}
 
 			// Operations functoion

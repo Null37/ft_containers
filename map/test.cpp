@@ -780,16 +780,30 @@ int main()
 	test.insert(std::pair<int, int>(1, 70));
 
 
-	std::cout << test.begin()->first << std::endl; 
-	test.insert(test.begin(), std::pair<int, int>(4, 70));
+	// std::cout << test.begin()->first << std::endl; 
+	std::map<int, int>::iterator a =  test.insert(test.begin(), std::pair<int, int>(3, 70));
+	std::cout << "org ==== > " << a->first << std::endl;
+	// test.insert(test.begin(), std::pair<int, int>(4, 70));
 	// std::cout <<  << std::endl; 
 	// test.insert(test.begin(), std::pair<int, int>(9, 70));
-	std::cout << "test    " <<  test.begin()->first << std::endl;
+	// std::cout << "test    " <<  test.begin()->first << std::endl;
 
 }
 
 {
+	ft::map<int, int> test;
+	test.insert(ft::pair<int, int>(3, 70));
+	test.insert(ft::pair<int, int>(2, 70));
+	test.insert(ft::pair<int, int>(1, 70));
 
+
+	// ft::cout << test.begin()->first << ft::endl; 
+	ft::map<int, int>::iterator a =  test.insert(test.begin(), ft::pair<int, int>(3, 70));
+	std::cout << "my ==== > " << a->first << std::endl;
+	// test.insert(test.begin(), std::pair<int, int>(4, 70));
+	// std::cout <<  << std::endl; 
+	// test.insert(test.begin(), std::pair<int, int>(9, 70));
+	// std::cout << "test    " <<  test.begin()->first << std::endl;
 }
 
 
