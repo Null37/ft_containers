@@ -193,7 +193,7 @@ public:
 	   {
 		  if(val.first == r->pt.first)
 		  {
-			 	std::cout << "why not here" << std::endl;
+			 	// std::cout << "why not here" << std::endl;
 		  		return false; 
 		  }
 			else if  (val.first > r->pt.first)
@@ -265,7 +265,7 @@ public:
 			if(k == r->pt.first)
 			{
 				is_del = true;
-				std::cout << "here" << std::endl;
+				// std::cout << "here" << std::endl;
 				delete r;
 			}
 			else
@@ -275,12 +275,12 @@ public:
 		struct node<value_type> *tmp;
 		if (k < r->pt.first)
 		{
-			std::cout << "left test" << std::endl;
+			// std::cout << "left test" << std::endl;
 			r->left = deleteNode(r->left, k);
 		}
 		else if (k > r->pt.first)
 		{
-			std::cout << "right test" << std::endl;
+			// std::cout << "right test" << std::endl;
 			r->right = deleteNode(r->right, k);
 		}
 		else
@@ -369,7 +369,7 @@ public:
 
 	value_type& operator*() const
 	{
-		std::cout << "heree" << std::endl;
+		// std::cout << "heree" << std::endl;
 		
 		return (root->pt);
 	}

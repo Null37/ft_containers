@@ -743,30 +743,54 @@ int main()
 
 // }
 
+// test  type 1  insert
 
-{
-	ft::map<int, int> test1;
-	test1.insert(ft::pair<int, int>(3, 90));
-	test1.insert(ft::pair<int, int>(2, 90));
-	test1.insert(ft::pair<int, int>(1, 90));
-	std::cout << test1.tree_base.root->pt.first << std::endl;
-	ft::pair<ft::map<int, int>::iterator, bool>  it = test1.insert(ft::pair<int, int>(3, 90));
-	std::cout << "dyali === > " << it.first->first << std::endl;
-	std::cout << "my==> "<<  std::boolalpha << it.second << std::endl;
+// {
+// 	ft::map<int, int> test1;
+// 	test1.insert(ft::pair<int, int>(3, 390));
+// 	test1.insert(ft::pair<int, int>(2, 290));
+// 	test1.insert(ft::pair<int, int>(1, 190));
+// 	// std::cout << test1.tree_base.root->pt.first << std::endl;
+// 	ft::pair<ft::map<int, int>::iterator, bool>  it = test1.insert(ft::pair<int, int>(3, 90));
+// 	std::cout << "my === > " << it.first->first << std::endl;
+// 	std::cout << "my === > " <<  std::boolalpha << it.second << std::endl;
 
-}
+// }
 
 // {
 // 	std::map<int, int> test1;
-// 	test1.insert(std::pair<int, int>(6, 90));
-// 	test1.insert(std::pair<int, int>(9, 90));
-// 	test1.insert(std::pair<int, int>(19, 90));
 
-// 	std::pair<std::map<int, int>::iterator, bool>  it = test1.insert(std::pair<int, int>(9, 80));
-// 	std::cout << it.first->first << std::endl;
-// 	std::cout << std::boolalpha << it.second << std::endl;
+// 	test1.insert(std::pair<int, int>(3, 90));
+// 	test1.insert(std::pair<int, int>(2, 90));
+// 	test1.insert(std::pair<int, int>(1, 90));
+
+// 	std::pair<std::map<int, int>::iterator, bool>  it = test1.insert(std::pair<int, int>(3, 80));
+// 	std::cout << "org ===> " << it.first->first << std::endl;
+// 	std::cout << "org == > "  << std::boolalpha << it.second << std::endl;
 
 // }
+
+
+// test type 2 inser hint
+
+{
+	std::map<int, int> test;
+	test.insert(std::pair<int, int>(3, 70));
+	test.insert(std::pair<int, int>(2, 70));
+	test.insert(std::pair<int, int>(1, 70));
+
+
+	std::cout << test.begin()->first << std::endl; 
+	test.insert(test.begin(), std::pair<int, int>(4, 70));
+	// std::cout <<  << std::endl; 
+	// test.insert(test.begin(), std::pair<int, int>(9, 70));
+	std::cout << "test    " <<  test.begin()->first << std::endl;
+
+}
+
+{
+
+}
 
 
 }

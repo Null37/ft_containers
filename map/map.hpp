@@ -144,18 +144,19 @@ template < class Key,                                     // map::key_type
 
 
 
-			ft::pair<iterator,bool> insert (const value_type& val)// single element (1)
+			ft::pair<iterator,bool> insert (const value_type& val) // single element (1)
 			{
 				bool ret = tree_base.insert(val);
-				std::cout << std::boolalpha <<  "insert ==>  " <<  ret << std::endl;
+				// std::cout << std::boolalpha <<  "insert ==>  " <<  ret << std::endl;
 				iterator it = find(val.first);
 				 return(ft::make_pair(it, ret));
 			}
 
-			// iterator insert (iterator position, const value_type& val) //with hint (2)	
-			// {
-
-			// }
+			iterator insert (iterator position, const value_type& val) //with hint (2)	
+			{
+				// first check if hint is correct
+				
+			}
 
 			// Operations functoion
 
