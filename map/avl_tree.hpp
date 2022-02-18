@@ -123,9 +123,9 @@ public:
 		p = n; //copy from our struct
 
 		tm_p = p->left;
-		// tm_p->parent = p->parent;
+		tm_p->parent = p->parent;
 		p->left = tm_p->right;
-		// p->left->parent = tm_p->right->parent;
+		p->parent = tm_p;
 
 
 		tm_p->right = p;
@@ -139,10 +139,12 @@ public:
 		struct node<value_type> *tm_p;
 
 		p = n; // copy of out node
+
+
 		tm_p = p->right;
-		// tm_p->parent = p->parent;
+		tm_p->parent = p->parent;
 		p->right = tm_p->left;
-		// p->right->parent = tm_p->left->parent;
+		p->parent = tm_p;
 
 
 		tm_p->left = p;
