@@ -161,9 +161,7 @@ public:
 
 		p = n; // first copy from n node
 		tm_p = p->right;
-	//	tm_p->parent = p->parent;
 		tm_p2 = tm_p->left;
-		// tm_p2->parent = p->parent;
 
 		p->right = tm_p2->left;
 		tm_p2->left->parent = p;
@@ -174,8 +172,8 @@ public:
 		tm_p2->left = p;
 		tm_p2->left->parent = tm_p2;
 		tm_p2->right = tm_p;
-		tm_p2->right->parent = tm_p;
-
+		tm_p2->right->parent = tm_p2;
+		tm_p2->parent = NULL; // null for root tree
 
 		// std::cout << "right-left rotation" << std::endl;
 		return tm_p2;
@@ -189,21 +187,21 @@ public:
 		struct node<value_type> *tm_p;
 		struct node<value_type> *tm_p2;
 
-		p = n;
+		p = n; // copy node 
 		tm_p = p->left;
-		// tm_p->parent = p->parent;
 		tm_p2 = tm_p->right;
+
+		//  start edit 
 		p->left = tm_p2->right;
-		// p->left->parent = tm_p2->right->parent;
+		tm_p2->right->parent = p;
 		tm_p->right = tm_p2->left;
-		// tm_p->right->parent = tm_p2->left->parent;
+		tm_p2->left->parent = tm_p;
 
-
-
-		tm_p2->right = p;
-		// tm_p2->right->parent =  p->parent;
+		tm_p2->right = p; 
+		tm_p2->right->parent = tm_p2;
 		tm_p2->left  = tm_p;
-		// tm_p2->left->parent  = tm_p->parent;
+		tm_p2->left->parent  = tm_p2;
+		tm_p2->parent = NULL;   // null for root tree
 
 		// std::cout << "left-right rotation" << std::endl;
 		return tm_p2;
