@@ -809,6 +809,36 @@ int main()
 
 // test insert 3
 {
+// 	std::map<int, int> test;
+// 	std::map<int, int> test2;
+// 	test.insert(std::pair<int, int>(3, 22));
+// 	test.insert(std::pair<int, int>(2, 22));
+// 	test.insert(std::pair<int, int>(1, 22));
+// 	test.insert(std::pair<int, int>(4, 22));
+
+// 	std::map<int, int>::iterator it  = test.begin();
+// 	// // while (it != test.end())
+// 	// // {
+// 	// // 	std::cout << it->first << "\n";
+// 	// // 	it++;
+// 	// // }
+	
+// 	std::cout << &it << "\n";
+// 	it  = test.begin();
+// 	std::cout << &it << "\n";
+// 	std::cout << "lol ==> " << it->first << std::endl;
+// 	test2.insert(it, test.end());
+// 	// test2.insert(std::pair<int, int>(3, 22));
+// 	// test2.insert(std::pair<int, int>(2, 22));
+// 	// test2.insert(std::pair<int, int>(1, 22));
+// 	// test2.insert(std::pair<int, int>(4, 22));
+// 	std::map<int, int>::iterator it2  = test2.begin();
+
+// 	while (it2 != test2.end())
+// 	{
+// 		std::cout << it2->first << "\n";
+// 		it2++;
+// 	}
 	// std::map<int, int> test;
 	// std::map<int, int> test2;
 	// test.insert(std::pair<int, int>(3, 22));
@@ -860,22 +890,22 @@ int main()
 	// // 	it++;
 	// // }
 	
-	// std::cout << &it << "\n";
-	// it  = test.begin();
-	// std::cout << &it << "\n";
-	// std::cout << "lol ==> " << it->first << std::endl;
-	// test2.insert(it, test.end());
-	// // test2.insert(ft::pair<int, int>(3, 22));
-	// // test2.insert(ft::pair<int, int>(2, 22));
-	// // test2.insert(ft::pair<int, int>(1, 22));
-	// // test2.insert(ft::pair<int, int>(4, 22));
-	// ft::map<int, int>::iterator it2  = test2.begin();
+	std::cout << &it << "\n";
+	it  = test.begin();
+	std::cout << &it << "\n";
+	std::cout << "lol ==> " << it->first << std::endl;
+	test2.insert(it, test.end());
+	// test2.insert(ft::pair<int, int>(3, 22));
+	// test2.insert(ft::pair<int, int>(2, 22));
+	// test2.insert(ft::pair<int, int>(1, 22));
+	// test2.insert(ft::pair<int, int>(4, 22));
+	ft::map<int, int>::iterator it2  = test2.begin();
 
-	// while (it2 != test2.end())
-	// {
-	// 	std::cout << it2->first << "\n";
-	// 	it2++;
-	// }
+	while (it2 != test2.end())
+	{
+		std::cout << it2->first << "\n";
+		it2++;
+	}
 	// ft::map<int, int>::iterator it2  = test2.begin();
 	// std::cout << "lol ==> " << it2->first << std::endl;
 

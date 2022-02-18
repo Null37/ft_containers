@@ -25,10 +25,10 @@ struct node
 	struct node    *right;
 	struct node    *left;
 	node(): parent(0), right(0), left(0) {}
-	node(const m &at)
-	{
-		std::cout << "loooooooool" << "\n";
-	}
+	// node(const m &at)
+	// {
+	// 	std::cout << "loooooooool" << "\n";
+	// }
 	node(value_type p): pt(p), parent(0), right(0), left(0) {}
 	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0) {}
 	// node(const node)
@@ -38,9 +38,9 @@ struct node
 	void operator==(const node cp)
 	{
 		this->pt = cp.pt;
-		right = cp.right;
-		parent = cp.parent;
-		left = cp.left;
+		this->right = cp.right;
+		this->parent = cp.parent;
+		this->left = cp.left;
 	}
 };
 
@@ -76,7 +76,7 @@ public:
 	}
 	avl_tree(const pointer_node &at): root(at)
 	{
-		// std::cout << "fuck" << "\n";
+		std::cout << "fuck" << "\n";
 	}
 	void operator=(const avl_tree &at)
 	{
@@ -123,7 +123,10 @@ public:
 		p = n; //copy from our struct
 
 		tm_p = p->left;
+		// tm_p->parent = p->parent;
 		p->left = tm_p->right;
+		// p->left->parent = tm_p->right->parent;
+
 
 		tm_p->right = p;
 		// std::cout << "left - left rotation" << std::endl;
@@ -137,8 +140,10 @@ public:
 
 		p = n; // copy of out node
 		tm_p = p->right;
-
+		// tm_p->parent = p->parent;
 		p->right = tm_p->left;
+		// p->right->parent = tm_p->left->parent;
+
 
 		tm_p->left = p;
 
@@ -154,14 +159,22 @@ public:
 
 		p = n; // first copy from n node
 		tm_p = p->right;
+		// tm_p->parent = p->parent;
 		tm_p2 = tm_p->left;
+		// tm_p2->parent = tm_p->parent;
 
 		p->right = tm_p2->left;
+		// p->right->parent = tm_p2->left->parent;
 		tm_p->left = tm_p2->right;
+		// tm_p->left->parent = tm_p2->right->parent;
+
 
 
 		tm_p2->left = p;
+		// tm_p2->left->parent = p->parent;
 		tm_p2->right = tm_p;
+		// tm_p2->right->parent = tm_p->parent;
+
 
 		// std::cout << "right-left rotation" << std::endl;
 		return tm_p2;
@@ -177,13 +190,19 @@ public:
 
 		p = n;
 		tm_p = p->left;
+		// tm_p->parent = p->parent;
 		tm_p2 = tm_p->right;
-
 		p->left = tm_p2->right;
+		// p->left->parent = tm_p2->right->parent;
 		tm_p->right = tm_p2->left;
+		// tm_p->right->parent = tm_p2->left->parent;
 
-		tm_p2->right =  p;
+
+
+		tm_p2->right = p;
+		// tm_p2->right->parent =  p->parent;
 		tm_p2->left  = tm_p;
+		// tm_p2->left->parent  = tm_p->parent;
 
 		// std::cout << "left-right rotation" << std::endl;
 		return tm_p2;
