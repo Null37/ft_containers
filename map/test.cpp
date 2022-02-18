@@ -890,13 +890,14 @@ int main()
 	// // 	it++;
 	// // }
 	
-	std::cout << &it << "\n";
+	// std::cout << &it << "\n";
 	it  = test.begin();
-	std::cout << &it << "\n";
-	std::cout << "lol ==> " << it->first << std::endl;
+	// std::cout << &it << "\n";
+	// std::cout << "lol ==> " << it->first << std::endl;
 	test2.insert(it, test.end());
 	ft::map<int, int>::iterator it2  = test2.begin();
-
+	test2.erase(it2);
+	it2  = test2.begin();
 	while (it2 != test2.end())
 	{
 		std::cout << it2->first << "\n";

@@ -160,15 +160,32 @@ template < class Key,                                     // map::key_type
 			template <class InputIterator>
   			void insert (InputIterator first, InputIterator last)
 			{
-				std::cout << "shit here " << std::endl;
 				while(first != last)
 				{
-					ft::pair<iterator, bool>  k = insert(*first);
-					std::cout << "t ===> " <<  k.first->first << std::boolalpha << k.second << std::endl;
+					insert(*first);
 					first++;
 				}
 				
 			}
+			void erase (iterator position)
+			{
+				tree_base.dele(position->first);
+			}
+
+			size_type erase (const key_type& k)
+			{
+				tree_base.erase(k);
+			}
+
+			void erase (iterator first, iterator last)
+			{
+				for(;first != last ; first++)
+				{
+					erase(first->first);
+				}
+			}
+
+
 			// Operations functoion
 			iterator find (const key_type& k)
 			{

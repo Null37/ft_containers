@@ -74,10 +74,7 @@ public:
 		// std::cout << "copy const" << std::endl;
 		*this = at;
 	}
-	avl_tree(const pointer_node &at): root(at)
-	{
-		std::cout << "fuck" << "\n";
-	}
+	avl_tree(const pointer_node &at): root(at){} // node gnrate one
 	void operator=(const avl_tree &at)
 	{
 		this->root = copy_helper(at.root);
@@ -321,15 +318,17 @@ public:
 			if (r->left != NULL)
 			{
 				tmp = inorder_predecessor(r->left);
-				r->pt.first = tmp->pt.first;
-				r->pt.second = tmp->pt.second;
+				// r->pt.first = tmp->pt.first;
+				// r->pt.second = tmp->pt.second;
+				r = new node<value_type>(tmp->pt.first, tmp->pt.second);
 				r->left = deleteNode(r->left, tmp->pt.first);
 			}
 			else if (r->right != NULL)
 			{
 				tmp = inorder_successor(r->right);
-				r->pt.first = tmp->pt.first;
-				r->pt.second = tmp->pt.second;
+				// r->pt.first = tmp->pt.first;
+				// r->pt.second = tmp->pt.second;
+				r = new node<value_type>(tmp->pt.first, tmp->pt.second);
 				r->right = deleteNode(r->right, tmp->pt.second);
 			}
 		}
@@ -350,12 +349,11 @@ public:
 	}
 
 
-	int dele(int data) // return size
+	int dele(key_type data) // return size
 	{
 		root = deleteNode(root, data);
 		return 0;
 	}
-
 	// void print(node<value_type> * ptr)
 	// {
 	// 	if(ptr->parent != NULL)
