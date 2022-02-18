@@ -161,21 +161,20 @@ public:
 
 		p = n; // first copy from n node
 		tm_p = p->right;
-		// tm_p->parent = p->parent;
+	//	tm_p->parent = p->parent;
 		tm_p2 = tm_p->left;
-		// tm_p2->parent = tm_p->parent;
+		// tm_p2->parent = p->parent;
 
 		p->right = tm_p2->left;
-		// p->right->parent = tm_p2->left->parent;
+		tm_p2->left->parent = p;
 		tm_p->left = tm_p2->right;
-		// tm_p->left->parent = tm_p2->right->parent;
-
+		tm_p2->right->parent = tm_p;
 
 
 		tm_p2->left = p;
-		// tm_p2->left->parent = p->parent;
+		tm_p2->left->parent = tm_p2;
 		tm_p2->right = tm_p;
-		// tm_p2->right->parent = tm_p->parent;
+		tm_p2->right->parent = tm_p;
 
 
 		// std::cout << "right-left rotation" << std::endl;
