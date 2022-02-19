@@ -270,9 +270,10 @@ public:
 		return ret;
 	}
 
-	struct node<value_type> *inorder_predecessor(struct node<value_type> *t)
+	struct node<value_type> *inorder_predecessor(struct node<value_type> *tc)
 	{
 		//the largest element of the left sub tree.
+		node<value_type> *t = tc;
 		while(t->right != NULL)
 			t = t->right;
 		return t;
@@ -281,7 +282,7 @@ public:
 	struct node<value_type> *inorder_successor(struct node<value_type> *tc)
 	{
 		//the smallest element of the right sub tree
-		struct node<value_type> *t = tc;
+		node<value_type> *t = tc;
 
 		while(t->left != NULL)
 			t = t->left;
@@ -290,7 +291,7 @@ public:
 
 	struct node<value_type> *deleteNode(node<value_type> *r, key_type k)
 	{
-		if (r->right == NULL && r->left == NULL)
+		if ((r->left == NULL && r->right == NULL))
 		{
 			if(k == r->pt.first)
 			{
@@ -308,6 +309,18 @@ public:
 			// std::cout << "left test" << std::endl;
 			r->left = deleteNode(r->left, k);
 		}
+		// else if(r->pt.first == k)
+		// {
+		// 	if(k == r->pt.first)
+		// 	{
+		// 		is_del = true;
+		// 		// std::cout << "here" << std::endl;
+		// 		delete r;
+		// 	}
+		// 	else
+		// 		is_del = false;
+		// 	return NULL;
+		// }
 		else if (k > r->pt.first)
 		{
 			// std::cout << "right test" << std::endl;
@@ -321,15 +334,15 @@ public:
 				// r->pt.first = tmp->pt.first;
 				// r->pt.second = tmp->pt.second;
 				r = new node<value_type>(tmp->pt.first, tmp->pt.second);
-				r->left = deleteNode(r->left, tmp->pt.first);
+				r->left =  deleteNode(r , tmp->pt.first);
 			}
 			else if (r->right != NULL)
 			{
 				tmp = inorder_successor(r->right);
 				// r->pt.first = tmp->pt.first;
 				// r->pt.second = tmp->pt.second;
-				r = new node<value_type>(tmp->pt.first, tmp->pt.second);
-				r->right = deleteNode(r->right, tmp->pt.second);
+				r->right = new node<value_type>(tmp->pt.first, tmp->pt.second);
+				r = deleteNode(r , tmp->pt.first);
 			}
 		}
 		//balance cases

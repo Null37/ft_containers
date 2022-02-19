@@ -1000,6 +1000,8 @@ int main()
 	{
 		std::cout << " test1 => " << it3->first << std::endl;
 	}
+	test2.clear();
+	// std::cout << test2.size() << std::endl;
 }
 
 

@@ -175,14 +175,19 @@ template < class Key,                                     // map::key_type
 			{
 				tree_base.dele(position->first);
 				if (tree_base.is_del ==  true)
-					map_size++;
+					map_size--;
 			}
 
 			size_type erase (const key_type& k)
 			{
-				tree_base.erase(k);
+				tree_base.dele(k);
 				if (tree_base.is_del ==  true)
-					map_size++;
+				{
+					map_size--;
+					return 1;
+				}
+				else
+					return 0;
 			}
 
 			void erase (iterator first, iterator last)
@@ -191,8 +196,21 @@ template < class Key,                                     // map::key_type
 				{
 					erase(first->first);
 					if (tree_base.is_del ==  true)
-						map_size++;
+						map_size--;
 				}
+			}
+			void clear()
+			{
+				for(iterator it = begin();it != end() ; it++)
+				{
+					// std::cout << it->first << std::endl;
+					erase(it->first);
+					// std::cout << "c " << std::endl;
+					// if (tree_base.is_del ==  true)
+					// 	map_size--;
+				}
+
+				// erase(begin(), end());
 			}
 
 			void swap (map& x)
