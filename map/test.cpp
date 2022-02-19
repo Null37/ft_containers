@@ -875,34 +875,34 @@ int main()
 	// 	std::cout << "org ===> " << it2->first  << std::endl;
 	// }
 }
-{
-	ft::map<int, int> test;
-	ft::map<int, int> test2;
-	test.insert(ft::pair<int, int>(3, 22));
-	test.insert(ft::pair<int, int>(2, 22));
-	test.insert(ft::pair<int, int>(1, 22));
-	test.insert(ft::pair<int, int>(4, 22));
+// {
+// 	ft::map<int, int> test;
+// 	ft::map<int, int> test2;
+// 	test.insert(ft::pair<int, int>(3, 22));
+// 	test.insert(ft::pair<int, int>(2, 22));
+// 	test.insert(ft::pair<int, int>(1, 22));
+// 	test.insert(ft::pair<int, int>(4, 22));
 
-	ft::map<int, int>::iterator it  = test.begin();
-	// // while (it != test.end())
-	// // {
-	// // 	std::cout << it->first << "\n";
-	// // 	it++;
-	// // }
+// 	ft::map<int, int>::iterator it  = test.begin();
+// 	// // while (it != test.end())
+// 	// // {
+// 	// // 	std::cout << it->first << "\n";
+// 	// // 	it++;
+// 	// // }
 	
-	// std::cout << &it << "\n";
-	it  = test.begin();
-	// std::cout << &it << "\n";
-	// std::cout << "lol ==> " << it->first << std::endl;
-	test2.insert(it, test.end());
-	ft::map<int, int>::iterator it2  = test2.begin();
-	test2.erase(it2);
-	it2  = test2.begin();
-	while (it2 != test2.end())
-	{
-		std::cout << it2->first << "\n";
-		it2++;
-	}
+// 	// std::cout << &it << "\n";
+// 	it  = test.begin();
+// 	// std::cout << &it << "\n";
+// 	// std::cout << "lol ==> " << it->first << std::endl;
+// 	test2.insert(it, test.end());
+// 	ft::map<int, int>::iterator it2  = test2.begin();
+// 	test2.erase(it2);
+// 	it2  = test2.begin();
+// 	while (it2 != test2.end())
+// 	{
+// 		std::cout << it2->first << "\n";
+// 		it2++;
+// 	}
 	// ft::map<int, int>::iterator it2  = test2.begin();
 	// std::cout << "lol ==> " << it2->first << std::endl;
 
@@ -922,8 +922,21 @@ int main()
 // 	{
 		
 // 	}
-}
+// }
 
+{
+	// test size 
+	std::map<int, int> a;
+	a.insert(std::pair<int, int>(9, 90));
+	a[10] = 4;
+	std::cout << "test one insert ==> " << a.size() << std::endl;
+	a[9] = 98;
+	std::cout << "test 2 insert ==> " << a.size() << std::endl;
+	a.erase(9);
+	std::cout << "test 3 erase ==> " << a.size() << std::endl;
+
+
+}
 
 
 }

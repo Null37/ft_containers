@@ -128,13 +128,14 @@ template < class Key,                                     // map::key_type
 			// Element access
 			mapped_type& operator[] (const key_type& k)
 			{
-				map_size++;
+				
 				try
 				{
 					return(tree_base.search(k, tree_base.get()));
 				}
 				catch(...) // else not found insert
 				{
+					map_size++;
 					tree_base.insert(ft::make_pair(k,mapped_type()));
 					std::cout << "key is  == > " << k << " value is == " << mapped_type() << std::endl;
 				}
@@ -146,15 +147,17 @@ template < class Key,                                     // map::key_type
 			ft::pair<iterator,bool> insert (const value_type& val) // single element (1)
 			{
 				bool ret = tree_base.insert(val);
-				// std::cout << std::boolalpha <<  "insert ==>  " <<  ret << std::endl;
+				if (ret == true)
+					map_size++;
 				iterator it = find(val.first);
-				 return(ft::make_pair(it, ret));
+				return(ft::make_pair(it, ret));
 			}
 
 			iterator insert (iterator position, const value_type& val) //with hint (2)	
 			{
 				static_cast<void>(position);
-				tree_base.insert(val);
+				if(tree_base.insert(val) == true)
+					map_size++;
 				return (find(val.first));
 			}
 			template <class InputIterator>
@@ -163,6 +166,7 @@ template < class Key,                                     // map::key_type
 				while(first != last)
 				{
 					insert(*first);
+					map_size++;
 					first++;
 				}
 				
@@ -170,11 +174,15 @@ template < class Key,                                     // map::key_type
 			void erase (iterator position)
 			{
 				tree_base.dele(position->first);
+				if (tree_base.is_del ==  true)
+					map_size++;
 			}
 
 			size_type erase (const key_type& k)
 			{
 				tree_base.erase(k);
+				if (tree_base.is_del ==  true)
+					map_size++;
 			}
 
 			void erase (iterator first, iterator last)
@@ -182,6 +190,8 @@ template < class Key,                                     // map::key_type
 				for(;first != last ; first++)
 				{
 					erase(first->first);
+					if (tree_base.is_del ==  true)
+						map_size++;
 				}
 			}
 
@@ -198,7 +208,7 @@ template < class Key,                                     // map::key_type
 					catch(const char *s)
 					{
 						return end();
-					}
+					}	
 				}
 				else
 					return end();
