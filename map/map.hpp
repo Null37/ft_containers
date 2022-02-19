@@ -195,6 +195,15 @@ template < class Key,                                     // map::key_type
 				}
 			}
 
+			void swap (map& x)
+			{
+				ft::avl_tree<value_type> tmp = this->tree_base;
+				size_type size_tmp = this->map_size;
+				this->tree_base = x.tree_base;
+				this->map_size  = x.map_size;
+				x.tree_base =  tmp;
+				x.map_size = size_tmp;
+			}
 
 			// Operations functoion
 			iterator find (const key_type& k)

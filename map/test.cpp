@@ -924,18 +924,82 @@ int main()
 // 	}
 // }
 
+// {
+// 	// test size 
+// 	std::map<int, int> a;
+// 	a.insert(std::pair<int, int>(9, 90));
+// 	a[10] = 4;
+// 	std::cout << "test one insert ==> " << a.size() << std::endl;
+// 	a[9] = 98;
+// 	std::cout << "test 2 insert ==> " << a.size() << std::endl;
+// 	a.erase(9);
+// 	std::cout << "test 3 erase ==> " << a.size() << std::endl;
+
+
+// }
+
 {
-	// test size 
-	std::map<int, int> a;
-	a.insert(std::pair<int, int>(9, 90));
-	a[10] = 4;
-	std::cout << "test one insert ==> " << a.size() << std::endl;
-	a[9] = 98;
-	std::cout << "test 2 insert ==> " << a.size() << std::endl;
-	a.erase(9);
-	std::cout << "test 3 erase ==> " << a.size() << std::endl;
+	// test swap 
+	// std::map<int, int> test1;
+	// test1.insert(std::pair<int, int>(19, 92));
+	// test1.insert(std::pair<int, int>(10, 92));
+	// test1.insert(std::pair<int, int>(50, 92));
+	// test1.insert(std::pair<int, int>(90, 92));
 
+	// std::map<int, int> test2;
+	// test2.insert(std::pair<int, int>(190, 92));
+	// test2.insert(std::pair<int, int>(100, 92));
+	// test2.insert(std::pair<int, int>(500, 92));
+	// test2.insert(std::pair<int, int>(900, 92));
+	// test2.insert(std::pair<int, int>(905, 92));
 
+	// std::map<int, int>::iterator it1 = test2.begin();
+	// std::cout << "begin befor ==> " <<  it1->first << " " << test2.size() << std::endl;
+
+	// test2.swap(test1);
+	// std::map<int, int>::iterator it2 = test2.begin();
+	// // std::cout << "begin after ==> " <<  it2->first  << " " << test2.size() << std::endl;
+	// // for(; it2 != test2.end(); it2++)
+	// // {
+	// // 	std::cout << " test => " << it2->first << std::endl;
+	// // }
+
+	// for(std::map<int, int>::iterator it3 = test1.begin(); it3 != test1.end(); it3++)
+	// {
+	// 	std::cout << " test => " << it3->first << std::endl;
+	// }
+
+}
+{
+	// test my map
+	ft::map<int, int> test1;
+	test1.insert(ft::pair<int, int>(19, 92));
+	test1.insert(ft::pair<int, int>(10, 92));
+	test1.insert(ft::pair<int, int>(50, 92));
+	test1.insert(ft::pair<int, int>(90, 92));
+
+	ft::map<int, int> test2;
+	test2.insert(ft::pair<int, int>(190, 92));
+	test2.insert(ft::pair<int, int>(100, 92));
+	test2.insert(ft::pair<int, int>(500, 92));
+	test2.insert(ft::pair<int, int>(900, 92));
+	test2.insert(ft::pair<int, int>(905, 92));
+
+	ft::map<int, int>::iterator it1 = test2.begin();
+	std::cout << "begin befor ==> " <<  it1->first << " " << test2.size() << std::endl;
+
+	test2.swap(test1);
+	ft::map<int, int>::iterator it2 = test2.begin();
+	std::cout << "begin after ==> " <<  it2->first  << " " << test2.size() << std::endl;
+	for(; it2 != test2.end(); it2++)
+	{
+		std::cout << " test2 => " << it2->first << std::endl;
+	}
+	std::cout << "-----------------------------------------------------------" << std::endl;
+	for(ft::map<int, int>::iterator it3 = test1.begin(); it3 != test1.end(); it3++)
+	{
+		std::cout << " test1 => " << it3->first << std::endl;
+	}
 }
 
 
