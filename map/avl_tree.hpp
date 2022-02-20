@@ -31,6 +31,8 @@ struct node
 	// }
 	node(value_type p): pt(p), parent(0), right(0), left(0) {}
 	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0) {}
+	node(const first_type &first, const second_type &second, struct node  *cp, struct node    *rp, struct node    *lp, int hp): pt(first, second), parent(cp), right(rp), left(lp), hight(hp) {}
+
 	// node(const node)
 	// {
 	// 	std::cout << "here 123" << std::endl'
@@ -270,19 +272,19 @@ public:
 		return ret;
 	}
 
-	struct node<value_type> *inorder_predecessor(struct node<value_type> *tc)
+	struct node<value_type> *inorder_predecessor(struct node<value_type> *t)
 	{
 		//the largest element of the left sub tree.
-		node<value_type> *t = tc;
+		// node<value_type> *t = tc;
 		while(t->right != NULL)
 			t = t->right;
 		return t;
 	}
 
-	struct node<value_type> *inorder_successor(struct node<value_type> *tc)
+	struct node<value_type> *inorder_successor(struct node<value_type> *t)
 	{
 		//the smallest element of the right sub tree
-		node<value_type> *t = tc;
+		// node<value_type> *t = tc;
 
 		while(t->left != NULL)
 			t = t->left;
@@ -309,18 +311,6 @@ public:
 			// std::cout << "left test" << std::endl;
 			r->left = deleteNode(r->left, k);
 		}
-		// else if(r->pt.first == k)
-		// {
-		// 	if(k == r->pt.first)
-		// 	{
-		// 		is_del = true;
-		// 		// std::cout << "here" << std::endl;
-		// 		delete r;
-		// 	}
-		// 	else
-		// 		is_del = false;
-		// 	return NULL;
-		// }
 		else if (k > r->pt.first)
 		{
 			// std::cout << "right test" << std::endl;
@@ -331,18 +321,22 @@ public:
 			if (r->left != NULL)
 			{
 				tmp = inorder_predecessor(r->left);
-				// r->pt.first = tmp->pt.first;
-				// r->pt.second = tmp->pt.second;
-				r = new node<value_type>(tmp->pt.first, tmp->pt.second);
-				r->left =  deleteNode(r , tmp->pt.first);
+				pointer_node tmp_r = r->right;
+				pointer_node tmp_l = r->left;
+				pointer_node tmp_pa = r->parent;
+				int tmp_h = r->hight;
+				r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h);
+				r->left =  deleteNode(r->left , tmp->pt.first);
 			}
 			else if (r->right != NULL)
 			{
 				tmp = inorder_successor(r->right);
-				// r->pt.first = tmp->pt.first;
-				// r->pt.second = tmp->pt.second;
-				r->right = new node<value_type>(tmp->pt.first, tmp->pt.second);
-				r = deleteNode(r , tmp->pt.first);
+				pointer_node tmp_r = r->right;
+				pointer_node tmp_l = r->left;
+				pointer_node tmp_pa = r->parent;
+				int tmp_h = r->hight;
+				r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h);
+				r->right = deleteNode(r->right , tmp->pt.first);
 			}
 		}
 		//balance cases
