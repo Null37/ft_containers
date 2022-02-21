@@ -428,7 +428,7 @@ public:
 
 	avl_tree end()
 	{
-		return (avl_tree());
+		return (avl_tree()); // edit end;
 	}
 	avl_tree &operator++()
 	{
@@ -549,9 +549,12 @@ public:
 			throw s;
 		}
 		// return r->pt;
-		
 	}
 
+	avl_tree lower_bound (const key_type& k) // unique search for avl tree
+	{
+
+	}
 
 	
 };

@@ -6,7 +6,7 @@
 #include "avl_tree.hpp"
 #include "../vector/vector_iterator.hpp"
 
-
+// edit end() ==> map
 namespace ft
 {
 
@@ -254,6 +254,10 @@ template < class Key,                                     // map::key_type
 				return 0;
 			}
 			
+			iterator lower_bound (const key_type& k)
+			{
+
+			}
 
 
 	};

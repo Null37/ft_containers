@@ -1010,23 +1010,61 @@ int main()
 	// test lower bound
 	std::map<int, int> test1;
 
-	test1.insert(std::pair<int, int>(9, 80));
-	test1.insert(std::pair<int, int>(80, 80));
-	test1.insert(std::pair<int, int>(19, 810));
-	test1.insert(std::pair<int, int>(29, 80));
-	test1.insert(std::pair<int, int>(239, 80));
-	test1.insert(std::pair<int, int>(89, 8899980));
-	test1.insert(std::pair<int, int>(90, 80));
+	// test1.insert(std::pair<int, int>(9, 80));
+	// test1.insert(std::pair<int, int>(80, 80));
+	// test1.insert(std::pair<int, int>(19, 810));
+	// test1.insert(std::pair<int, int>(29, 80));
+	// test1.insert(std::pair<int, int>(239, 80));
+	// test1.insert(std::pair<int, int>(89, 8899980));
+	// test1.insert(std::pair<int, int>(90, 80));
+	// test1.insert(std::pair<int, int>(30, 80));
+	// test1.insert(std::pair<int, int>(40, 80));
+
+	test1.insert(std::pair<int, int>(90,  70));
+	test1.insert(std::pair<int, int>(50,  710));
 
 
-	std::map<int, int>::iterator lit =  test1.lower_bound(89);
-	std::map<int, int>::iterator uit =  test1.upper_bound(89);
+
+	std::map<int, int>::iterator lit =  test1.lower_bound(2);
+	// std::map<int, int>::iterator uit =  test1.upper_bound(40);
+	// std::map<int, int>::iterator it =  test1.end();
+	// std::cout << &it << std::endl;
+
 
 	std::cout << " test ==>  " <<  lit->first << " s => "  <<  lit->second << std::endl;
 	// std::cout << " upper test ==>  " <<  uit->first << " s => "  <<  uit->second << std::endl;
 
 
 }
+// {
+// 	{
+// 	// test lower bound
+// 	ft::map<int, int> test1;
+
+// 	test1.insert(ft::pair<int, int>(9, 80));
+// 	test1.insert(ft::pair<int, int>(80, 80));
+// 	test1.insert(ft::pair<int, int>(19, 810));
+// 	test1.insert(ft::pair<int, int>(29, 80));
+// 	test1.insert(ft::pair<int, int>(239, 80));
+// 	test1.insert(ft::pair<int, int>(89, 8899980));
+// 	test1.insert(ft::pair<int, int>(90, 80));
+// 	test1.insert(ft::pair<int, int>(30, 80));
+// 	test1.insert(ft::pair<int, int>(40, 80));
+
+
+
+// 	// std::map<int, int>::iterator lit =  test1.lower_bound(1000);
+// 	// std::map<int, int>::iterator uit =  test1.upper_bound(40);
+// 	ft::map<int, int>::iterator it =  test1.end();
+// 	std::cout << &it << std::endl;
+
+
+// 	// std::cout << " test ==>  " <<  lit->first << " s => "  <<  lit->second << std::endl;
+// 	// std::cout << " upper test ==>  " <<  uit->first << " s => "  <<  uit->second << std::endl;
+
+
+// }
+// }
 
 
 }

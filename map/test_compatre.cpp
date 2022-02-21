@@ -16,7 +16,7 @@ int main()
 
     std::map<int, int>::key_compare com =  m.key_comp();
     std::map<int, int>::iterator it =  m.begin();
-    int itest  = m.rbegin()->first;
+    int itest  = 1;
 
     // for (; it != m.end(); it++)
     // {
