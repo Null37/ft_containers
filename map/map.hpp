@@ -22,7 +22,7 @@ template < class Key,                                     // map::key_type
 			typedef Key                                 		key_type;
 			typedef T                                   		mapped_type;
 			typedef ft::pair<const key_type, mapped_type>    	value_type;
-			typedef Compare                             		key_compare;
+			typedef Compare                             		key_compare; // uset to compare 
 			//member class value_compare
 			class value_compare
 			{
@@ -203,14 +203,8 @@ template < class Key,                                     // map::key_type
 			{
 				for(iterator it = begin();it != end() ; it++)
 				{
-					// std::cout << it->first << std::endl;
 					erase(it->first);
-					// std::cout << "c " << std::endl;
-					// if (tree_base.is_del ==  true)
-					// 	map_size--;
 				}
-
-				// erase(begin(), end());
 			}
 
 			void swap (map& x)
@@ -222,6 +216,14 @@ template < class Key,                                     // map::key_type
 				x.tree_base =  tmp;
 				x.map_size = size_tmp;
 			}
+
+
+			//Observers:
+			key_compare key_comp() const
+			{
+
+			}
+
 
 			// Operations functoion
 			iterator find (const key_type& k)
