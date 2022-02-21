@@ -42,14 +42,14 @@ template < class Key,                                     // map::key_type
 			typedef const value_type&											const_reference;
 			typedef value_type*													pointer;
 			typedef	const value_type* 											const_pointer;	
-			typedef ft::map_iterator<ft::avl_tree<value_type> > 				iterator;	//a bidirectional iterator to value_type
-			typedef ft::map_iterator<ft::avl_tree<const value_type> > 			const_iterator;	//a bidirectional iterator to value_type
+			typedef ft::map_iterator<ft::avl_tree<value_type, key_compare> > 				iterator;	//a bidirectional iterator to value_type
+			typedef ft::map_iterator<ft::avl_tree<const value_type, key_compare> > 			const_iterator;	//a bidirectional iterator to value_type
 			typedef ft::reverse_iterator<iterator>								reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 			typedef typename iterator_traits<iterator>::difference_type			difference_type;
 			typedef size_t														size_type;
 			private:
-				ft::avl_tree<value_type> 	tree_base;
+				ft::avl_tree<value_type,  key_compare> 	tree_base;
 				size_type 					map_size;
 				allocator_type				alloc;
 			public:
@@ -209,7 +209,7 @@ template < class Key,                                     // map::key_type
 
 			void swap (map& x)
 			{
-				ft::avl_tree<value_type> tmp = this->tree_base;
+				ft::avl_tree<value_type, key_compare> tmp = this->tree_base;
 				size_type size_tmp = this->map_size;
 				this->tree_base = x.tree_base;
 				this->map_size  = x.map_size;
@@ -221,7 +221,11 @@ template < class Key,                                     // map::key_type
 			//Observers:
 			key_compare key_comp() const
 			{
-
+				return (key_comp);
+			}
+			value_compare value_comp() const
+			{
+				return (value_comp);
 			}
 
 
@@ -242,6 +246,14 @@ template < class Key,                                     // map::key_type
 				else
 					return end();
 			}
+
+			size_type count (const key_type& k) const // 0 and 1 bc key is unique
+			{
+				if (find(k) != end())
+					return 1;
+				return 0;
+			}
+			
 
 
 	};

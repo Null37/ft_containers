@@ -13,7 +13,7 @@ struct node
 	// U value;
 	// typedef ft::pair<const T, U>        			value_type;
 	// typedef T1  first_type;
-    //     typedef T2  second_type;
+	//     typedef T2  second_type;
 	typedef typename value_type::first_type first_type;
 	typedef typename value_type::second_type second_type;
 	typedef	node<value_type>*										pointer_node;
@@ -48,7 +48,7 @@ struct node
 
 
 
-template<class value_type>
+template<class value_type,  class compare>
 class avl_tree
 {
 
@@ -59,16 +59,19 @@ public:
 	typedef typename node<value_type>::second_type							mapped_value;
 	typedef	node<value_type>*										pointer_node;
 	typedef value_type* 											pointer;
+	typedef compare														key_compare;
 	// typedef typename pointer_node::first							first;
 	// typedef typename pointer_node::second							second;		
 
 public:
 	pointer_node root; // underline containre
 	bool is_del;
+	key_compare comp;
 public:
 	size_t size;
-	avl_tree() : root(NULL)
+	avl_tree() : root(NULL), comp()
 	{
+		
 		// std::cout << "default here" << std::endl;
 	}
 	avl_tree(const avl_tree &at)
@@ -226,9 +229,9 @@ public:
 			 	// std::cout << "why not here" << std::endl;
 		  		return false; 
 		  }
-			else if  (val.first > r->pt.first)
+			else if  (val.first > r->pt.first) // 
 				ret = add_new(r->right, val, r);
-			else if (val.first < r->pt.first)
+			else if (comp(val.first, r->pt.first)) //  add compare(val.first, r.pt.firt)
 				ret = add_new(r->left, val, r);
 	   }
 	   if(ret == false)
@@ -284,7 +287,7 @@ public:
 	struct node<value_type> *inorder_successor(struct node<value_type> *t)
 	{
 		//the smallest element of the right sub tree
-		// node<value_type> *t = tc;
+		// node<value_type> *t = tc
 
 		while(t->left != NULL)
 			t = t->left;
