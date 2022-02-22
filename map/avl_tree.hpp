@@ -195,9 +195,9 @@ public:
 
 		//  start edit 
 		p->left = tm_p2->right;
-		tm_p2->right->parent = p;
+		tm_p->right->parent = p->parent;
 		tm_p->right = tm_p2->left;
-		tm_p2->left->parent = tm_p;
+		tm_p->parent = tm_p2;
 
 		tm_p2->right = p; 
 		tm_p2->right->parent = tm_p2;
