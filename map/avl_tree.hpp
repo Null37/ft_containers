@@ -166,9 +166,9 @@ public:
 		tm_p2 = tm_p->left;
 
 		p->right = tm_p2->left;
-		tm_p2->left->parent = p;
+		tm_p->left->parent = p->parent;
 		tm_p->left = tm_p2->right;
-		tm_p2->right->parent = tm_p;
+		tm_p->parent = tm_p2;
 
 
 		tm_p2->left = p;
@@ -551,9 +551,15 @@ public:
 		// return r->pt;
 	}
 
-	avl_tree lower_bound (const key_type& k) // unique search for avl tree
+	void lower_bound (const key_type& k) // unique search for avl tree
 	{
-
+		avl_tree tmp = begin();
+		while (comp(tmp.root->pt.first, k))
+		{
+			std::cout << tmp.root->pt.first << std::endl;
+			tmp++;
+		}
+		
 	}
 
 	

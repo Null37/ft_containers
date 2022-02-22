@@ -254,9 +254,9 @@ template < class Key,                                     // map::key_type
 				return 0;
 			}
 			
-			iterator lower_bound (const key_type& k)
+			void lower_bound (const key_type& k)
 			{
-
+				tree_base.lower_bound(k);
 			}
 
 
