@@ -1006,38 +1006,7 @@ int main()
 
 
 
-{
-	// test lower bound
-	ft::map<int, int> test1;
-
-	test1.insert(ft::pair<int, int>(9, 80));
-	test1.insert(ft::pair<int, int>(80, 80));
-	test1.insert(ft::pair<int, int>(19, 810));
-	test1.insert(ft::pair<int, int>(29, 80));
-	test1.insert(ft::pair<int, int>(239, 80));
-	// test1.insert(ft::pair<int, int>(89, 8899980));
-	// test1.insert(ft::pair<int, int>(90, 80));
-	// test1.insert(ft::pair<int, int>(30, 80));
-	// test1.insert(ft::pair<int, int>(40, 80));
-
-	// test1.insert(ft::pair<int, int>(90,  70));
-	// test1.insert(ft::pair<int, int>(50,  710));
-
-
-	// ft::map<int, int>::iterator bit =  test1.begin();
-	// test1.lower_bound(2);
-	// ft::map<int, int>::iterator uit =  test1.upper_bound(40);
-	// ft::map<int, int>::iterator it =  test1.end();
-	// ft::cout << &it << std::endl;
-
-	// std::cout << " test ==>  " <<  bit->first << " s => "  <<  bit->second << std::endl;
-	// std::cout << " test ==>  " <<  lit->first << " s => "  <<  lit->second << std::endl;
-	// std::cout << " upper test ==>  " <<  uit->first << " s => "  <<  uit->second << std::endl;
-
-
-}
 // {
-// 	{
 // 	// test lower bound
 // 	ft::map<int, int> test1;
 
@@ -1046,25 +1015,59 @@ int main()
 // 	test1.insert(ft::pair<int, int>(19, 810));
 // 	test1.insert(ft::pair<int, int>(29, 80));
 // 	test1.insert(ft::pair<int, int>(239, 80));
-// 	test1.insert(ft::pair<int, int>(89, 8899980));
-// 	test1.insert(ft::pair<int, int>(90, 80));
-// 	test1.insert(ft::pair<int, int>(30, 80));
-// 	test1.insert(ft::pair<int, int>(40, 80));
+// 	std::map<int, int> test2;
+
+// 	test2.insert(std::pair<int, int>(9, 80));
+// 	test2.insert(std::pair<int, int>(80, 80));
+// 	test2.insert(std::pair<int, int>(19, 810));
+// 	test2.insert(std::pair<int, int>(29, 80));
+// 	test2.insert(std::pair<int, int>(239, 80));
+// 	// test1.insert(ft::pair<int, int>(89, 8899980));
+// 	// test1.insert(ft::pair<int, int>(90, 80));
+// 	// test1.insert(ft::pair<int, int>(30, 80));
+// 	// test1.insert(ft::pair<int, int>(40, 80));
+
+// 	// test1.insert(ft::pair<int, int>(90,  70));
+// 	// test1.insert(ft::pair<int, int>(50,  710));
 
 
+// 	// ft::map<int, int>::iterator bit =  test1.begin();
+// 	test1.lower_bound(100);
+// 	std::map<int, int>::iterator lit = test2.lower_bound(100);
+// 	// ft::map<int, int>::iterator uit =  test1.upper_bound(40);
+// 	// ft::map<int, int>::iterator it =  test1.end();
+// 	// ft::cout << &it << std::endl;
 
-// 	// std::map<int, int>::iterator lit =  test1.lower_bound(1000);
-// 	// std::map<int, int>::iterator uit =  test1.upper_bound(40);
-// 	ft::map<int, int>::iterator it =  test1.end();
-// 	std::cout << &it << std::endl;
-
-
-// 	// std::cout << " test ==>  " <<  lit->first << " s => "  <<  lit->second << std::endl;
+// 	// std::cout << " test ==>  " <<  bit->first << " s => "  <<  bit->second << std::endl;
+// 	std::cout << " test ==>  " <<  lit->first << " s => "  <<  lit->second << std::endl;
 // 	// std::cout << " upper test ==>  " <<  uit->first << " s => "  <<  uit->second << std::endl;
 
 
 // }
-// }
+
+{
+	///test end
+	// std::map<int, int> m;
+
+	// m.insert(std::pair<int, int>(3, 50));
+	// m.insert(std::pair<int, int>(2, 50));
+	// m.insert(std::pair<int, int>(1, 50));
+	// std::map<int, int>::iterator it  = m.end();
+	// // it++;
+	// std::cout << "end1 " << it->first << std::endl;
+	// it--;
+	// std::cout << "end2 " << it->first << std::endl; 
+
+	ft::map<int, int> m;
+
+	m.insert(ft::pair<int, int>(3, 50));
+	m.insert(ft::pair<int, int>(2, 50));
+	m.insert(ft::pair<int, int>(1, 50));
+	ft::map<int, int>::iterator it  = m.end();
+	// std::cout << "end1 " << it->first << std::endl;
+	it--;
+	std::cout << "end2 " << it->first << std::endl; 
+}
 
 
 }

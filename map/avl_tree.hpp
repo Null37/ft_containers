@@ -24,6 +24,7 @@ struct node
 	int hight; // hight evry node
 	struct node    *right;
 	struct node    *left;
+	struct node    *end;
 	node(): parent(0), right(0), left(0) {}
 	// node(const m &at)
 	// {
@@ -428,7 +429,7 @@ public:
 
 	avl_tree end()
 	{
-		return (avl_tree()); // edit end;
+		return (avl_tree(root->end)); // edit end;
 	}
 	avl_tree &operator++()
 	{
@@ -554,11 +555,18 @@ public:
 	void lower_bound (const key_type& k) // unique search for avl tree
 	{
 		avl_tree tmp = begin();
-		while (comp(tmp.root->pt.first, k))
+		// while (comp(tmp.root->pt.first, k))
+		// {
+		// 	std::cout << tmp.root->pt.first << std::endl;
+		// 	tmp++;
+		// }
+		do
 		{
-			std::cout << tmp.root->pt.first << std::endl;
-			tmp++;
-		}
+			if(comp((*tmp).first, k)  == false || k == (*tmp).first)
+			{
+				std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+			}
+		} while (comp((*tmp++).first, k));
 		
 	}
 
