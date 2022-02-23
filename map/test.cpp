@@ -1047,26 +1047,51 @@ int main()
 
 {
 	///test end
-	// std::map<int, int> m;
+	{
+		std::map<int, int> m;
 
-	// m.insert(std::pair<int, int>(3, 50));
-	// m.insert(std::pair<int, int>(2, 50));
-	// m.insert(std::pair<int, int>(1, 50));
-	// std::map<int, int>::iterator it  = m.end();
-	// // it++;
-	// std::cout << "end1 " << it->first << std::endl;
-	// it--;
+		m.insert(std::pair<int, int>(3, 50));
+		m.insert(std::pair<int, int>(2, 50));
+		m.insert(std::pair<int, int>(1, 50));
+		std::map<int, int>::iterator it  = m.end();
+		// std::allocator<int> a;
+		// std::cout << a.address << std::endl;
+		// it++;
+		std::cout << "end1 " << it->first  <<  "   " << it->second << std::endl;
+		// it--;
+		// std::cout << "end2 " << it->first << std::endl; 
+	}
+	{
+		ft::map<int, int> m;
+		m.insert(ft::pair<int, int>(3, 50));
+		m.insert(ft::pair<int, int>(2, 50));
+		m.insert(ft::pair<int, int>(1, 50));
+		ft::map<int, int>::iterator it  = m.end();
+		// std::allocator<int> a;
+		// std::cout << a.address << std::endl;
+		// it++;
+		std::cout << "end1 " << it->first  <<  "   " << it->second << std::endl;
+		// it--;
+		// std::cout << "end2 " << it->first << std::endl; 
+	}
+
+	// std::map<std::string, long> m;
+
+	// m.insert(std::pair<std::string, long>("66", 90));
+	// m.insert(std::pair<std::string, long>("2", 50));
+	// m.insert(std::pair<std::string, long>("1", 50));
+	// std::map<std::string, long>::iterator it  = m.end();
 	// std::cout << "end2 " << it->first << std::endl; 
 
-	ft::map<int, int> m;
+	// std::map<int, int> m2;
 
-	m.insert(ft::pair<int, int>(3, 50));
-	m.insert(ft::pair<int, int>(2, 50));
-	m.insert(ft::pair<int, int>(1, 50));
-	ft::map<int, int>::iterator it  = m.end();
-	// std::cout << "end1 " << it->first << std::endl;
-	it--;
-	std::cout << "end2 " << it->first << std::endl; 
+	// m2.insert(std::pair<int, int>(90, 90));
+	// m2.insert(std::pair<int, int>(25, 50));
+	// m2.insert(std::pair<int, int>(19, 50));
+	// std::map<int, int>::iterator it2  = m2.end();
+	// // std::cout << "end1 " << it->first << std::endl;
+	// // it++;
+	// std::cout << "end2 " << it2->first << std::endl; 
 }
 
 

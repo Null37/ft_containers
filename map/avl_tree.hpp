@@ -38,13 +38,13 @@ struct node
 	// {
 	// 	std::cout << "here 123" << std::endl'
 	// }
-	void operator==(const node cp)
-	{
-		this->pt = cp.pt;
-		this->right = cp.right;
-		this->parent = cp.parent;
-		this->left = cp.left;
-	}
+	// void operator==(const node cp)
+	// {
+	// 	this->pt = cp.pt;
+	// 	this->right = cp.right;
+	// 	this->parent = cp.parent;
+	// 	this->left = cp.left;
+	// }
 };
 
 
@@ -66,13 +66,16 @@ public:
 
 public:
 	pointer_node root; // underline containre
+	pointer_node last;
 	bool is_del;
 	key_compare comp;
 public:
 	size_t size;
 	avl_tree() : root(NULL), comp()
 	{
-		
+		std::numeric_limits<short> a;
+		int save = a.max(); /// max short 
+		last  = new node<value_type>(save, mapped_value());
 		// std::cout << "default here" << std::endl;
 	}
 	avl_tree(const avl_tree &at)
@@ -429,7 +432,7 @@ public:
 
 	avl_tree end()
 	{
-		return (avl_tree(root->end)); // edit end;
+		return (avl_tree(last)); // edit end;
 	}
 	avl_tree &operator++()
 	{
