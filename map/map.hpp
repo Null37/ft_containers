@@ -77,10 +77,10 @@ template < class Key,                                     // map::key_type
 			{
 				return (iterator(tree_base.begin()));
 			}
-			// const_iterator begin() const
-			// {
-			// 	return (const_iterator(tree_base.begin()));
-			// }
+			const_iterator begin() const
+			{
+				return (const_iterator(tree_base.begin()));
+			}
 			iterator end()
 			{
 				return (iterator(tree_base.end()));
@@ -254,10 +254,12 @@ template < class Key,                                     // map::key_type
 				return 0;
 			}
 			
-			void lower_bound (const key_type& k)
+			void lower_bound (const key_type& k) // edit return to return iterator
 			{
 				tree_base.lower_bound(k);
 			}
+			// const_iterator lower_bound (const key_type& k) const;
+
 
 
 	};

@@ -1101,7 +1101,7 @@ int main()
 	m.insert(ft::pair<int, int>(2, 50));
 	m.insert(ft::pair<int, int>(1, 50));
 	ft::map<int, int>::iterator it  = m.begin();
-	it++;
+	// it++;
 	std::cout << it->first << std::endl;
 	it--;
 	std::cout << it->first << std::endl;
@@ -1115,7 +1115,7 @@ std::cout << "---------------------------" << std::endl;
 	m.insert(std::pair<int, int>(2, 50));
 	m.insert(std::pair<int, int>(1, 50));
 	std::map<int, int>::iterator it  = m.begin();
-	it++;
+	// it++;
 	std::cout << it->first << std::endl;
 	it--;
 	std::cout << it->first << std::endl;
