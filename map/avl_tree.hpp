@@ -468,7 +468,11 @@ public:
 
 	avl_tree &operator--() // pre-operator -- 
 	{
-				struct node<value_type> *tmp;
+		if(root ==  last)
+		{
+			std::cerr << "error  is here" << std::endl;
+		}
+		struct node<value_type> *tmp;
 		//check left to return most left one
 		if(root->left != NULL)
 		{
