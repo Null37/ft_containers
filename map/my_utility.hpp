@@ -19,7 +19,7 @@ struct pair
                 //Constructs
         pair(): first(T1()), second(T2())//default 
         {
-          std::cout << "is here" << std::endl;
+          // std::cout << "is here" << std::endl;
             // first = T1();
             // second = T2();
         } 

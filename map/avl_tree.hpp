@@ -85,7 +85,7 @@ public:
 	}
 	avl_tree(pointer_node root_p, pointer_node node_p)
 	{
-		std::cout << "here " << std::endl;
+		// std::cout << "here " << std::endl;
 		this->root = root_p;
 		this->re_node = node_p;
 	}
@@ -442,9 +442,10 @@ public:
 	{
 		// return (avl_tree(re_node)); // version 1
 		std::numeric_limits<short> a;
-		int save = a.max(); /// max short 
-		re_node  = new node<value_type>(save, mapped_value()); // new one two end
-		return avl_tree(root, re_node);
+		int save = a.max(); /// max short
+		pointer_node tmp_node;
+		tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+		return avl_tree(root, tmp_node);
 	}
 	avl_tree &operator++()
 	{
@@ -481,10 +482,16 @@ public:
 	avl_tree &operator--() // pre-operator -- 
 	{
 		avl_tree tmp2 = end();
-		if(re_node == tmp2.re_node) // check if last
+		avl_tree tmp3 = begin();
+		if (re_node == tmp2.re_node) // check if last
 		{
-			std::cerr << "error  is here" << std::endl;
+			// std::cerr << "error  is here" << std::endl;
 			re_node =  inorder_predecessor(root);
+		}
+		else if (re_node->pt == tmp3.re_node->pt)
+		{
+			// std::cerr << " if this begin " << std::endl;
+			re_node = tmp2.re_node;
 		}
 		//check left to return most left one
 		else if(re_node->left != NULL)
