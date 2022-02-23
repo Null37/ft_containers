@@ -1047,33 +1047,33 @@ int main()
 
 {
 	///test end
-	{
-		std::map<int, int> m;
+	// {
+	// 	std::map<int, int> m;
 
-		m.insert(std::pair<int, int>(3, 50));
-		m.insert(std::pair<int, int>(2, 50));
-		m.insert(std::pair<int, int>(1, 50));
-		std::map<int, int>::iterator it  = m.end();
-		// std::allocator<int> a;
-		// std::cout << a.address << std::endl;
-		// it++;
-		std::cout << "end1 " << it->first  <<  "   " << it->second << std::endl;
-		// it--;
-		// std::cout << "end2 " << it->first << std::endl; 
-	}
-	{
-		ft::map<int, int> m;
-		m.insert(ft::pair<int, int>(3, 50));
-		m.insert(ft::pair<int, int>(2, 50));
-		m.insert(ft::pair<int, int>(1, 50));
-		ft::map<int, int>::iterator it  = m.end();
-		// std::allocator<int> a;
-		// std::cout << a.address << std::endl;
-		// it++;
-		std::cout << "end1 " << it->first  <<  "   " << it->second << std::endl;
-		// it--;
-		// std::cout << "end2 " << it->first << std::endl; 
-	}
+	// 	m.insert(std::pair<int, int>(3, 50));
+	// 	m.insert(std::pair<int, int>(2, 50));
+	// 	m.insert(std::pair<int, int>(1, 50));
+	// 	std::map<int, int>::iterator it  = m.end();
+	// 	// std::allocator<int> a;
+	// 	// std::cout << a.address << std::endl;
+	// 	// it++;
+	// 	std::cout << "end1 " << it->first  <<  "   " << it->second << std::endl;
+	// 	// it--;
+	// 	// std::cout << "end2 " << it->first << std::endl; 
+	// }
+	// {
+	// 	ft::map<int, int> m;
+	// 	m.insert(ft::pair<int, int>(3, 50));
+	// 	m.insert(ft::pair<int, int>(2, 50));
+	// 	m.insert(ft::pair<int, int>(1, 50));
+	// 	ft::map<int, int>::iterator it  = m.end();
+	// 	// std::allocator<int> a;
+	// 	// std::cout << a.address << std::endl;
+	// 	// it++;
+	// 	std::cout << "end1 " << it->first  <<  "   " << it->second << std::endl;
+	// 	// it--;
+	// 	// std::cout << "end2 " << it->first << std::endl; 
+	// }
 
 	// std::map<std::string, long> m;
 
@@ -1094,5 +1094,45 @@ int main()
 	// std::cout << "end2 " << it2->first << std::endl; 
 }
 
+{
+	// test new logic
+	ft::map<int, int> m;
+	m.insert(ft::pair<int, int>(3, 50));
+	m.insert(ft::pair<int, int>(2, 50));
+	m.insert(ft::pair<int, int>(1, 50));
+	ft::map<int, int>::iterator it  = m.end();
+	std::cout << it->first << std::endl;
+	it--;
+	std::cout << it->first << std::endl;
+}
+std::cout << "---------------------------" << std::endl;
+{
+	{
+	// test new logic
+	std::map<int, int> m;
+	m.insert(std::pair<int, int>(3, 50));
+	m.insert(std::pair<int, int>(2, 50));
+	m.insert(std::pair<int, int>(1, 50));
+	std::map<int, int>::iterator it  = m.end();
+	std::cout << it->first << std::endl;
+	it--;
+	std::cout << it->first << std::endl;
+
+}
+}
+// {
+// 	// test logic with map
+// 	std::map<int, int> m;
+// 	m.insert(std::pair<int, int>(3, 50));
+// 	m.insert(std::pair<int, int>(2, 50));
+// 	m.insert(std::pair<int, int>(1, 50));
+// 	std::map<int, int>::iterator it  = m.begin();
+// 	std::cout << it->first << std::endl;
+// 	it++;
+// 	it++;
+// 	it++;
+// 	std::cout << it->first << std::endl;
+
+// }
 
 }

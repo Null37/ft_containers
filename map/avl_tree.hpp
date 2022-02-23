@@ -24,7 +24,7 @@ struct node
 	int hight; // hight evry node
 	struct node    *right;
 	struct node    *left;
-	struct node    *end;
+	// struct node    *end;
 	node(): parent(0), right(0), left(0) {}
 	// node(const m &at)
 	// {
@@ -66,16 +66,16 @@ public:
 
 public:
 	pointer_node root; // underline containre
-	pointer_node last;
+	pointer_node re_node;
 	bool is_del;
 	key_compare comp;
 public:
 	size_t size;
-	avl_tree() : root(NULL), comp()
+	avl_tree() : root(NULL), comp(), re_node(NULL)
 	{
-		std::numeric_limits<short> a;
-		int save = a.max(); /// max short 
-		last  = new node<value_type>(save, mapped_value());
+		// std::numeric_limits<short> a;
+		// int save = a.max(); /// max short 
+		// re_node  = new node<value_type>(save, mapped_value());
 		// std::cout << "default here" << std::endl;
 	}
 	avl_tree(const avl_tree &at)
@@ -83,10 +83,17 @@ public:
 		// std::cout << "copy const" << std::endl;
 		*this = at;
 	}
+	avl_tree(pointer_node root_p, pointer_node node_p)
+	{
+		std::cout << "here " << std::endl;
+		this->root = root_p;
+		this->re_node = node_p;
+	}
 	avl_tree(const pointer_node &at): root(at){} // node gnrate one
 	void operator=(const avl_tree &at)
 	{
 		this->root = copy_helper(at.root);
+		this->re_node = copy_helper(at.re_node);
 	}
 	~avl_tree(){}
 	//getter
@@ -279,19 +286,19 @@ public:
 		return ret;
 	}
 
-	struct node<value_type> *inorder_predecessor(struct node<value_type> *t)
+	struct node<value_type> *inorder_predecessor(struct node<value_type> *tc)
 	{
 		//the largest element of the left sub tree.
-		// node<value_type> *t = tc;
+		node<value_type> *t = tc;
 		while(t->right != NULL)
 			t = t->right;
 		return t;
 	}
 
-	struct node<value_type> *inorder_successor(struct node<value_type> *t)
+	struct node<value_type> *inorder_successor(node<value_type> *tc)
 	{
 		//the smallest element of the right sub tree
-		// node<value_type> *t = tc
+		node<value_type> *t = tc;
 
 		while(t->left != NULL)
 			t = t->left;
@@ -416,7 +423,7 @@ public:
 	{
 		// std::cout << "heree" << std::endl;
 		
-		return (root->pt);
+		return (re_node->pt);
 	}
 
 	pointer operator->()
@@ -427,34 +434,39 @@ public:
 	//preoprator ++ mean ++a;
 	avl_tree begin()
 	{
-		return avl_tree(inorder_successor(root));
+		// return avl_tree(inorder_successor(root)); version 1
+		return avl_tree(root, inorder_successor(root));
 	}
 
 	avl_tree end()
 	{
-		return (avl_tree(last)); // edit end;
+		// return (avl_tree(re_node)); // version 1
+		std::numeric_limits<short> a;
+		int save = a.max(); /// max short 
+		re_node  = new node<value_type>(save, mapped_value()); // new one two end
+		return avl_tree(root, re_node);
 	}
 	avl_tree &operator++()
 	{
 		struct node<value_type> *tmp;
 		//first check if node has right or not
-		if(root->right != NULL)
+		if(re_node->right != NULL)
 		{
 			// if has right go to most left
-			root = root->right;
-			root = inorder_successor(root);
+			re_node = re_node->right;
+			re_node = inorder_successor(re_node);
 		}
 		else
 		{
 			//if not, return to parent
-			tmp = root->parent;
-			while (tmp != NULL && root == tmp->right)
+			tmp = re_node->parent;
+			while (tmp != NULL && re_node == tmp->right)
 			{
-				root = tmp;
+				re_node = tmp;
 				tmp = tmp->parent;
 			}
 			// if right-most
-			root = tmp;
+			re_node = tmp;
 		}
 		return *this;
 	}
@@ -468,29 +480,31 @@ public:
 
 	avl_tree &operator--() // pre-operator -- 
 	{
-		if(root ==  last)
+		avl_tree tmp2 = end();
+		if(re_node == tmp2.re_node) // check if last
 		{
 			std::cerr << "error  is here" << std::endl;
+			re_node =  inorder_predecessor(root);
 		}
-		struct node<value_type> *tmp;
 		//check left to return most left one
-		if(root->left != NULL)
+		else if(re_node->left != NULL)
 		{
 			// if has right go to most left
-			root = root->left;
-			root = inorder_predecessor(root); // get most-right
+			re_node = re_node->left;
+			re_node = inorder_predecessor(re_node); // get most-right
 		}
 		else
 		{
+			struct node<value_type> *tmp;
 			//if not, return to parent
-			tmp = root->parent;
-			while (tmp != NULL && root == tmp->left)
+			tmp = re_node->parent;
+			while (tmp != NULL && re_node == tmp->left)
 			{
-				root = tmp;
+				re_node = tmp;
 				tmp = tmp->parent;
 			}
 			// if right-most
-			root = tmp;
+			re_node = tmp;
 		}
 		return *this;
 	}
