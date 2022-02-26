@@ -624,7 +624,6 @@ public:
 					tmp++;
 				// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
 				return (avl_tree(root, tmp.re_node));
-
 			}
 		} while (comp((*tmp++).first, k));
 		return end();

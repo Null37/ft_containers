@@ -1148,12 +1148,13 @@ int main()
 	test.insert(std::pair<int, int>(88, 70));
 	test.insert(std::pair<int, int>(1, 70));
 	
-	std::map<int, int>::iterator it  = test.upper_bound(900);
-	// // // std::map<int, int>::iterator it2  = test.lower_bound(9);
-
-	std::cout << "org map ==> " <<  it->first << std::endl;
-	// std::cout << "test ==> " <<  it2->first << std::endl;
-
+	std::map<int, int>::iterator it  = test.upper_bound(9);
+	std::map<int, int>::iterator it2  = test.lower_bound(9);
+	std::pair<std::map<int, int>::iterator , std::map<int, int>::iterator> itp = test.equal_range(9);
+	std::cout << "org map upper ==> " <<  it->first << std::endl;
+	std::cout << "org map lower ==> " <<  it2->first << std::endl;
+	std::cout << "map eq == > " << itp.first->first <<  " map s eq "  << itp.second->first << std::endl; 
+ 
 	// std::map<int, int>::iterator it =  test.end();
 	// it--;
 	// std::cout << "test ==> " <<  it->first << std::endl;
@@ -1169,7 +1170,7 @@ int main()
 
 }
 
-
+std::cout << "------------------------------------------------------" << std::endl;
 {
 	// test my upper_logic
 	ft::map<int, int> test;
@@ -1180,8 +1181,17 @@ int main()
 	test.insert(ft::pair<int, int>(88, 70));
 	test.insert(ft::pair<int, int>(1, 70));
 
-  	ft::map<int, int>::iterator it =  test.upper_bound(900);
-	std::cout << "my map == " <<  it->first << std::endl;
+
+
+
+	ft::map<int, int>::iterator it  = test.upper_bound(9);
+	ft::map<int, int>::iterator it2  = test.lower_bound(9);
+	ft::pair<ft::map<int, int>::iterator , ft::map<int, int>::iterator> itp = test.equal_range(9);
+	std::cout << "my map upper ==> " <<  it->first << std::endl;
+	std::cout << "my map lower ==> " <<  it2->first << std::endl;
+	std::cout << "my map eq == > " << itp.first->first <<  " my map s eq "  << itp.second->first << std::endl; 
+  	// ft::map<int, int>::iterator it =  test.upper_bound(900);
+	// std::cout << "my map == " <<  it->first << std::endl;
 
 	// bool i = 9 < 9;
 	// std::cout << std::boolalpha << i << std::endl;

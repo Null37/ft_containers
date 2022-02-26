@@ -268,11 +268,27 @@ template < class Key,                                     // map::key_type
 			{
 				return iterator(tree_base.upper_bound(k));
 			}
+
 			const_iterator upper_bound (const key_type& k) const
 			{
 				return const_iterator(tree_base.upper_bound(k));
 			}
 
+			ft::pair<iterator,iterator>  equal_range (const key_type& k)
+			{
+				return ft::make_pair<iterator, iterator>(lower_bound(k), upper_bound(k)); 
+			}
+
+			ft::pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			{
+				return ft::make_pair<const_iterator, const_iterator>(lower_bound(k), upper_bound(k)); 
+				
+			}
+			// Allocator:
+			allocator_type get_allocator() const
+			{
+				return alloc;
+			}
 
 	};
 
