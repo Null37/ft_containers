@@ -256,22 +256,22 @@ template < class Key,                                     // map::key_type
 			
 			iterator lower_bound (const key_type& k) // edit return to return iterator
 			{
-				iterator(tree_base.lower_bound(k));
+				return (iterator(tree_base.lower_bound(k)));
 			}
 
 			const_iterator lower_bound (const key_type& k) const
 			{
-				const_iterator(tree_base.lower_bound(k));
-
+				return const_iterator(tree_base.lower_bound(k));
 			}
-			void upper_bound (const key_type& k)
+
+			iterator upper_bound (const key_type& k)
 			{
-				tree_base.upper_bound(k);
+				return iterator(tree_base.upper_bound(k));
 			}
-			// const_iterator upper_bound (const key_type& k) const
-			// {
-
-			// }
+			const_iterator upper_bound (const key_type& k) const
+			{
+				return const_iterator(tree_base.upper_bound(k));
+			}
 
 
 	};

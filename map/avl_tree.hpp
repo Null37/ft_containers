@@ -607,13 +607,13 @@ public:
 			if(comp((*tmp).first, k)  == false || k == (*tmp).first)
 			{
 				// std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
-				return (avl_tree(root, tmp));
+				return (avl_tree(root, tmp.re_node));
 			}
 		} while (comp((*tmp++).first, k));
 		return end();
 	}
 
-	void upper_bound (const key_type& k)
+	avl_tree upper_bound (const key_type& k)
 	{
 		avl_tree tmp = begin();
 		// while (comp(tmp.root->pt.first, k))
@@ -623,16 +623,16 @@ public:
 		// }
 		do
 		{
-			if(comp(k, (*tmp).first)  == true || k == (*tmp).first)
+			if(comp(k, (*tmp).first)  == true  || k == (*tmp).first)
 			{
 
 				tmp++;
-				std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
-				return;
-				// return (avl_tree(root, tmp));
+				// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+				return (avl_tree(root, tmp.re_node));
+
 			}
 		} while (comp((*tmp++).first, k));
-		// return end();
+		return end();
 	}
 
 	
