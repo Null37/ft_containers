@@ -1222,7 +1222,20 @@ int main()
 	std::map<int, int>::iterator it_b =  test.begin();
 	std::map<int, int>::iterator it_e =  test.end();
 	
-	std::map<int, int> test2(it_b, it_e);
+	std::map<int, int> test2;
+	
+	test2.insert(std::pair<int, int>(39,10));
+	test2.insert(std::pair<int, int>(323,10));
+	test2.insert(std::pair<int, int>(89,10));
+	test2.insert(std::pair<int, int>(79,10));
+
+	
+	for(std::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
+	{
+		std::cout << it->first << std::endl;;
+	}
+	test2 =  test;
+	std::cout << " ----- " << std::endl;
 	for(std::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
 	{
 		std::cout << it->first << std::endl;;
