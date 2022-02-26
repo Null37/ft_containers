@@ -456,6 +456,7 @@ public:
 			// if has right go to most left
 			re_node = re_node->right;
 			re_node = inorder_successor(re_node);
+			// return *this;
 		}
 		else
 		{
@@ -468,8 +469,21 @@ public:
 			}
 			// if right-most
 			re_node = tmp;
+			// return *this;
+		}
+		// std::cerr << "here " << std::endl;
+		// return end();
+		if(re_node == nullptr)
+		{
+			// return end() if no more ++
+			std::numeric_limits<short> a;
+			int save = a.max(); /// max short
+			pointer_node tmp_node;
+			tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+			re_node = tmp_node;
 		}
 		return *this;
+
 	}
 	avl_tree operator++(int) // post-operator ++ mean a++
 	{
@@ -596,7 +610,29 @@ public:
 				return (avl_tree(root, tmp));
 			}
 		} while (comp((*tmp++).first, k));
-		
+		return end();
+	}
+
+	void upper_bound (const key_type& k)
+	{
+		avl_tree tmp = begin();
+		// while (comp(tmp.root->pt.first, k))
+		// {
+		// 	std::cout << tmp.root->pt.first << std::endl;
+		// 	tmp++;
+		// }
+		do
+		{
+			if(comp(k, (*tmp).first)  == true || k == (*tmp).first)
+			{
+
+				tmp++;
+				std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+				return;
+				// return (avl_tree(root, tmp));
+			}
+		} while (comp((*tmp++).first, k));
+		// return end();
 	}
 
 	

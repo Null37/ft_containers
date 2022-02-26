@@ -264,7 +264,14 @@ template < class Key,                                     // map::key_type
 				const_iterator(tree_base.lower_bound(k));
 
 			}
+			void upper_bound (const key_type& k)
+			{
+				tree_base.upper_bound(k);
+			}
+			// const_iterator upper_bound (const key_type& k) const
+			// {
 
+			// }
 
 
 	};
