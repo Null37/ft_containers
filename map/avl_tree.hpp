@@ -580,7 +580,7 @@ public:
 		// return r->pt;
 	}
 
-	void lower_bound (const key_type& k) // unique search for avl tree
+	avl_tree lower_bound (const key_type& k) // unique search for avl tree
 	{
 		avl_tree tmp = begin();
 		// while (comp(tmp.root->pt.first, k))
@@ -592,7 +592,8 @@ public:
 		{
 			if(comp((*tmp).first, k)  == false || k == (*tmp).first)
 			{
-				std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+				// std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+				return (avl_tree(root, tmp));
 			}
 		} while (comp((*tmp++).first, k));
 		
