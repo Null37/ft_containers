@@ -616,17 +616,12 @@ public:
 	avl_tree upper_bound (const key_type& k)
 	{
 		avl_tree tmp = begin();
-		// while (comp(tmp.root->pt.first, k))
-		// {
-		// 	std::cout << tmp.root->pt.first << std::endl;
-		// 	tmp++;
-		// }
 		do
 		{
 			if(comp(k, (*tmp).first)  == true  || k == (*tmp).first)
 			{
-
-				tmp++;
+				if (k == (*tmp).first)
+					tmp++;
 				// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
 				return (avl_tree(root, tmp.re_node));
 

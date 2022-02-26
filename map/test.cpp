@@ -1148,7 +1148,7 @@ int main()
 	test.insert(std::pair<int, int>(88, 70));
 	test.insert(std::pair<int, int>(1, 70));
 	
-	std::map<int, int>::iterator it  = test.upper_bound(9);
+	std::map<int, int>::iterator it  = test.upper_bound(900);
 	// // // std::map<int, int>::iterator it2  = test.lower_bound(9);
 
 	std::cout << "org map ==> " <<  it->first << std::endl;
@@ -1180,8 +1180,8 @@ int main()
 	test.insert(ft::pair<int, int>(88, 70));
 	test.insert(ft::pair<int, int>(1, 70));
 
-  	ft::map<int, int>::iterator it =  test.upper_bound(9);
-	std::cout << "test == " <<  it->first << std::endl;
+  	ft::map<int, int>::iterator it =  test.upper_bound(900);
+	std::cout << "my map == " <<  it->first << std::endl;
 
 	// bool i = 9 < 9;
 	// std::cout << std::boolalpha << i << std::endl;
@@ -1196,7 +1196,7 @@ int main()
 
 
 
-
+	
 }
 
 }
