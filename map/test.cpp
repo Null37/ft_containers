@@ -4,6 +4,7 @@
 #include "map_iterator.hpp"
 #include "map.hpp"
 #include <vector>
+#include <set>
 #include <math.h>
 #include <limits>
 #include "../vector/vector.hpp"
@@ -1138,75 +1139,116 @@ int main()
 // }
 
 
+// {
+// 	// // test upper bound
+// 	std::map<int, int> test;
+
+// 	test.insert(std::pair<int, int>(9, 70));
+// 	test.insert(std::pair<int, int>(95, 70));
+// 	test.insert(std::pair<int, int>(19, 70));
+// 	test.insert(std::pair<int, int>(88, 70));
+// 	test.insert(std::pair<int, int>(1, 70));
+	
+// 	std::map<int, int>::iterator it  = test.upper_bound(9);
+// 	std::map<int, int>::iterator it2  = test.lower_bound(9);
+// 	std::pair<std::map<int, int>::iterator , std::map<int, int>::iterator> itp = test.equal_range(9);
+// 	std::cout << "org map upper ==> " <<  it->first << std::endl;
+// 	std::cout << "org map lower ==> " <<  it2->first << std::endl;
+// 	std::cout << "map eq == > " << itp.first->first <<  " map s eq "  << itp.second->first << std::endl; 
+ 
+// 	// std::map<int, int>::iterator it =  test.end();
+// 	// it--;
+// 	// std::cout << "test ==> " <<  it->first << std::endl;
+// 	// it++;
+// 	// std::cout << "test ==> " <<  it->first << std::endl;
+
+// 	// test logic
+// 	// std::map<int, int>::iterator it =  test.begin();
+// 	// it++;
+// 	// std::cout << "test ==> " <<  it->first << std::endl;
+// 	// it++;
+// 	// std::cout << "test ==> " << it->first << std::endl;
+
+// }
+
+// std::cout << "------------------------------------------------------" << std::endl;
+// {
+// 	// test my upper_logic
+// 	ft::map<int, int> test;
+
+// 	test.insert(ft::pair<int, int>(9, 70));
+// 	test.insert(ft::pair<int, int>(95, 70));
+// 	test.insert(ft::pair<int, int>(19, 70));
+// 	test.insert(ft::pair<int, int>(88, 70));
+// 	test.insert(ft::pair<int, int>(1, 70));
+
+
+
+
+// 	ft::map<int, int>::iterator it  = test.upper_bound(9);
+// 	ft::map<int, int>::iterator it2  = test.lower_bound(9);
+// 	ft::pair<ft::map<int, int>::iterator , ft::map<int, int>::iterator> itp = test.equal_range(9);
+// 	std::cout << "my map upper ==> " <<  it->first << std::endl;
+// 	std::cout << "my map lower ==> " <<  it2->first << std::endl;
+// 	std::cout << "my map eq == > " << itp.first->first <<  " my map s eq "  << itp.second->first << std::endl; 
+//   	// ft::map<int, int>::iterator it =  test.upper_bound(900);
+// 	// std::cout << "my map == " <<  it->first << std::endl;
+
+// 	// bool i = 9 < 9;
+// 	// std::cout << std::boolalpha << i << std::endl;
+// 	// ft::map<int, int>::iterator it = test.begin();
+// 	// it++;
+// 	// it++;
+// 	// it++;
+// 	// it++;
+// 	// std::cout << "test == " <<  it->first << std::endl;
+// 	// it++;
+// 	// std::cout << "test == " <<  it->first << std::endl;
+
+
+	
+// }
 {
-	// // test upper bound
+	// test constrator range
+
 	std::map<int, int> test;
 
-	test.insert(std::pair<int, int>(9, 70));
-	test.insert(std::pair<int, int>(95, 70));
-	test.insert(std::pair<int, int>(19, 70));
-	test.insert(std::pair<int, int>(88, 70));
-	test.insert(std::pair<int, int>(1, 70));
+	test.insert(std::pair<int, int>(9,10));
+	test.insert(std::pair<int, int>(19,10));
+	test.insert(std::pair<int, int>(29,10));
+	test.insert(std::pair<int, int>(39,10));
+	test.insert(std::pair<int, int>(49,10));
+
+	std::map<int, int>::iterator it_b =  test.begin();
+	std::map<int, int>::iterator it_e =  test.end();
 	
-	std::map<int, int>::iterator it  = test.upper_bound(9);
-	std::map<int, int>::iterator it2  = test.lower_bound(9);
-	std::pair<std::map<int, int>::iterator , std::map<int, int>::iterator> itp = test.equal_range(9);
-	std::cout << "org map upper ==> " <<  it->first << std::endl;
-	std::cout << "org map lower ==> " <<  it2->first << std::endl;
-	std::cout << "map eq == > " << itp.first->first <<  " map s eq "  << itp.second->first << std::endl; 
- 
-	// std::map<int, int>::iterator it =  test.end();
-	// it--;
-	// std::cout << "test ==> " <<  it->first << std::endl;
-	// it++;
-	// std::cout << "test ==> " <<  it->first << std::endl;
-
-	// test logic
-	// std::map<int, int>::iterator it =  test.begin();
-	// it++;
-	// std::cout << "test ==> " <<  it->first << std::endl;
-	// it++;
-	// std::cout << "test ==> " << it->first << std::endl;
-
+	std::map<int, int> test2(it_b, it_e);
+	for(std::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
+	{
+		std::cout << it->first << std::endl;;
+	}
 }
+// std::cout << "--------------- " << std::endl;
+// {
+// 	// test constrator range
 
-std::cout << "------------------------------------------------------" << std::endl;
-{
-	// test my upper_logic
-	ft::map<int, int> test;
+// 	ft::map<int, int> test;
 
-	test.insert(ft::pair<int, int>(9, 70));
-	test.insert(ft::pair<int, int>(95, 70));
-	test.insert(ft::pair<int, int>(19, 70));
-	test.insert(ft::pair<int, int>(88, 70));
-	test.insert(ft::pair<int, int>(1, 70));
+// 	test.insert(ft::pair<int, int>(9,10));
+// 	test.insert(ft::pair<int, int>(19,10));
+// 	test.insert(ft::pair<int, int>(29,10));
+// 	test.insert(ft::pair<int, int>(39,10));
+// 	test.insert(ft::pair<int, int>(49,10));
 
-
-
-
-	ft::map<int, int>::iterator it  = test.upper_bound(9);
-	ft::map<int, int>::iterator it2  = test.lower_bound(9);
-	ft::pair<ft::map<int, int>::iterator , ft::map<int, int>::iterator> itp = test.equal_range(9);
-	std::cout << "my map upper ==> " <<  it->first << std::endl;
-	std::cout << "my map lower ==> " <<  it2->first << std::endl;
-	std::cout << "my map eq == > " << itp.first->first <<  " my map s eq "  << itp.second->first << std::endl; 
-  	// ft::map<int, int>::iterator it =  test.upper_bound(900);
-	// std::cout << "my map == " <<  it->first << std::endl;
-
-	// bool i = 9 < 9;
-	// std::cout << std::boolalpha << i << std::endl;
-	// ft::map<int, int>::iterator it = test.begin();
-	// it++;
-	// it++;
-	// it++;
-	// it++;
-	// std::cout << "test == " <<  it->first << std::endl;
-	// it++;
-	// std::cout << "test == " <<  it->first << std::endl;
-
-
-
+// 	ft::map<int, int>::iterator it_b =  test.begin();
+// 	ft::map<int, int>::iterator it_e =  test.end();
 	
-}
+// 	ft::map<int, int> test2(it_b, it_e);
+// 	for(ft::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
+// 	{
+// 		std::cout << it->first << std::endl;;
+// 	}
+// }
+
 
 }

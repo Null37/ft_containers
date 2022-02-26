@@ -31,7 +31,7 @@ struct node
 	// 	std::cout << "loooooooool" << "\n";
 	// }
 	node(value_type p): pt(p), parent(0), right(0), left(0) {}
-	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0) {}
+	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0), hight(0) {}
 	node(const first_type &first, const second_type &second, struct node  *cp, struct node    *rp, struct node    *lp, int hp): pt(first, second), parent(cp), right(rp), left(lp), hight(hp) {}
 
 	// node(const node)
@@ -89,7 +89,7 @@ public:
 		this->root = root_p;
 		this->re_node = node_p;
 	}
-	avl_tree(const pointer_node &at): root(at){} // node gnrate one
+	avl_tree(const pointer_node &at): root(at){} // node gnrate one // deep copy
 	void operator=(const avl_tree &at)
 	{
 		this->root = copy_helper(at.root);
@@ -415,7 +415,7 @@ public:
 
 	bool operator==(const avl_tree& cp)
 	{
-		return (root == cp.root);
+		return (re_node->pt == cp.re_node->pt);
 	}
 
 

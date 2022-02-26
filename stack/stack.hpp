@@ -13,7 +13,7 @@ class stack
         typedef T           value_type;
         typedef Container   container_type;
         typedef size_t      size_type;
-    private:
+    protected:
         container_type c;
     public:
         //constructor

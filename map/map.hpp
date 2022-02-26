@@ -56,23 +56,32 @@ template < class Key,                                     // map::key_type
 			// //Iterators function
 
 			// Constructs
-			explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
+			explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree_base()
 			{
-				// tree_base = NULL;
 				map_size = 0;
 				this->alloc = alloc;
 			}
 
-			// template <class InputIterator>
-			// map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(),
-			// 	const allocator_type& alloc = allocator_type())
+			template <class InputIterator>
+			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
+			{
+				insert(first, last);
+			}
+			// map (const map& x): tree_base()
 			// {
-
+			// 	this->map_size = x.map_size;
+			// 	this->alloc = x.alloc;
+			// 	*this = x;
 			// }
-			// map (const map& x)
+
+			// map& operator= (const map& x)
 			// {
+			// 	if (*this != x)
+			// 	{
 
+			// 	}
 			// }
+
 			iterator begin()
 			{
 				return (iterator(tree_base.begin()));
@@ -163,6 +172,7 @@ template < class Key,                                     // map::key_type
 			template <class InputIterator>
   			void insert (InputIterator first, InputIterator last)
 			{
+				// std::cout << " test is here " << std::endl;
 				while(first != last)
 				{
 					insert(*first);
