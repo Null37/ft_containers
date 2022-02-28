@@ -346,7 +346,9 @@ public:
 				pointer_node tmp_l = r->left;
 				pointer_node tmp_pa = r->parent;
 				int tmp_h = r->hight;
-				r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h);
+				// r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h); // change to alloc
+				r  = alloc.allocate(1);
+				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
 				r->left =  deleteNode(r->left , tmp->pt.first);
 			}
 			else if (r->right != NULL)
@@ -356,7 +358,9 @@ public:
 				pointer_node tmp_l = r->left;
 				pointer_node tmp_pa = r->parent;
 				int tmp_h = r->hight;
-				r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h);
+				// r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h);
+				r  = alloc.allocate(1);
+				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
 				r->right = deleteNode(r->right , tmp->pt.first);
 			}
 		}
@@ -451,7 +455,9 @@ public:
 		std::numeric_limits<short> a;
 		int save = a.max(); /// max short
 		pointer_node tmp_node;
-		tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+		// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+		tmp_node =  alloc.allocate(1);
+		alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
 		return avl_tree(root, tmp_node);
 	}
 	avl_tree &operator++()
@@ -486,7 +492,9 @@ public:
 			std::numeric_limits<short> a;
 			int save = a.max(); /// max short
 			pointer_node tmp_node;
-			tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+			// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+			tmp_node =  alloc.allocate(1);
+			alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
 			re_node = tmp_node;
 		}
 		return *this;
