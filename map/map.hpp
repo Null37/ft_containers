@@ -50,9 +50,9 @@ template < class Key,                                     // map::key_type
 			typedef size_t																	 size_type;
 			private:
 			typedef  ft::avl_tree<value_type, key_compare,  allocator_type> tree_type;
-				tree_type	tree_base;
-				size_type 					map_size;
-				allocator_type				alloc;
+				tree_type													tree_base;
+				size_type 													map_size;
+				allocator_type												alloc;
 			public:
 			// //Iterators function
 

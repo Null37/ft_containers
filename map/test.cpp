@@ -1208,60 +1208,60 @@ int main()
 
 	
 // }
-{
-	// test constrator range
-
-	std::map<int, int> test;
-
-	test.insert(std::pair<int, int>(9,10));
-	test.insert(std::pair<int, int>(19,10));
-	test.insert(std::pair<int, int>(29,10));
-	test.insert(std::pair<int, int>(39,10));
-	test.insert(std::pair<int, int>(49,10));
-
-	std::map<int, int>::iterator it_b =  test.begin();
-	std::map<int, int>::iterator it_e =  test.end();
-	
-	std::map<int, int> test2;
-	
-	test2.insert(std::pair<int, int>(39,10));
-	test2.insert(std::pair<int, int>(323,10));
-	test2.insert(std::pair<int, int>(89,10));
-	test2.insert(std::pair<int, int>(79,10));
-
-	
-	for(std::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
-	{
-		std::cout << it->first << std::endl;;
-	}
-	test2 =  test;
-	std::cout << " ----- " << std::endl;
-	for(std::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
-	{
-		std::cout << it->first << std::endl;;
-	}
-}
-// std::cout << "--------------- " << std::endl;
 // {
 // 	// test constrator range
 
-// 	ft::map<int, int> test;
+// 	std::map<int, int> test;
 
-// 	test.insert(ft::pair<int, int>(9,10));
-// 	test.insert(ft::pair<int, int>(19,10));
-// 	test.insert(ft::pair<int, int>(29,10));
-// 	test.insert(ft::pair<int, int>(39,10));
-// 	test.insert(ft::pair<int, int>(49,10));
+// 	test.insert(std::pair<int, int>(9,10));
+// 	test.insert(std::pair<int, int>(19,10));
+// 	test.insert(std::pair<int, int>(29,10));
+// 	test.insert(std::pair<int, int>(39,10));
+// 	test.insert(std::pair<int, int>(49,10));
 
-// 	ft::map<int, int>::iterator it_b =  test.begin();
-// 	ft::map<int, int>::iterator it_e =  test.end();
+// 	std::map<int, int>::iterator it_b =  test.begin();
+// 	std::map<int, int>::iterator it_e =  test.end();
 	
-// 	ft::map<int, int> test2(it_b, it_e);
-// 	for(ft::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
+// 	std::map<int, int> test2;
+	
+// 	test2.insert(std::pair<int, int>(39,10));
+// 	test2.insert(std::pair<int, int>(323,10));
+// 	test2.insert(std::pair<int, int>(89,10));
+// 	test2.insert(std::pair<int, int>(79,10));
+
+	
+// 	for(std::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
+// 	{
+// 		std::cout << it->first << std::endl;;
+// 	}
+// 	// test2(test);
+// 	std::cout << " ----- " << std::endl;
+// 	for(std::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
 // 	{
 // 		std::cout << it->first << std::endl;;
 // 	}
 // }
+std::cout << "--------------- " << std::endl;
+{
+	// test constrator range
+
+	ft::map<int, int> test;
+	
+	test.insert(ft::pair<int, int>(9,10));
+	test.insert(ft::pair<int, int>(19,10));
+	test.insert(ft::pair<int, int>(29,10));
+	test.insert(ft::pair<int, int>(39,10));
+	test.insert(ft::pair<int, int>(49,10));
+
+	ft::map<int, int>::iterator it_b =  test.begin();
+	ft::map<int, int>::iterator it_e =  test.end();
+	
+	ft::map<int, int> test2(it_b, it_e);
+	for(ft::map<int, int>::iterator it = test2.begin(); it !=  test2.end(); it++)
+	{
+		std::cout << it->first << std::endl;;
+	}
+}
 
 
 }

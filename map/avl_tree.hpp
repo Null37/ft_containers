@@ -56,11 +56,12 @@ class avl_tree
 public:
 	typedef size_t                      							size_type;
 	// typedef typename ft::node<value_type>::value_type        		value_type;
-	typedef typename node<value_type>::first_type							key_type;
-	typedef typename node<value_type>::second_type							mapped_value;
+	typedef typename node<value_type>::first_type					key_type;
+	typedef typename node<value_type>::second_type					mapped_value;
 	typedef	node<value_type>*										pointer_node;
-	typedef value_type* 											pointer;
+	typedef value_type* 												pointer;
 	typedef compare														key_compare;
+	typedef typename Alloc::template rebind<node<value_type> >::other  alloc_type;
 	// typedef typename pointer_node::first							first;
 	// typedef typename pointer_node::second							second;		
 
@@ -69,10 +70,12 @@ public:
 	pointer_node re_node;
 	bool is_del;
 	key_compare comp;
+	alloc_type  alloc; // rebind allocation
 public:
 	size_t size;
-	avl_tree() : root(NULL), comp(), re_node(NULL)
+	avl_tree() : root(NULL), comp(), re_node(NULL), is_del(false), alloc(alloc_type())
 	{
+		
 		// std::numeric_limits<short> a;
 		// int save = a.max(); /// max short 
 		// re_node  = new node<value_type>(save, mapped_value());
@@ -107,7 +110,9 @@ public:
 	{
 		if (cp == NULL)
 			return NULL;
-		struct node<value_type> *copy = new node<value_type>(cp->pt.first, cp->pt.second);
+		// struct node<value_type> *copy = new node<value_type>(cp->pt.first, cp->pt.second); // change to rebind
+		node<value_type> *copy = alloc.allocate(1);
+		alloc.construct(copy, node<value_type>(cp->pt.first, cp->pt.second));
 		// copy->pt.first = cp->pt.first;
 		// copy->pt.second = cp->pt.second;
 		copy->hight = cp->hight;
@@ -226,7 +231,9 @@ public:
 		if (r == NULL)
 	   {
 
-			r = new node<value_type>(ft::make_pair(val.first, val.second));
+			// r = new node<value_type>(ft::make_pair(val.first, val.second)); // change this to  allocator rebind
+			r = alloc.allocate(1);
+			alloc.construct(r, node<value_type>(ft::make_pair(val.first, val.second)));
 			r->hight = 1;
 			r->parent = parent;
 			r->right = NULL;
