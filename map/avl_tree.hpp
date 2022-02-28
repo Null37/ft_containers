@@ -38,12 +38,13 @@ struct node
 	// {
 	// 	std::cout << "here 123" << std::endl'
 	// }
-	// void operator==(const node cp)
+	// void operator=(const node cp)
 	// {
-	// 	this->pt = cp.pt;
-	// 	this->right = cp.right;
-	// 	this->parent = cp.parent;
-	// 	this->left = cp.left;
+	// 	std::cerr << "test is here " << std::endl;
+	// 	// this->pt = cp.pt;
+	// 	// this->right = cp.right;
+	// 	// this->parent = cp.parent;
+	// 	// this->left = cp.left;
 	// }
 };
 
@@ -86,11 +87,13 @@ public:
 		// std::cout << "copy const" << std::endl;
 		*this = at;
 	}
-	avl_tree(pointer_node root_p, pointer_node node_p)
+	avl_tree(pointer_node root_p, pointer_node node_p) // create new one 
 	{
 		// std::cout << "here " << std::endl;
-		this->root = root_p;
-		this->re_node = node_p;
+		// this->root = root_p;
+		this->root =  copy_helper(root_p);
+		// this->re_node = node_p;
+		this->re_node = copy_helper(node_p);
 	}
 	avl_tree(const pointer_node &at): root(at){} // node gnrate one // deep copy
 	void operator=(const avl_tree &at)

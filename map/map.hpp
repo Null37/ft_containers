@@ -79,8 +79,9 @@ template < class Key,                                     // map::key_type
 			// {
 			// 	if (*this != x)
 			// 	{
-
+					
 			// 	}
+			// 	return *this;
 			// }
 
 			iterator begin()
