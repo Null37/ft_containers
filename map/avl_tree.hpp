@@ -49,7 +49,7 @@ struct node
 
 
 
-template<class value_type,  class compare>
+template<class value_type,  class compare, class Alloc >
 class avl_tree
 {
 
