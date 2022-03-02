@@ -68,6 +68,8 @@
         "deque": "cpp",
         "stack": "cpp",
         "__functional_base_03": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "numeric": "cpp",
+        "random": "cpp"
     }
 }

@@ -148,7 +148,7 @@ template < class Key,                                     // map::key_type
 				{
 					map_size++;
 					tree_base.insert(ft::make_pair(k,mapped_type()));
-					std::cout << "key is  == > " << k << " value is == " << mapped_type() << std::endl;
+					// std::cout << "key is  == > " << k << " value is == " << mapped_type() << std::endl;
 				}
 				return tree_base.root->pt.second;
 				
