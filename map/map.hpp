@@ -68,21 +68,21 @@ template < class Key,                                     // map::key_type
 			{
 				insert(first, last);
 			}
-			// map (const map& x): tree_base()
-			// {
-			// 	this->map_size = x.map_size;
-			// 	this->alloc = x.alloc;
-			// 	*this = x;
-			// }
+			map (const map& x): tree_base()
+			{
+				this->map_size = x.map_size;
+				this->alloc = x.alloc;
+				*this = x;
+			}
 
-			// map& operator= (const map& x)
-			// {
-			// 	if (*this != x)
-			// 	{
-					
-			// 	}
-			// 	return *this;
-			// }
+			map& operator= (const map& x)
+			{
+				if (*this != x)
+				{
+					this->tree_base =  x.tree_base;
+				}
+				return *this;
+			}
 
 			iterator begin()
 			{
@@ -155,7 +155,7 @@ template < class Key,                                     // map::key_type
 			}
 			// Modifiers:
 
-			ft::pair<iterator,bool> insert (const value_type& val) // single element (1)
+			ft::pair<iterator,bool>insert (const value_type& val) // single element (1)
 			{
 				bool ret = tree_base.insert(val);
 				if (ret == true)

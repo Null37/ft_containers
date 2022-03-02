@@ -72,9 +72,10 @@ public:
 	bool is_del;
 	key_compare comp;
 	alloc_type  alloc; // rebind allocation
+	size_type 	avl_size;
 public:
 	size_t size;
-	avl_tree() : root(NULL), comp(), re_node(NULL), is_del(false), alloc(alloc_type())
+	avl_tree() : root(NULL), comp(), re_node(NULL), is_del(false), alloc(alloc_type()), avl_size(0)
 	{
 		
 		// std::numeric_limits<short> a;
@@ -82,9 +83,13 @@ public:
 		// re_node  = new node<value_type>(save, mapped_value());
 		// std::cout << "default here" << std::endl;
 	}
-	avl_tree(const avl_tree &at)
+	avl_tree(const avl_tree &at): comp()
 	{
 		// std::cout << "copy const" << std::endl;
+		this->root = NULL;
+		this->re_node = NULL;
+		this->alloc = alloc_type();
+		this->avl_size = 0;
 		*this = at;
 	}
 	avl_tree(pointer_node root_p, pointer_node node_p) // create new one 
@@ -105,9 +110,20 @@ public:
 			}
 		}
 	}
-	avl_tree(const pointer_node &at): root(at){} // node gnrate one // deep copy
+	// avl_tree(const pointer_node &at)
+	// {
+	// 	std::cerr << "hnnnaa pointer" << std::endl;;
+	// 	root = at;
+	// } // node gnrate one // deep copy
 	void operator=(const avl_tree &at)
 	{
+		// destory
+		alloc.destroy(this->root);
+		alloc.destroy(this->re_node);
+		if (root != NULL)
+			alloc.deallocate(root, avl_size);
+		else if (this->re_node != NULL)
+			alloc.deallocate(this->re_node, avl_size);
 		this->root = copy_helper(at.root);
 		// this->re_node = copy_helper(at.re_node);
 		if (at.re_node ==  nullptr || at.re_node->parent ==  NULL)
@@ -314,8 +330,8 @@ public:
 	{
 		// std::cout << "dkhal ==> " << val.first << std::endl;
 		bool ret = add_new(root, val, NULL);
-		// if (ret == true )
-		// size++;
+		if (ret == true )
+			avl_size++;
 		return ret;
 	}
 
@@ -410,6 +426,8 @@ public:
 	int dele(key_type data) // return size
 	{
 		root = deleteNode(root, data);
+		if(is_del ==  true)
+			avl_size--;
 		return 0;
 	}
 	// void print(node<value_type> * ptr)

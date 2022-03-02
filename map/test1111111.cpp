@@ -69,6 +69,7 @@ int main()
 	test.insert(ft::pair<int, int>(58,10));
 	test.insert(ft::pair<int, int>(92,10));
 	test.insert(ft::pair<int, int>(11,10));
+	test.insert(ft::pair<int, int>(22,10));
 	test.insert(ft::pair<int, int>(99,10));
 	test.insert(ft::pair<int, int>(1001,10));
     print2D(test.tree_base.root);
