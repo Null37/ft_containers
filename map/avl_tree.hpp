@@ -91,15 +91,38 @@ public:
 	{
 		// std::cout << "here " << std::endl;
 		// this->root = root_p;
-		this->root =  copy_helper(root_p);
+		this->root =  copy_helper(root_p); // deep copy
 		// this->re_node = node_p;
-		this->re_node = copy_helper(node_p);
+		if (node_p ==  nullptr || node_p->parent ==  nullptr)
+			this->re_node = copy_helper(node_p); // deep copy
+		else
+		{
+			if (node_p != nullptr)
+			{
+				key_type k = node_p->pt.first;
+				this->re_node = copy_helper(root_p);
+				this->re_node = search_uniq1(k, this->re_node);
+			}
+		}
 	}
 	avl_tree(const pointer_node &at): root(at){} // node gnrate one // deep copy
 	void operator=(const avl_tree &at)
 	{
 		this->root = copy_helper(at.root);
-		this->re_node = copy_helper(at.re_node);
+		// this->re_node = copy_helper(at.re_node);
+		if (at.re_node ==  nullptr || at.re_node->parent ==  NULL)
+			this->re_node = copy_helper(at.re_node); // deep copy
+		else
+		{
+			// if (at.re_node->parent != nullptr)
+			// {
+				key_type k = at.re_node->pt.first;
+				this->re_node = copy_helper(at.root);
+				this->re_node = search_uniq1(k, this->re_node);
+			// }
+		}
+		// this->re_node = i(at.root);   
+		// this->re_node  = search_uniq1(at.re_node->pt.first, root);
 	}
 	~avl_tree(){}
 	//getter
@@ -602,6 +625,34 @@ public:
 			else if (r && k > r->pt.first)
 			{
 				return(search_uniq(k, r->right));
+			}
+			throw "Error";
+		}
+		catch(const char *s)
+		{
+			throw s;
+		}
+		// return r->pt;
+	}
+	pointer_node search_uniq1(const key_type& k, node<value_type> *r)
+	{
+		try
+		{
+			if(r && k == r->pt.first)
+			{
+				// std::cout << "find" << std::endl;
+				pointer_node tmp;
+				tmp   = r;
+				return tmp;
+			}
+			if (r && k < r->pt.first)
+			{
+				// std::cout << "lef" << std::endl;
+				return(search_uniq1(k, r->left));
+			}
+			else if (r && k > r->pt.first)
+			{
+				return(search_uniq1(k, r->right));
 			}
 			throw "Error";
 		}

@@ -48,7 +48,7 @@ template < class Key,                                     // map::key_type
 			typedef ft::reverse_iterator<const_iterator>									 const_reverse_iterator;
 			typedef typename iterator_traits<iterator>::difference_type						 difference_type;
 			typedef size_t																	 size_type;
-			private:
+			public:
 			typedef  ft::avl_tree<value_type, key_compare,  allocator_type> tree_type;
 				tree_type													tree_base;
 				size_type 													map_size;
@@ -248,7 +248,7 @@ template < class Key,                                     // map::key_type
 				{
 					try
 					{
-						return (iterator(tree_base.search_uniq(k, tree_base.root)));
+						return (iterator(tree_base. search_uniq(k, tree_base.root)));
 					}
 					catch(const char *s)
 					{
