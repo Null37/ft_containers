@@ -454,43 +454,6 @@ public:
 			avl_size--;
 		return 0;
 	}
-	// void print(node<value_type> * ptr)
-	// {
-	// 	if(ptr->parent != NULL)
-	// 	{
-	// 		if (ptr->left != NULL)
-	// 		{
-	// 			print(ptr->left);
-	// 		}
-	// 		std::cout << " value = " << ptr->pt.first << std::endl;
-	// 		if(ptr->right != NULL)
-	// 		{
-	// 				print(ptr->right);
-	// 		}
-
-	// 	}
-	// }
-	// void test_plus_plus_1(node<value_type> * pr)
-	// {
-	// 	if(pr->left == NULL && pr->right == NULL)
-	// 	{
-	// 		if (pr->key < pr->parent->key)
-	// 		{
-	// 			pr= pr->parent;
-	// 			std::cout << "pr = " << pr->key << std::endl; 
-	// 		}
-	// 	}
-	// 	else if (pr->left != NULL)
-	// 	{
-	// 		pr = inorder_successor(pr);
-	// 		std::cout << "pr = " << pr->key << std::endl; 
-	// 	}
-	// 	else if(pr->right != NULL)
-	// 	{
-
-	// 	}
-	// }
-
 
 	bool operator==(const avl_tree& cp)
 	{
