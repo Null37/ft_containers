@@ -91,7 +91,6 @@ template < class Key,                                     // map::key_type
 
 			iterator begin()
 			{
-				
 				return (iterator(tree_base.begin()));
 			}
 			const_iterator begin() const
@@ -127,7 +126,8 @@ template < class Key,                                     // map::key_type
 			//Capacity function
 			bool empty() const
 			{
-				if (tree_base.get() == NULL)
+				// add map_size for protect
+				if (tree_base.get() == NULL || map_size == 0)
 					return true;
 				return false;
 			}
