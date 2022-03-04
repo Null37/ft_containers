@@ -83,9 +83,14 @@ template < class Key,                                     // map::key_type
 				}
 				return *this;
 			}
+			~map()
+			{
+				clear();
+			}
 
 			iterator begin()
 			{
+				
 				return (iterator(tree_base.begin()));
 			}
 			const_iterator begin() const
