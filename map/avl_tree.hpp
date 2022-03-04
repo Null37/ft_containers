@@ -86,8 +86,8 @@ public:
 	avl_tree(const avl_tree &at): comp()
 	{
 		// std::cout << "copy const" << std::endl;
-		this->root = NULL;
-		this->re_node = NULL;
+		// this->root = NULL;
+		// this->re_node = NULL;
 		this->alloc = alloc_type();
 		this->avl_size = 0;
 		*this = at;

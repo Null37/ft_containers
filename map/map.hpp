@@ -139,7 +139,8 @@ template < class Key,                                     // map::key_type
 
 			size_type max_size() const
 			{
-				return alloc.max_size();
+				// return alloc.max_size();
+				return Alloc::template rebind<tree_type>.max_size();
 			}
 
 			// Element access
@@ -219,9 +220,11 @@ template < class Key,                                     // map::key_type
 			}
 			void clear()
 			{
-				for(iterator it = begin();it != end() ; it++)
+				iterator it = begin();
+				for(;it != end() ; it++)
 				{
-					erase(it->first);
+					std::cout << " here " << std::endl;
+			 		erase(it->first);
 				}
 			}
 
