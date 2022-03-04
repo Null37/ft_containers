@@ -1253,11 +1253,11 @@ int main()
 	ft::map<int, int> test;
 	//2 1 3 9 6 8 5 4 12 29 69 40 23 58 92 11 22 99 1001
 
+	test.insert(ft::pair<int, int>(2,10));
+	test.insert(ft::pair<int, int>(1,10));
+	test.insert(ft::pair<int, int>(3,10));
 	test.insert(ft::pair<int, int>(9,10));
-	test.insert(ft::pair<int, int>(19,10));
-	test.insert(ft::pair<int, int>(29,10));
-	test.insert(ft::pair<int, int>(39,10));
-	test.insert(ft::pair<int, int>(49,10));
+	test.insert(ft::pair<int, int>(6,10));
 
 	
 	

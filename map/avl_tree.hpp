@@ -189,7 +189,12 @@ public:
 
 
 		tm_p->right = p;
+
 		// std::cout << "left - left rotation" << std::endl;
+		// update height
+		tm_p->left->hight = cal_hight(tm_p->left);
+		tm_p->right->hight = cal_hight(tm_p->right);
+		tm_p->hight = cal_hight(tm_p);
 		return tm_p;
 	}
 
@@ -210,6 +215,12 @@ public:
 		tm_p->left = p;
 
 		// std::cout << "right - right rotation" << std::endl;
+
+		// update height
+		tm_p->right->hight = cal_hight(tm_p->right);
+		tm_p->left->hight = cal_hight(tm_p->left);
+		tm_p->hight =  cal_hight(tm_p);
+
 		return tm_p;
 	}
 
@@ -236,6 +247,11 @@ public:
 		tm_p2->parent = NULL; // null for root tree
 
 		// std::cout << "right-left rotation" << std::endl;
+
+		// update height
+		tm_p2->right->hight = cal_hight(tm_p2->right);
+		tm_p2->left->hight = cal_hight(tm_p2->left);
+		tm_p2->hight = cal_hight(tm_p2);
 		return tm_p2;
 
 	}
@@ -264,6 +280,12 @@ public:
 		tm_p2->parent = NULL;   // null for root tree
 
 		// std::cout << "left-right rotation" << std::endl;
+		// update height
+		
+		tm_p2->left->hight = cal_hight(tm_p2->left);
+		tm_p2->right->hight =  cal_hight(tm_p2->right);
+		tm_p2->hight =  cal_hight(tm_p2);
+	
 		return tm_p2;
 	}
 
@@ -323,7 +345,7 @@ public:
 		}
 		else if (r->right == NULL && r->left)
 			return r->left->hight + 1;
-		return 0;
+		return 1;
 	}
 
 	bool insert (const value_type& val) // add deletion
@@ -362,7 +384,9 @@ public:
 			{
 				is_del = true;
 				// std::cout << "here" << std::endl;
-				delete r;
+				// delete r; // change to
+				alloc.destroy(r);
+				alloc.deallocate(r, 1);
 			}
 			else
 				is_del = false;
