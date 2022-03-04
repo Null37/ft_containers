@@ -85,6 +85,7 @@ template < class Key,                                     // map::key_type
 			}
 			~map()
 			{
+				// if map embty size ===  0 and begin ==  end  and dont need to remove ;)
 				clear();
 			}
 
