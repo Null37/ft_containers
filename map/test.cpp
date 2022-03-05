@@ -3,21 +3,14 @@
 #include "avl_tree.hpp"
 #include "map_iterator.hpp"
 #include "map.hpp"
-#include <vector>
+// #include <vector>
 #include <set>
 #include <math.h>
 #include <limits>
-#include "../vector/vector.hpp"
+// #include "../vector/vector.hpp"
 
 #include <iterator>
-struct abc
-{
-	public:
-	int k ;
-	int b;
-	abc(){k = 10;}
-	~abc(){}
-};
+
 // struct ft::node<int, int> *getbigpp(struct ft::node<int, int> *root)
 // {
 // 	if (root->right)
@@ -1287,15 +1280,21 @@ int main()
 {
 	// ft::map<int, char>::iterator my_it;
 	// ft::map<int, char>::const_iterator c_it, c_ob(my_it);
-	ft::map<int, char>::iterator my_it;
-	ft::map<int, char>::const_iterator c_it, c_ob(my_it);
+	// ft::map<int, char>::iterator my_it;
+	// ft::map<int, char>::const_iterator c_it, c_ob(my_it);
 
-	 std::map<int, std::string> m, m1;
-	 ft::map<int, std::string> my, my1;
+	//  std::map<int, std::string> m, m1;
+	//  ft::map<int, std::string> my, my1;
 	 
-	 bool a = m == m1;
-	 bool a = my == my1;
+	//  bool a = m == m1;
+	//  bool b = my == my1;
+	ft::map<int, int> a;
 
+	
+	ft::map<int, int>::iterator it;
+	it = a.begin();
+	it++;
+	
 
 }
 

@@ -321,8 +321,22 @@ template < class Key,                                     // map::key_type
 			{
 				return alloc;
 			}
-
+			// template< class Key, class T, class Compare, class Alloc >
+			friend 	bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs );
+			// template< class Key, class T, class Compare, class Alloc >
+		// bool operator!=( const std::map<Key,T,Compare,Alloc>& lhs, const std::map<Key,T,Compare,Alloc>& rhs );
 	};
+
+	// non-function operator
+	template< class Key, class T, class Compare, class Alloc >
+	bool operator==(const std::map<Key,T,Compare,Alloc>& lhs, const std::map<Key,T,Compare,Alloc>& rhs )
+		{
+			(void)lhs;
+			(void)rhs;
+
+			std::cout << "hna " << std::endl;
+			return 1;
+		}
 
 }
 
