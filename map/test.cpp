@@ -1283,17 +1283,32 @@ int main()
 	// ft::map<int, char>::iterator my_it;
 	// ft::map<int, char>::const_iterator c_it, c_ob(my_it);
 
-	//  std::map<int, std::string> m, m1;
-	//  ft::map<int, std::string> my, my1;
+	 std::map<int, std::string> m, m1;
+	 ft::map<int, std::string> my, my1;
 	 
-	//  bool a = m == m1;
-	//  bool b = my == my1;
-	ft::map<int, int> a;
+	 bool a = m == m1;
+	 bool b = my == my1;
+	 std::cout << std::boolalpha << a << std::endl;
+	 std::cout << std::boolalpha << b << std::endl;
 
-	
-	ft::map<int, int>::iterator it;
-	it = a.begin();
-	it++;
+	// ft::map<int, int> a;
+
+	// ft::map<int,int> a;
+	// a.insert(ft::pair<int, int>(3, 710));
+	// a.insert(ft::pair<int, int>(2, 710));
+	// a.insert(ft::pair<int, int>(1, 710));
+
+	// ft::map<int, int>::iterator it =  a.begin();
+	// it++;
+	// it++;
+	// it++;
+	// it++;
+	// it++;
+
+
+	// std::cout << it->first << std::endl;
+	// std::cout << it->first << std::endl;
+
 	
 
 }

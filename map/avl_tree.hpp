@@ -521,6 +521,8 @@ public:
 	}
 	avl_tree &operator++()
 	{
+				std::numeric_limits<short> a;
+
 		struct node<value_type> *tmp;
 		//first check if node has right or not
 		if(re_node->right != NULL)
@@ -548,7 +550,7 @@ public:
 		if(re_node == nullptr)
 		{
 			// return end() if no more ++
-			std::numeric_limits<short> a;
+			// std::numeric_limits<short> a;
 			int save = a.max(); /// max short
 			pointer_node tmp_node;
 			// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end

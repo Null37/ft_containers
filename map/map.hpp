@@ -4,6 +4,7 @@
 #include "my_utility.hpp"
 #include "map_iterator.hpp"
 #include "avl_tree.hpp"
+#include  "../type_trais/type_traits.hpp"
 #include "../vector/vector_iterator.hpp"
 
 // edit end() ==> map
@@ -321,22 +322,21 @@ template < class Key,                                     // map::key_type
 			{
 				return alloc;
 			}
-			// template< class Key, class T, class Compare, class Alloc >
 			friend 	bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs );
-			// template< class Key, class T, class Compare, class Alloc >
-		// bool operator!=( const std::map<Key,T,Compare,Alloc>& lhs, const std::map<Key,T,Compare,Alloc>& rhs );
+			friend bool operator!=( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs );
 	};
 
 	// non-function operator
 	template< class Key, class T, class Compare, class Alloc >
-	bool operator==(const std::map<Key,T,Compare,Alloc>& lhs, const std::map<Key,T,Compare,Alloc>& rhs )
+	bool operator==(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
 		{
-			(void)lhs;
-			(void)rhs;
-
-			std::cout << "hna " << std::endl;
-			return 1;
+			return lhs.size() && rhs.size() &&  ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 		}
+	template< class Key, class T, class Compare, class Alloc >
+	 bool operator!=( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
+	 {
+		 return !(lhs == rhs);
+	 }
 
 }
 
