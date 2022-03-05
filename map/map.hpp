@@ -328,7 +328,7 @@ template < class Key,                                     // map::key_type
 
 	// non-function operator
 	template< class Key, class T, class Compare, class Alloc >
-	bool operator==(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
+	bool operator==( const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
 		{
 			return lhs.size() && rhs.size() &&  ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 		}
