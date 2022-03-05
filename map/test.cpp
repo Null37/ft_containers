@@ -1247,38 +1247,56 @@ int main()
 // 	// }
 // }
 // std::cout << "--------------- " << std::endl;
+// {
+// 	// test constrator range
+
+// 	ft::map<int, int> test;
+// 	//2 1 3 9 6 8 5 4 12 29 69 40 23 58 92 11 22 99 1001
+
+// 	test.insert(ft::pair<int, int>(2,10));
+// 	test.insert(ft::pair<int, int>(1,10));
+// 	test.insert(ft::pair<int, int>(3,10));
+// 	test.insert(ft::pair<int, int>(9,10));
+// 	test.insert(ft::pair<int, int>(6,10));
+
+	
+	
+// 	// test.insert(ft::pair<int, int>(39,10));
+// 	// test.insert(ft::pair<int, int>(49,10));
+
+// 	// ft::map<int, int>::iterator it_b =  test.begin();
+// 	// std::cout << "babababkj fhjdhskjf";
+	
+// 	// ft::map<int, int>::iterator it2(it_b);
+// 	// it2++;
+// 	// std::cout  << it2->first << std::endl;
+// 	// std::cout  << it_b->first << std::endl;
+// 	// ft::map<int, int>::iterator it_e =  test.end();
+	
+// 	// ft::map<int, int> test2(it_b, it_e);
+// 	for(ft::map<int, int>::iterator it = test.begin(); it !=  test.end(); it++)
+// 	{
+// 		std::cout << it->first << std::endl;;
+// 	}
+// 	test.clear();
+// }
+
+
+
+
 {
-	// test constrator range
+	// ft::map<int, char>::iterator my_it;
+	// ft::map<int, char>::const_iterator c_it, c_ob(my_it);
+	ft::map<int, char>::iterator my_it;
+	ft::map<int, char>::const_iterator c_it, c_ob(my_it);
 
-	ft::map<int, int> test;
-	//2 1 3 9 6 8 5 4 12 29 69 40 23 58 92 11 22 99 1001
+	 std::map<int, std::string> m, m1;
+	 ft::map<int, std::string> my, my1;
+	 
+	 bool a = m == m1;
+	 bool a = my == my1;
 
-	test.insert(ft::pair<int, int>(2,10));
-	// test.insert(ft::pair<int, int>(1,10));
-	// test.insert(ft::pair<int, int>(3,10));
-	// test.insert(ft::pair<int, int>(9,10));
-	// test.insert(ft::pair<int, int>(6,10));
 
-	
-	
-	// test.insert(ft::pair<int, int>(39,10));
-	// test.insert(ft::pair<int, int>(49,10));
-
-	// ft::map<int, int>::iterator it_b =  test.begin();
-	// std::cout << "babababkj fhjdhskjf";
-	
-	// ft::map<int, int>::iterator it2(it_b);
-	// it2++;
-	// std::cout  << it2->first << std::endl;
-	// std::cout  << it_b->first << std::endl;
-	// ft::map<int, int>::iterator it_e =  test.end();
-	
-	// ft::map<int, int> test2(it_b, it_e);
-	// for(ft::map<int, int>::iterator it = test.begin(); it !=  test.end(); it++)
-	// {
-	// 	std::cout << it->first << std::endl;;
-	// }
 }
-
 
 }

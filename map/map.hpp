@@ -43,7 +43,7 @@ template < class Key,                                     // map::key_type
 			typedef value_type*																 pointer;
 			typedef	const value_type* 														 const_pointer;	
 			typedef ft::map_iterator<ft::avl_tree<value_type, key_compare, allocator_type> > iterator;	//a bidirectional iterator to value_type
-			typedef ft::map_iterator<ft::avl_tree<const value_type, key_compare, allocator_type> > 			 const_iterator;	//a bidirectional iterator to value_type
+			typedef ft::map_iterator<ft::avl_tree<value_type, key_compare, allocator_type> > const_iterator;	//a bidirectional iterator to value_type
 			typedef ft::reverse_iterator<iterator>											 reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>									 const_reverse_iterator;
 			typedef typename iterator_traits<iterator>::difference_type						 difference_type;
@@ -220,12 +220,23 @@ template < class Key,                                     // map::key_type
 			}
 			void clear()
 			{
-				iterator it = begin();
-				for(;it != end() ; it++)
+				// iterator it = begin();
+				// iterator itend = end();
+				// while (it != itend)
+				// {
+				// 	std::cout << " here " << std::endl;
+				// 	erase(it->first);
+				// 	++it;
+				// }
+				// for(;it != itend ; it++)
+				// {
+				// 	std::cout << " here " << std::endl;
+			 	// 	erase(it->first);
+				while (tree_base.root  != NULL)
 				{
-					std::cout << " here " << std::endl;
-			 		erase(it->first);
+					erase(tree_base.root->pt.first);
 				}
+				
 			}
 
 			void swap (map& x)

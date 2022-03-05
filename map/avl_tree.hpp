@@ -83,13 +83,14 @@ public:
 		// re_node  = new node<value_type>(save, mapped_value());
 		// std::cout << "default here" << std::endl;
 	}
-	avl_tree(const avl_tree &at): comp()
+	avl_tree(const avl_tree &at): comp(), avl_size(at.avl_size)
 	{
+		// std::cerr << "ana hna  nnnnn " << "  this ====" << avl_size << " at =>  " << at.avl_size << std::endl;
 		// std::cout << "copy const" << std::endl;
 		this->root = NULL;
 		this->re_node = NULL;
 		this->alloc = alloc_type();
-		this->avl_size = 0;
+		// this->avl_size = 0;
 		*this = at;
 	}
 	avl_tree(pointer_node root_p, pointer_node node_p) // create new one 
@@ -97,7 +98,7 @@ public:
 		// std::cout << "here " << std::endl;
 		// this->root = root_p;
 		this->root =  copy_helper(root_p); // deep copy
-		// this->re_node = node_p;
+		//  = node_p;
 		if (node_p ==  nullptr || node_p->parent ==  nullptr)
 			this->re_node = copy_helper(node_p); // deep copy
 		else
@@ -110,6 +111,25 @@ public:
 			}
 		}
 	}
+	// avl_tree(pointer_node root_p, pointer_node node_p, size_type size1) // create new one 
+	// {
+	// 	// std::cout << "here " << std::endl;
+	// 	// this->root = root_p;
+	// 	this->root =  copy_helper(root_p); // deep copy
+	// 	// this->re_node = node_p;
+	// 	this->avl_size = size1;
+	// 	if (node_p ==  nullptr || node_p->parent ==  nullptr)
+	// 		this->re_node = copy_helper(node_p); // deep copy
+	// 	else
+	// 	{
+	// 		if (node_p != nullptr)
+	// 		{
+	// 			key_type k = node_p->pt.first;
+	// 			this->re_node = copy_helper(root_p);
+	// 			this->re_node = search_uniq1(k, this->re_node);
+	// 		}
+	// 	}
+	// }
 	// avl_tree(const pointer_node &at)
 	// {
 	// 	std::cerr << "hnnnaa pointer" << std::endl;;
@@ -121,13 +141,19 @@ public:
 		alloc.destroy(this->root);
 		alloc.destroy(this->re_node);
 		if (root != NULL)
+		{
+			// std::cout << " size del ==> " << avl_size << std::endl;
 			alloc.deallocate(root, avl_size);
+			}
 		else if (this->re_node != NULL)
 			alloc.deallocate(this->re_node, avl_size);
 		this->root = copy_helper(at.root);
+		this->avl_size = at.avl_size;
 		// this->re_node = copy_helper(at.re_node);
 		if (at.re_node ==  nullptr || at.re_node->parent ==  NULL)
+		{
 			this->re_node = copy_helper(at.re_node); // deep copy
+		}
 		else
 		{
 			// if (at.re_node->parent != nullptr)
@@ -413,7 +439,7 @@ public:
 				pointer_node tmp_pa = r->parent;
 				int tmp_h = r->hight;
 				// r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h); // change to alloc
-				r  = alloc.allocate(1);
+				// r  = alloc.allocate(1);
 				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
 				r->left =  deleteNode(r->left , tmp->pt.first);
 			}
@@ -425,7 +451,7 @@ public:
 				pointer_node tmp_pa = r->parent;
 				int tmp_h = r->hight;
 				// r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h);
-				r  = alloc.allocate(1);
+				// r  = alloc.allocate(1);
 				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
 				r->right = deleteNode(r->right , tmp->pt.first);
 			}
@@ -592,7 +618,7 @@ public:
 		{
 			if(r && k == r->pt.first)
 			{
-				std::cout << "find" << std::endl;
+				//std::cout << "find" << std::endl;
 				return r->pt.second;
 			}
 			if (r && k < r->pt.first)
