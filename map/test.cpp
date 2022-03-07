@@ -1283,13 +1283,13 @@ int main()
 	// ft::map<int, char>::iterator my_it;
 	// ft::map<int, char>::const_iterator c_it, c_ob(my_it);
 
-	 std::map<int, std::string> m, m1;
-	 ft::map<int, std::string> my, my1;
+	 std::map<int, int> m, m1;
+	 ft::map<int, int> my, my1;
 	 
-	 bool a = m == m1;
+	 bool a = m < m1;
 	 bool b = my == my1;
 	 std::cout << std::boolalpha << a << std::endl;
-	 std::cout << std::boolalpha << b << std::endl;
+	//  std::cout << std::boolalpha << b << std::endl;
 
 	// ft::map<int, int> a;
 

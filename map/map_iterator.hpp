@@ -22,13 +22,26 @@ public:
 	typedef ptrdiff_t											difference_type;
 	typedef	avl_base&											reference;
 
+private:
+	typedef map_iterator<avl_base>  const_iterator;
+	typedef typename avl_base::pointer_node pointer_node;
 public:
 	iterator_type tree;
 public:
 	// const int ft::pair<const int, int>::first;
-	map_iterator(){} // default
-	map_iterator(iterator_type cp): tree(cp){}
+	// map_iterator(const pointer_node &root_p,const  pointer_node &node_p): tree(root_p, node_p){} // default
+	map_iterator(const iterator_type &cp): tree(cp){
+		// std::cout << "test 1 is here" << std::endl;
+	}
+	
 	map_iterator(const map_iterator &cp_it):tree(cp_it.tree){} // copy constructor
+	
+	operator const_iterator()
+	{
+		std::cerr << " hna " << std::endl;
+		exit(12);
+			// return const_iterator(this->tree);
+	}
 	void operator=(const map_iterator &cp_it) //
 	{
 		this->tree = cp_it.tree;
@@ -37,6 +50,7 @@ public:
 	~map_iterator(){}
 	public:
 	//overload operator
+	
 	bool operator==(const map_iterator& it)
 	{
 		return (tree == it.tree);

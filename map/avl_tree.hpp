@@ -93,7 +93,7 @@ public:
 		// this->avl_size = 0;
 		*this = at;
 	}
-	avl_tree(pointer_node root_p, pointer_node node_p) // create new one 
+	avl_tree(const pointer_node &root_p, const pointer_node &node_p) // create new one 
 	{
 		// std::cout << "here " << std::endl;
 		// this->root = root_p;
@@ -168,7 +168,7 @@ public:
 	}
 	~avl_tree(){}
 	//getter
-	struct node<value_type> *get() const 
+	node<value_type> *get() const 
 	{
 		return root;
 	}
@@ -224,10 +224,10 @@ public:
 		return tm_p;
 	}
 
-	struct node<value_type> *RRrotation(node<value_type> *n)
+	node<value_type> *RRrotation(node<value_type> *n)
 	{
-		struct node<value_type> *p;
-		struct node<value_type> *tm_p;
+		node<value_type> *p;
+		node<value_type> *tm_p;
 
 		p = n; // copy of out node
 
@@ -250,11 +250,11 @@ public:
 		return tm_p;
 	}
 
-	struct node<value_type> *RLrotation(node<value_type> *n)
+	node<value_type> *RLrotation(node<value_type> *n)
 	{
-		struct node<value_type> *p;
-		struct node<value_type> *tm_p;
-		struct node<value_type> *tm_p2;
+		node<value_type> *p;
+		node<value_type> *tm_p;
+		node<value_type> *tm_p2;
 
 		p = n; // first copy from n node
 		tm_p = p->right;
@@ -283,11 +283,11 @@ public:
 	}
 	
 
-	struct node<value_type> *LRrotation(node<value_type> *n)
+	node<value_type> *LRrotation(node<value_type> *n)
 	{
-		struct node<value_type> *p;
-		struct node<value_type> *tm_p;
-		struct node<value_type> *tm_p2;
+		node<value_type> *p;
+		node<value_type> *tm_p;
+		node<value_type> *tm_p2;
 
 		p = n; // copy node 
 		tm_p = p->left;
@@ -315,7 +315,7 @@ public:
 		return tm_p2;
 	}
 
-	bool  add_new(node<value_type> *&r, const value_type& val, struct node<value_type>   *parent)
+	bool  add_new(node<value_type> *&r, const value_type& val, node<value_type>   *parent)
 	{
 		bool ret = false;
 		if (r == NULL)
@@ -383,7 +383,7 @@ public:
 		return ret;
 	}
 
-	struct node<value_type> *inorder_predecessor(struct node<value_type> *tc)
+	node<value_type> *inorder_predecessor(node<value_type> *tc)
 	{
 		//the largest element of the left sub tree.
 		node<value_type> *t = tc;
@@ -392,7 +392,16 @@ public:
 		return t;
 	}
 
-	struct node<value_type> *inorder_successor(node<value_type> *tc)
+	node<value_type> *inorder_successor(node<value_type> *tc)
+	{
+		//the smallest element of the right sub tree
+		node<value_type> *t = tc;
+
+		while(t->left != NULL)
+			t = t->left;
+		return t;
+	}
+	node<value_type> *inorder_successor_const(node<value_type> *tc) const 
 	{
 		//the smallest element of the right sub tree
 		node<value_type> *t = tc;
@@ -402,7 +411,7 @@ public:
 		return t;
 	}
 
-	struct node<value_type> *deleteNode(node<value_type> *r, key_type k)
+	node<value_type> *deleteNode(node<value_type> *r, key_type k)
 	{
 		if ((r->left == NULL && r->right == NULL))
 		{
@@ -418,7 +427,7 @@ public:
 				is_del = false;
 			return NULL;
 		}
-		struct node<value_type> *tmp;
+		node<value_type> *tmp;
 		if (k < r->pt.first)
 		{
 			// std::cout << "left test" << std::endl;
@@ -507,6 +516,13 @@ public:
 			return end();
 		return avl_tree(root, inorder_successor(root));
 	}
+	const avl_tree begin_const() const
+	{
+		// return avl_tree(inorder_successor(root)); version 1
+		// if (avl_size == 0)
+		// 	return end();
+		return avl_tree(root, inorder_successor_const(root));
+	}
 
 	avl_tree end()
 	{
@@ -519,6 +535,17 @@ public:
 		alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
 		return avl_tree(root, tmp_node);
 	}
+	// const avl_tree end_const() 
+	// {
+	// 	// return (avl_tree(re_node)); // version 1
+	// 	std::numeric_limits<short> a;
+	// 	int save = a.max(); /// max short
+	// 	pointer_node tmp_node = alloc.allocate(1);
+	// 	// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+	// 	// tmp_node =  ;
+	// 	alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
+	// 	return avl_tree(root, tmp_node);
+	// }
 	avl_tree &operator++()
 	{
 				std::numeric_limits<short> a;
