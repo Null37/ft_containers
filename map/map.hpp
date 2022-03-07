@@ -105,7 +105,7 @@ template < class Key,                                     // map::key_type
 			}
 			const_iterator end() const
 			{
-				return (const_iterator)(tree_base.end());
+				return const_iterator(tree_base.end_const());
 			}	
 
 			reverse_iterator rbegin()

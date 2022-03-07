@@ -23,7 +23,7 @@ public:
 	typedef	avl_base&											reference;
 
 private:
-	typedef map_iterator<avl_base>  const_iterator;
+	typedef map_iterator<const avl_base>  const_iterator;
 	typedef typename avl_base::pointer_node pointer_node;
 public:
 	iterator_type tree;
@@ -38,7 +38,7 @@ public:
 	
 	operator const_iterator()
 	{
-		std::cerr << " hna " << std::endl;
+		std::cerr << " testt test " << std::endl;
 		exit(12);
 			// return const_iterator(this->tree);
 	}

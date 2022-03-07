@@ -535,17 +535,17 @@ public:
 		alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
 		return avl_tree(root, tmp_node);
 	}
-	// const avl_tree end_const() 
-	// {
-	// 	// return (avl_tree(re_node)); // version 1
-	// 	std::numeric_limits<short> a;
-	// 	int save = a.max(); /// max short
-	// 	pointer_node tmp_node = alloc.allocate(1);
-	// 	// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
-	// 	// tmp_node =  ;
-	// 	alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
-	// 	return avl_tree(root, tmp_node);
-	// }
+	const avl_tree end_const() const 
+	{
+		// return (avl_tree(re_node)); // version 1
+		// std::numeric_limits<short> a;
+		// int save = a.max(); /// max short
+		// pointer_node tmp_node = alloc.allocate(1);
+		// // tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+		// // tmp_node =  ;
+		// alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
+		return avl_tree(root, NULL);
+	}
 	avl_tree &operator++()
 	{
 				std::numeric_limits<short> a;
