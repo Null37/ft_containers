@@ -14,13 +14,13 @@ class map_iterator
 
 public:
 	typedef	pointer_node										iterator_type;
-	typedef typename avl_base::key_type         				key_type;
-	typedef typename avl_base::mapped_value						mapped_type;
-	typedef ft::pair<const key_type, mapped_type>				value_type;
-	typedef std::bidirectional_iterator_tag						iterator_category;
-	typedef typename avl_base::pointer							pointer;
-	typedef ptrdiff_t											difference_type;
-	typedef	avl_base&											reference;
+	typedef typename iterator_type::first_type         				key_type;
+	typedef typename iterator_type::second_type						mapped_type;
+	typedef ft::pair<const key_type, mapped_type>					value_type;
+	typedef std::bidirectional_iterator_tag							iterator_category;
+	typedef typename avl_base::pointer								pointer;
+	typedef ptrdiff_t												difference_type;
+	typedef	avl_base&												reference;
 
 // private:
 // 	typedef map_iterator<const avl_base>  const_iterator;
@@ -32,11 +32,15 @@ public:
 public:
 	// const int ft::pair<const int, int>::first;
 	// map_iterator(const pointer_node &root_p,const  pointer_node &node_p): tree(root_p, node_p){} // default
-	map_iterator(const iterator_type &cp): tree(cp){
-		// std::cout << "test 1 is here" << std::endl;
+	// map_iterator(const iterator_type &cp): tree(cp){
+	// 	// std::cout << "test 1 is here" << std::endl;
 
-	}
+	// }
 	
+	// new contractor
+	map_iterator(const pointer_node cp_root, const pointer_node cp_re_node): root(cp_root), re_node(cp_re_node)
+	{	
+	}
 	map_iterator(const map_iterator &cp_it):tree(cp_it.tree){} // copy constructor
 	
 	operator const_iterator()

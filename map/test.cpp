@@ -1,8 +1,8 @@
 #include <map>
 #include <iostream>
-#include "avl_tree.hpp"
-#include "map_iterator.hpp"
-#include "map.hpp"
+// #include "avl_tree.hpp"
+// #include "map_iterator.hpp"
+// #include "map.hpp"
 #include <vector>
 #include <set>
 #include <math.h>
@@ -1283,7 +1283,7 @@ int main()
 	// ft::map<int, char>::iterator my_it;
 	// ft::map<int, char>::const_iterator c_it, c_ob(my_it);
 
-	 std::map<int, int> m, m1;
+		std::map<int, int> m;
 	 m.insert(std::pair<int, int>(9, 8));
 	 m.insert(std::pair<int, int>(7, 8));
 	 m.insert(std::pair<int, int>(3, 8));
