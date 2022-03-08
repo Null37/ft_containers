@@ -13,22 +13,23 @@ class map_iterator
 {
 
 public:
-	typedef	pointer_node										iterator_type;
+	typedef	pointer_node											iterator_type;
 	typedef typename iterator_type::first_type         				key_type;
 	typedef typename iterator_type::second_type						mapped_type;
 	typedef ft::pair<const key_type, mapped_type>					value_type;
 	typedef std::bidirectional_iterator_tag							iterator_category;
-	typedef typename avl_base::pointer								pointer;
-	typedef ptrdiff_t												difference_type;
-	typedef	avl_base&												reference;
+	typedef typename pointer_node::pointer								pointer;
+	// typedef ptrdiff_t												difference_type;
+	typedef	pointer_node&												reference;
 
 // private:
 // 	typedef map_iterator<const avl_base>  const_iterator;
 // 	typedef typename avl_base::pointer_node pointer_node;
-public:
+pravite:
 	// iterator_type tree;
-	pointer_node root;
-	pointer_node re_node;
+	iterator_type root;
+	iterator_type re_node;
+	iterator_type last_node;
 public:
 	// const int ft::pair<const int, int>::first;
 	// map_iterator(const pointer_node &root_p,const  pointer_node &node_p): tree(root_p, node_p){} // default
@@ -38,20 +39,23 @@ public:
 	// }
 	
 	// new contractor
-	map_iterator(const pointer_node cp_root, const pointer_node cp_re_node): root(cp_root), re_node(cp_re_node)
-	{	
-	}
-	map_iterator(const map_iterator &cp_it):tree(cp_it.tree){} // copy constructor
-	
-	operator const_iterator()
+	map_iterator(){};
+	map_iterator(const iterator_type cp_root, const iterator_type cp_re_node, iterator_type cp_last): root(cp_root), re_node(cp_re_node), last_node(cp_last)(){}
+	map_iterator(const map_iterator &cp_it)
 	{
-		std::cerr << " testt test " << std::endl;
-		exit(12);
-			// return const_iterator(this->tree);
-	} 
+		*this = cp_it;
+	} // copy constructor
+	
+	// operator const_iterator()
+	// {
+	// 	std::cerr << " testt test " << std::endl;
+	// 	exit(12);
+	// 		// return const_iterator(this->tree);
+	// } 
 	void operator=(const map_iterator &cp_it) //
 	{
-		this->tree = cp_it.tree;
+		this->root = cp_it.root;
+		this->re_node = cp_it.re_node;
 	}
 
 	~map_iterator(){}
@@ -60,40 +64,82 @@ public:
 	
 	bool operator==(const map_iterator& it)
 	{
-		return (tree == it.tree);
+		return (re_node->pt == cp.re_node->pt);
 	}
 	bool operator!=(const map_iterator& it)
 	{
-		return !(tree == it.tree);
+		return !(re_node->pt == cp.re_node->pt);
 	}
-
 	value_type& operator*() const
 	{
-		return (tree.operator*());
+		return (re_node->pt);
 	}
 	pointer operator->()
 	{
-		return (tree.operator->());
+		return (&operator*());
 	}
 
-	map_iterator &operator++()		//prefix oprator ++ mean ++a;
+	map_iterator &operator++()		//prefix oprator ++ mean ++a; 
 	{
-		++tree;
-		// tree.operator++();
-		return(*this);
+		iterator_type tmp;
+		if(re_node->right != NULL)
+		{
+			// if has right go to most left
+			re_node = re_node->right;
+			re_node = inorder_successor(re_node);
+		}
+		else
+		{
+			//if not, return to parent
+			tmp = re_node->parent;
+			while (tmp != NULL && re_node == tmp->right)
+			{
+				re_node = tmp;
+				tmp = tmp->parent;
+			}
+			// if right-most
+			re_node = tmp;
+		}
+		if(re_node == nullptr)
+		{
+			re_node = last_node;
+		}
+		return *this;
+
 	}
 	map_iterator operator++(int) // // post-operator ++ mean a++
 	{
 		map_iterator	_tmp(*this);
 		++(*this);
-		// std::cout << "tmp ==> " << _tmp.tree.root->pt.first << std::endl;
 		return _tmp;
 	}
 
 	map_iterator &operator--() // pre-operator --
 	{
-		--tree;
-		return (*this);
+		if(this->re_node == last_node)
+		{
+			re_node =  inorder_predecessor(root);
+		}
+		else if(re_node->left != NULL)
+		{
+			// if has right go to most left
+			re_node = re_node->left;
+			re_node = inorder_predecessor(re_node); // get most-right
+		}
+		lse
+		{
+			struct node<value_type> *tmp;
+			//if not, return to parent
+			tmp = re_node->parent;
+			while (tmp != NULL && re_node == tmp->left)
+			{
+				re_node = tmp;
+				tmp = tmp->parent;
+			}
+			// if right-most
+			re_node = tmp;
+		}
+		return *this;
 	}
 	
 
@@ -111,7 +157,16 @@ public:
 	// {
 	// 	return (tree.end());
 	// }
-
+	// my fucntion
+	private:
+	// map_iterator end()
+	// {
+	// 	pointer_node tmp_node;
+	// 	// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+	// 	tmp_node =  alloc.allocate(1);
+	// 	// alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
+	// 	return map_iterator(root, tmp_node)
+	// }
 };
 
 

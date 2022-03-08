@@ -17,6 +17,7 @@ struct node
 	typedef typename value_type::first_type first_type;
 	typedef typename value_type::second_type second_type;
 	typedef	node<value_type>*										pointer_node;
+	typedef value*												pointer;
 
 
 	value_type		pt;
@@ -34,18 +35,6 @@ struct node
 	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0), hight(0) {}
 	node(const first_type &first, const second_type &second, struct node  *cp, struct node    *rp, struct node    *lp, int hp): pt(first, second), parent(cp), right(rp), left(lp), hight(hp) {}
 
-	// node(const node)
-	// {
-	// 	std::cout << "here 123" << std::endl'
-	// }
-	// void operator=(const node cp)
-	// {
-	// 	std::cerr << "test is here " << std::endl;
-	// 	// this->pt = cp.pt;
-	// 	// this->right = cp.right;
-	// 	// this->parent = cp.parent;
-	// 	// this->left = cp.left;
-	// }
 };
 
 
@@ -77,7 +66,7 @@ public:
 	size_t size;
 	avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
 	{
-		last_node =  alloc.allocate(1); // end
+		last_node =  alloc.allocate(1); // create end
 		// std::numeric_limits<short> a;
 		// int save = a.max(); /// max short 
 		// re_node  = new node<value_type>(save, mapped_value());
@@ -408,15 +397,15 @@ public:
 			t = t->left;
 		return t;
 	}
-	node<value_type> *inorder_successor_const(node<value_type> *tc) const 
-	{
-		//the smallest element of the right sub tree
-		node<value_type> *t = tc;
+	// node<value_type> *inorder_successor_const(node<value_type> *tc) const 
+	// {
+	// 	//the smallest element of the right sub tree
+	// 	node<value_type> *t = tc;
 
-		while(t->left != NULL)
-			t = t->left;
-		return t;
-	}
+	// 	while(t->left != NULL)
+	// 		t = t->left;
+	// 	return t;
+	// }
 
 	node<value_type> *deleteNode(node<value_type> *r, key_type k)
 	{
@@ -497,23 +486,23 @@ public:
 		return 0;
 	}
 
-	bool operator==(const avl_tree& cp)
-	{
-		return (re_node->pt == cp.re_node->pt);
-	}
+	// bool operator==(const avl_tree& cp)
+	// {
+	// 	return (re_node->pt == cp.re_node->pt);
+	// }
 
 
-	value_type& operator*() const
-	{
-		// std::cout << "heree" << std::endl;
+	// value_type& operator*() const
+	// {
+	// 	// std::cout << "heree" << std::endl;
 		
-		return (re_node->pt);
-	}
+	// 	return (re_node->pt);
+	// }
 
-	pointer operator->()
-	{
-		return (&operator*());
-	}
+	// pointer operator->()
+	// {
+	// 	return (&operator*());
+	// }
 
 	//preoprator ++ mean ++a;
 	avl_tree begin()  
@@ -523,130 +512,105 @@ public:
 			return end();
 		return avl_tree(root, inorder_successor(root));
 	}
-	const avl_tree begin_const() const
-	{
-		// return avl_tree(inorder_successor(root)); version 1
-		// if (avl_size == 0)
-		// 	return end();
-		return avl_tree(root, inorder_successor_const(root));
-	}
-
 	avl_tree end()
 	{
-		// return (avl_tree(re_node)); // version 1
-		std::numeric_limits<short> a;
-		int save = a.max(); /// max short
-		pointer_node tmp_node;
-		// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
-		tmp_node =  alloc.allocate(1);
-		alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
-		return avl_tree(root, tmp_node);
-	}
-	const avl_tree end_const() const 
-	{
-		// return (avl_tree(re_node)); // version 1
-		// std::numeric_limits<short> a;
-		// int save = a.max(); /// max short
-		// pointer_node tmp_node = alloc.allocate(1);
-		// // tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
-		// // tmp_node =  ;
-		// alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
-		return avl_tree(root, NULL);
-	}
-	avl_tree &operator++()
-	{
-				std::numeric_limits<short> a;
-
-		struct node<value_type> *tmp;
-		//first check if node has right or not
-		if(re_node->right != NULL)
-		{
-			// if has right go to most left
-			re_node = re_node->right;
-			re_node = inorder_successor(re_node);
-			// return *this;
-		}
-		else
-		{
-			//if not, return to parent
-			tmp = re_node->parent;
-			while (tmp != NULL && re_node == tmp->right)
-			{
-				re_node = tmp;
-				tmp = tmp->parent;
-			}
-			// if right-most
-			re_node = tmp;
-			// return *this;
-		}
-		// std::cerr << "here " << std::endl;
-		// return end();
-		if(re_node == nullptr)
-		{
-			// return end() if no more ++
-			// std::numeric_limits<short> a;
-			int save = a.max(); /// max short
-			pointer_node tmp_node;
-			// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
-			tmp_node =  alloc.allocate(1);
-			alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
-			re_node = tmp_node;
-		}
-		return *this;
-
-	}
-	avl_tree operator++(int) // post-operator ++ mean a++
-	{
-		// add logic from ++ avl
-		avl_tree _tmp(*this);
-		++(*this);
-		return _tmp;
+		return avl_tree(root, last_node);
 	}
 
-	avl_tree &operator--() // pre-operator -- 
-	{
-		avl_tree tmp2 = end();
-		avl_tree tmp3 = begin();
-		if (re_node == tmp2.re_node) // check if last
-		{
-			// std::cerr << "error  is here" << std::endl;
-			re_node =  inorder_predecessor(root);
-		}
-		else if (re_node->pt == tmp3.re_node->pt)
-		{
-			// std::cerr << " if this begin " << std::endl;
-			re_node = tmp2.re_node;
-		}
-		//check left to return most left one
-		else if(re_node->left != NULL)
-		{
-			// if has right go to most left
-			re_node = re_node->left;
-			re_node = inorder_predecessor(re_node); // get most-right
-		}
-		else
-		{
-			struct node<value_type> *tmp;
-			//if not, return to parent
-			tmp = re_node->parent;
-			while (tmp != NULL && re_node == tmp->left)
-			{
-				re_node = tmp;
-				tmp = tmp->parent;
-			}
-			// if right-most
-			re_node = tmp;
-		}
-		return *this;
-	}
+	// avl_tree &operator++()
+	// {
+	// 			std::numeric_limits<short> a;
+
+	// 	struct node<value_type> *tmp;
+	// 	//first check if node has right or not
+	// 	if(re_node->right != NULL)
+	// 	{
+	// 		// if has right go to most left
+	// 		re_node = re_node->right;
+	// 		re_node = inorder_successor(re_node);
+	// 		// return *this;
+	// 	}
+	// 	else
+	// 	{
+	// 		//if not, return to parent
+	// 		tmp = re_node->parent;
+	// 		while (tmp != NULL && re_node == tmp->right)
+	// 		{
+	// 			re_node = tmp;
+	// 			tmp = tmp->parent;
+	// 		}
+	// 		// if right-most
+	// 		re_node = tmp;
+	// 		// return *this;
+	// 	}
+	// 	// std::cerr << "here " << std::endl;
+	// 	// return end();
+	// 	if(re_node == nullptr)
+	// 	{
+	// 		// return end() if no more ++
+	// 		// std::numeric_limits<short> a;
+	// 		int save = a.max(); /// max short
+	// 		pointer_node tmp_node;
+	// 		// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
+	// 		tmp_node =  alloc.allocate(1);
+	// 		alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
+	// 		re_node = tmp_node;
+	// 	}
+	// 	return *this;
+
+	// }
+	// avl_tree operator++(int) // post-operator ++ mean a++
+	// {
+	// 	// add logic from ++ avl
+	// 	avl_tree _tmp(*this);
+	// 	++(*this);
+	// 	return _tmp;
+	// }
+
+	// avl_tree &operator--() // pre-operator -- 
+	// {
+	// 	avl_tree tmp2 = end();
+	// 	avl_tree tmp3 = begin();
+	// 	if (re_node == tmp2.re_node) // check if last
+	// 	{
+	// 		// std::cerr << "error  is here" << std::endl;
+	// 		re_node =  inorder_predecessor(root);
+	// 	}
+	// 	else if (re_node->pt == tmp3.re_node->pt)
+	// 	{
+	// 		// std::cerr << " if this begin " << std::endl;
+	// 		re_node = tmp2.re_node;
+	// 	}
+	// 	//check left to return most left one
+	// 	else if(re_node->left != NULL)
+	// 	{
+	// 		// if has right go to most left
+	// 		re_node = re_node->left;
+	// 		re_node = inorder_predecessor(re_node); // get most-right
+	// 	}
+	// 	else
+	// 	{
+	// 		struct node<value_type> *tmp;
+	// 		//if not, return to parent
+	// 		tmp = re_node->parent;
+	// 		while (tmp != NULL && re_node == tmp->left)
+	// 		{
+	// 			re_node = tmp;
+	// 			tmp = tmp->parent;
+	// 		}
+	// 		// if right-most
+	// 		re_node = tmp;
+	// 	}
+	// 	return *this;
+	// }
 
 	
-	avl_tree operator--(int)
-	{
-		avl_tree _tmp(*this);
-		--(*this);
-		return _tmp;
-	}
+	// avl_tree operator--(int)
+	// {
+	// 	avl_tree _tmp(*this);
+	// 	--(*this);
+	// 	return _tmp;
+	// }
 	
 	mapped_value &search(const key_type& k, node<value_type> *r)
 	{

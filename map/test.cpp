@@ -1297,10 +1297,11 @@ int main()
 	//  std::cout << std::boolalpha << b << std::endl;
 
 	std::map<int, int>::iterator it = m.begin();
-	(*it).second = 50;
-	std::map<int, int>::iterator it2 = m.begin();
-	// m.clear();
-	std::cout << it2->second << std::endl;
+	// (*it).second = 50;
+	// std::map<int, int>::iterator it2 = m.begin();
+	// // m.clear();
+	it--;
+	std::cout << it->first << std::endl;
 	// it2++;
 	// std::cout << it2->first << std::endl;
 
