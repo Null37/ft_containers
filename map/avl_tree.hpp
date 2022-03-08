@@ -509,7 +509,7 @@ public:
 	}
 
 	//preoprator ++ mean ++a;
-	avl_tree begin()
+	avl_tree begin()  
 	{
 		// return avl_tree(inorder_successor(root)); version 1
 		if (avl_size == 0)

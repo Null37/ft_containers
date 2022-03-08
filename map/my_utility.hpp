@@ -1,5 +1,5 @@
-#ifndef ND_HPP
-#define ND_HPP
+#ifndef MY_UTILITY_HPP
+#define MY_UTILITY_HPP
 #include <iostream>
 
 

@@ -3,7 +3,7 @@
 #include "avl_tree.hpp"
 #include "map_iterator.hpp"
 #include "map.hpp"
-// #include <vector>
+#include <vector>
 #include <set>
 #include <math.h>
 #include <limits>
@@ -1284,12 +1284,25 @@ int main()
 	// ft::map<int, char>::const_iterator c_it, c_ob(my_it);
 
 	 std::map<int, int> m, m1;
-	 ft::map<int, int> my, my1;
-	 
-	 bool a = m < m1;
-	 bool b = my == my1;
-	 std::cout << std::boolalpha << a << std::endl;
+	 m.insert(std::pair<int, int>(9, 8));
+	 m.insert(std::pair<int, int>(7, 8));
+	 m.insert(std::pair<int, int>(3, 8));
+	 m.insert(std::pair<int, int>(2, 8));
+	 m.insert(std::pair<int, int>(1, 8));
+
+	//  ft::map<int, int> my, my1;
+	//  bool a = m < m1;
+	//  bool b = my == my1;
+	//  std::cout << std::boolalpha << a << std::endl;
 	//  std::cout << std::boolalpha << b << std::endl;
+
+	std::map<int, int>::iterator it = m.begin();
+	(*it).second = 50;
+	std::map<int, int>::iterator it2 = m.begin();
+	// m.clear();
+	std::cout << it2->second << std::endl;
+	// it2++;
+	// std::cout << it2->first << std::endl;
 
 	// ft::map<int, int> a;
 
@@ -1308,8 +1321,6 @@ int main()
 
 	// std::cout << it->first << std::endl;
 	// std::cout << it->first << std::endl;
-
-	
 
 }
 

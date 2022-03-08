@@ -43,7 +43,7 @@ template < class Key,                                     // map::key_type
 			typedef const value_type&														 const_reference;
 			typedef value_type*																 pointer;
 			typedef	const value_type* 														 const_pointer;	
-			typedef ft::map_iterator<ft::avl_tree<value_type, key_compare, allocator_type> > iterator;	//a bidirectional iterator to value_type
+			typedef ft::map_iterator<tree_base.root > iterator;	//a bidirectional iterator to value_type
 			typedef ft::map_iterator<ft::avl_tree<value_type, key_compare, allocator_type> > const_iterator;	//a bidirectional iterator to value_type
 			typedef ft::reverse_iterator<iterator>											 reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>									 const_reverse_iterator;
@@ -90,14 +90,20 @@ template < class Key,                                     // map::key_type
 				clear();
 			}
 
-		
-			iterator begin()
+
+			// operator const_iterator()
+			// {
+			// 	std::cerr << " testt test " << std::endl;
+			// 	exit(12);
+			// 		// return const_iterator(this->tree);
+			// } 
+			iterator begin() 
 			{
 				return (iterator(tree_base.begin()));
 			}
 			const_iterator begin() const
 			{
-				return (const_iterator(tree_base.begin_const()));
+				return ((const_iterator)(tree_base.begin()));
 			}
 			iterator end()
 			{
@@ -105,7 +111,7 @@ template < class Key,                                     // map::key_type
 			}
 			const_iterator end() const
 			{
-				return const_iterator(tree_base.end_const());
+				return (const_iterator)(tree_base.end());
 			}	
 
 			reverse_iterator rbegin()
@@ -329,7 +335,7 @@ template < class Key,                                     // map::key_type
 		template< class Key, class T, class Compare, class Alloc >
 	bool operator==(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
 		{
-			return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+			return  ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 		}
 		template <class Key, class T, class Compare, class Alloc>
   	bool operator!= ( const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs )
