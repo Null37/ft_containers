@@ -8,12 +8,12 @@
 namespace ft
 {
 
-template<class root_node, class return_node, class compare, class Alloc>
+template<class pointer_node>
 class map_iterator
 {
 
 public:
-	typedef	avl_base											iterator_type;
+	typedef	pointer_node										iterator_type;
 	typedef typename avl_base::key_type         				key_type;
 	typedef typename avl_base::mapped_value						mapped_type;
 	typedef ft::pair<const key_type, mapped_type>				value_type;
@@ -22,13 +22,13 @@ public:
 	typedef ptrdiff_t											difference_type;
 	typedef	avl_base&											reference;
 
+// private:
+// 	typedef map_iterator<const avl_base>  const_iterator;
+// 	typedef typename avl_base::pointer_node pointer_node;
 public:
-	typedef map_iterator<const avl_base>  const_iterator;
-	typedef typename avl_base::pointer_node pointer_node;
-public:
-	iterator_type tree;
-	// pointer_node root; // underline containre
-	// pointer_node re_node;
+	// iterator_type tree;
+	pointer_node root;
+	pointer_node re_node;
 public:
 	// const int ft::pair<const int, int>::first;
 	// map_iterator(const pointer_node &root_p,const  pointer_node &node_p): tree(root_p, node_p){} // default

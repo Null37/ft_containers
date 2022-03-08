@@ -68,16 +68,16 @@ public:
 
 public:
 	pointer_node root; // underline containre
-	pointer_node re_node;
+	pointer_node last_node;
 	bool is_del;
 	key_compare comp;
 	alloc_type  alloc; // rebind allocation
 	size_type 	avl_size;
 public:
 	size_t size;
-	avl_tree() : root(NULL), comp(), re_node(NULL), is_del(false), alloc(alloc_type()), avl_size(0)
+	avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
 	{
-		
+		last_node =  
 		// std::numeric_limits<short> a;
 		// int save = a.max(); /// max short 
 		// re_node  = new node<value_type>(save, mapped_value());
