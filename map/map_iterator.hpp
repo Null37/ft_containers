@@ -8,28 +8,46 @@
 namespace ft
 {
 
-template<class pointer_node>
+template<class pointer_node, class value>
 class map_iterator
 {
 
 public:
 	typedef	pointer_node											iterator_type;
-	typedef typename iterator_type::first_type         				key_type;
-	typedef typename iterator_type::second_type						mapped_type;
-	typedef ft::pair<const key_type, mapped_type>					value_type;
+	typedef value													value_type;
+	typedef typename value_type::first_type       					key_type;
+	typedef typename value_type::second_type						mapped_type;
 	typedef std::bidirectional_iterator_tag							iterator_category;
-	typedef typename pointer_node::pointer								pointer;
-	// typedef ptrdiff_t												difference_type;
+	typedef value_type*												pointer;
+	typedef ptrdiff_t												difference_type;
 	typedef	pointer_node&												reference;
 
 // private:
 // 	typedef map_iterator<const avl_base>  const_iterator;
 // 	typedef typename avl_base::pointer_node pointer_node;
-pravite:
+private:
 	// iterator_type tree;
 	iterator_type root;
 	iterator_type re_node;
 	iterator_type last_node;
+	iterator_type inorder_predecessor(iterator_type tc)
+	{
+		//the largest element of the left sub tree.
+		iterator_type t = tc;
+		while(t->right != NULL)
+			t = t->right;
+		return t;
+	}
+
+	iterator_type inorder_successor(iterator_type tc)
+	{
+		//the smallest element of the right sub tree
+		iterator_type t = tc;
+
+		while(t->left != NULL)
+			t = t->left;
+		return t;
+	}
 public:
 	// const int ft::pair<const int, int>::first;
 	// map_iterator(const pointer_node &root_p,const  pointer_node &node_p): tree(root_p, node_p){} // default
@@ -40,7 +58,7 @@ public:
 	
 	// new contractor
 	map_iterator(){};
-	map_iterator(const iterator_type cp_root, const iterator_type cp_re_node, iterator_type cp_last): root(cp_root), re_node(cp_re_node), last_node(cp_last)(){}
+	map_iterator(const iterator_type cp_root, const iterator_type cp_re_node, iterator_type cp_last): root(cp_root), re_node(cp_re_node), last_node(cp_last){}
 	map_iterator(const map_iterator &cp_it)
 	{
 		*this = cp_it;
@@ -64,11 +82,11 @@ public:
 	
 	bool operator==(const map_iterator& it)
 	{
-		return (re_node->pt == cp.re_node->pt);
+		return (re_node->pt == it.re_node->pt);
 	}
 	bool operator!=(const map_iterator& it)
 	{
-		return !(re_node->pt == cp.re_node->pt);
+		return !(re_node->pt == it.re_node->pt);
 	}
 	value_type& operator*() const
 	{
@@ -126,9 +144,9 @@ public:
 			re_node = re_node->left;
 			re_node = inorder_predecessor(re_node); // get most-right
 		}
-		lse
+		else
 		{
-			struct node<value_type> *tmp;
+			pointer_node tmp;
 			//if not, return to parent
 			tmp = re_node->parent;
 			while (tmp != NULL && re_node == tmp->left)

@@ -38,13 +38,13 @@ template < class Key,                                     // map::key_type
 				}
 			};
 			// typedef value_compare value_comp; 
-			typedef Alloc																	 allocator_type;
-			typedef	value_type&																 reference;
-			typedef const value_type&														 const_reference;
-			typedef value_type*																 pointer;
-			typedef	const value_type* 														 const_pointer;	
-			typedef ft::map_iterator<ft::node<value_type>::pointer_node> 						iterator;	//a bidirectional iterator to value_type
-			typedef ft::map_iterator<const ft::node<value_type>::pointer_node> 		const_iterator;	//a bidirectional iterator to value_type
+			typedef Alloc															allocator_type;
+			typedef	value_type&														reference;
+			typedef const value_type&												const_reference;
+			typedef value_type*														pointer;
+			typedef	const value_type* 												const_pointer;	
+			typedef ft::map_iterator<typename ft::node<value_type>::pointer_node, value_type > 			iterator;	//a bidirectional iterator to value_type
+			typedef ft::map_iterator<const typename ft::node<value_type>::pointer_node, value_type > 		const_iterator;	//a bidirectional iterator to value_type
 			typedef ft::reverse_iterator<iterator>											 reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>									 const_reverse_iterator;
 			typedef typename iterator_traits<iterator>::difference_type						 difference_type;
@@ -54,6 +54,9 @@ template < class Key,                                     // map::key_type
 				tree_type													tree_base;
 				size_type 													map_size;
 				allocator_type												alloc;
+			// private:
+			// 	typedef typename tree_type::pointer_node pointer_node;
+			// 	pointer_node
 			public:
 			// //Iterators function
 
@@ -99,19 +102,21 @@ template < class Key,                                     // map::key_type
 			// } 
 			iterator begin() 
 			{
-				return (iterator(tree_base.begin()));
+				if (empty() ==  true)
+					return (iterator(tree_base.root, tree_base.last_node, tree_base.last_node));
+				return (iterator(tree_base.root, tree_base.inorder_successor(tree_base.root), tree_base.last_node));
 			}
 			const_iterator begin() const
 			{
-				return ((const_iterator)(tree_base.begin()));
+				return const_iteratort(begin());
 			}
 			iterator end()
 			{
-				return (iterator(tree_base.end()));
+				return (iterator(tree_base.root, tree_base.last_node, tree_base.last_node));
 			}
 			const_iterator end() const
 			{
-				return (const_iterator)(tree_base.end());
+				return const_iterator(end());
 			}	
 
 			reverse_iterator rbegin()
@@ -276,7 +281,7 @@ template < class Key,                                     // map::key_type
 				{
 					try
 					{
-						return (iterator(tree_base. search_uniq(k, tree_base.root)));
+						return (iterator(tree_base.root ,tree_base.search_uniq1(k, tree_base.root), tree_base.last_node));
 					}
 					catch(const char *s)
 					{
@@ -296,17 +301,46 @@ template < class Key,                                     // map::key_type
 			
 			iterator lower_bound (const key_type& k) // edit return to return iterator
 			{
-				return (iterator(tree_base.lower_bound(k)));
+				iterator tmp = begin();
+				do
+				{
+					if(comp((*tmp).first, k)  == false || k == (*tmp).first)
+					{
+						// std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+						return (iterator(tree_base.root, tmp.re_node, tree_base.last_node));
+					}
+				} while (comp((*tmp++).first, k));
+				return end();
 			}
 
 			const_iterator lower_bound (const key_type& k) const
 			{
-				return const_iterator(tree_base.lower_bound(k));
+				iterator tmp = begin();
+				do
+				{
+					if(comp((*tmp).first, k)  == false || k == (*tmp).first)
+					{
+						// std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+						return (const_iterator(tree_base.root, tmp.re_node, tree_base.last_node));
+					}
+				} while (comp((*tmp++).first, k));
+				return end();
 			}
 
 			iterator upper_bound (const key_type& k)
 			{
-				return iterator(tree_base.upper_bound(k));
+					iterator tmp = begin();
+					do
+					{
+						if(comp(k, (*tmp).first)  == true  || k == (*tmp).first)
+						{
+							if (k == (*tmp).first)
+								tmp++;
+							// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+							return (const_iterator(tree_base.root, tmp.re_node, tree_base.last_node));
+						}
+					} while (comp((*tmp++).first, k));
+					return end();
 			}
 
 			const_iterator upper_bound (const key_type& k) const

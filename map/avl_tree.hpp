@@ -17,7 +17,7 @@ struct node
 	typedef typename value_type::first_type first_type;
 	typedef typename value_type::second_type second_type;
 	typedef	node<value_type>*										pointer_node;
-	typedef value*												pointer;
+	typedef value_type*												pointer;
 
 
 	value_type		pt;
@@ -77,7 +77,7 @@ public:
 		// std::cerr << "ana hna  nnnnn " << "  this ====" << avl_size << " at =>  " << at.avl_size << std::endl;
 		// std::cout << "copy const" << std::endl;
 		this->root = NULL;
-		this->re_node = NULL;
+		this->last_node = NULL;
 		this->alloc = alloc_type();
 		// this->avl_size = 0;
 		*this = at;
@@ -134,35 +134,34 @@ public:
 	{
 		// destory
 		alloc.destroy(this->root);
-		alloc.destroy(this->re_node);
+		alloc.destroy(this->last_node);
 		if (root != NULL)
 		{
 			// std::cout << " size del ==> " << avl_size << std::endl;
 			alloc.deallocate(root, avl_size);
 			}
-		else if (this->re_node != NULL)
-			alloc.deallocate(this->re_node, avl_size);
+		else if (this->last_node != NULL)
+			alloc.deallocate(this->last_node, avl_size);
 		this->root = copy_helper(at.root);
 		this->avl_size = at.avl_size;
-		// this->re_node = copy_helper(at.re_node);
-		if (at.re_node ==  nullptr || at.re_node->parent ==  NULL)
-		{
-			this->re_node = copy_helper(at.re_node); // deep copy
-		}
-		else
-		{
-			// if (at.re_node->parent != nullptr)
-			// {
-				key_type k = at.re_node->pt.first;
-				this->re_node = copy_helper(at.root);
-				this->re_node = search_uniq1(k, this->re_node);
-			// }
-		}
+		// this->last_node = copy_helper(at.last_node);
+		// if (at.last_node ==  nullptr || at.last_node->parent ==  NULL)
+		// {
+			this->last_node = copy_helper(at.last_node); // deep copy
+		// }
+		// else
+		// {
+		// 	// if (at.last_node->parent != nullptr)
+		// 	// {
+		// 		key_type k = at.last_node->pt.first;
+		// 		this->last_node = copy_helper(at.root);
+		// 		this->last_node = search_uniq1(k, this->last_node);
+		// 	// }
+		// }
 
 		// this->re_node = i(at.root);   
 		// this->re_node  = search_uniq1(at.re_node->pt.first, root);
 	}
-	~avl_tree(){}
 	//getter
 	node<value_type> *get() const 
 	{
@@ -505,17 +504,17 @@ public:
 	// }
 
 	//preoprator ++ mean ++a;
-	avl_tree begin()  
-	{
-		// return avl_tree(inorder_successor(root)); version 1
-		if (avl_size == 0)
-			return end();
-		return avl_tree(root, inorder_successor(root));
-	}
-	avl_tree end()
-	{
-		return avl_tree(root, last_node);
-	}
+	// avl_tree begin()  
+	// {
+	// 	// return avl_tree(inorder_successor(root)); version 1
+	// 	if (avl_size == 0)
+	// 		return end();
+	// 	return avl_tree(root, inorder_successor(root));
+	// }
+	// avl_tree end()
+	// {
+	// 	return avl_tree(root, last_node);
+	// }
 
 	// avl_tree &operator++()
 	// {
@@ -696,40 +695,40 @@ public:
 		// return r->pt;
 	}
 
-	avl_tree lower_bound (const key_type& k) // unique search for avl tree
-	{
-		avl_tree tmp = begin();
-		// while (comp(tmp.root->pt.first, k))
-		// {
-		// 	std::cout << tmp.root->pt.first << std::endl;
-		// 	tmp++;
-		// }
-		do
-		{
-			if(comp((*tmp).first, k)  == false || k == (*tmp).first)
-			{
-				// std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
-				return (avl_tree(root, tmp.re_node));
-			}
-		} while (comp((*tmp++).first, k));
-		return end();
-	}
+	// avl_tree lower_bound (const key_type& k) // unique search for avl tree
+	// {
+	// 	avl_tree tmp = begin();
+	// 	// while (comp(tmp.root->pt.first, k))
+	// 	// {
+	// 	// 	std::cout << tmp.root->pt.first << std::endl;
+	// 	// 	tmp++;
+	// 	// }
+	// 	do
+	// 	{
+	// 		if(comp((*tmp).first, k)  == false || k == (*tmp).first)
+	// 		{
+	// 			// std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+	// 			return (avl_tree(root, tmp.re_node));
+	// 		}
+	// 	} while (comp((*tmp++).first, k));
+	// 	return end();
+	// }
 
-	avl_tree upper_bound (const key_type& k)
-	{
-		avl_tree tmp = begin();
-		do
-		{
-			if(comp(k, (*tmp).first)  == true  || k == (*tmp).first)
-			{
-				if (k == (*tmp).first)
-					tmp++;
-				// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
-				return (avl_tree(root, tmp.re_node));
-			}
-		} while (comp((*tmp++).first, k));
-		return end();
-	}
+	// avl_tree upper_bound (const key_type& k)
+	// {
+	// 	avl_tree tmp = begin();
+	// 	do
+	// 	{
+	// 		if(comp(k, (*tmp).first)  == true  || k == (*tmp).first)
+	// 		{
+	// 			if (k == (*tmp).first)
+	// 				tmp++;
+	// 			// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+	// 			return (avl_tree(root, tmp.re_node));
+	// 		}
+	// 	} while (comp((*tmp++).first, k));
+	// 	return end();
+	// }
 
 	
 };
