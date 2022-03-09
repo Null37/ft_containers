@@ -465,6 +465,8 @@ public:
 			}
 		}
 		//balance cases
+		if (root == NULL)
+			return NULL;
 		if(bf(r) == 2 && bf(r->left) == 1)
 			r = LLrotation(r); // left-left rotation;
 		else if (bf(r) == 2 && bf(r->left) == -1)

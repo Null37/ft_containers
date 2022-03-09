@@ -104,8 +104,7 @@ public:
 			if (this->_capacity > 0)
 				alloc.deallocate(dy_arr, this->_capacity);
 			if (this->capacity() < x.capacity())
-					this->_capacity = x._capacity;
-		
+				this->_capacity = x.size();
 			this->_size = x._size;
 			this->dy_arr = alloc.allocate(this->_capacity);
 			for(size_type i = 0; i < x._size; i++)
