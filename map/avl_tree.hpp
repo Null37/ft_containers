@@ -22,9 +22,9 @@ struct node
 
 	value_type		pt;
 	struct node    *parent;
-	int hight; // hight evry node
 	struct node    *right;
 	struct node    *left;
+	int hight; // hight evry node
 	// struct node    *end;
 	node(): parent(0), right(0), left(0) {}
 	// node(const m &at)
@@ -64,9 +64,13 @@ public:
 	size_type 	avl_size;
 public:
 	size_t size;
-	avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
+	avl_tree() : root(NULL)
 	{
 		last_node =  alloc.allocate(1); // create end
+		comp = key_compare();
+		is_del = false;
+		avl_size = 0;
+		alloc = alloc_type();
 		// std::numeric_limits<short> a;
 		// int save = a.max(); /// max short 
 		// re_node  = new node<value_type>(save, mapped_value());
@@ -396,15 +400,15 @@ public:
 			t = t->left;
 		return t;
 	}
-	// node<value_type> *inorder_successor_const(node<value_type> *tc) const 
-	// {
-	// 	//the smallest element of the right sub tree
-	// 	node<value_type> *t = tc;
+	node<value_type> *inorder_successor_const(node<value_type> *tc) const 
+	{
+		//the smallest element of the right sub tree
+		node<value_type> *t = tc;
 
-	// 	while(t->left != NULL)
-	// 		t = t->left;
-	// 	return t;
-	// }
+		while(t->left != NULL)
+			t = t->left;
+		return t;
+	}
 
 	node<value_type> *deleteNode(node<value_type> *r, key_type k)
 	{
@@ -479,6 +483,8 @@ public:
 
 	int dele(key_type data) // return size
 	{
+		if(root == NULL)
+			return 0;
 		root = deleteNode(root, data);
 		if(is_del ==  true)
 			avl_size--;
@@ -694,6 +700,35 @@ public:
 		}
 		// return r->pt;
 	}
+	const pointer_node search_uniq1_const(const key_type& k, node<value_type> *r) const 
+	{
+		try
+		{
+			if(r && k == r->pt.first)
+			{
+				// std::cout << "find" << std::endl;
+				pointer_node tmp;
+				tmp   = r;
+				return tmp;
+			}
+			if (r && k < r->pt.first)
+			{
+				// std::cout << "lef" << std::endl;
+				return(search_uniq1_const(k, r->left));
+			}
+			else if (r && k > r->pt.first)
+			{
+				return(search_uniq1_const(k, r->right));
+			}
+			throw "Error";
+		}
+		catch(const char *s)
+		{
+			throw s;
+		}
+		// return r->pt;
+	}
+
 
 	// avl_tree lower_bound (const key_type& k) // unique search for avl tree
 	// {

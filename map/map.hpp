@@ -44,7 +44,7 @@ template < class Key,                                     // map::key_type
 			typedef value_type*														pointer;
 			typedef	const value_type* 												const_pointer;	
 			typedef ft::map_iterator<typename ft::node<value_type>::pointer_node, value_type > 			iterator;	//a bidirectional iterator to value_type
-			typedef ft::map_iterator<const typename ft::node<value_type>::pointer_node, value_type > 		const_iterator;	//a bidirectional iterator to value_type
+			typedef ft::map_iterator<typename ft::node<value_type>::pointer_node, const value_type > 		const_iterator;	//a bidirectional iterator to value_type
 			typedef ft::reverse_iterator<iterator>											 reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>									 const_reverse_iterator;
 			typedef typename iterator_traits<iterator>::difference_type						 difference_type;
@@ -55,8 +55,9 @@ template < class Key,                                     // map::key_type
 				size_type 													map_size;
 				allocator_type												alloc;
 				key_compare 												comp;
-			// private:
-			// 	typedef typename tree_type::pointer_node pointer_node;
+			private:
+				typedef typename tree_type::pointer_node pointer_node;
+			// const pointer_node search_uniq1_const(const key_type& k, node<value_type> *r) const ;
 			// 	pointer_node
 			public:
 			// //Iterators function
@@ -74,7 +75,7 @@ template < class Key,                                     // map::key_type
 			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 			{
 				insert(first, last);
-				this->comper = comp;
+				this->comp = comp;
 				this->alloc = alloc;
 			}
 			map (const map& x): tree_base()
@@ -113,7 +114,9 @@ template < class Key,                                     // map::key_type
 			}
 			const_iterator begin() const
 			{
-				return const_iteratort(begin());
+				if (empty() ==  true)
+					return (const_iterator(tree_base.root, tree_base.last_node, tree_base.last_node));
+				return const_iterator(tree_base.root, tree_base.inorder_successor_const(tree_base.root), tree_base.last_node);
 			}
 			iterator end()
 			{
@@ -121,7 +124,7 @@ template < class Key,                                     // map::key_type
 			}
 			const_iterator end() const
 			{
-				return const_iterator(end());
+				return const_iterator(tree_base.root, tree_base.last_node, tree_base.last_node);
 			}	
 
 			reverse_iterator rbegin()
@@ -238,18 +241,6 @@ template < class Key,                                     // map::key_type
 			}
 			void clear()
 			{
-				// iterator it = begin();
-				// iterator itend = end();
-				// while (it != itend)
-				// {
-				// 	std::cout << " here " << std::endl;
-				// 	erase(it->first);
-				// 	++it;
-				// }
-				// for(;it != itend ; it++)
-				// {
-				// 	std::cout << " here " << std::endl;
-			 	// 	erase(it->first);
 				while (tree_base.root  != NULL)
 				{
 					erase(tree_base.root->pt.first);
@@ -271,11 +262,11 @@ template < class Key,                                     // map::key_type
 			//Observers:
 			key_compare key_comp() const
 			{
-				return (key_comp);
+				return (comp);
 			}
 			value_compare value_comp() const
 			{
-				return (value_comp);
+				return (value_compare(comp));
 			}
 
 
@@ -287,6 +278,22 @@ template < class Key,                                     // map::key_type
 					try
 					{
 						return (iterator(tree_base.root ,tree_base.search_uniq1(k, tree_base.root), tree_base.last_node));
+					}
+					catch(const char *s)
+					{
+						return end();
+					}	
+				}
+				else
+					return end();
+			}
+			const_iterator find (const key_type& k) const
+			{
+				if(tree_base.root != NULL)
+				{
+					try
+					{
+						return (const_iterator(tree_base.root , tree_base.search_uniq1_const(k, tree_base.root), tree_base.last_node));
 					}
 					catch(const char *s)
 					{
@@ -320,7 +327,7 @@ template < class Key,                                     // map::key_type
 
 			const_iterator lower_bound (const key_type& k) const
 			{
-				iterator tmp = begin();
+				const_iterator tmp = begin();
 				do
 				{
 					if(comp((*tmp).first, k)  == false || k == (*tmp).first)
@@ -342,7 +349,7 @@ template < class Key,                                     // map::key_type
 							if (k == (*tmp).first)
 								tmp++;
 							// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
-							return (const_iterator(tree_base.root, tmp.re_node, tree_base.last_node));
+							return (iterator(tree_base.root, tmp.re_node, tree_base.last_node));
 						}
 					} while (comp((*tmp++).first, k));
 					return end();
@@ -350,15 +357,26 @@ template < class Key,                                     // map::key_type
 
 			const_iterator upper_bound (const key_type& k) const
 			{
-				return const_iterator(tree_base.upper_bound(k));
+				const_iterator tmp = begin();
+					do
+					{
+						if(comp(k, (*tmp).first)  == true  || k == (*tmp).first)
+						{
+							if (k == (*tmp).first)
+								tmp++;
+							// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
+							return (const_iterator(tree_base.root, tmp.re_node, tree_base.last_node));
+						}
+					} while (comp((*tmp++).first, k));
+					return end();
 			}
 
-			ft::pair<iterator,iterator>  equal_range (const key_type& k)
+			ft::pair<iterator, iterator>  equal_range (const key_type& k)
 			{
 				return ft::make_pair<iterator, iterator>(lower_bound(k), upper_bound(k)); 
 			}
 
-			ft::pair<const_iterator,const_iterator> equal_range (const key_type& k) const
+			ft::pair<const_iterator, const_iterator> equal_range (const key_type& k) const
 			{
 				return ft::make_pair<const_iterator, const_iterator>(lower_bound(k), upper_bound(k)); 
 				
@@ -374,7 +392,7 @@ template < class Key,                                     // map::key_type
 		template< class Key, class T, class Compare, class Alloc >
 	bool operator==(const ft::map<Key,T,Compare,Alloc>& lhs, const ft::map<Key,T,Compare,Alloc>& rhs )
 		{
-			return  ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+			return  lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
 		}
 		template <class Key, class T, class Compare, class Alloc>
   	bool operator!= ( const map<Key,T,Compare,Alloc>& lhs, const map<Key,T,Compare,Alloc>& rhs )

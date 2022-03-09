@@ -20,10 +20,10 @@ public:
 	typedef std::bidirectional_iterator_tag							iterator_category;
 	typedef value_type*												pointer;
 	typedef ptrdiff_t												difference_type;
-	typedef	pointer_node&												reference;
+	typedef	value&												reference;
 
 // private:
-	typedef map_iterator<const iterator_type, value>  const_iterator;
+	typedef map_iterator<iterator_type, const value>  const_iterator;
 // 	typedef typename avl_base::pointer_node pointer_node;
 public:
 	// iterator_type tree;
@@ -69,7 +69,7 @@ public:
 	} // copy constructor
 	
 	
-	void operator=(const map_iterator &cp_it) //
+	void operator=(  map_iterator const &cp_it ) //
 	{
 		this->root = cp_it.root;
 		this->re_node = cp_it.re_node;
@@ -82,17 +82,17 @@ public:
 	
 	bool operator==(const map_iterator& it)
 	{
-		return (re_node->pt == it.re_node->pt);
+		return (re_node == it.re_node);
 	}
 	bool operator!=(const map_iterator& it)
 	{
-		return !(re_node->pt == it.re_node->pt);
+		return re_node != it.re_node;
 	}
-	value_type& operator*() const
+	reference operator*() const
 	{
 		return (re_node->pt);
 	}
-	pointer operator->()
+	pointer operator->() const
 	{
 		return (&operator*());
 	}

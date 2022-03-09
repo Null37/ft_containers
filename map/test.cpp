@@ -1289,9 +1289,12 @@ int main()
 	//  m.insert(ft::pair<int, int>(3, 8));
 	//  m.insert(ft::pair<int, int>(2, 8));
 	//  m.insert(ft::pair<int, int>(1, 8));
-	// // ft::map<int, int>::iterator  it = m.begin();
-	// // for(; it != m.end(); it++)
-	// // 	std::cout << it->first << std::endl;
+	// ft::map<int, int>::iterator  it = m.begin();
+	// ft::map<int, int>::iterator  it2 = m.end();
+	// m.clear();
+
+	// for(; it != m.end(); it++)
+	// 	std::cout << it->first << std::endl;
 	// //  ft::map<int, int> my, my1;
 	// //  bool a = m < m1;
 	// //  bool b = my == my1;
@@ -1325,16 +1328,34 @@ int main()
 	// std::cout << it->first << std::endl;
 	// std::cout << it->first << std::endl;
 
-	// ft::map<int, int> m;
-	//  m.insert(ft::pair<int, int>(9, 8));
-	//  m.insert(ft::pair<int, int>(7, 8));
-	//  m.insert(ft::pair<int, int>(3, 8));
-	//  m.insert(ft::pair<int, int>(2, 8));
-	//  m.insert(ft::pair<int, int>(1, 8));
-	//  ft::map<int, int>::iterator it  = m.begin();
-	//  it++;
+{
+            std::map<int, std::string> m;
+            ft::map<int, std::string> ft_m;
+            for (size_t i = 0; i < 1e6; ++i)
+            {
+                m.insert(std::make_pair(i, "value"));
+                ft_m.insert(ft::make_pair(i, "value"));
+            }
+
+            for (std::map<int, std::string>::iterator it = m.begin(); it != m.end(); ++it)
+                ;
+
+            for (ft::map<int, std::string>::iterator it = ft_m.begin(); it != ft_m.end(); ++it)
+			{
+				// bool a = ft_m.begin() != ft_m.end();
+				// std::cout << std::boolalpha <<  a << std::endl;
+                std::cout << it->first << std::endl;
+
+			}
+}
+	// ft::map<int, int>::iterator it  = m.begin();
+	// ft::map<int, int>::const_iterator it2;
+	// it2 =  it;
+
+	// ft::pair<int, int> r = *m.rbegin();
+	// //  it++;
 	//   ft::map<int, int>::const_iterator c_it(it);
-	//   std::cout <<  c_it->first << std::endl;
+	//   std::cout <<  it2->first << std::endl;
 
 }
 
