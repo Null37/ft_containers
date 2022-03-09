@@ -23,9 +23,9 @@ public:
 	typedef	pointer_node&												reference;
 
 // private:
-// 	typedef map_iterator<const avl_base>  const_iterator;
+	typedef map_iterator<const iterator_type, value>  const_iterator;
 // 	typedef typename avl_base::pointer_node pointer_node;
-private:
+public:
 	// iterator_type tree;
 	iterator_type root;
 	iterator_type re_node;
@@ -55,25 +55,25 @@ public:
 	// 	// std::cout << "test 1 is here" << std::endl;
 
 	// }
-	
-	// new contractor
-	map_iterator(){};
-	map_iterator(const iterator_type cp_root, const iterator_type cp_re_node, iterator_type cp_last): root(cp_root), re_node(cp_re_node), last_node(cp_last){}
-	map_iterator(const map_iterator &cp_it)
+	operator const_iterator()
 	{
-		*this = cp_it;
+		// std::cerr << " testt test " << std::endl;
+		// exit(12);
+		return const_iterator(root, re_node, last_node);
+	} 
+	// new contractor
+	map_iterator(): root(NULL), re_node(NULL), last_node(NULL){}
+	map_iterator(const iterator_type cp_root, const iterator_type cp_re_node, iterator_type cp_last): root(cp_root), re_node(cp_re_node), last_node(cp_last){}
+	map_iterator(const map_iterator &cp_it): root(cp_it.root), re_node(cp_it.re_node), last_node(cp_it.last_node)
+	{
 	} // copy constructor
 	
-	// operator const_iterator()
-	// {
-	// 	std::cerr << " testt test " << std::endl;
-	// 	exit(12);
-	// 		// return const_iterator(this->tree);
-	// } 
+	
 	void operator=(const map_iterator &cp_it) //
 	{
 		this->root = cp_it.root;
 		this->re_node = cp_it.re_node;
+		this->last_node = cp_it.last_node;
 	}
 
 	~map_iterator(){}

@@ -54,6 +54,7 @@ template < class Key,                                     // map::key_type
 				tree_type													tree_base;
 				size_type 													map_size;
 				allocator_type												alloc;
+				key_compare 												comp;
 			// private:
 			// 	typedef typename tree_type::pointer_node pointer_node;
 			// 	pointer_node
@@ -65,12 +66,16 @@ template < class Key,                                     // map::key_type
 			{
 				map_size = 0;
 				this->alloc = alloc;
+				this->comp  = comp;
+				// value_compare(comp);
 			}
 
 			template <class InputIterator>
 			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 			{
 				insert(first, last);
+				this->comper = comp;
+				this->alloc = alloc;
 			}
 			map (const map& x): tree_base()
 			{

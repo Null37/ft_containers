@@ -1283,26 +1283,26 @@ int main()
 	// ft::map<int, char>::iterator my_it;
 	// ft::map<int, char>::const_iterator c_it, c_ob(my_it);
 
-	ft::map<int, int> m;
-	 m.insert(ft::pair<int, int>(9, 8));
-	 m.insert(ft::pair<int, int>(7, 8));
-	 m.insert(ft::pair<int, int>(3, 8));
-	 m.insert(ft::pair<int, int>(2, 8));
-	 m.insert(ft::pair<int, int>(1, 8));
-	ft::map<int, int>::iterator  it = m.begin();
-	for(; it != m.end(); it++)
-		std::cout << it->first << std::endl;
-	//  ft::map<int, int> my, my1;
-	//  bool a = m < m1;
-	//  bool b = my == my1;
-	//  std::cout << std::boolalpha << a << std::endl;
-	//  std::cout << std::boolalpha << b << std::endl;
+	// ft::map<int, int> m;
+	//  m.insert(ft::pair<int, int>(9, 8));
+	//  m.insert(ft::pair<int, int>(7, 8));
+	//  m.insert(ft::pair<int, int>(3, 8));
+	//  m.insert(ft::pair<int, int>(2, 8));
+	//  m.insert(ft::pair<int, int>(1, 8));
+	// // ft::map<int, int>::iterator  it = m.begin();
+	// // for(; it != m.end(); it++)
+	// // 	std::cout << it->first << std::endl;
+	// //  ft::map<int, int> my, my1;
+	// //  bool a = m < m1;
+	// //  bool b = my == my1;
+	// //  std::cout << std::boolalpha << a << std::endl;
+	// //  std::cout << std::boolalpha << b << std::endl;
 
-	// std::map<int, int>::iterator it = m.begin();
+	// ft::map<int, int>::iterator it = m.begin();
 	// (*it).second = 50;
-	// std::map<int, int>::iterator it2 = m.begin();
-	// // m.clear();
-	// it--;
+	// ft::map<int, int>::iterator it2 = m.begin();
+	// // // m.clear();
+	// // it--;
 	// std::cout << it2->second << std::endl;
 	// it2++;
 	// std::cout << it2->first << std::endl;
@@ -1324,6 +1324,17 @@ int main()
 
 	// std::cout << it->first << std::endl;
 	// std::cout << it->first << std::endl;
+
+	// ft::map<int, int> m;
+	//  m.insert(ft::pair<int, int>(9, 8));
+	//  m.insert(ft::pair<int, int>(7, 8));
+	//  m.insert(ft::pair<int, int>(3, 8));
+	//  m.insert(ft::pair<int, int>(2, 8));
+	//  m.insert(ft::pair<int, int>(1, 8));
+	//  ft::map<int, int>::iterator it  = m.begin();
+	//  it++;
+	//   ft::map<int, int>::const_iterator c_it(it);
+	//   std::cout <<  c_it->first << std::endl;
 
 }
 
