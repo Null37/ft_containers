@@ -146,9 +146,8 @@ public:
 		}
 		else
 		{
-			pointer_node tmp;
 			//if not, return to parent
-			tmp = re_node->parent;
+			iterator_type tmp = re_node->parent;
 			while (tmp != NULL && re_node == tmp->left)
 			{
 				re_node = tmp;

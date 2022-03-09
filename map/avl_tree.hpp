@@ -143,7 +143,7 @@ public:
 		{
 			// std::cout << " size del ==> " << avl_size << std::endl;
 			alloc.deallocate(root, avl_size);
-			}
+		}
 		else if (this->last_node != NULL)
 			alloc.deallocate(this->last_node, avl_size);
 		this->root = copy_helper(at.root);

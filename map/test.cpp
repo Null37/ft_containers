@@ -1328,26 +1328,26 @@ int main()
 	// std::cout << it->first << std::endl;
 	// std::cout << it->first << std::endl;
 
-// {
-//             std::map<int, std::string> m;
-//             ft::map<int, std::string> ft_m;
-//             for (size_t i = 0; i < 1e6; ++i)
-//             {
-//                 m.insert(std::make_pair(i, "value"));
-//                 ft_m.insert(ft::make_pair(i, "value"));
-//             }
+{
+            std::map<int, std::string> m;
+            ft::map<int, std::string> ft_m;
+            for (size_t i = 0; i < 1e6; ++i)
+            {
+                m.insert(std::make_pair(i, "value"));
+                ft_m.insert(ft::make_pair(i, "value"));
+            }
 
-//             for (std::map<int, std::string>::iterator it = m.begin(); it != m.end(); ++it)
-//                 ;
+            for (std::map<int, std::string>::iterator it = m.begin(); it != m.end(); ++it)
+                ;
 
-//             for (ft::map<int, std::string>::iterator it = ft_m.begin(); it != ft_m.end(); ++it)
-// 			{
-// 				// bool a = ft_m.begin() != ft_m.end();
-// 				// std::cout << std::boolalpha <<  a << std::endl;
-//                 std::cout << it->first << std::endl;
+            for (ft::map<int, std::string>::iterator it = ft_m.begin(); it != ft_m.end(); ++it)
+			{
+				// bool a = ft_m.begin() != ft_m.end();
+				// std::cout << std::boolalpha <<  a << std::endl;
+                std::cout << it->first << std::endl;
 
-// 			}
-// }
+			}
+}
 	// ft::map<int, int>::iterator it  = m.begin();
 	// ft::map<int, int>::const_iterator it2;
 	// it2 =  it;
@@ -1358,6 +1358,6 @@ int main()
 	//   std::cout <<  it2->first << std::endl;
 	}
 
-}
+// }
 
 }
