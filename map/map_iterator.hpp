@@ -136,7 +136,8 @@ public:
 	{
 		if(this->re_node == last_node)
 		{
-			re_node =  inorder_predecessor(root);
+			re_node = last_node->parent;
+			return *this;
 		}
 		else if(re_node->left != NULL)
 		{

@@ -352,6 +352,7 @@ public:
 			r = RLrotation(r);// right-left rotation
 		else if (bf(r) == 2 && bf(r->left) == -1)
 			r = LRrotation(r); // left-right rotation
+		this->last_node->parent = inorder_predecessor(r);
 	   return ret;
 	}
 
@@ -394,8 +395,8 @@ public:
 	node<value_type> *inorder_successor(node<value_type> *tc)
 	{
 		//the smallest element of the right sub tree
+		
 		node<value_type> *t = tc;
-
 		while(t->left != NULL)
 			t = t->left;
 		return t;
