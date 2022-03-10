@@ -80,8 +80,8 @@ public:
 	{
 		// std::cerr << "ana hna  nnnnn " << "  this ====" << avl_size << " at =>  " << at.avl_size << std::endl;
 		// std::cout << "copy const" << std::endl;
-		this->root = NULL;
-		this->last_node = NULL;
+		// this->root = NULL;
+		// this->last_node = NULL;
 		this->alloc = alloc_type();
 		// this->avl_size = 0;
 		*this = at;

@@ -22,10 +22,17 @@ bool compareMaps(Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2)
 	}
     return true;
 }
+bool fncomp(char lhs, char rhs) { return lhs < rhs; }
+struct classcomp
+{
+    bool operator()(const char &lhs, const char &rhs) const
+    {
+        return lhs < rhs;
+    }
+};
 
 bool testMapConstructors()
-{
-    bool cond;
+{  bool cond;
     std::map<char, int> first;
     ft::map<char, int> m_first;
 
@@ -42,32 +49,28 @@ bool testMapConstructors()
 
     std::map<char, int> second(first.begin(), first.end());
     ft::map<char, int> m_second(m_first.begin(), m_first.end());
-	std::cout << " befor ==> " << std::boolalpha << cond << std::endl;
-	std::cout << "fun == > " << compareMaps(second.begin(), second.end(), m_second.begin(), m_second.end()) << std::endl;
-	std::cout << "size ==> " << second.size() << std::endl;
-	std::cout << "my size ==> " << m_second.size() << std::endl;
 
     cond = cond && second.size() == m_second.size() && compareMaps(second.begin(), second.end(), m_second.begin(), m_second.end());
-    // std::map<char, int> third(second);
-    // ft::map<char, int> m_third(m_second);
+    std::map<char, int> third(second);
+    ft::map<char, int> m_third(m_second);
 
-    // cond = cond && third.size() == m_third.size() && compareMaps(third.begin(), third.end(), m_third.begin(), m_third.end());
+    cond = cond && third.size() == m_third.size() && compareMaps(third.begin(), third.end(), m_third.begin(), m_third.end());
 
-    // std::map<char, int, classcomp> fourth;  // class as Compare
-    // ft::map<char, int, classcomp> m_fourth; // class as Compare
+    std::map<char, int, classcomp> fourth;  // class as Compare
+    ft::map<char, int, classcomp> m_fourth; // class as Compare
 
-    // cond = fourth.size() == m_fourth.size() && cond && compareMaps(fourth.begin(), fourth.end(), m_fourth.begin(), m_fourth.end());
+    cond = fourth.size() == m_fourth.size() && cond && compareMaps(fourth.begin(), fourth.end(), m_fourth.begin(), m_fourth.end());
 
-    // bool (*fn_pt)(char, char) = fncomp;
-    // std::map<char, int, bool (*)(char, char)> fifth(fn_pt);  // function pointer as Compare
-    // ft::map<char, int, bool (*)(char, char)> m_fifth(fn_pt); // function pointer as Compare
+    bool (*fn_pt)(char, char) = fncomp;
+    std::map<char, int, bool (*)(char, char)> fifth(fn_pt);  // function pointer as Compare
+    ft::map<char, int, bool (*)(char, char)> m_fifth(fn_pt); // function pointer as Compare
 
-    // cond = fifth.size() == m_fifth.size() && cond && compareMaps(fifth.begin(), fifth.end(), m_fifth.begin(), m_fifth.end());
+    cond = fifth.size() == m_fifth.size() && cond && compareMaps(fifth.begin(), fifth.end(), m_fifth.begin(), m_fifth.end());
 
-    // first = std::map<char, int>();
-    // m_first = ft::map<char, int>();
+    first = std::map<char, int>();
+    m_first = ft::map<char, int>();
 
-    // cond = copy.size() == m_copy.size() && cond && compareMaps(copy.begin(), copy.end(), m_copy.begin(), m_copy.end());
+    cond = copy.size() == m_copy.size() && cond && compareMaps(copy.begin(), copy.end(), m_copy.begin(), m_copy.end());
 
     return cond;
 }
@@ -1541,23 +1544,23 @@ int main()
 
 
 
-// bool ret = testMapConstructors();
+bool ret = testMapConstructors();
 // std::cout << std::boolalpha <<  ret << std::endl;
 {
-	 	std::map<int, std::string> m1;
-        std::map<int, std::string> m2;
-        ft::map<int, std::string> ft_m2;
-        ft::map<int, std::string> ft_m1;
-        for (int i = 0; i < 1e4; ++i)
-        {
-            m2.insert(std::make_pair(i, "string2"));
-            ft_m2.insert(ft::make_pair(i, "string2"));
-        }
+	 	// std::map<int, std::string> m1;
+        // std::map<int, std::string> m2;
+        // ft::map<int, std::string> ft_m2;
+        // ft::map<int, std::string> ft_m1;
+        // for (int i = 0; i < 1e4; ++i)
+        // {
+        //     m2.insert(std::make_pair(i, "string2"));
+        //     ft_m2.insert(ft::make_pair(i, "string2"));
+        // }
 
-        m1 = m2;
-        ft_m1 = ft_m2;
-        m2.begin()->second = "hello";
-        ft_m2.begin()->second = "hello";
-        // EQUAL((m1.begin()->second != m2.begin()->second) && (ft_m1.begin()->second != ft_m2.begin()->second));
+        // m1 = m2;
+        // ft_m1 = ft_m2;
+        // m2.begin()->second = "hello";
+        // ft_m2.begin()->second = "hello";
+        // // EQUAL((m1.begin()->second != m2.begin()->second) && (ft_m1.begin()->second != ft_m2.begin()->second));
 }
 }
