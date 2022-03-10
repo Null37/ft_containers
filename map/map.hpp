@@ -167,9 +167,9 @@ template < class Key,                                     // map::key_type
 				}
 				catch(...) // else not found insert
 				{
-					iterator it;
-					it = insert(it, ft::make_pair(k, mapped_type()));
-					return it->second;
+					// iterator it;
+					insert(ft::make_pair(k, mapped_type()));
+					return(tree_base.search(k, tree_base.root));
 					// std::cout << "key is  == > " << k << " value is == " << mapped_type() << std::endl;
 				}
 				

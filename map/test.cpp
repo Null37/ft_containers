@@ -1558,7 +1558,6 @@ int main()
         ft_m1 = ft_m2;
         m2.begin()->second = "hello";
         ft_m2.begin()->second = "hello";
-
-        EQUAL((m1.begin()->second != m2.begin()->second) && (ft_m1.begin()->second != ft_m2.begin()->second));
+        // EQUAL((m1.begin()->second != m2.begin()->second) && (ft_m1.begin()->second != ft_m2.begin()->second));
 }
 }

@@ -137,15 +137,19 @@ public:
 	void operator=(const avl_tree &at)
 	{
 		// destory
-		alloc.destroy(this->root);
-		alloc.destroy(this->last_node);
+		// std::cerr << "-------------" <<  "eeeeee" << std::endl;
+
 		if (root != NULL)
 		{
+			alloc.destroy(this->root);
 			// std::cout << " size del ==> " << avl_size << std::endl;
 			alloc.deallocate(root, avl_size);
 		}
 		else if (this->last_node != NULL)
-			alloc.deallocate(this->last_node, avl_size);
+		{
+			alloc.destroy(this->last_node);
+			alloc.deallocate(this->last_node, 1);
+		}
 		this->root = copy_helper(at.root);
 		this->avl_size = at.avl_size;
 		// this->last_node = copy_helper(at.last_node);
