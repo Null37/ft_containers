@@ -134,7 +134,11 @@ public:
 
 	map_iterator &operator--() // pre-operator --
 	{
-		if(this->re_node == last_node)
+		if(this->re_node == inorder_successor(root))
+		{
+			exit(1);
+		}
+		else if(this->re_node == last_node)
 		{
 			re_node = last_node->parent;
 			return *this;

@@ -1022,7 +1022,7 @@ int main()
 // 	// test1.insert(ft::pair<int, int>(40, 80));
 
 // 	// test1.insert(ft::pair<int, int>(90,  70));
-// 	// test1.insert(ft::pair<int, int>(50,  710));
+// 	// test1.insert(ft::pair<int, int>(50,  "710"));
 
 
 // 	// ft::map<int, int>::iterator bit =  test1.begin();
@@ -1364,19 +1364,28 @@ int main()
 
 
 {
-	    time_t start, end, diff;
+	    // time_t start, end, diff;
 
             std::map<int, std::string> m;
             ft::map<int, std::string> ft_m;
             for (size_t i = 0; i < 1e6; ++i)
             {
-                m.insert(std::make_pair(i, "value"));
+                // m.insert(std::make_pair(i, "value"));
                 ft_m.insert(ft::make_pair(i, "value"));
             }
-            std::map<int, std::string>::iterator it = --m.end();
-            for (; it != m.begin(); --it)
-                ;
+		// 	ft::map<int,std::string> ft_m;
+		// ft_m.insert(ft::pair<int, std::string>(3, "710"));
+		// ft_m.insert(ft::pair<int, std::string>(2, "710"));
+		// ft_m.insert(ft::pair<int, std::string>(1, "710"));
+        //     // std::map<int, std::string>::iterator it = --m.end();
+        //     // for (; it != m.begin(); --it)
+        //     //     ;
             ft::map<int, std::string>::iterator ft_it = --ft_m.end();
-            for (; ft_it != ft_m.begin(); --ft_it);
+            // for (; ft_it != ft_m.begin(); --ft_it);
+		// std::map<int, int> a;
+		// a.insert(std::pair<int, int>(5,5));
+		// std::map<int, int>::iterator it = a.begin();
+		// it--;
+		// std::cout << it->first << std::endl;
 }
 }
