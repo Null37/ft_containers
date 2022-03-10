@@ -74,14 +74,13 @@ template < class Key,                                     // map::key_type
 			template <class InputIterator>
 			map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type())
 			{
+				map_size = 0;
 				insert(first, last);
 				this->comp = comp;
 				this->alloc = alloc;
 			}
-			map (const map& x): tree_base()
+			map (const map& x)
 			{
-				this->map_size = x.map_size;
-				this->alloc = x.alloc;
 				*this = x;
 			}
 
@@ -89,6 +88,8 @@ template < class Key,                                     // map::key_type
 			{
 				if (*this != x)
 				{
+					this->map_size = x.map_size;
+					this->alloc = x.alloc;
 					this->tree_base =  x.tree_base;
 				}
 				return *this;
@@ -98,14 +99,6 @@ template < class Key,                                     // map::key_type
 				// if map embty size ===  0 and begin ==  end  and dont need to remove ;)
 				// clear(); check this
 			}
-
-
-			// operator const_iterator()
-			// {
-			// 	std::cerr << " testt test " << std::endl;
-			// 	exit(12);
-			// 		// return const_iterator(this->tree);
-			// } 
 			iterator begin() 
 			{
 				if (empty() ==  true)
@@ -170,21 +163,23 @@ template < class Key,                                     // map::key_type
 				
 				try
 				{
-					return(tree_base.search(k, tree_base.get()));
+					return(tree_base.search(k, tree_base.root));
 				}
 				catch(...) // else not found insert
 				{
-					map_size++;
-					tree_base.insert(ft::make_pair(k,mapped_type()));
+					iterator it;
+					it = insert(it, ft::make_pair(k, mapped_type()));
+					return it->second;
 					// std::cout << "key is  == > " << k << " value is == " << mapped_type() << std::endl;
 				}
-				return tree_base.root->pt.second;
+				
 				
 			}
 			// Modifiers:
 
 			ft::pair<iterator,bool> insert (const value_type& val) // single element (1)
 			{
+				
 				bool ret = tree_base.insert(val);
 				if (ret == true)
 					map_size++;
@@ -206,7 +201,7 @@ template < class Key,                                     // map::key_type
 				while(first != last)
 				{
 					insert(*first);
-					map_size++;
+					// map_size++;
 					first++;
 				}
 				

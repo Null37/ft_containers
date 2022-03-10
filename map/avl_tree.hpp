@@ -151,7 +151,8 @@ public:
 		// this->last_node = copy_helper(at.last_node);
 		// if (at.last_node ==  nullptr || at.last_node->parent ==  NULL)
 		// {
-			this->last_node = copy_helper(at.last_node); // deep copy
+		last_node =  alloc.allocate(1);
+			// this->last_node = copy_helper(at.last_node); // deep copy
 		// }
 		// else
 		// {
@@ -214,7 +215,8 @@ public:
 
 
 		tm_p->right = p;
-
+		if (tm_p->right->left)
+			tm_p->right->left->parent = tm_p->right;
 		// std::cout << "left - left rotation" << std::endl;
 		// update height
 		tm_p->left->hight = cal_hight(tm_p->left);
@@ -239,6 +241,8 @@ public:
 
 		tm_p->left = p;
 
+		if (tm_p->left->right)
+			tm_p->left->right->parent = tm_p->left;
 		// std::cout << "right - right rotation" << std::endl;
 
 		// update height
