@@ -69,8 +69,38 @@ bool testMapConstructors()
 
     first = std::map<char, int>();
     m_first = ft::map<char, int>();
+	ft::map<char, int>::iterator first1  = m_copy.begin();
+	std::map<char, int>::iterator first2  = copy.begin();
+	std::map<char, int>::iterator last2  = copy.end();
+	ft::map<char, int>::iterator last1  = m_copy.end();
 
-    cond = copy.size() == m_copy.size() && cond && compareMaps(copy.begin(), copy.end(), m_copy.begin(), m_copy.end());
+
+		++first1;
+		++first1;
+		++first1;
+		++first1;
+		++first1;
+		++first1;
+		// ++first1;
+		// ++first1;
+		// ++first1;
+		// ++first1;
+		// ++first1;
+		// ++first1;
+		// ++first1;
+
+		std::cout << "| "<< first1->second << "|" << std::endl;
+
+//    for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
+// 	{
+// 		// std::cout << "first 1 " << first1->first << " firt2 " << first2->first << std::endl;
+//         if (first1->first != first2->first || first1->second != first2->second)
+// 		{
+//             return false;
+// 		}
+// 	}
+
+   // cond = copy.size() == m_copy.size()  && cond && compareMaps(copy.begin(), copy.end(), m_copy.begin(), m_copy.end());
 
     return cond;
 }

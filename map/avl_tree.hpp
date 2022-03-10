@@ -155,7 +155,7 @@ public:
 		// this->last_node = copy_helper(at.last_node);
 		// if (at.last_node ==  nullptr || at.last_node->parent ==  NULL)
 		// {
-		last_node =  alloc.allocate(1);
+		this->last_node =  alloc.allocate(1);
 			// this->last_node = copy_helper(at.last_node); // deep copy
 		// }
 		// else
