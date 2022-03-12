@@ -224,9 +224,12 @@ public:
 			tm_p->right->left->parent = tm_p->right;
 		// std::cout << "left - left rotation" << std::endl;
 		// update height
-		tm_p->left->hight = cal_hight(tm_p->left);
-		tm_p->right->hight = cal_hight(tm_p->right);
-		tm_p->hight = cal_hight(tm_p);
+		if (tm_p->left != NULL)
+			tm_p->left->hight = cal_hight(tm_p->left);
+		if(tm_p->right != NULL)
+			tm_p->right->hight = cal_hight(tm_p->right);
+		if(tm_p != NULL)
+			tm_p->hight = cal_hight(tm_p);
 		return tm_p;
 	}
 
@@ -251,9 +254,12 @@ public:
 		// std::cout << "right - right rotation" << std::endl;
 
 		// update height
-		tm_p->right->hight = cal_hight(tm_p->right);
-		tm_p->left->hight = cal_hight(tm_p->left);
-		tm_p->hight =  cal_hight(tm_p);
+		if(tm_p->right != NULL)
+			tm_p->right->hight = cal_hight(tm_p->right);
+		if (tm_p->left != NULL)
+			tm_p->left->hight = cal_hight(tm_p->left);
+		if(tm_p != NULL)
+			tm_p->hight =  cal_hight(tm_p);
 
 		return tm_p;
 	}
@@ -283,8 +289,11 @@ public:
 		// std::cout << "right-left rotation" << std::endl;
 
 		// update height
-		tm_p2->right->hight = cal_hight(tm_p2->right);
-		tm_p2->left->hight = cal_hight(tm_p2->left);
+		if(tm_p2->right != NULL)
+			tm_p2->right->hight = cal_hight(tm_p2->right);
+		if(tm_p2->left != NULL)
+			tm_p2->left->hight = cal_hight(tm_p2->left);
+		if(tm_p2 != NULL)
 		tm_p2->hight = cal_hight(tm_p2);
 		return tm_p2;
 
@@ -315,10 +324,12 @@ public:
 
 		// std::cout << "left-right rotation" << std::endl;
 		// update height
-		
-		tm_p2->left->hight = cal_hight(tm_p2->left);
-		tm_p2->right->hight =  cal_hight(tm_p2->right);
-		tm_p2->hight =  cal_hight(tm_p2);
+		if(tm_p2->left != NULL)
+			tm_p2->left->hight = cal_hight(tm_p2->left);
+		if(tm_p2->right != NULL)
+			tm_p2->right->hight =  cal_hight(tm_p2->right);
+		if(tm_p2 != NULL)
+			tm_p2->hight =  cal_hight(tm_p2);
 	
 		return tm_p2;
 	}
@@ -422,7 +433,9 @@ public:
 
 	node<value_type> *deleteNode(node<value_type> *r, key_type k)
 	{
-		if ((r->left == NULL && r->right == NULL))
+		// if(r == NULL)
+		// 	return NULL;
+		if (r->left == NULL && r->right == NULL)
 		{
 			if(k == r->pt.first)
 			{
