@@ -100,7 +100,7 @@ public:
 	map_iterator &operator++()		//prefix oprator ++ mean ++a; 
 	{
 		iterator_type tmp;
-		if(re_node->right != NULL)
+		if(re_node->right != nullptr)
 		{
 			// if has right go to most left
 			re_node = re_node->right;

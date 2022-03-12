@@ -227,12 +227,11 @@ template < class Key,                                     // map::key_type
 
 			void erase (iterator first, iterator last)
 			{
-				for(;first != last ; first++)
-				{
-					erase(first->first);
-					if (tree_base.is_del ==  true)
-						map_size--;
-				}
+				ft::vector<key_type> save;
+				for (;first != last; first++)
+					save.push_back(first->first);
+				for (typename ft::vector<key_type>::iterator it = save.begin(); it != save.end(); it++)
+					erase(*it);
 			}
 			void clear()
 			{

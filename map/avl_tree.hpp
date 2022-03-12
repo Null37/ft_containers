@@ -134,7 +134,7 @@ public:
 	// 	std::cerr << "hnnnaa pointer" << std::endl;;
 	// 	root = at;
 	// } // node gnrate one // deep copy
-	void operator=(const avl_tree &at)
+	avl_tree &operator=(const avl_tree &at)
 	{
 		// destory
 		// std::cerr << "-------------" <<  "eeeeee" << std::endl;
@@ -150,12 +150,13 @@ public:
 			alloc.destroy(this->last_node);
 			alloc.deallocate(this->last_node, 1);
 		}
-		this->root = copy_helper(at.root);
+		this->root = copy_helper(at.root, NULL);
 		this->avl_size = at.avl_size;
 		// this->last_node = copy_helper(at.last_node);
 		// if (at.last_node ==  nullptr || at.last_node->parent ==  NULL)
 		// {
 		this->last_node =  alloc.allocate(1);
+		return *this;
 			// this->last_node = copy_helper(at.last_node); // deep copy
 		// }
 		// else
@@ -178,7 +179,7 @@ public:
 	}
 	// const int get()->pt.first;
 	// #define a b
-	struct node<value_type> * copy_helper(node<value_type> *cp)
+	struct node<value_type> * copy_helper(node<value_type> *cp, node<value_type> *par_cp)
 	{
 		if (cp == NULL)
 			return NULL;
@@ -188,9 +189,9 @@ public:
 		// copy->pt.first = cp->pt.first;
 		// copy->pt.second = cp->pt.second;
 		copy->hight = cp->hight;
-		copy->parent = cp->parent;
-		copy->left = copy_helper(cp->left);
-		copy->right = copy_helper(cp->right);
+		copy->parent = par_cp;
+		copy->left = copy_helper(cp->left, copy);
+		copy->right = copy_helper(cp->right, copy);
 		return copy;
 		
 	}
@@ -430,6 +431,7 @@ public:
 				// delete r; // change to
 				alloc.destroy(r);
 				alloc.deallocate(r, 1);
+				//r = NULL;
 			}
 			else
 				is_del = false;
@@ -456,7 +458,7 @@ public:
 				pointer_node tmp_pa = r->parent;
 				int tmp_h = r->hight;
 				// r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h); // change to alloc
-				// r  = alloc.allocate(1);
+				r  = alloc.allocate(1);
 				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
 				r->left =  deleteNode(r->left , tmp->pt.first);
 			}
@@ -468,7 +470,7 @@ public:
 				pointer_node tmp_pa = r->parent;
 				int tmp_h = r->hight;
 				// r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h);
-				// r  = alloc.allocate(1);
+				r  = alloc.allocate(1);
 				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
 				r->right = deleteNode(r->right , tmp->pt.first);
 			}

@@ -11,99 +11,113 @@
 #define EQUAL(x) ((x) ? (std::cout << "\033[1;32mAC\033[0m\n") : (std::cout << "\033[1;31mWA\033[0m\n"))
 #include <iterator>
 
-template <typename Iter1, typename Iter2>
-bool compareMaps(Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2)
-{
-    for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
-	{
-		// std::cout << "first 1 " << first1->first << " firt2 " << first2->first << std::endl;
-        if (first1->first != first2->first || first1->second != first2->second)
-            return false;
-	}
-    return true;
-}
-bool fncomp(char lhs, char rhs) { return lhs < rhs; }
-struct classcomp
-{
-    bool operator()(const char &lhs, const char &rhs) const
-    {
-        return lhs < rhs;
-    }
-};
-
-bool testMapConstructors()
-{  bool cond;
-    std::map<char, int> first;
-    ft::map<char, int> m_first;
-
-    for (size_t i = 97; i < 110; i++)
-    {
-        first[i - 97] = i;
-        m_first[i - 97] = i;
-    }
-
-    std::map<char, int> copy(first);
-    ft::map<char, int> m_copy(m_first);
-
-    cond = first.size() == m_first.size() && compareMaps(first.begin(), first.end(), m_first.begin(), m_first.end());
-
-    std::map<char, int> second(first.begin(), first.end());
-    ft::map<char, int> m_second(m_first.begin(), m_first.end());
-
-    cond = cond && second.size() == m_second.size() && compareMaps(second.begin(), second.end(), m_second.begin(), m_second.end());
-    std::map<char, int> third(second);
-    ft::map<char, int> m_third(m_second);
-
-    cond = cond && third.size() == m_third.size() && compareMaps(third.begin(), third.end(), m_third.begin(), m_third.end());
-
-    std::map<char, int, classcomp> fourth;  // class as Compare
-    ft::map<char, int, classcomp> m_fourth; // class as Compare
-
-    cond = fourth.size() == m_fourth.size() && cond && compareMaps(fourth.begin(), fourth.end(), m_fourth.begin(), m_fourth.end());
-
-    bool (*fn_pt)(char, char) = fncomp;
-    std::map<char, int, bool (*)(char, char)> fifth(fn_pt);  // function pointer as Compare
-    ft::map<char, int, bool (*)(char, char)> m_fifth(fn_pt); // function pointer as Compare
-
-    cond = fifth.size() == m_fifth.size() && cond && compareMaps(fifth.begin(), fifth.end(), m_fifth.begin(), m_fifth.end());
-
-    first = std::map<char, int>();
-    m_first = ft::map<char, int>();
-	ft::map<char, int>::iterator first1  = m_copy.begin();
-	std::map<char, int>::iterator first2  = copy.begin();
-	std::map<char, int>::iterator last2  = copy.end();
-	ft::map<char, int>::iterator last1  = m_copy.end();
-
-
-		++first1;
-		++first1;
-		++first1;
-		++first1;
-		++first1;
-		++first1;
-		// ++first1;
-		// ++first1;
-		// ++first1;
-		// ++first1;
-		// ++first1;
-		// ++first1;
-		// ++first1;
-
-		std::cout << "| "<< first1->second << "|" << std::endl;
-
-//    for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
+// template <typename Iter1, typename Iter2>
+// bool compareMaps(Iter1 first1, Iter1 last1, Iter2 first2, Iter2 last2)
+// {
+//     for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
 // 	{
 // 		// std::cout << "first 1 " << first1->first << " firt2 " << first2->first << std::endl;
 //         if (first1->first != first2->first || first1->second != first2->second)
-// 		{
 //             return false;
-// 		}
 // 	}
+//     return true;
+// }
+// bool fncomp(char lhs, char rhs) { return lhs < rhs; }
+// struct classcomp
+// {
+//     bool operator()(const char &lhs, const char &rhs) const
+//     {
+//         return lhs < rhs;
+//     }
+// };
+
+// bool testMapConstructors()
+// {  bool cond;
+//     std::map<char, int> first;
+//     ft::map<char, int> m_first;
+// 	size_t i = 97;
+//     for (; i < 110; i++)
+//     {
+//         first[i - 97] = i;
+//         m_first[i - 97] = i;
+//     }
+// 	// std::cout << "to " <<  i << std::endl;
+// 	// for(ft::map<char, int>::iterator t = m_first.begin(); t != m_first.end(); t++)
+// 	// 	std::cout << t->second << std::endl;
+//     std::map<char, int> copy(first);
+//     ft::map<char, int> m_copy(m_first);
+// 	first = std::map<char, int>();
+//     m_first = ft::map<char, int>();
+// 	for(ft::map<char, int>::iterator t = m_copy.begin(); t != m_copy.end(); t++)
+// 		std::cout << t->second << std::endl;
+//     // cond = first.size() == m_first.size() && compareMaps(first.begin(), first.end(), m_first.begin(), m_first.end());
+
+//     // std::map<char, int> second(first.begin(), first.end());
+//     // ft::map<char, int> m_second(m_first.begin(), m_first.end());
+
+//     // cond = cond && second.size() == m_second.size() && compareMaps(second.begin(), second.end(), m_second.begin(), m_second.end());
+//     // std::map<char, int> third(second);
+//     // ft::map<char, int> m_third(m_second);
+
+//     // cond = cond && third.size() == m_third.size() && compareMaps(third.begin(), third.end(), m_third.begin(), m_third.end());
+
+//     // std::map<char, int, classcomp> fourth;  // class as Compare
+//     // ft::map<char, int, classcomp> m_fourth; // class as Compare
+
+//     // cond = fourth.size() == m_fourth.size() && cond && compareMaps(fourth.begin(), fourth.end(), m_fourth.begin(), m_fourth.end());
+
+//     // bool (*fn_pt)(char, char) = fncomp;
+//     // std::map<char, int, bool (*)(char, char)> fifth(fn_pt);  // function pointer as Compare
+//     // ft::map<char, int, bool (*)(char, char)> m_fifth(fn_pt); // function pointer as Compare
+
+//     // cond = fifth.size() == m_fifth.size() && cond && compareMaps(fifth.begin(), fifth.end(), m_fifth.begin(), m_fifth.end());
+
+//     // first = std::map<char, int>();
+//     // m_first = ft::map<char, int>();
+// 	// ft::map<char, int>::iterator first1  = m_copy.begin();
+// 	// std::map<char, int>::iterator first2  = copy.begin();
+// 	// std::map<char, int>::iterator last2  = copy.end();
+// 	// ft::map<char, int>::iterator last1  = m_copy.end();
+
+
+// 	// 	// ++first1;
+// 	// 	// ++first1;
+// 	// 	// ++first1;
+// 	// 	// ++first1;
+// 	// 	// ++first1;
+// 	// 	// ++first1;
+// 	// 	// std::cout <<  m_copy.size() << std::endl;
+
+// 	// 	++first2;
+// 	// 	++first2;
+// 	// 	++first2;
+// 	// 	++first2;
+// 	// 	++first2;
+// 	// 	++first2;
+// 		// // first1++;
+// 		// ++first2;
+// 		// ++first1;
+// 		// ++first1;
+// 		// ++first1;
+// 		// ++first1;
+// 		// ++first1;
+// 		// ++first1;
+
+// 		// std::cout << "| "<< first2->second << "|" << std::endl;
+
+// //    for (; (first1 != last1) && (first2 != last2); ++first1, ++first2)
+// // 	{
+// // 		// std::cout << "first 1 " << first1->first << " firt2 " << first2->first << std::endl;
+// //         if (first1->first != first2->first || first1->second != first2->second)
+// // 		{
+// //             return false;
+// // 		}
+// // 	}
 
    // cond = copy.size() == m_copy.size()  && cond && compareMaps(copy.begin(), copy.end(), m_copy.begin(), m_copy.end());
 
-    return cond;
-}
+    // return cond;
+// }
 // struct ft::node<int, int> *getbigpp(struct ft::node<int, int> *root)
 // {
 // 	if (root->right)
@@ -1519,16 +1533,16 @@ int main()
 
 
 {
-	   bool cond;
-    std::map<char, int> first;
-    ft::map<char, int> m_first;
-	int a = 1;
-    for (size_t i = 97; i < 110; i++)
-    {
-        first[i - 97] = i;
-		std::cout << " " << a++ << std::endl;
-        m_first[i - 97] = i;
-	}
+	//    bool cond;
+    // std::map<char, int> first;
+    // ft::map<char, int> m_first;
+	// int a = 1;
+    // for (size_t i = 97; i < 110; i++)
+    // {
+    //     first[i - 97] = i;
+	// 	std::cout << " " << a++ << std::endl;
+    //     m_first[i - 97] = i;
+	// }
 	// m_first['a'] = 10;
 	// ft::map<char, int>::iterator it = m_first.begin();
 	// std::cout << it->second << std::endl;
@@ -1574,7 +1588,7 @@ int main()
 
 
 
-bool ret = testMapConstructors();
+// bool ret = testMapConstructors();
 // std::cout << std::boolalpha <<  ret << std::endl;
 {
 	 	// std::map<int, std::string> m1;
@@ -1592,5 +1606,52 @@ bool ret = testMapConstructors();
         // m2.begin()->second = "hello";
         // ft_m2.begin()->second = "hello";
         // // EQUAL((m1.begin()->second != m2.begin()->second) && (ft_m1.begin()->second != ft_m2.begin()->second));
+
+
+
+}
+
+
+{
+	//  std::map<int, std::string> m1;
+            // for (size_t i = 0; i < 1e6; i++)
+            // {
+            //     m1.insert(std::make_pair(i, "string2"));
+            //     ft_m1.insert(ft::make_pair(i, "string2"));
+            // }
+            // ft::map<int, std::string> ft_m1;
+			// ft_m1.insert(ft::pair<int, std::string>(9, "test"));
+			// ft_m1.insert(ft::pair<int, std::string>(12, "test"));
+			// ft_m1.insert(ft::pair<int, std::string>(13, "test"));
+			// ft_m1.insert(ft::pair<int, std::string>(14, "test"));
+			// ft_m1.insert(ft::pair<int, std::string>(15, "test"));
+			// ft::map<int, std::string>::iterator it = ft_m1.begin();
+			// ft::map<int, std::string>::iterator it2 = ft_m1.end();
+			// ft_m1.erase(it, it2);
+		
+    // ft::vector<int>::iterator it = v.begin();
+    // for (it = v.begin(); it != v.end();it++)
+    //      std::cout << *it << ' '; 
+			// ++it;
+// 
+
+            // ft_m1.erase(ft_m1.begin(), ft_m1.end());
+}
+// {
+// 	   	std::map<int, std::string> m1;
+//             ft::map<int, std::string> ft_m1;
+// 		for (size_t i = 0; i < 1e6; i++)
+//             {
+//                 m1.insert(std::make_pair(i, "string2"));
+//                 ft_m1.insert(ft::make_pair(i, "string2"));
+//             }
+
+//             m1.erase(m1.begin(), m1.end());
+//             /*-----------------------------------------------------*/
+//             /*------------------ ft::Maps ---------------------*/
+//             ft_m1.erase(ft_m1.begin(), ft_m1.end());
+}
+{
+	
 }
 }
