@@ -162,14 +162,14 @@ public:
 	{
 		if (n < _size)
 		{
+			size_type save = _size - n;
+			for(size_type i = save; i != 0 ; i--)
+				alloc.destroy(dy_arr + i);
+			alloc.deallocate(dy_arr, _capacity);
 			_size = n;
 		}
 		else if ( n > _capacity)
 		{
-			// if ((_capacity * 2) > n)
-			// 	_capacity = (_capacity * 2);
-			// else
-			// 	_capacity = n;
 			size_t cp;
 			if ((_capacity * 2) > n)
 				cp = (_capacity * 2);
@@ -178,8 +178,6 @@ public:
 			pointer tmp = alloc.allocate(cp);
 			for(int i = 0; i < _size; i++)
 				alloc.construct(tmp + i, dy_arr[i]);
-			//std::cout << "n ==> " << n  << " my capacity: " << _capacity << " size ==> " << _size << std::endl;
-			//destrot all elment and deallocat
 			for(int i = 0; i < _capacity; i++)
 				alloc.destroy(dy_arr + i);
 			alloc.deallocate(dy_arr, _capacity);
@@ -214,8 +212,7 @@ public:
 		if (n > _capacity)
 		{
 			if (n > max_size())
-				throw std::length_error("allocator<T>::allocate(size_t n) 'n' exceeds maximum supported size");
-			
+				throw std::length_error("ft::vector");
 			pointer tmp = alloc.allocate(n);
 			for(size_type i = 0; i < _size; i++)
 				alloc.construct(tmp + i, dy_arr[i]);
@@ -335,7 +332,6 @@ public:
 
 	void push_back (const value_type& val) // Add element at the end
 	{
-		//std::cout << " p size === >  " <<  _size << " p capacity ==>   " <<  _capacity << std::endl;
 		if (empty() == true)
 			reserve(1);
 		else if (_size + 1 > _capacity)
@@ -352,190 +348,70 @@ public:
 
 	iterator insert (iterator position, const value_type& val) // - single element -
 	{
-		// if (empty() == true)
-		// {
-		// 	_size += 1;
-		// 	_capacity = _size;
-		// }
-		// else if (_size + 1 > _capacity)
-		// 	_capacity = _capacity * 2;
-		// //destrot all elment and deallocat
-		// //   std::cerr << "  ---- test " << dy_arr[0] << std::endl;
-		// if (dy_arr != nullptr)
-		// {
-		// 		pointer tmp = alloc.allocate(_capacity);
-		// 		difference_type index = std::distance(begin(), position);
-		// 	//	std::cout << "my  vector size " << size() << " capacity " << capacity() << " distance  " << index << std::endl;
-		// 		int i_arr_org = 0;
-		// 		for(int i = 0; i < _size ; i++)
-		// 		{
-		// 			if (i != index)
-		// 			{
-		// 				alloc.construct(tmp + i, dy_arr[i_arr_org]);
-		// 				i_arr_org++;
-		// 			}
-		// 			else
-		// 			{
-		// 				alloc.construct(tmp + i, val);
-		// 				// std::cout << "here " << std::endl;
-		// 			}
-		// 		}
-		// 	for(int j = 0; j < _size; j++)
-		// 			alloc.destroy(dy_arr + j);
-		// 	alloc.deallocate(dy_arr, _capacity);
-		// 	_size += 1;
-		// 	dy_arr = tmp;
-		// 	return iterator(dy_arr + index);
-		// }
-		// dy_arr = alloc.allocate(_capacity);
-		// alloc.construct(dy_arr, val);
-		// return iterator(dy_arr);
 		difference_type ds = std::distance(this->begin(), position);
 
-				if (this->_size == 0)
-					this->reserve(1);
-				else if (this->_size + 1 > this->_capacity)
-						this->reserve(this->_capacity * 2);
+		if (this->_size == 0)
+			this->reserve(1);
+		else if (this->_size + 1 > this->_capacity)
+				this->reserve(this->_capacity * 2);
 
-				for (size_t i = this->_size;i > (size_t)ds;--i)
-				{
-					this->alloc.construct(this->dy_arr + i, this->dy_arr[i - 1]);
-				}
-				
-				this->alloc.construct(this->dy_arr + ds, val);
-				++(this->_size);
-				return (iterator(dy_arr + ds));
+		for (size_t i = this->_size;i > (size_t)ds;--i)
+		{
+			this->alloc.construct(this->dy_arr + i, this->dy_arr[i - 1]);
+		}
+		
+		this->alloc.construct(this->dy_arr + ds, val);
+		++(this->_size);
+		return (iterator(dy_arr + ds));
 	}
 
 	void insert (iterator position, size_type n, const value_type& val) // -fill-
 	{
-		// pointer tmp = alloc.allocate(_capacity * 2);
-		// int index = 0;
-		// for(iterator _it = begin(); _it != end(); _it++)
-		// {
-		// 	if (_it == position)
-		// 			break;
-		// 	index++;
-		// }
-		// int i_arr_org = 0;
-		// for(int i = 0; i <= (_capacity + n); i++)
-		// {
-		// 	if (i != index)
-		// 	{
-		// 		alloc.construct(tmp + i, dy_arr[i_arr_org]);
-		// 		i_arr_org++;
-		// 	}
-		// 	else
-		// 	{	
-		// 		for(int j = 0; j < n; j++)
-		// 		{
-		// 			alloc.construct(tmp + i, val);
-		// 			i++;
-		// 		}
-		// 		i--;
-		// 	}
-		// }
-		// //destrot all elment and deallocat
-		// for(int i = 0; i < _capacity; i++)
-		// 	alloc.destroy(dy_arr + i);
-		// alloc.deallocate(dy_arr, _capacity);
-		// if (empty() == true)
-		// 	_capacity = _size;
-		// else
-		// 	_capacity = _capacity * 2;
-		// _size += n;
-		// if (_size > _capacity)
-		// 	_capacity = _size; 
-		// dy_arr = tmp;
+		difference_type ds = std::distance(this->begin(), position);
+		
+		if (this->_size == 0)
+			this->reserve(n);
+		else if (this->_size + n > this->_capacity)
+		{
+			if (n > this->_size)
+				reserve(this->_size + n);
+			else
+				this->reserve(this->_capacity * 2);
+		}
+			
+		for (difference_type i = this->_size - 1;i >= ds;--i)
+			this->alloc.construct(this->dy_arr + (i + n), this->dy_arr[i]);
 
-				difference_type ds = std::distance(this->begin(), position);
-				
-				if (this->_size == 0)
-					this->reserve(n);
-				else if (this->_size + n > this->_capacity)
-				{
-					if (n > this->_size)
-						reserve(this->_size + n);
-					else
-						this->reserve(this->_capacity * 2);
-				}
-					
-				for (difference_type i = this->_size - 1;i >= ds;--i)
-					this->alloc.construct(this->dy_arr + (i + n), this->dy_arr[i]);
-
-				for (size_t i = 0; i < n; ++i)
-					this->alloc.construct(this->dy_arr + ds++, val);
-				
-				this->_size += n;
+		for (size_t i = 0; i < n; ++i)
+			this->alloc.construct(this->dy_arr + ds++, val);
+		
+		this->_size += n;
 	}
 	
 	template <class InputIterator>
     void insert (iterator position, InputIterator first, InputIterator last, typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type = InputIterator()) // insertse range
 	{
-		// pointer tmp = alloc.allocate(_capacity * 2);
-		// int index = 0;
-		// for(iterator _it = begin(); _it != end(); _it++)
-		// {
-		// 	if (_it == position)
-		// 			break;
-		// 	index++;
-		// }
-		// int i_arr_org = 0;
-		// //count range
-		// InputIterator cp_f =  first;
-		// InputIterator cp_l =  last;
-		// int  n = 0;
-		// for(; cp_f != cp_l; cp_f++)
-		// 	n++;
-		// for(int i = 0; i <= (_capacity + n); i++)
-		// {
-		// 	if (i != index)
-		// 	{
-		// 		alloc.construct(tmp + i, dy_arr[i_arr_org]);
-		// 		i_arr_org++;
-		// 	}
-		// 	else
-		// 	{	
-		// 		for(; first != last; first++)
-		// 		{
-		// 			alloc.construct(tmp + i, *first);
-		// 			i++;
-		// 		}
-		// 		i--;
-		// 	}
-		// }
-		// //destrot all elment and deallocat
-		// for(int i = 0; i < _capacity; i++)
-		// 	alloc.destroy(dy_arr + i);
-		// alloc.deallocate(dy_arr, _capacity);
-		// if (empty() == true)
-		// 	_capacity = _size;
-		// else
-		// 	_capacity = _capacity * 2;
-		// _size += n;
-		// if (_size > _capacity)
-		// 	_capacity = _size;
-		// dy_arr = tmp;
+		
 		difference_type		n = std::distance(first, last);
-				difference_type		dist = std::distance(this->begin(), position);
-				
-				if (this->_size == 0)
-					this->reserve(n);
-				else if ((size_type)(this->_size + n) > this->_capacity)
-				{
-					if (this->_capacity * 2 < this->_size + n)
-						reserve(this->_size + n);
-					else
-						reserve(this->_capacity * 2);
-				}
+		difference_type		dist = std::distance(this->begin(), position);
+		
+		if (this->_size == 0)
+			this->reserve(n);
+		else if ((size_type)(this->_size + n) > this->_capacity)
+		{
+			if (this->_capacity * 2 < this->_size + n)
+				reserve(this->_size + n);
+			else
+				reserve(this->_capacity * 2);
+		}
 
-				for (difference_type i = this->_size - 1;i >= dist;--i)
-					this->alloc.construct(this->dy_arr + (i + n), this->dy_arr[i]);
+		for (difference_type i = this->_size - 1;i >= dist;--i)
+			this->alloc.construct(this->dy_arr + (i + n), this->dy_arr[i]);
 
-				for (size_t i = 0; i < (size_t)n; ++i)
-					this->alloc.construct(this->dy_arr + dist++, *first++);
-				
-				this->_size += n;
+		for (size_t i = 0; i < (size_t)n; ++i)
+			this->alloc.construct(this->dy_arr + dist++, *first++);
+		
+		this->_size += n;
 	}
 
 	iterator erase (iterator position) // change the size and remove one elemant
@@ -551,62 +427,17 @@ public:
 
 	iterator erase (iterator first, iterator last) // remove range from first to last  
 	{
-		// iterator cp_f =  first;
-		// iterator cp_l =  last;
-		// int  n = 0;
-		// for(; cp_f != cp_l; cp_f++)
-		// 	n++;
-		// if (n == 0)
-		// 	return first;
-		// pointer tmp = alloc.allocate(_capacity);
-		// // std::cout << "nnnnn====.>>>> " << n << std::endl;
-		// int index = 0;
-		// for(iterator _it = begin(); _it != end(); _it++)
-		// {
-		// 	if (_it == first)
-		// 			break;
-		// 	index++;
-		// }
-		// int ret_last = 0;
-		// for(iterator _it = begin(); _it != end(); _it++)
-		// {
-		// 	if (_it == last)
-		// 			break;
-		// 	ret_last++;
-		// }
-		// int i  = 0;
-		// int j = 0;
-		// while (i < _size)
-		// {
-		// 	if (j != index)
-		// 	{
-		// 		alloc.construct(tmp + i, dy_arr[j]);
-		// 		i++;
-		// 		j++;
-		// 	}
-		// 	else
-		// 		for(; first != last; first++)
-		// 			j++;
-		// }
-		// 	//destrot all elment and deallocat
-		// for(int i = 0; i < _capacity; i++)
-		// 	alloc.destroy(dy_arr + i);
-		// alloc.deallocate(dy_arr, _capacity);
-		// _size -= n;
-		// dy_arr =  tmp;
-		// // std::cout << "n===> " << n << std::endl;
-		// // std::cout << "test lllllllllllll ===>  " << ret_last  << " n " <<  n << std::endl;
-		// return iterator(dy_arr + (ret_last  - n));
+		
 		difference_type		range = std::distance(first, last);
-				difference_type			index = std::distance(begin(), first);
+		difference_type			index = std::distance(begin(), first);
 
-				for (difference_type i = index; i < range;++i)
-					this->alloc.destroy(this->dy_arr + i);
-				this->_size -= range;
+		for (difference_type i = index; i < range;++i)
+			this->alloc.destroy(this->dy_arr + i);
+		this->_size -= range;
 
-				for (size_type i = index;i < this->_size;++i, ++range)
-					this->alloc.construct(this->dy_arr + i, this->dy_arr[range]);
-				return (iterator(this->dy_arr + index));
+		for (size_type i = index;i < this->_size;++i, ++range)
+			this->alloc.construct(this->dy_arr + i, this->dy_arr[range]);
+		return (iterator(this->dy_arr + index));
 	}
 
 	void swap (vector& x)
@@ -624,7 +455,6 @@ public:
 
 	void clear()
 	{
-		//destrot all elment and deallocat
 		for(int i = 0; i < _capacity; i++)
 			alloc.destroy(dy_arr + i);
 		alloc.deallocate(dy_arr, _capacity);

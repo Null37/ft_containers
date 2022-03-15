@@ -9,31 +9,19 @@ template<class value_type>
 struct node
 {
 	public:
-	// T key;
-	// U value;
-	// typedef ft::pair<const T, U>        			value_type;
-	// typedef T1  first_type;
-	//     typedef T2  second_type;
 	typedef typename value_type::first_type first_type;
 	typedef typename value_type::second_type second_type;
 	typedef	node<value_type>*										pointer_node;
 	typedef value_type*												pointer;
-
-
 	value_type		pt;
-	struct node    *parent;
-	struct node    *right;
-	struct node    *left;
+	pointer_node parent;
+	pointer_node right;
+	pointer_node left;
 	int hight; // hight evry node
-	// struct node    *end;
 	node(): parent(0), right(0), left(0) {}
-	// node(const m &at)
-	// {
-	// 	std::cout << "loooooooool" << "\n";
-	// }
 	node(value_type p): pt(p), parent(0), right(0), left(0) {}
 	node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0), hight(0) {}
-	node(const first_type &first, const second_type &second, struct node  *cp, struct node    *rp, struct node    *lp, int hp): pt(first, second), parent(cp), right(rp), left(lp), hight(hp) {}
+	node(const first_type &first, const second_type &second, pointer_node cp, pointer_node rp, pointer_node lp, int hp): pt(first, second), parent(cp), right(rp), left(lp), hight(hp) {}
 
 };
 
@@ -52,10 +40,7 @@ public:
 	typedef value_type* 												pointer;
 	typedef compare														key_compare;
 	typedef typename Alloc::template rebind<node<value_type> >::other  alloc_type;
-	// typedef typename pointer_node::first							first;
-	// typedef typename pointer_node::second							second;		
-
-public:
+// pravite:
 	pointer_node root; // underline containre
 	pointer_node last_node;
 	bool is_del;
@@ -63,131 +48,37 @@ public:
 	alloc_type  alloc; // rebind allocation
 	size_type 	avl_size;
 public:
-	size_t size;
+	//size_t size;
 	avl_tree() : root(NULL)
 	{
 		last_node =  alloc.allocate(1); // create end
 		comp = key_compare();
 		is_del = false;
-		avl_size = 0;
 		alloc = alloc_type();
-		// std::numeric_limits<short> a;
-		// int save = a.max(); /// max short 
-		// re_node  = new node<value_type>(save, mapped_value());
-		// std::cout << "default here" << std::endl;
 	}
-	avl_tree(const avl_tree &at): comp(), avl_size(at.avl_size)
+	avl_tree(const avl_tree &at): comp()
 	{
-		// std::cerr << "ana hna  nnnnn " << "  this ====" << avl_size << " at =>  " << at.avl_size << std::endl;
-		// std::cout << "copy const" << std::endl;
-		// this->root = NULL;
-		// this->last_node = NULL;
+		this->root = NULL;
+		this->last_node = NULL;
 		this->alloc = alloc_type();
-		// this->avl_size = 0;
 		*this = at;
 	}
-	// avl_tree(const pointer_node &root_p, const pointer_node &node_p) // create new one 
-	// {
-	// 	// std::cout << "here " << std::endl;
-	// 	// this->root = root_p;
-	// 	this->root =  copy_helper(root_p); // deep copy
-	// 	//  = node_p;
-	// 	if (node_p ==  nullptr || node_p->parent ==  nullptr)
-	// 		this->re_node = copy_helper(node_p); // deep copy
-	// 	else
-	// 	{
-	// 		if (node_p != nullptr)
-	// 		{
-	// 			key_type k = node_p->pt.first;
-	// 			this->re_node = copy_helper(root_p);
-	// 			this->re_node = search_uniq1(k, this->re_node);
-	// 		}
-	// 	}
-	// }
-	~avl_tree()
-	{
-		alloc.destroy(last_node);
-		alloc.deallocate(last_node, 1);
-	}
 
-	// avl_tree(pointer_node root_p, pointer_node node_p, size_type size1) // create new one 
-	// {
-	// 	// std::cout << "here " << std::endl;
-	// 	// this->root = root_p;
-	// 	this->root =  copy_helper(root_p); // deep copy
-	// 	// this->re_node = node_p;
-	// 	this->avl_size = size1;
-	// 	if (node_p ==  nullptr || node_p->parent ==  nullptr)
-	// 		this->re_node = copy_helper(node_p); // deep copy
-	// 	else
-	// 	{
-	// 		if (node_p != nullptr)
-	// 		{
-	// 			key_type k = node_p->pt.first;
-	// 			this->re_node = copy_helper(root_p);
-	// 			this->re_node = search_uniq1(k, this->re_node);
-	// 		}
-	// 	}
-	// }
-	// avl_tree(const pointer_node &at)
-	// {
-	// 	std::cerr << "hnnnaa pointer" << std::endl;;
-	// 	root = at;
-	// } // node gnrate one // deep copy
 	avl_tree &operator=(const avl_tree &at)
 	{
-		// destory
-		// std::cerr << "-------------" <<  "eeeeee" << std::endl;
-
-		if (root != NULL)
-		{
-			alloc.destroy(this->root);
-			// std::cout << " size del ==> " << avl_size << std::endl;
-			alloc.deallocate(root, avl_size);
-		}
-		else if (this->last_node != NULL)
-		{
-			alloc.destroy(this->last_node);
-			alloc.deallocate(this->last_node, 1);
-		}
+		this->is_del = at.is_del;
 		this->root = copy_helper(at.root, NULL);
 		this->avl_size = at.avl_size;
-		// this->last_node = copy_helper(at.last_node);
-		// if (at.last_node ==  nullptr || at.last_node->parent ==  NULL)
-		// {
 		this->last_node =  alloc.allocate(1);
 		return *this;
-			// this->last_node = copy_helper(at.last_node); // deep copy
-		// }
-		// else
-		// {
-		// 	// if (at.last_node->parent != nullptr)
-		// 	// {
-		// 		key_type k = at.last_node->pt.first;
-		// 		this->last_node = copy_helper(at.root);
-		// 		this->last_node = search_uniq1(k, this->last_node);
-		// 	// }
-		// }
-
-		// this->re_node = i(at.root);   
-		// this->re_node  = search_uniq1(at.re_node->pt.first, root);
 	}
 	//getter
-	node<value_type> *get() const 
-	{
-		return root;
-	}
-	// const int get()->pt.first;
-	// #define a b
 	struct node<value_type> * copy_helper(node<value_type> *cp, node<value_type> *par_cp)
 	{
 		if (cp == NULL)
 			return NULL;
-		// struct node<value_type> *copy = new node<value_type>(cp->pt.first, cp->pt.second); // change to rebind
 		node<value_type> *copy = alloc.allocate(1);
 		alloc.construct(copy, node<value_type>(cp->pt.first, cp->pt.second));
-		// copy->pt.first = cp->pt.first;
-		// copy->pt.second = cp->pt.second;
 		copy->hight = cp->hight;
 		copy->parent = par_cp;
 		copy->left = copy_helper(cp->left, copy);
@@ -206,132 +97,51 @@ public:
 		return 1;
 	}
 
-	struct node<value_type> *LLrotation(node<value_type> *n)
+	void parent_correction(node<value_type> *&n, node<value_type> *p)
 	{
-		struct node<value_type> *p;
-		struct node<value_type> *tm_p;
-
-		p = n; //copy from our struct
-
-		tm_p = p->left;
-		tm_p->parent = p->parent;
-		p->left = tm_p->right;
-		p->parent = tm_p;
-
-
-		tm_p->right = p;
-		if (tm_p->right->left)
-			tm_p->right->left->parent = tm_p->right;
-		// std::cout << "left - left rotation" << std::endl;
-		// update height
-		if (tm_p->left != NULL)
-			tm_p->left->hight = cal_hight(tm_p->left);
-		if(tm_p->right != NULL)
-			tm_p->right->hight = cal_hight(tm_p->right);
-		if(tm_p != NULL)
-			tm_p->hight = cal_hight(tm_p);
-		return tm_p;
+		if (n == NULL)
+			return ;
+		parent_correction(n->right, n);
+		n->parent = p;
+		parent_correction(n->left, n);
 	}
 
-	node<value_type> *RRrotation(node<value_type> *n)
+	node<value_type> *LLrotation(node<value_type> *x)
 	{
-		node<value_type> *p;
-		node<value_type> *tm_p;
+		pointer_node y = x->right; // start split nodes
+		pointer_node T2 = y->left;
 
-		p = n; // copy of out node
-
-
-		tm_p = p->right;
-		tm_p->parent = p->parent;
-		p->right = tm_p->left;
-		p->parent = tm_p;
-
-
-		tm_p->left = p;
-
-		if (tm_p->left->right)
-			tm_p->left->right->parent = tm_p->left;
-		// std::cout << "right - right rotation" << std::endl;
-
-		// update height
-		if(tm_p->right != NULL)
-			tm_p->right->hight = cal_hight(tm_p->right);
-		if (tm_p->left != NULL)
-			tm_p->left->hight = cal_hight(tm_p->left);
-		if(tm_p != NULL)
-			tm_p->hight =  cal_hight(tm_p);
-
-		return tm_p;
-	}
-
-	node<value_type> *RLrotation(node<value_type> *n)
-	{
-		node<value_type> *p;
-		node<value_type> *tm_p;
-		node<value_type> *tm_p2;
-
-		p = n; // first copy from n node
-		tm_p = p->right;
-		tm_p2 = tm_p->left;
-
-		p->right = tm_p2->left;
-		tm_p->left->parent = p->parent;
-		tm_p->left = tm_p2->right;
-		tm_p->parent = tm_p2;
-
-
-		tm_p2->left = p;
-		tm_p2->left->parent = tm_p2;
-		tm_p2->right = tm_p;
-		tm_p2->right->parent = tm_p2;
-		tm_p2->parent = NULL; // null for root tree
-
-		// std::cout << "right-left rotation" << std::endl;
-
-		// update height
-		if(tm_p2->right != NULL)
-			tm_p2->right->hight = cal_hight(tm_p2->right);
-		if(tm_p2->left != NULL)
-			tm_p2->left->hight = cal_hight(tm_p2->left);
-		if(tm_p2 != NULL)
-		tm_p2->hight = cal_hight(tm_p2);
-		return tm_p2;
-
-	}
+		y->left = x;
+		x->right = T2;
 	
+		parent_correction(y, x->parent); // start set all parrenet
 
-	node<value_type> *LRrotation(node<value_type> *n)
+		// update height :)
+		if (y->left)
+			y->left->hight = cal_hight(y->left);
+		if (y->right)
+			y->right->hight = cal_hight(y->right);
+		y->hight = cal_hight(y);
+		return y;
+	}
+
+	node<value_type> *RRrotation(node<value_type> *y)
 	{
-		node<value_type> *p;
-		node<value_type> *tm_p;
-		node<value_type> *tm_p2;
+		   pointer_node x = y->left;
+		   pointer_node T2 = x->right;
 
-		p = n; // copy node 
-		tm_p = p->left;
-		tm_p2 = tm_p->right;
+		   x->right = y;
+		   y->left = T2;
+		parent_correction(x, y->parent);  // start set all parrenet 
 
-		//  start edit 
-		p->left = tm_p2->right;
-		tm_p->right->parent = p->parent;
-		tm_p->right = tm_p2->left;
-		tm_p->parent = tm_p2;
+		// update height :)
+		if (x->right)
+			x->right->hight = cal_hight(x->right);
+		if (x->left)
+			x->left->hight = cal_hight(x->left);
+		x->hight =  cal_hight(x);
 
-		tm_p2->right = p; 
-		tm_p2->right->parent = tm_p2;
-		tm_p2->left  = tm_p;
-		tm_p2->left->parent  = tm_p2;
-		tm_p2->parent = NULL;   // null for root tree
-
-		// std::cout << "left-right rotation" << std::endl;
-		// update height
-		if(tm_p2->left != NULL)
-			tm_p2->left->hight = cal_hight(tm_p2->left);
-		if(tm_p2->right != NULL)
-			tm_p2->right->hight =  cal_hight(tm_p2->right);
-		if(tm_p2 != NULL)
-			tm_p2->hight =  cal_hight(tm_p2);
-	
-		return tm_p2;
+		return x;
 	}
 
 	bool  add_new(node<value_type> *&r, const value_type& val, node<value_type>   *parent)
@@ -339,10 +149,8 @@ public:
 		bool ret = false;
 		if (r == NULL)
 	   {
-
-			// r = new node<value_type>(ft::make_pair(val.first, val.second)); // change this to  allocator rebind
-			r = alloc.allocate(1);
-			alloc.construct(r, node<value_type>(ft::make_pair(val.first, val.second)));
+			r = alloc.allocate(1); // create new node
+			alloc.construct(r, node<value_type>(ft::make_pair(val.first, val.second))); // set new node use construct
 			r->hight = 1;
 			r->parent = parent;
 			r->right = NULL;
@@ -353,10 +161,10 @@ public:
 	   {
 		  if(val.first == r->pt.first)
 		  {
-			 	// std::cout << "why not here" << std::endl;
-		  		return false; 
+		  		return false; // don't set node if seme key bc: map have uniq keys 
 		  }
-			else if  (val.first > r->pt.first) // 
+			// else if  (val.first > r->pt.first) // 
+			else if (comp(r->pt.first, val.first))
 				ret = add_new(r->right, val, r);
 			else if (comp(val.first, r->pt.first)) //  add compare(val.first, r.pt.firt)
 				ret = add_new(r->left, val, r);
@@ -364,15 +172,28 @@ public:
 	   if(ret == false)
 	   		return ret;
 	   	r->hight = cal_hight(r);
-	   	if (bf(r) == 2 && bf(r->left) == 1)
-			r = LLrotation(r); // left-left rotation
-		else if (bf(r) == -2 && bf(r->right) == -1)
-			r = RRrotation(r);//  right-right rotation
-		else if (bf(r) == -2 && bf(r->right) == 1)
-			r = RLrotation(r);// right-left rotation
-		else if (bf(r) == 2 && bf(r->left) == -1)
-			r = LRrotation(r); // left-right rotation
-		this->last_node->parent = inorder_predecessor(r);
+
+	   	if (bf(r) > 1 && comp(val.first, r->left->pt.first))//val.first < r->left->pt.first
+			r = RRrotation(r); // left-left rotation
+		else if (bf(r) < -1 &&  comp(r->right->pt.first, val.first))//val.first > r->right->pt.first
+			r = LLrotation(r);//  right-right rotation
+		else if (bf(r) < -1 && comp(val.first,  r->right->pt.first))//val.first < r->right->pt.first
+		{
+			r->right = RRrotation(r->right);
+			r = LLrotation(r);
+		}
+		else if (bf(r) > 1 && comp(r->left->pt.first, val.first))//val.first > r->left->pt.first
+		{
+			r->left = LLrotation(r->left);
+			r = RRrotation(r);
+		}
+
+		// update height
+		if (r->left)
+			r->left->parent = r;
+		if (r->right)
+			r->right->parent = r;
+		this->last_node->parent = inorder_predecessor(r); // set end
 	   return ret;
 	}
 
@@ -396,36 +217,31 @@ public:
 
 	bool insert (const value_type& val) // add deletion
 	{
-		// std::cout << "dkhal ==> " << val.first << std::endl;
 		bool ret = add_new(root, val, NULL);
 		if (ret == true )
 			avl_size++;
 		return ret;
 	}
 
-	node<value_type> *inorder_predecessor(node<value_type> *tc)
+	node<value_type> *inorder_predecessor(node<value_type> *t)
 	{
 		//the largest element of the left sub tree.
-		node<value_type> *t = tc;
 		while(t->right != NULL)
 			t = t->right;
 		return t;
 	}
 
-	node<value_type> *inorder_successor(node<value_type> *tc)
+	node<value_type> *inorder_successor(node<value_type> *t)
 	{
 		//the smallest element of the right sub tree
-		
-		node<value_type> *t = tc;
+
 		while(t->left != NULL)
 			t = t->left;
 		return t;
 	}
-	node<value_type> *inorder_successor_const(node<value_type> *tc) const 
+	node<value_type> *inorder_successor_const(node<value_type> *t) const  // for const functions
 	{
 		//the smallest element of the right sub tree
-		node<value_type> *t = tc;
-
 		while(t->left != NULL)
 			t = t->left;
 		return t;
@@ -433,35 +249,23 @@ public:
 
 	node<value_type> *deleteNode(node<value_type> *r, key_type k)
 	{
-		// if(r == NULL)
-		// 	return NULL;
-		if (r->left == NULL && r->right == NULL)
+		if(r == NULL)
 		{
-			if(k == r->pt.first)
-			{
-				is_del = true;
-				// std::cout << "here" << std::endl;
-				// delete r; // change to
-				alloc.destroy(r);
-				alloc.deallocate(r, 1);
-				//r = NULL;
-			}
-			else
-				is_del = false;
+			is_del = false;
 			return NULL;
 		}
 		node<value_type> *tmp;
-		if (k < r->pt.first)
+		if (comp(k, r->pt.first))// k < r->pt.first
 		{
 			// std::cout << "left test" << std::endl;
 			r->left = deleteNode(r->left, k);
 		}
-		else if (k > r->pt.first)
+		else if (comp(r->pt.first, k))//k > r->pt.first
 		{
 			// std::cout << "right test" << std::endl;
 			r->right = deleteNode(r->right, k);
 		}
-		else
+		else if (k == r->pt.first)
 		{
 			if (r->left != NULL)
 			{
@@ -470,10 +274,11 @@ public:
 				pointer_node tmp_l = r->left;
 				pointer_node tmp_pa = r->parent;
 				int tmp_h = r->hight;
-				// r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h); // change to alloc
+				alloc.destroy(r); // destroy old node
+				alloc.deallocate(r, 1);
 				r  = alloc.allocate(1);
-				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
-				r->left =  deleteNode(r->left , tmp->pt.first);
+				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h)); // copy hieght and parent ........
+				r->left =  deleteNode(r->left , tmp->pt.first); // delete next node
 			}
 			else if (r->right != NULL)
 			{
@@ -482,32 +287,61 @@ public:
 				pointer_node tmp_l = r->left;
 				pointer_node tmp_pa = r->parent;
 				int tmp_h = r->hight;
-				// r = new node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h);
+				alloc.destroy(r); // destroy old node
+				alloc.deallocate(r, 1);
 				r  = alloc.allocate(1);
-				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
-				r->right = deleteNode(r->right , tmp->pt.first);
+				alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h)); // copy hieght and parent ........
+				r->right = deleteNode(r->right , tmp->pt.first); // delete next node
+			}
+			else
+			{
+				if(k == r->pt.first)
+				{
+					is_del = true;
+					alloc.destroy(r);
+					alloc.deallocate(r, 1);
+				}
+				else
+					is_del = false;
+				return NULL;
+
 			}
 		}
 		//balance cases
-		if (root == NULL)
+		if (root == NULL) // if root == null mean no more node for delet 
 			return NULL;
-		if(bf(r) == 2 && bf(r->left) == 1)
-			r = LLrotation(r); // left-left rotation;
-		else if (bf(r) == 2 && bf(r->left) == -1)
-			r = LRrotation(r); // left-right rotation;
-		else if(bf(r) == 2 && bf(r->left) == 0)
-			r = LLrotation(r); // left-left rotation;
-		else if (bf(r) == -2 && bf(r->right) == -1)
-			r = RRrotation(r); // right-right rotation;
-		else if(bf(r) == -2 && bf(r->right) == 1)
-			r = RLrotation(r); // right-left rotation
-		else if(bf(r) == -2 && bf(r->right) == 0)
-			r = RRrotation(r); // right-right rotation
+		// update heghit
+		r->hight = cal_hight(r);
+		if (r->left)
+			r->left->hight = cal_hight(r->left);
+		if (r->right)
+			r->right->hight = cal_hight(r->right);
+
+		// update balance
+	   	if (bf(r) > 1 && bf(r->left) >= 0)
+			r = RRrotation(r); // left-left rotation
+		else if (bf(r) < -1 && bf(r->right) <= 0)
+			r = LLrotation(r);//  right-right rotation
+		else if (bf(r) < -1 && bf(r->right) > 0)
+		{
+			r->right = RRrotation(r->right); // right-left rotation
+			r = LLrotation(r);
+		}
+		else if (bf(r) > 1 && bf(r->left) < 0)
+		{
+			r->left = LLrotation(r->left); // left-right rotation
+			r = RRrotation(r);
+		}
+
+	// update parent
+		if (r->left)
+			r->left->parent = r;
+		if (r->right)
+			r->right->parent = r;
 		return r;
 	}
 
-
-	int dele(key_type data) // return size
+	int dele(key_type data)  
 	{
 		if(root == NULL)
 			return 0;
@@ -517,147 +351,19 @@ public:
 		return 0;
 	}
 
-	// bool operator==(const avl_tree& cp)
-	// {
-	// 	return (re_node->pt == cp.re_node->pt);
-	// }
-
-
-	// value_type& operator*() const
-	// {
-	// 	// std::cout << "heree" << std::endl;
-		
-	// 	return (re_node->pt);
-	// }
-
-	// pointer operator->()
-	// {
-	// 	return (&operator*());
-	// }
-
-	//preoprator ++ mean ++a;
-	// avl_tree begin()  
-	// {
-	// 	// return avl_tree(inorder_successor(root)); version 1
-	// 	if (avl_size == 0)
-	// 		return end();
-	// 	return avl_tree(root, inorder_successor(root));
-	// }
-	// avl_tree end()
-	// {
-	// 	return avl_tree(root, last_node);
-	// }
-
-	// avl_tree &operator++()
-	// {
-	// 			std::numeric_limits<short> a;
-
-	// 	struct node<value_type> *tmp;
-	// 	//first check if node has right or not
-	// 	if(re_node->right != NULL)
-	// 	{
-	// 		// if has right go to most left
-	// 		re_node = re_node->right;
-	// 		re_node = inorder_successor(re_node);
-	// 		// return *this;
-	// 	}
-	// 	else
-	// 	{
-	// 		//if not, return to parent
-	// 		tmp = re_node->parent;
-	// 		while (tmp != NULL && re_node == tmp->right)
-	// 		{
-	// 			re_node = tmp;
-	// 			tmp = tmp->parent;
-	// 		}
-	// 		// if right-most
-	// 		re_node = tmp;
-	// 		// return *this;
-	// 	}
-	// 	// std::cerr << "here " << std::endl;
-	// 	// return end();
-	// 	if(re_node == nullptr)
-	// 	{
-	// 		// return end() if no more ++
-	// 		// std::numeric_limits<short> a;
-	// 		int save = a.max(); /// max short
-	// 		pointer_node tmp_node;
-	// 		// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
-	// 		tmp_node =  alloc.allocate(1);
-	// 		alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
-	// 		re_node = tmp_node;
-	// 	}
-	// 	return *this;
-
-	// }
-	// avl_tree operator++(int) // post-operator ++ mean a++
-	// {
-	// 	// add logic from ++ avl
-	// 	avl_tree _tmp(*this);
-	// 	++(*this);
-	// 	return _tmp;
-	// }
-
-	// avl_tree &operator--() // pre-operator -- 
-	// {
-	// 	avl_tree tmp2 = end();
-	// 	avl_tree tmp3 = begin();
-	// 	if (re_node == tmp2.re_node) // check if last
-	// 	{
-	// 		// std::cerr << "error  is here" << std::endl;
-	// 		re_node =  inorder_predecessor(root);
-	// 	}
-	// 	else if (re_node->pt == tmp3.re_node->pt)
-	// 	{
-	// 		// std::cerr << " if this begin " << std::endl;
-	// 		re_node = tmp2.re_node;
-	// 	}
-	// 	//check left to return most left one
-	// 	else if(re_node->left != NULL)
-	// 	{
-	// 		// if has right go to most left
-	// 		re_node = re_node->left;
-	// 		re_node = inorder_predecessor(re_node); // get most-right
-	// 	}
-	// 	else
-	// 	{
-	// 		struct node<value_type> *tmp;
-	// 		//if not, return to parent
-	// 		tmp = re_node->parent;
-	// 		while (tmp != NULL && re_node == tmp->left)
-	// 		{
-	// 			re_node = tmp;
-	// 			tmp = tmp->parent;
-	// 		}
-	// 		// if right-most
-	// 		re_node = tmp;
-	// 	}
-	// 	return *this;
-	// }
-
-	
-	// avl_tree operator--(int)
-	// {
-	// 	avl_tree _tmp(*this);
-	// 	--(*this);
-	// 	return _tmp;
-	// }
-	
 	mapped_value &search(const key_type& k, node<value_type> *r)
 	{
 		try
 		{
 			if(r && k == r->pt.first)
 			{
-				//std::cout << "find" << std::endl;
 				return r->pt.second;
 			}
-			if (r && k < r->pt.first)
+			if (r && comp(k, r->pt.first))//k < r->pt.first
 			{
-				// std::cout << "lef" << std::endl;
 				return(search(k, r->left));
 			}
-			else if (r && k > r->pt.first)
+			else if (r && comp(r->pt.first, k))// k > r->pt.first
 			{
 				return(search(k, r->right));
 			}
@@ -667,7 +373,6 @@ public:
 		{
 			throw s;
 		}
-		// return r->pt;
 	}
 
 	avl_tree search_uniq(const key_type& k, node<value_type> *r)
@@ -676,17 +381,15 @@ public:
 		{
 			if(r && k == r->pt.first)
 			{
-				// std::cout << "find" << std::endl;
 				avl_tree tmp;
 				tmp.root  = r;
 				return tmp;
 			}
-			if (r && k < r->pt.first)
+			if (r && comp(k, r->pt.first))//k < r->pt.first
 			{
-				// std::cout << "lef" << std::endl;
 				return(search_uniq(k, r->left));
 			}
-			else if (r && k > r->pt.first)
+			else if (r && comp(r->pt.first, k))//k > r->pt.first
 			{
 				return(search_uniq(k, r->right));
 			}
@@ -696,7 +399,6 @@ public:
 		{
 			throw s;
 		}
-		// return r->pt;
 	}
 	pointer_node search_uniq1(const key_type& k, node<value_type> *r)
 	{
@@ -704,17 +406,17 @@ public:
 		{
 			if(r && k == r->pt.first)
 			{
-				// std::cout << "find" << std::endl;
+
 				pointer_node tmp;
 				tmp   = r;
 				return tmp;
 			}
-			if (r && k < r->pt.first)
+			if (r && comp(k, r->pt.first))//k < r->pt.first
 			{
-				// std::cout << "lef" << std::endl;
+
 				return(search_uniq1(k, r->left));
 			}
-			else if (r && k > r->pt.first)
+			else if (r &&  comp(r->pt.first, k))//k > r->pt.first
 			{
 				return(search_uniq1(k, r->right));
 			}
@@ -724,7 +426,7 @@ public:
 		{
 			throw s;
 		}
-		// return r->pt;
+
 	}
 	const pointer_node search_uniq1_const(const key_type& k, node<value_type> *r) const 
 	{
@@ -732,17 +434,16 @@ public:
 		{
 			if(r && k == r->pt.first)
 			{
-				// std::cout << "find" << std::endl;
+
 				pointer_node tmp;
 				tmp   = r;
 				return tmp;
 			}
-			if (r && k < r->pt.first)
+			if (r &&  comp(k, r->pt.first) )//k < r->pt.first
 			{
-				// std::cout << "lef" << std::endl;
 				return(search_uniq1_const(k, r->left));
 			}
-			else if (r && k > r->pt.first)
+			else if (r && comp(r->pt.first, k))//k > r->pt.first
 			{
 				return(search_uniq1_const(k, r->right));
 			}
@@ -752,52 +453,11 @@ public:
 		{
 			throw s;
 		}
-		// return r->pt;
 	}
 
-
-	// avl_tree lower_bound (const key_type& k) // unique search for avl tree
-	// {
-	// 	avl_tree tmp = begin();
-	// 	// while (comp(tmp.root->pt.first, k))
-	// 	// {
-	// 	// 	std::cout << tmp.root->pt.first << std::endl;
-	// 	// 	tmp++;
-	// 	// }
-	// 	do
-	// 	{
-	// 		if(comp((*tmp).first, k)  == false || k == (*tmp).first)
-	// 		{
-	// 			// std::cout << "my test  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
-	// 			return (avl_tree(root, tmp.re_node));
-	// 		}
-	// 	} while (comp((*tmp++).first, k));
-	// 	return end();
-	// }
-
-	// avl_tree upper_bound (const key_type& k)
-	// {
-	// 	avl_tree tmp = begin();
-	// 	do
-	// 	{
-	// 		if(comp(k, (*tmp).first)  == true  || k == (*tmp).first)
-	// 		{
-	// 			if (k == (*tmp).first)
-	// 				tmp++;
-	// 			// std::cout << "my map  ==> " << tmp->first << " mys >> " << tmp->second  << std::endl;
-	// 			return (avl_tree(root, tmp.re_node));
-	// 		}
-	// 	} while (comp((*tmp++).first, k));
-	// 	return end();
-	// }
-
-	
 };
 
 
 }
-
-
-
 
 #endif

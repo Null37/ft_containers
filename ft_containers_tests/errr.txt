@@ -1,0 +1,223 @@
+Map_tests.cpp:1556:107: error: no viable overloaded 'operator->'
+        cond = cond && ref.first == ft_ref.first && ref.second == ft_ref.second && iter->second == ft_iter->second && iter->first == ft_iter->first && m1.size() == ft_m1.size() && m2.size() && ft_m2.size();
+                                                                                                   ~~~~~~~^
+./../map/map_iterator.hpp:95:10: note: candidate function not viable: 'this' argument has type 'const ft::map<std::string, std::string, std::greater<std::string> >::iterator' (aka 'const map_iterator<node<ft::pair<const std::__1::basic_string<char>, std::__1::basic_string<char> > > *, pair<const std::__1::basic_string<char>, std::__1::basic_string<char> > >'), but method is not marked const
+        pointer operator->()
+                ^
+Map_tests.cpp:1563:107: error: no viable overloaded 'operator->'
+        cond = cond && ref.first == ft_ref.first && ref.second == ft_ref.second && iter->second == ft_iter->second && iter->first == ft_iter->first && m1.size() == ft_m1.size() && m2.size() && ft_m2.size();
+                                                                                                   ~~~~~~~^
+./../map/map_iterator.hpp:95:10: note: candidate function not viable: 'this' argument has type 'const ft::map<std::string, std::string, std::greater<std::string> >::iterator' (aka 'const map_iterator<node<ft::pair<const std::__1::basic_string<char>, std::__1::basic_string<char> > > *, pair<const std::__1::basic_string<char>, std::__1::basic_string<char> > >'), but method is not marked const
+        pointer operator->()
+                ^
+Map_tests.cpp:1685:29: error: no viable conversion from 'ft::node<ft::pair<const char, int> > *' to 'ft::pair<char, int>'
+        ft::pair<char, int> highest = *mymap.rbegin(); // last element
+                            ^         ~~~~~~~~~~~~~~~
+./../map/my_utility.hpp:9:8: note: candidate constructor (the implicit copy constructor) not viable: no known conversion from 'ft::node<ft::pair<const char, int> > *' to 'const ft::pair<char, int> &' for 1st argument
+struct pair
+       ^
+./../map/my_utility.hpp:27:9: note: candidate template ignored: could not match 'pair<type-parameter-0-0, type-parameter-0-1>' against 'ft::node<ft::pair<const char, int> > *'
+        pair (const pair<U, V>  &pr): first(pr.first), second(pr.second) {}// copy constructs
+        ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:67:27: error: field 'comp' will be initialized after field 'is_del' [-Werror,-Wreorder]
+        avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
+                                 ^
+./../map/map.hpp:65:109: note: in instantiation of member function 'ft::avl_tree<ft::pair<const char, int>, std::__1::less<char>, std::__1::allocator<ft::pair<const char, int> > >::avl_tree' requested here
+                        explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree_base()
+                                                                                                                                 ^
+Map_tests.cpp:79:24: note: in instantiation of member function 'ft::map<char, int, std::__1::less<char>, std::__1::allocator<ft::pair<const char, int> > >::map' requested here
+    ft::map<char, int> m_first;
+                       ^
+In file included from Map_tests.cpp:7:
+./../map/map.hpp:77:11: error: no member named 'comper' in 'ft::map<char, int, std::__1::less<char>, std::__1::allocator<ft::pair<const char, int> > >'
+                                this->comper = comp;
+                                ~~~~  ^
+Map_tests.cpp:93:24: note: in instantiation of function template specialization 'ft::map<char, int, std::__1::less<char>, std::__1::allocator<ft::pair<const char, int> > >::map<ft::map_iterator<ft::node<ft::pair<const char, int> > *, ft::pair<const char, int> > >' requested here
+    ft::map<char, int> m_second(m_first.begin(), m_first.end());
+                       ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:67:27: error: field 'comp' will be initialized after field 'is_del' [-Werror,-Wreorder]
+        avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
+                                 ^
+./../map/map.hpp:65:109: note: in instantiation of member function 'ft::avl_tree<ft::pair<const char, int>, classcomp, std::__1::allocator<ft::pair<const char, int> > >::avl_tree' requested here
+                        explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree_base()
+                                                                                                                                 ^
+Map_tests.cpp:102:35: note: in instantiation of member function 'ft::map<char, int, classcomp, std::__1::allocator<ft::pair<const char, int> > >::map' requested here
+    ft::map<char, int, classcomp> m_fourth; // class as Compare
+                                  ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:36:168: error: field 'left' will be initialized after field 'hight' [-Werror,-Wreorder]
+        node(const first_type &first, const second_type &second, struct node  *cp, struct node    *rp, struct node    *lp, int hp): pt(first, second), parent(cp), right(rp), left(lp), hight(hp) {}
+                                                                                                                                                                              ^
+./../map/avl_tree.hpp:447:24: note: in instantiation of member function 'ft::node<ft::pair<const char, int> >::node' requested here
+                                alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
+                                                   ^
+./../map/avl_tree.hpp:482:10: note: in instantiation of member function 'ft::avl_tree<ft::pair<const char, int>, classcomp, std::__1::allocator<ft::pair<const char, int> > >::deleteNode' requested here
+                root = deleteNode(root, data);
+                       ^
+./../map/map.hpp:220:15: note: in instantiation of member function 'ft::avl_tree<ft::pair<const char, int>, classcomp, std::__1::allocator<ft::pair<const char, int> > >::dele' requested here
+                                tree_base.dele(k);
+                                          ^
+./../map/map.hpp:255:6: note: in instantiation of member function 'ft::map<char, int, classcomp, std::__1::allocator<ft::pair<const char, int> > >::erase' requested here
+                                        erase(tree_base.root->pt.first);
+                                        ^
+./../map/map.hpp:98:5: note: in instantiation of member function 'ft::map<char, int, classcomp, std::__1::allocator<ft::pair<const char, int> > >::clear' requested here
+                                clear();
+                                ^
+Map_tests.cpp:102:35: note: in instantiation of member function 'ft::map<char, int, classcomp, std::__1::allocator<ft::pair<const char, int> > >::~map' requested here
+    ft::map<char, int, classcomp> m_fourth; // class as Compare
+                                  ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:67:27: error: field 'comp' will be initialized after field 'is_del' [-Werror,-Wreorder]
+        avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
+                                 ^
+./../map/map.hpp:65:109: note: in instantiation of member function 'ft::avl_tree<ft::pair<const char, int>, bool (*)(char, char), std::__1::allocator<ft::pair<const char, int> > >::avl_tree' requested here
+                        explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree_base()
+                                                                                                                                 ^
+Map_tests.cpp:108:46: note: in instantiation of member function 'ft::map<char, int, bool (*)(char, char), std::__1::allocator<ft::pair<const char, int> > >::map' requested here
+    ft::map<char, int, bool (*)(char, char)> m_fifth(fn_pt); // function pointer as Compare
+                                             ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:35:100: error: field 'left' will be initialized after field 'hight' [-Werror,-Wreorder]
+        node(const first_type &first, const second_type &second): pt(first, second), parent(0), right(0), left(0), hight(0) {}
+                                                                                                          ^
+./../map/avl_tree.hpp:178:25: note: in instantiation of member function 'ft::node<ft::pair<const char, int> >::node' requested here
+                alloc.construct(copy, node<value_type>(cp->pt.first, cp->pt.second));
+                                      ^
+./../map/avl_tree.hpp:145:16: note: in instantiation of member function 'ft::avl_tree<ft::pair<const char, int>, std::__1::less<char>, std::__1::allocator<ft::pair<const char, int> > >::copy_helper' requested here
+                this->root = copy_helper(at.root);
+                             ^
+./../map/map.hpp:91:22: note: in instantiation of member function 'ft::avl_tree<ft::pair<const char, int>, std::__1::less<char>, std::__1::allocator<ft::pair<const char, int> > >::operator=' requested here
+                                        this->tree_base =  x.tree_base;
+                                                        ^
+Map_tests.cpp:113:13: note: in instantiation of member function 'ft::map<char, int, std::__1::less<char>, std::__1::allocator<ft::pair<const char, int> > >::operator=' requested here
+    m_first = ft::map<char, int>();
+            ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:67:27: error: field 'comp' will be initialized after field 'is_del' [-Werror,-Wreorder]
+        avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
+                                 ^
+./../map/map.hpp:65:109: note: in instantiation of member function 'ft::avl_tree<ft::pair<const int, char>, std::__1::less<int>, std::__1::allocator<ft::pair<const int, char> > >::avl_tree' requested here
+                        explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree_base()
+                                                                                                                                 ^
+Map_tests.cpp:126:24: note: in instantiation of member function 'ft::map<int, char, std::__1::less<int>, std::__1::allocator<ft::pair<const int, char> > >::map' requested here
+    ft::map<int, char> my_m;
+                       ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:36:168: error: field 'left' will be initialized after field 'hight' [-Werror,-Wreorder]
+        node(const first_type &first, const second_type &second, struct node  *cp, struct node    *rp, struct node    *lp, int hp): pt(first, second), parent(cp), right(rp), left(lp), hight(hp) {}
+                                                                                                                                                                              ^
+./../map/avl_tree.hpp:447:24: note: in instantiation of member function 'ft::node<ft::pair<const int, char> >::node' requested here
+                                alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
+                                                   ^
+./../map/avl_tree.hpp:482:10: note: in instantiation of member function 'ft::avl_tree<ft::pair<const int, char>, std::__1::less<int>, std::__1::allocator<ft::pair<const int, char> > >::deleteNode' requested here
+                root = deleteNode(root, data);
+                       ^
+./../map/map.hpp:220:15: note: in instantiation of member function 'ft::avl_tree<ft::pair<const int, char>, std::__1::less<int>, std::__1::allocator<ft::pair<const int, char> > >::dele' requested here
+                                tree_base.dele(k);
+                                          ^
+./../map/map.hpp:255:6: note: in instantiation of member function 'ft::map<int, char, std::__1::less<int>, std::__1::allocator<ft::pair<const int, char> > >::erase' requested here
+                                        erase(tree_base.root->pt.first);
+                                        ^
+./../map/map.hpp:98:5: note: in instantiation of member function 'ft::map<int, char, std::__1::less<int>, std::__1::allocator<ft::pair<const int, char> > >::clear' requested here
+                                clear();
+                                ^
+Map_tests.cpp:126:24: note: in instantiation of member function 'ft::map<int, char, std::__1::less<int>, std::__1::allocator<ft::pair<const int, char> > >::~map' requested here
+    ft::map<int, char> my_m;
+                       ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:5:
+./../map/map_iterator.hpp:74:14: error: cannot assign to non-static data member 'root' with const-qualified type 'ft::map_iterator<ft::node<ft::pair<const int, char> > *const, const ft::pair<const int, char> >::iterator_type' (aka 'ft::node<ft::pair<const int, char> > *const')
+                this->root = cp_it.root;
+                ~~~~~~~~~~ ^
+Map_tests.cpp:150:14: note: in instantiation of member function 'ft::map_iterator<ft::node<ft::pair<const int, char> > *const, const ft::pair<const int, char> >::operator=' requested here
+        c_it = my_it;
+             ^
+./../map/map_iterator.hpp:30:16: note: non-static data member 'root' declared const here
+        iterator_type root;
+        ~~~~~~~~~~~~~~^~~~
+./../map/map_iterator.hpp:75:17: error: cannot assign to non-static data member 're_node' with const-qualified type 'ft::map_iterator<ft::node<ft::pair<const int, char> > *const, const ft::pair<const int, char> >::iterator_type' (aka 'ft::node<ft::pair<const int, char> > *const')
+                this->re_node = cp_it.re_node;
+                ~~~~~~~~~~~~~ ^
+./../map/map_iterator.hpp:31:16: note: non-static data member 're_node' declared const here
+        iterator_type re_node;
+        ~~~~~~~~~~~~~~^~~~~~~
+./../map/map_iterator.hpp:76:19: error: cannot assign to non-static data member 'last_node' with const-qualified type 'ft::map_iterator<ft::node<ft::pair<const int, char> > *const, const ft::pair<const int, char> >::iterator_type' (aka 'ft::node<ft::pair<const int, char> > *const')
+                this->last_node = cp_it.last_node;
+                ~~~~~~~~~~~~~~~ ^
+./../map/map_iterator.hpp:32:16: note: non-static data member 'last_node' declared const here
+        iterator_type last_node;
+        ~~~~~~~~~~~~~~^~~~~~~~~
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:67:27: error: field 'comp' will be initialized after field 'is_del' [-Werror,-Wreorder]
+        avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
+                                 ^
+./../map/map.hpp:65:109: note: in instantiation of member function 'ft::avl_tree<ft::pair<const int, std::__1::basic_string<char> >, std::__1::less<int>, std::__1::allocator<ft::pair<const int, std::__1::basic_string<char> > > >::avl_tree' requested here
+                        explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree_base()
+                                                                                                                                 ^
+Map_tests.cpp:167:35: note: in instantiation of member function 'ft::map<int, std::__1::basic_string<char>, std::__1::less<int>, std::__1::allocator<ft::pair<const int, std::__1::basic_string<char> > > >::map' requested here
+        ft::map<int, std::string> my_m;
+                                  ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:67:27: error: field 'comp' will be initialized after field 'is_del' [-Werror,-Wreorder]
+        avl_tree() : root(NULL), comp(), is_del(false), alloc(alloc_type()), avl_size(0)
+                                 ^
+./../map/map.hpp:65:109: note: in instantiation of member function 'ft::avl_tree<ft::pair<const int, int>, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::avl_tree' requested here
+                        explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : tree_base()
+                                                                                                                                 ^
+Map_tests.cpp:210:31: note: in instantiation of member function 'ft::map<int, int, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::map' requested here
+            ft::map<int, int> m;
+                              ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:6:
+./../map/avl_tree.hpp:36:168: error: field 'left' will be initialized after field 'hight' [-Werror,-Wreorder]
+        node(const first_type &first, const second_type &second, struct node  *cp, struct node    *rp, struct node    *lp, int hp): pt(first, second), parent(cp), right(rp), left(lp), hight(hp) {}
+                                                                                                                                                                              ^
+./../map/avl_tree.hpp:447:24: note: in instantiation of member function 'ft::node<ft::pair<const int, int> >::node' requested here
+                                alloc.construct(r, node<value_type>(tmp->pt.first, tmp->pt.second, tmp_pa, tmp_r, tmp_l, tmp_h));
+                                                   ^
+./../map/avl_tree.hpp:482:10: note: in instantiation of member function 'ft::avl_tree<ft::pair<const int, int>, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::deleteNode' requested here
+                root = deleteNode(root, data);
+                       ^
+./../map/map.hpp:220:15: note: in instantiation of member function 'ft::avl_tree<ft::pair<const int, int>, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::dele' requested here
+                                tree_base.dele(k);
+                                          ^
+./../map/map.hpp:255:6: note: in instantiation of member function 'ft::map<int, int, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::erase' requested here
+                                        erase(tree_base.root->pt.first);
+                                        ^
+./../map/map.hpp:98:5: note: in instantiation of member function 'ft::map<int, int, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::clear' requested here
+                                clear();
+                                ^
+Map_tests.cpp:210:31: note: in instantiation of member function 'ft::map<int, int, std::__1::less<int>, std::__1::allocator<ft::pair<const int, int> > >::~map' requested here
+            ft::map<int, int> m;
+                              ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:5:
+./../map/map_iterator.hpp:102:17: error: default initialization of an object of const type 'ft::map_iterator<ft::node<ft::pair<const int, char> > *const, const ft::pair<const int, char> >::iterator_type' (aka 'ft::node<ft::pair<const int, char> > *const')
+                iterator_type tmp;
+                              ^
+                                  = NULL
+Map_tests.cpp:344:5: note: in instantiation of member function 'ft::map_iterator<ft::node<ft::pair<const int, char> > *const, const ft::pair<const int, char> >::operator++' requested here
+    ++my_it; // I incremented here to make sure that the object changes
+    ^
+In file included from Map_tests.cpp:7:
+In file included from ./../map/map.hpp:5:
+./../map/map_iterator.hpp:106:12: error: cannot assign to non-static data member 're_node' with const-qualified type 'ft::map_iterator<ft::node<ft::pair<const int, char> > *const, const ft::pair<const int, char> >::iterator_type' (aka 'ft::node<ft::pair<const int, char> > *const')
+                        re_node = re_node->right;
+                        ~~~~~~~ ^
+./../map/map_iterator.hpp:31:16: note: non-static data member 're_node' declared const here
+        iterator_type re_node;
+        ~~~~~~~~~~~~~~^~~~~~~
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+20 errors generated.
+make: *** [map] Error 1

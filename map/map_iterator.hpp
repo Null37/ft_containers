@@ -1,7 +1,6 @@
 #ifndef MAP_ITERATOR_HPP
 #define MAP_ITERATOR_HPP
 
-//#include <iterator>
 #include "my_utility.hpp"
 #include "../iterator_traits.hpp"
 
@@ -20,54 +19,41 @@ public:
 	typedef std::bidirectional_iterator_tag							iterator_category;
 	typedef value_type*												pointer;
 	typedef ptrdiff_t												difference_type;
-	typedef	value&												reference;
+	typedef	value&													reference;
 
-// private:
+
+	
+private:
 	typedef map_iterator<iterator_type, const value>  const_iterator;
-// 	typedef typename avl_base::pointer_node pointer_node;
-public:
-	// iterator_type tree;
-	iterator_type root;
-	iterator_type re_node;
-	iterator_type last_node;
+	iterator_type 		root; // root save node
+	iterator_type 		re_node; // operator node 
+	iterator_type 		last_node; // end()
 	iterator_type inorder_predecessor(iterator_type tc)
 	{
 		//the largest element of the left sub tree.
-		iterator_type t = tc;
-		while(t->right != NULL)
-			t = t->right;
-		return t;
+		while(tc->right != NULL)
+			tc = tc->right;
+		return tc;
 	}
-
 	iterator_type inorder_successor(iterator_type tc)
 	{
 		//the smallest element of the right sub tree
-		iterator_type t = tc;
-
-		while(t->left != NULL)
-			t = t->left;
-		return t;
+		// iterator_type t = tc;
+		while(tc->left != NULL)
+			tc = tc->left;
+		return tc;
 	}
 public:
-	// const int ft::pair<const int, int>::first;
-	// map_iterator(const pointer_node &root_p,const  pointer_node &node_p): tree(root_p, node_p){} // default
-	// map_iterator(const iterator_type &cp): tree(cp){
-	// 	// std::cout << "test 1 is here" << std::endl;
-
-	// }
+	
 	operator const_iterator()
 	{
-		// std::cerr << " testt test " << std::endl;
-		// exit(12);
+		// overload for const cast
 		return const_iterator(root, re_node, last_node);
 	} 
 	// new contractor
-	map_iterator(): root(NULL), re_node(NULL), last_node(NULL){}
+	map_iterator(): root(NULL), re_node(NULL), last_node(NULL){} 
 	map_iterator(const iterator_type cp_root, const iterator_type cp_re_node, iterator_type cp_last): root(cp_root), re_node(cp_re_node), last_node(cp_last){}
-	map_iterator(const map_iterator &cp_it): root(cp_it.root), re_node(cp_it.re_node), last_node(cp_it.last_node)
-	{
-	} // copy constructor
-	
+	map_iterator(const map_iterator &cp_it): root(cp_it.root), re_node(cp_it.re_node), last_node(cp_it.last_node){} // copy constructor
 	
 	void operator=(  map_iterator const &cp_it ) //
 	{
@@ -77,7 +63,6 @@ public:
 	}
 
 	~map_iterator(){}
-	public:
 	//overload operator
 	
 	bool operator==(const map_iterator& it)
@@ -167,54 +152,8 @@ public:
 		--(*this);
 		return _tmp;
 	}
-	// map_iterator begin()
-	// {
-	// 	return (tree.begin());
-	// }
-	// map_iterator end()
-	// {
-	// 	return (tree.end());
-	// }
-	// my fucntion
-	private:
-	// map_iterator end()
-	// {
-	// 	pointer_node tmp_node;
-	// 	// tmp_node  = new node<value_type>(save, mapped_value()); // new one two end
-	// 	tmp_node =  alloc.allocate(1);
-	// 	// alloc.construct(tmp_node, node<value_type>(save, mapped_value()));
-	// 	return map_iterator(root, tmp_node)
-	// }
+
 };
-
-
-// template<class Iterator>
-// class reverse_iterator
-// {
-// 	public:
-// 		// Member types
-// 	typedef Iterator 												iterator_type;
-// 	typedef typename iterator_traits<Iterator>::iterator_category	iterator_category;
-// 	typedef typename iterator_traits<Iterator>::value_type			value_type;
-// 	typedef typename iterator_traits<Iterator>::difference_type 	difference_type;
-// 	typedef typename iterator_traits<Iterator>::pointer 			pointer;
-// 	typedef typename iterator_traits<Iterator>::reference			reference;
-// 	private:
-// 		iterator_type rv_it;
-// 	public:
-// 	//Member functions
-// 	reverse_iterator() : rv_it() {}
-// 	explicit reverse_iterator (iterator_type it): rv_it(it) {}
-// 	template <class Iter>
-//   	reverse_iterator (const reverse_iterator<Iter>& rev_it): rv_it{rev_it.base()}
-
-	
-
-
-// };
-
-
-		
 
 
 }

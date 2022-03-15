@@ -9,8 +9,6 @@ namespace ft
 	template <class T>
 class my_iterator 
 {
-
-	
 	public:
 		typedef T													iterator_type;
 		typedef typename ft::iterator_traits<T>::value_type			value_type;
