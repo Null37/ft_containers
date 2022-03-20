@@ -4,11 +4,11 @@
 #include "vector_iterator.hpp"
 #include <cstddef>
 #include <iostream>
-#include <iterator>
+// #include <iterator>
 
 #include <stdexcept>  // out of range header
 #include <sys/types.h>
-#include "../type_trais/type_traits.hpp"
+#include "type_trais/type_traits.hpp"
 
 
 namespace ft
@@ -49,11 +49,11 @@ public:
 	}
 	explicit vector (size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) // fill constractor
 	{
+		this->alloc = alloc;
 		dy_arr = this->alloc.allocate(n);
 		_size  = n;
 		_capacity = _size;
-		this->alloc = alloc;
-		for(difference_type i = 0; i < n; i++)
+		for(size_type i = 0; i < n; i++)
 			this->alloc.construct((dy_arr + i), val);
 	}
 	template <class InputIterator>
@@ -165,7 +165,6 @@ public:
 			size_type save = _size - n;
 			for(size_type i = save; i != 0 ; i--)
 				alloc.destroy(dy_arr + i);
-			alloc.deallocate(dy_arr, _capacity);
 			_size = n;
 		}
 		else if ( n > _capacity)
@@ -176,13 +175,13 @@ public:
 			else
 				cp = n;
 			pointer tmp = alloc.allocate(cp);
-			for(int i = 0; i < _size; i++)
+			for(size_type i = 0; i < _size; i++)
 				alloc.construct(tmp + i, dy_arr[i]);
-			for(int i = 0; i < _capacity; i++)
+			for(size_type i = 0; i < _capacity; i++)
 				alloc.destroy(dy_arr + i);
 			alloc.deallocate(dy_arr, _capacity);
 			dy_arr = tmp;
-			for(int i = _size; i < n; i++)
+			for(size_type i = _size; i < n; i++)
 				alloc.construct(dy_arr + i, val);
 			if ((_capacity * 2) > n)
 				_capacity = (_capacity * 2);
@@ -192,7 +191,7 @@ public:
 		}
 		else if (n > _size)
 		{
-			for(int i = _size; i < n; i++)
+			for(size_type i = _size; i < n; i++)
 				alloc.construct(dy_arr + i, val);
 			_size = n;
 		}
@@ -212,7 +211,7 @@ public:
 		if (n > _capacity)
 		{
 			if (n > max_size())
-				throw std::length_error("ft::vector");
+				throw std::length_error("vector");
 			pointer tmp = alloc.allocate(n);
 			for(size_type i = 0; i < _size; i++)
 				alloc.construct(tmp + i, dy_arr[i]);
@@ -236,7 +235,7 @@ public:
 	}
 	reference at (size_type n)
 	{
-		std::string str = "out of range";
+		std::string str = "vector";
 		if (n >= _size)
 		{
 			throw std::out_of_range(str);
@@ -245,7 +244,7 @@ public:
 	}
 	const_reference at (size_type n) const
 	{
-		std::string str = "out of range";
+		std::string str = "vector";
 		if (n >= _size)
 			throw std::out_of_range(str);
 		return dy_arr[n];
@@ -274,8 +273,9 @@ public:
 		{
 			dy_arr = this->alloc.allocate(n);
 			_size  = n;
-			_capacity = _size;
-			for(difference_type i = 0; i < n; i++)
+			if(_capacity < _size)
+				_capacity = _size;
+			for(size_type i = 0; i < n; i++)
 				this->alloc.construct(dy_arr + i, val);
 		}
 		else if (n > _size)
@@ -295,9 +295,9 @@ public:
 		}
 		else
 		{
-			for(int i = 0; i < _capacity; i++)
+			for(size_type i = 0; i < _capacity; i++)
 				alloc.destroy(dy_arr + i);
-			for(int i = 0; i < n; i++)
+			for(size_type i = 0; i < n; i++)
 				alloc.construct(dy_arr + i, val);
 			_capacity = _size;
 			_size = n;
@@ -307,18 +307,18 @@ public:
 	template <class InputIterator>
   	void assign (InputIterator first, InputIterator last, typename ft::enable_if<!is_integral<InputIterator>::value, InputIterator>::type = InputIterator()) //range
 	{
-		difference_type ds = std::distance(first, last);
+		size_type ds = std::distance(first, last);
 		if (ds != 0)
 		{
 			// destory and dealocate dy_arr
-			for(int i = 0; i < _size; i++)
+			for(size_type i = 0; i < _size; i++)
 				alloc.destroy(dy_arr + i);
 			alloc.deallocate(dy_arr, _capacity);
 			_size = ds;
 			if (ds > _capacity)
 				_capacity = _size;
 			pointer tmp = alloc.allocate(_capacity);
-			int  i = 0;
+			size_type  i = 0;
 			for(; first != last; first++)
 			{
 				alloc.construct(tmp + i, *first);
@@ -455,7 +455,7 @@ public:
 
 	void clear()
 	{
-		for(int i = 0; i < _capacity; i++)
+		for(size_type i = 0; i < _capacity; i++)
 			alloc.destroy(dy_arr + i);
 		alloc.deallocate(dy_arr, _capacity);
 		dy_arr = nullptr;

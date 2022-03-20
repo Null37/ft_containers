@@ -61,6 +61,7 @@ public:
 		this->root = NULL;
 		this->last_node = NULL;
 		this->alloc = alloc_type();
+		this->last_node =  alloc.allocate(1);
 		*this = at;
 	}
 
@@ -69,7 +70,8 @@ public:
 		this->is_del = at.is_del;
 		this->root = copy_helper(at.root, NULL);
 		this->avl_size = at.avl_size;
-		this->last_node =  alloc.allocate(1);
+		// this->last_node =  alloc.allocate(1);
+		// this->last_node = at.last_node;
 		return *this;
 	}
 	//getter
@@ -453,6 +455,10 @@ public:
 		{
 			throw s;
 		}
+	}
+	~avl_tree()
+	{
+		alloc.deallocate(last_node, 1);
 	}
 
 };

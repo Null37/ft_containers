@@ -1,11 +1,11 @@
 #ifndef MAP_HPP
 #define MAP_HPP
-#include "../vector/vector.hpp"
+#include "vector.hpp"
 #include "my_utility.hpp"
 #include "map_iterator.hpp"
 #include "avl_tree.hpp"
-#include  "../type_trais/type_traits.hpp"
-#include "../vector/vector_iterator.hpp"
+#include  "type_trais/type_traits.hpp"
+#include "vector_iterator.hpp"
 
 
 namespace ft
@@ -104,6 +104,8 @@ template < class Key,                                     // map::key_type
 			~map()
 			{
 				clear(); // start delete from begin to end
+				new_alloc.destroy(tree_base);
+				new_alloc.deallocate(tree_base, 1);
 			}
 			iterator begin() 
 			{
